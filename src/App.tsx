@@ -1,10 +1,12 @@
+import { ToolsList } from './components/ToolsList/ToolsList'
+
 
 export const App = () => {
 
   return (
-    <div>
-      <h1>UTM Tools</h1>
-    </div>
+    <main className='w-screen h-screen bg-yellow-950'>
+      <ToolsList />
+    </main>
   )
 
 }

@@ -1,5 +1,3 @@
-* {
-  box-sizing: border-box;
-  text-decoration: none;
-  list-style: none;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
