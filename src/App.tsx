@@ -4,7 +4,7 @@ import { ToolsList } from './components/ToolsList/ToolsList'
 export const App = () => {
 
   return (
-    <main className='w-screen h-screen bg-yellow-950'>
+    <main className='w-screen h-screen bg-yellow-950 relative'>
       <ToolsList />
     </main>
   )
