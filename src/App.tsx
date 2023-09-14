@@ -1,12 +1,5 @@
-import { ToolsList } from './components/ToolsList/ToolsList'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router'
 
 
-export const App = () => {
-
-  return (
-    <main className='w-screen h-screen bg-yellow-950 relative'>
-      <ToolsList />
-    </main>
-  )
-
-}
+export const App = () => <RouterProvider router={router} />
