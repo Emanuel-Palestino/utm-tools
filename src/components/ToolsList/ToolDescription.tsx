@@ -13,6 +13,7 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 	return (
 		<motion.div
 			className='absolute inset-0 w-screen h-screen grid place-items-center bg-[rgba(0,0,0,0.6)]'
+			key={tool.id}
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}

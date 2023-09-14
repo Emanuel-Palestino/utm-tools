@@ -31,7 +31,7 @@ export const ToolsList = () => {
 					key={tool.id}
 					type={tool.type}
 					name={tool.name}
-					layoutId={tool.id}
+					id={tool.id}
 					onClick={() => setSelectedTool(tool)}
 				/>
 			))}
