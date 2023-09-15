@@ -19,7 +19,7 @@ export const ToolsItem: FC<ToolsItemProps> = ({ type, name, id, onClick }) => {
 			layoutId={id}
 		>
 			<motion.small className="text-yellow-950">{type}</motion.small>
-			<motion.p>{name}</motion.p>
+			<motion.h2 layoutId={`title_${id}`}>{name}</motion.h2>
 		</motion.button>
 	)
 
