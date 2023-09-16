@@ -36,8 +36,8 @@ export const ToolsList = () => {
 				/>
 			))}
 
-			<AnimatePresence>
-				{selectedTool && (
+			<AnimatePresence onExitComplete={() => setSelectedTool({ id: '', description: '', name: '', type: '' })}>
+				{selectedTool?.id && (
 					<ToolDescription
 						tool={selectedTool}
 						onClose={() => setSelectedTool(null)}
