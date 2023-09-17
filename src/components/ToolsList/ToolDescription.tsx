@@ -21,7 +21,7 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 		>
 			<motion.div
 				layoutId={tool.id}
-				className="relative rounded-lg bg-white w-[50rem] h-auto p-8 flex flex-col justify-between gap-6"
+				className="relative rounded-lg bg-white w-[50rem] h-auto p-8 flex flex-col justify-between items-center gap-8"
 			>
 				<motion.button
 					initial={{ opacity: 0 }}
@@ -36,55 +36,37 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 				</motion.button>
 
 
-				<motion.h2 layoutId={`title_${tool.id}`} className='mb-4 text-3xl text-center font-medium'>{tool.name}</motion.h2>
-				<motion.p
+				<motion.h2 layoutId={`title_${tool.id}`} className='text-3xl font-medium'>{tool.name}</motion.h2>
+
+
+				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.2 }}
+					className="flex flex-col gap-4"
 				>
-					{tool.description}
-				</motion.p>
+					<p>{tool.description}</p>
 
+					<div>
+						<h3 className='text-lg font-medium'>{tool.subtitle}</h3>
+						<ul className='list-disc list-inside'>
+							{tool.documentation.map(doc => (
+								<li key={`${tool.id}_${doc}`}>{doc}</li>
+							))}
+						</ul>
+					</div>
 
-				<div>
-					<motion.h3
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ delay: 0.2 }}
-						className='text-lg font-medium'
-					>
-						{tool.subtitle}
-					</motion.h3>
-					<motion.ul className='list-disc list-inside'>
-						{tool.documentation.map(doc => (
-							<motion.li
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								transition={{ delay: 0.2 }}
-								key={`${tool.id}_${doc}`}
-							>
-								{doc}
-							</motion.li>
-						))}
-					</motion.ul>
-				</div>
-
-
-				<motion.p
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{ delay: 0.2 }}
-					className='text-slate-500 text-sm'
-				>
-					Última actualizacion: {format(new Date(`${tool.date} GMT-6`), "dd 'de' MMMM 'del' y", { locale: es })}
-				</motion.p>
+					<p className='text-slate-500 text-sm'>
+						Última actualizacion: {format(new Date(`${tool.date} GMT-6`), "dd 'de' MMMM 'del' y", { locale: es })}
+					</p>
+				</motion.div>
 
 
 				<motion.button
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.3, duration: 0.4 }}
-					className="w-52 h-10 rounded-lg mx-auto mt-4 bg-yellow-500 transition-transform active:scale-95"
+					className="w-52 h-10 rounded-lg bg-yellow-500 transition-transform active:scale-95"
 				>
 					Generar Documentación
 				</motion.button>
