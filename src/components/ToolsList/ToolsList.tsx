@@ -3,30 +3,10 @@ import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { ToolDescription } from './ToolDescription'
 import { Tool } from '../../models/Tool'
+import tools from '../../assets/tools.json'
 
 
 export const ToolsList = () => {
-
-	const tools: Tool[] = [
-		{
-			id: 'internship_tool',
-			type: 'Documentación',
-			name: 'Prácticas Profesionales',
-			description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum?',
-			subtitle: 'Documentación que se pueden generar:',
-			documentation: ['Documento documento uno', 'Documento documento dos', 'Documento documento tres'],
-			date: '2023-09-10'
-		},
-		{
-			id: 'service_tool',
-			type: 'Documentación',
-			name: 'Servicio Social',
-			description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum?. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum?',
-			subtitle: 'Documentación que se pueden generar:',
-			documentation: ['Documento documento uno', 'Documento documento dos', 'Documento documento tres'],
-			date: '2023-09-10'
-		}
-	]
 
 	const [selectedTool, setSelectedTool] = useState<Tool | null>(null)
 
