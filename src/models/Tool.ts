@@ -3,4 +3,7 @@ export interface Tool {
 	type: string
 	name: string
 	description: string
+	subtitle: string
+	documentation: string[]
+	date: string
 }
