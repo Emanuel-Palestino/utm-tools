@@ -1,0 +1,17 @@
+[
+	{
+		"id": "internship_tool",
+		"type": "Documentación",
+		"name": "Prácticas Profesionales",
+		"description": "Los estudiantes deben realizar sus Prácticas Profesionales, divididas en dos periodos, al finalizar el sexto y octavo semestre en verano. Estas pueden ser realizadas en sectores público, social o privado. Cada periodo exige 280 horas, sumando un total de 560 horas en ambos.",
+		"subtitle": "Documentación que se puede generar:",
+		"documentation": [
+			"Solicitud para Oficio de Presentación.",
+			"Reportes semanales (o del periodo seleccionado).",
+			"Reporte Final.",
+			"Evaluación Final por parte de la Empresa.",
+			"Cuestionario de Resultados."
+		],
+		"date": "2023-09-17"
+	}
+]
