@@ -1,11 +1,11 @@
-export interface User {
+export interface Student {
 	name: string;
 	tuition: string; //matricula
 	semester: string;
 	disability: boolean;
-	desabilityDescription: string;
+	disabilityDescription: string;
 	indigenousLanguage: boolean;
-	typeOfIndigenousLanguage: String;
+	typeOfIndigenousLanguage: string;
 	phone: string;
 	email: string;
 }
