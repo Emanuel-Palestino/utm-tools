@@ -1,4 +1,4 @@
-export class ServiceCompany {
+export class PracticesCompany {
 	classification: companyClassification;
 	sector: CompanySector;
 	businessLine: string;
@@ -17,7 +17,7 @@ export class ServiceCompany {
 	inAtentionOf: string;
 
 
-	constructor(company: ServiceCompany){
+	constructor(company: PracticesCompany){
 		this.classification = company.classification;
 		this.sector = company.sector;
 		this.businessLine = company.businessLine;
