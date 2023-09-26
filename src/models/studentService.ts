@@ -1,5 +1,5 @@
 import { Student } from "./student";
-export class UserService implements Student {
+export class StudentService implements Student {
 	name: string = '';
 	tuition: string = '';
 	semester: string = '';
@@ -17,18 +17,24 @@ export class UserService implements Student {
 	summerCourseMatterNames: string = ""; //puede ser una o dos
 	studentState: StudentState | undefined;
 
-	constructor(user: UserService) {
-		if (user) {
-			this.name = user.name;
-			this.tuition = user.tuition;
-			this.semester = user.semester;
-			this.disability = user.disability;
-			this.disabilityDescription = user.disabilityDescription;
-			this.indigenousLanguage = user.indigenousLanguage;
-			this.typeOfIndigenousLanguage = user.typeOfIndigenousLanguage;
-			this.phone = user.phone;
-			this.email = user.email;
-			this.studentState = user.studentState;
+	constructor(student: StudentService) {
+		if (student) {
+			this.name = student.name;
+			this.tuition = student.tuition;
+			this.semester = student.semester;
+			this.disability = student.disability;
+			this.disabilityDescription = student.disabilityDescription;
+			this.indigenousLanguage = student.indigenousLanguage;
+			this.typeOfIndigenousLanguage = student.typeOfIndigenousLanguage;
+			this.phone = student.phone;
+			this.email = student.email;
+
+			this.matterDebt = student.matterDebt;
+			this.extraordinaryExam = student.extraordinaryExam;
+			this.amountOfExtraordinaryExam = student.amountOfExtraordinaryExam;
+			this.summerCourses = student.summerCourses;
+			this.summerCourseMatterNames;
+			this.studentState = student.studentState;
 
 		}
 	}
