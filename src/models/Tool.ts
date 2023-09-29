@@ -6,4 +6,5 @@ export interface Tool {
 	subtitle: string
 	documentation: string[]
 	date: string
+	link: string
 }
