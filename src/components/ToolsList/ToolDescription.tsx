@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { Tool } from '../../models/Tool'
 import { format } from 'date-fns'
 import es from 'date-fns/locale/es'
+import { useNavigate } from 'react-router-dom'
 
 
 interface ToolDescriptionProps {
@@ -11,6 +12,10 @@ interface ToolDescriptionProps {
 }
 
 export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => {
+
+	const navigate = useNavigate()
+
+	const handleClick = () => navigate(tool.link)
 
 	return (
 		<motion.div
@@ -67,6 +72,7 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.3, duration: 0.4 }}
 					className="w-52 h-10 rounded-xl bg-utm-container-3 text-utm-on-container-3 transition-transform active:scale-95"
+					onClick={handleClick}
 				>
 					Generar Documentación
 				</motion.button>
