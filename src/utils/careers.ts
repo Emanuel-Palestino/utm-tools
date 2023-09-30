@@ -1,4 +1,4 @@
-const careers:string[] = [
+const careers: string[] = [
 	"Ingeniería en Computación",
 	"Ingeniería en Electrónica",
 	"Ingeniería en Diseño",
