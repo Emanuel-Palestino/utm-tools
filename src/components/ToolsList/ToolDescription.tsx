@@ -43,7 +43,6 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 
 				<motion.h2 layoutId={`title_${tool.id}`} className='text-3xl font-medium'>{tool.name}</motion.h2>
 
-
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -65,7 +64,6 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 						Última actualizacion: {format(new Date(`${tool.date} GMT-6`), "dd 'de' MMMM 'del' y", { locale: es })}
 					</p>
 				</motion.div>
-
 
 				<motion.button
 					initial={{ opacity: 0 }}
