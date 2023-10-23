@@ -1,4 +1,4 @@
-import { MutableRefObject } from 'react'
+import { useRef } from 'react'
 import generatePDF, { Margin, Options, Resolution } from 'react-to-pdf'
 
 
@@ -12,11 +12,13 @@ const options: Options = {
 	}
 }
 
-export const usePDF = (filename: string, target: MutableRefObject<null>) => {
+export const usePDF = (filename: string) => {
+
+	const target = useRef(null)
 
 	const createPDF = () => {
 		generatePDF(target, { filename, ...options })
 	}
 
-	return createPDF
+	return { target, createPDF }
 }
