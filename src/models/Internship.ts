@@ -10,7 +10,7 @@ export interface Internship {
 	companyName: string				// Nombre de la empresa
 	workArea: string				// Área de trabajo
 	projectName: string				// Nombre del proyecto
-	adress: string					// Dirección
+	address: string					// Dirección
 	phone: string					// Teléfono
 	phoneExtension: string			// Extensión
 	email: string					// Correo electrónico
@@ -18,8 +18,8 @@ export interface Internship {
 	companyContact: string			// Contacto en la empresa
 	recipientName: string			// Nombre del destinatario
 	recipientPosition: string		// Cargo del destinatario
-	inAtentionOf?: string			// A la atención de
-	applicationDate: Date			// Fecha de solicitud
+	inAtentionOf: string			// A la atención de
+	applicationDate: string			// Fecha de solicitud
 
 	student: InternshipStudent
 
