@@ -1,7 +1,13 @@
+import { FC } from 'react'
+import { Internship } from '../../models/Internship'
 import logo from './../../assets/UTMEscudo.png'
 
 
-export const PresentationLetter = () => {
+interface PresentationLetterProps {
+    data: Internship
+}
+
+export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
     return (
         <section className="w-full text-[38px]">
@@ -20,90 +26,90 @@ export const PresentationLetter = () => {
                 <div className="flex justify-between">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[300px]">Nombre completo:</p>
-                        <p className="font-medium">Emanuel Palestino Hernández</p>
+                        <p className="font-medium">{data.student.name}</p>
                     </div>
                     <div className="flex gap-4">
                         <p>Hablante de Lengua Indígena:</p>
-                        <p className="font-medium">No</p>
+                        <p className="font-medium">{data.student.isSpeakerOfIndigenousLanguage ? 'Sí' : 'No'}</p>
                     </div>
                 </div>
 
                 <div className="flex justify-between">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[300px]">¿Tienes algún tipo de discapacidad?</p>
-                        <p className="font-medium">Si</p>
+                        <p className="font-medium">{data.student.hasDisability ? 'Sí' : 'No'}</p>
                     </div>
                     <div className="flex gap-4">
                         <p>Menciona el tipo de discapacidad:</p>
-                        <p className="font-medium">Jua Jua Jua JUa Jua</p>
+                        <p className="font-medium">{data.student.disability}</p>
                     </div>
                 </div>
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[300px]">Matrícula:</p>
-                        <p className="font-medium">2019202337</p>
+                        <p className="font-medium">{data.student.enrollment}</p>
                     </div>
                     <div className="flex gap-4">
                         <p>Carrera:</p>
-                        <p className="font-medium">Ingeniería en Computación</p>
+                        <p className="font-medium">{data.student.career}</p>
                     </div>
                     <div className="flex gap-4">
                         <p>Grupo:</p>
-                        <p className="font-medium">902-A</p>
+                        <p className="font-medium">{data.student.semester}</p>
                     </div>
                 </div>
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[300px]">Teléfono(s):</p>
-                        <p className="font-medium">9809809809809</p>
+                        <p className="font-medium">{data.student.phone}</p>
                     </div>
                     <div className="flex gap-4">
                         <p className="w-1/2">No. SS:</p>
-                        <p className="font-medium">9872394872934</p>
+                        <p className="font-medium">{data.student.ss}</p>
                     </div>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Correo electrónico:</p>
-                    <p className="font-medium">emanuel.palestino.h@gmail.com</p>
+                    <p className="font-medium">{data.student.email}</p>
                 </div>
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[300px]">Adeudo de materia(s):</p>
-                        <p className="font-medium">Sí</p>
+                        <p className="font-medium">{data.student.haveToRetakeSubjects ? 'Sí' : 'No'}</p>
                     </div>
                     <div className="flex gap-4">
                         <p>Examen extraordinario:</p>
-                        <p className="font-medium">Sí</p>
+                        <p className="font-medium">{data.student.haveMakeUpExam ? 'Sí' : 'No'}</p>
                     </div>
                     <div className="flex gap-4">
                         <p>1°:</p>
-                        <p className="font-medium">Sí</p>
+                        <p className="font-medium">{data.student.haveFirstMakeUpExam ? 'Sí' : 'No'}</p>
                     </div>
                     <div className="flex gap-4">
                         <p>2°:</p>
-                        <p className="font-medium">Sí</p>
+                        <p className="font-medium">{data.student.haveSecondMakeUpExam ? 'Sí' : 'No'}</p>
                     </div>
                 </div>
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[300px]">Curso de Verano:</p>
-                        <p className="font-medium">Sí</p>
+                        <p className="font-medium">{data.student.haveSummerClass ? 'Sí' : 'No'}</p>
                     </div>
 
                     <div className="flex gap-4">
                         <p>Nombre de la(s) materia(s):</p>
-                        <p className="font-medium">Métodos Numéricos, Arquitectura de la computación</p>
+                        <p className="font-medium">{data.student.summerCourses}</p>
                     </div>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Estado:</p>
-                    <p className="font-medium">Activo</p>
+                    <p className="font-medium">{data.student.state}</p>
                 </div>
 
 
@@ -111,18 +117,18 @@ export const PresentationLetter = () => {
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Del:</p>
-                    <p className="font-medium">25-Diciembre-2001 al 30-Enero-2002</p>
+                    <p className="font-medium">{data.period.startDate} al {data.period.endDate}</p>
                 </div>
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[300px]">Horario:</p>
-                        <p className="font-medium">5:00am a 10:00pm</p>
+                        <p className="font-medium">{data.period.schedule}</p>
                     </div>
 
                     <div className="flex gap-4">
                         <p className="text-right min-w-[300px]">Total de horas por semana:</p>
-                        <p className="font-medium">80</p>
+                        <p className="font-medium">{data.period.totalHours}</p>
                     </div>
                 </div>
 
@@ -133,85 +139,85 @@ export const PresentationLetter = () => {
                 <div className="flex gap-16">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[300px]">Nacional:</p>
-                        <p className="font-medium">Sí</p>
+                        <p className="font-medium">{!data.isInternacional ? 'Sí' : ''}</p>
                     </div>
 
                     <div className="flex gap-4">
                         <p>Extranjero:</p>
-                        <p className="font-medium">No</p>
+                        <p className="font-medium">{data.isInternacional ? 'Sí' : ''}</p>
                     </div>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Sector:</p>
-                    <p className="font-medium">Público</p>
+                    <p className="font-medium">{data.sector}</p>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Giro de la empresa:</p>
-                    <p className="font-medium">Desarrollo de software</p>
+                    <p className="font-medium">{data.industry}</p>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Nombre de la empresa/institución:</p>
-                    <p className="font-medium">Desarrollo de software</p>
+                    <p className="font-medium">{data.companyName}</p>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Área donde realizará las estancias:</p>
-                    <p className="font-medium">Desarrollo de software</p>
+                    <p className="font-medium">{data.workArea}</p>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Nombre del proyecto:</p>
-                    <p className="font-medium">Desarrollo de software</p>
+                    <p className="font-medium">{data.projectName}</p>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Dirección Completa:</p>
-                    <p className="font-medium">Desarrollo de software</p>
+                    <p className="font-medium">{data.address}</p>
                 </div>
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[300px]">Teléfono(s):</p>
-                        <p className="font-medium">9512347898, 9559782332</p>
+                        <p className="font-medium">{data.phone}</p>
                     </div>
 
                     <div className="flex gap-4">
                         <p>Ext.:</p>
-                        <p className="font-medium">52</p>
+                        <p className="font-medium">{data.phoneExtension}</p>
                     </div>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Email:</p>
-                    <p className="font-medium">algo@gmail.com</p>
+                    <p className="font-medium">{data.email}</p>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Página web:</p>
-                    <p className="font-medium">www.algo.com</p>
+                    <p className="font-medium">{data.webPage}</p>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Contacto:</p>
-                    <p className="font-medium">Emanuel Palestino Hernández</p>
+                    <p className="font-medium">{data.companyContact}</p>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Nombre del titular de la empresa al que se le dirigirá el oficio:</p>
-                    <p className="font-medium">Emanuel Palestino Hernández</p>
+                    <p className="font-medium">{data.recipientName}</p>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Cargo de la persona:</p>
-                    <p className="font-medium">Desarrollador</p>
+                    <p className="font-medium">{data.recipientPosition}</p>
                 </div>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">En atención a (opcional):</p>
-                    <p className="font-medium">Emanuel Palestino Hernández</p>
+                    <p className="font-medium">{data.inAtentionOf}</p>
                 </div>
             </div>
 
@@ -221,7 +227,7 @@ export const PresentationLetter = () => {
 
             <div className="grid grid-cols-2">
                 <p>Firma del Solicitante (Alumno):</p>
-                <p>Fecha de Solicitud:</p>
+                <p>Fecha de Solicitud: {data.applicationDate}</p>
             </div>
         </section>
     )
