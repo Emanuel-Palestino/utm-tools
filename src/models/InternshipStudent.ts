@@ -8,6 +8,6 @@ export interface InternshipStudent extends Student {
 	haveFirstMakeUpExam: boolean	// Primer extraordinario?
 	haveSecondMakeUpExam: boolean	// Segundo extraordinario?
 	haveSummerClass: boolean		// Curso de verano?
-	courses: string					// Materias de verano
+	summerCourses: string			// Materias de verano
 	state: StudentState
 }
