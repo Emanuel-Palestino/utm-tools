@@ -10,22 +10,22 @@ interface PresentationLetterProps {
 export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
     return (
-        <section className="w-full text-[38px]">
-            <div id="header" className="flex gap-16 mb-6 px-6">
-                <img src={logo} alt="logo" />
-                <div className="text-[46px] mt-3">
-                    <p className="font-bold text-[52px]">UNIVERSIDAD TECNOLÓGICA DE LA MIXTECA</p>
+        <section className="w-full text-[15px]">
+            <div id="header" className="flex gap-10 mb-1 px-6">
+                <img src={logo} alt="logo" className="w-24 h-28" />
+                <div className="text-[17px] mt-1">
+                    <p className="font-bold text-[20px]">UNIVERSIDAD TECNOLÓGICA DE LA MIXTECA</p>
                     <p>SOLICITUD DE ESTANCIAS PROFESIONALES</p>
                     <p>DATOS PARA LA ELABORACIÓN DE LA CARTA DE PRESENTACIÓN</p>
                 </div>
             </div>
 
-            <div id="content" className="p-5 flex flex-col gap-4 flex-wrap mb-1 border-solid border-black border-2">
-                <p className="text-[42px] font-bold">I.- DATOS DEL ALUMNO</p>
+            <div id="content" className="p-2 pt-0 flex flex-col gap-[6px] flex-wrap border-solid border-black border-[1px]">
+                <p className="text-[16px] font-bold">I.- DATOS DEL ALUMNO</p>
 
                 <div className="flex justify-between">
                     <div className="flex gap-4">
-                        <p className="text-right min-w-[300px]">Nombre completo:</p>
+                        <p className="text-right min-w-[130px]">Nombre completo:</p>
                         <p className="font-medium">{data.student.name}</p>
                     </div>
                     <div className="flex gap-4">
@@ -36,7 +36,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
                 <div className="flex justify-between">
                     <div className="flex gap-4">
-                        <p className="text-right min-w-[300px]">¿Tienes algún tipo de discapacidad?</p>
+                        <p className="text-right min-w-[130px]">¿Tienes algún tipo de discapacidad?</p>
                         <p className="font-medium">{data.student.hasDisability ? 'Sí' : 'No'}</p>
                     </div>
                     <div className="flex gap-4">
@@ -47,7 +47,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
-                        <p className="text-right min-w-[300px]">Matrícula:</p>
+                        <p className="text-right min-w-[130px]">Matrícula:</p>
                         <p className="font-medium">{data.student.enrollment}</p>
                     </div>
                     <div className="flex gap-4">
@@ -62,7 +62,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
-                        <p className="text-right min-w-[300px]">Teléfono(s):</p>
+                        <p className="text-right min-w-[130px]">Teléfono(s):</p>
                         <p className="font-medium">{data.student.phone}</p>
                     </div>
                     <div className="flex gap-4">
@@ -72,13 +72,13 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Correo electrónico:</p>
+                    <p className="text-right min-w-[130px]">Correo electrónico:</p>
                     <p className="font-medium">{data.student.email}</p>
                 </div>
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
-                        <p className="text-right min-w-[300px]">Adeudo de materia(s):</p>
+                        <p className="text-right min-w-[130px]">Adeudo de materia(s):</p>
                         <p className="font-medium">{data.student.haveToRetakeSubjects ? 'Sí' : 'No'}</p>
                     </div>
                     <div className="flex gap-4">
@@ -97,7 +97,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
-                        <p className="text-right min-w-[300px]">Curso de Verano:</p>
+                        <p className="text-right min-w-[130px]">Curso de Verano:</p>
                         <p className="font-medium">{data.student.haveSummerClass ? 'Sí' : 'No'}</p>
                     </div>
 
@@ -108,37 +108,37 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Estado:</p>
+                    <p className="text-right min-w-[130px]">Estado:</p>
                     <p className="font-medium">{data.student.state}</p>
                 </div>
 
 
-                <p className="text-center text-[40px]">PERIODO (Fecha de inicio y de terminación)</p>
+                <p className="text-center">PERIODO (Fecha de inicio y de terminación)</p>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Del:</p>
+                    <p className="text-right min-w-[130px]">Del:</p>
                     <p className="font-medium">{data.period.startDate} al {data.period.endDate}</p>
                 </div>
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
-                        <p className="text-right min-w-[300px]">Horario:</p>
+                        <p className="text-right min-w-[130px]">Horario:</p>
                         <p className="font-medium">{data.period.schedule}</p>
                     </div>
 
                     <div className="flex gap-4">
-                        <p className="text-right min-w-[300px]">Total de horas por semana:</p>
+                        <p className="text-right min-w-[130px]">Total de horas por semana:</p>
                         <p className="font-medium">{data.period.totalHours}</p>
                     </div>
                 </div>
 
 
 
-                <p className="text-[42px] font-bold">II.- DATOS DE LA EMPRESA O INSTITUCIÓN</p>
+                <p className="text-[16px] font-bold">II.- DATOS DE LA EMPRESA O INSTITUCIÓN</p>
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
-                        <p className="text-right min-w-[300px]">Nacional:</p>
+                        <p className="text-right min-w-[130px]">Nacional:</p>
                         <p className="font-medium">{!data.isInternacional ? 'Sí' : ''}</p>
                     </div>
 
@@ -149,38 +149,38 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Sector:</p>
+                    <p className="text-right min-w-[130px]">Sector:</p>
                     <p className="font-medium">{data.sector}</p>
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Giro de la empresa:</p>
+                    <p className="text-right min-w-[130px]">Giro de la empresa:</p>
                     <p className="font-medium">{data.industry}</p>
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Nombre de la empresa/institución:</p>
+                    <p className="text-right min-w-[130px]">Nombre de la empresa/institución:</p>
                     <p className="font-medium">{data.companyName}</p>
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Área donde realizará las estancias:</p>
+                    <p className="text-right min-w-[130px]">Área donde realizará las estancias:</p>
                     <p className="font-medium">{data.workArea}</p>
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Nombre del proyecto:</p>
+                    <p className="text-right min-w-[130px]">Nombre del proyecto:</p>
                     <p className="font-medium">{data.projectName}</p>
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Dirección Completa:</p>
+                    <p className="text-right min-w-[130px]">Dirección Completa:</p>
                     <p className="font-medium">{data.address}</p>
                 </div>
 
                 <div className="flex gap-16">
                     <div className="flex gap-4">
-                        <p className="text-right min-w-[300px]">Teléfono(s):</p>
+                        <p className="text-right min-w-[130px]">Teléfono(s):</p>
                         <p className="font-medium">{data.phone}</p>
                     </div>
 
@@ -191,39 +191,39 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Email:</p>
+                    <p className="text-right min-w-[130px]">Email:</p>
                     <p className="font-medium">{data.email}</p>
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Página web:</p>
+                    <p className="text-right min-w-[130px]">Página web:</p>
                     <p className="font-medium">{data.webPage}</p>
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Contacto:</p>
+                    <p className="text-right min-w-[130px]">Contacto:</p>
                     <p className="font-medium">{data.companyContact}</p>
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Nombre del titular de la empresa al que se le dirigirá el oficio:</p>
+                    <p className="text-right min-w-[130px]">Nombre del titular de la empresa al que se le dirigirá el oficio:</p>
                     <p className="font-medium">{data.recipientName}</p>
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Cargo de la persona:</p>
+                    <p className="text-right min-w-[130px]">Cargo de la persona:</p>
                     <p className="font-medium">{data.recipientPosition}</p>
                 </div>
 
                 <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">En atención a (opcional):</p>
+                    <p className="text-right min-w-[130px]">En atención a (opcional):</p>
                     <p className="font-medium">{data.inAtentionOf}</p>
                 </div>
             </div>
 
-            <p className="text-[34px] mb-6">Bajo protesta de decir verdad, manifiesto que los datos asentados en el presente documento son ciertos.</p>
+            <p className="text-[12px] mb-2">Bajo protesta de decir verdad, manifiesto que los datos asentados en el presente documento son ciertos.</p>
 
-            <p className="mb-7">V°B° DE JEFATURA DE CARRERA:</p>
+            <p className="mb-3">V°B° DE JEFATURA DE CARRERA:</p>
 
             <div className="grid grid-cols-2">
                 <p>Firma del Solicitante (Alumno):</p>
