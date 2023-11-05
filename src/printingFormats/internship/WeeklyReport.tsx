@@ -4,50 +4,50 @@ import logo from './../../assets/UTMEscudo.png'
 export const WeeklyReport = () => {
 
 	return (
-		<section className="w-full text-[38px] h-full flex flex-col justify-between">
+		<section className="w-full h-full text-[15px] flex flex-col justify-between">
 			<div>
-				<div id="header" className="flex flex-wrap mb-6 px-6">
-					<img src={logo} alt="logo" />
-					<div className="flex-grow text-[50px] mt-8 text-center">
+				<div className="flex flex-wrap px-6">
+					<img src={logo} alt="logo" className="w-24 h-28" />
+					<div className="flex-grow text-[20px] text-center mt-1">
 						<p>UNIVERSIDAD TECNOLÓGICA  DE LA MIXTECA</p>
-						<p className="font-bold">ESTANCIA PROFESIONAL</p>
+						<p className="font-semibold">ESTANCIA PROFESIONAL</p>
 					</div>
-					<p className="w-full text-center text-[44px]">REPORTE PARCIAL DE ACTIVIDADES REALIZADAS</p>
+					<p className="w-full text-center text-[18px]">REPORTE PARCIAL DE ACTIVIDADES REALIZADAS</p>
 				</div>
 
-				<div id="content" className="mt-32 flex flex-col gap-14">
+				<div className="flex flex-col mt-8 gap-4">
 					<div>
 						<p className="w-full text-right">Formato No. 1</p>
 						<p>Para ser llenado por el alumno.</p>
 					</div>
 
-					<div id="company_info" className="border-solid border-black border-2 p-4 pb-6 pt-0">
+					<div className="border-black border-[1px] px-1 pb-3">
 						<div className="flex gap-4">
-							<p className="text-left min-w-[500px]">Empresa o Institución:</p>
+							<p className="text-left min-w-[180px]">Empresa o Institución:</p>
 							<p className="font-medium">Empresa empresa empresita</p>
 						</div>
 
 						<div className="flex gap-4">
-							<p className="text-left min-w-[500px]">Área:</p>
+							<p className="text-left min-w-[180px]">Área:</p>
 							<p className="font-medium">Desarrollo de Software</p>
 						</div>
 
 						<div className="flex gap-4">
-							<p className="text-left min-w-[500px]">Jefe Inmediato Superior:</p>
+							<p className="text-left min-w-[180px]">Jefe Inmediato Superior:</p>
 							<p className="font-medium">Emanuel Palestino Hernández</p>
 						</div>
 					</div>
 
-					<div id="student_info" className="border-solid border-black border-2 p-4 pb-6 pt-0">
+					<div className="border-black border-[1px] px-1 pb-3">
 						<div className="flex gap-4">
-							<p className="text-left min-w-[500px]">Nombre del Alumno:</p>
+							<p className="text-left min-w-[180px]">Nombre del Alumno:</p>
 							<p className="font-medium">Emanuel Palestino Hernández</p>
 						</div>
 
 						<div className="flex gap-16">
 							<div className="flex gap-4">
-								<p className="text-left min-w-[500px]">Carrera:</p>
-								<p className="font-medium min-w-[600px]">Ingeniería en Computación</p>
+								<p className="text-left min-w-[180px]">Carrera:</p>
+								<p className="font-medium min-w-[200px]">Ingeniería en Computación</p>
 							</div>
 
 							<div className="flex gap-4">
@@ -57,14 +57,14 @@ export const WeeklyReport = () => {
 						</div>
 
 						<div className="flex gap-4">
-							<p className="text-left min-w-[500px]">Semana del </p>
+							<p className="text-left min-w-[180px]">Semana del </p>
 							<p className="font-medium">11-01-2023 al 18-01-2023</p>
 						</div>
 
 						<div className="flex gap-16">
 							<div className="flex gap-4">
-								<p className="text-left min-w-[500px]">Horario:</p>
-								<p className="font-medium min-w-[600px]">9am - 10pm</p>
+								<p className="text-left min-w-[180px]">Horario:</p>
+								<p className="font-medium min-w-[200px]">9am - 10pm</p>
 							</div>
 
 							<div className="flex gap-4">
@@ -74,8 +74,8 @@ export const WeeklyReport = () => {
 						</div>
 					</div>
 
-					<div id="description" className="border-solid border-black border-2 p-4 pb-6 pt-0">
-						<p className="text-[42px] font-medium mb-4">Descripción de funciones realizadas:</p>
+					<div className="border-black border-[1px] px-1 pb-3 min-h-[245px]">
+						<p className="text-[16px] font-medium mb-2">Descripción de funciones realizadas:</p>
 						<p>
 							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, velit laborum, magni quae a sapiente ipsum autem sed nulla ut quaerat doloremque tenetur in dolore, dolores facilis error veniam soluta!
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo laudantium accusamus praesentium aliquam earum dolores et, id deserunt amet voluptas officia dolore enim quaerat ipsa aperiam, ea accusantium. Consequuntur, possimus!
@@ -84,8 +84,8 @@ export const WeeklyReport = () => {
 						</p>
 					</div>
 
-					<div id="comments" className="border-solid border-black border-2 p-4 pb-6 pt-0">
-						<p className="text-[42px] font-medium mb-4">Comentarios:</p>
+					<div className="border-black border-[1px] px-1 pb-3 min-h-[110px]">
+						<p className="text-[16px] font-medium mb-2">Comentarios:</p>
 						<p>
 							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet voluptas unde nostrum asperiores sint nam ratione aspernatur fugit cupiditate vitae, voluptatem, accusantium pariatur labore veritatis! Facere, repellat? Quam, accusantium dolorum!
 						</p>
@@ -93,9 +93,9 @@ export const WeeklyReport = () => {
 				</div>
 			</div>
 
-			<div className="flex justify-around">
-				<p className="border-t-2 border-black">Firma del Alumno</p>
-				<p className="border-t-2 border-black text-center">Vo. Bo. <br />Jefe inmediato superior</p>
+			<div className="flex justify-around text-center">
+				<p className="border-t-[1px] border-black min-w-[170px]">Firma del Alumno</p>
+				<p className="border-t-[1px] border-black leading-4 min-w-[170px] pb-1">Vo. Bo. <br />Jefe inmediato superior</p>
 			</div>
 		</section>
 	)
