@@ -1,7 +1,18 @@
+import { FC } from 'react'
+import { Internship } from '../../models/Internship'
 import logo from './../../assets/UTMEscudo.png'
 
 
-export const WeeklyReport = () => {
+interface WeeklyReportProps {
+	data: Internship
+	formatNumber: number
+	description: string
+	comments: string
+	period: string
+	totalHours: number
+}
+
+export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, description, comments, period, totalHours }) => {
 
 	return (
 		<section className="w-full h-full text-[15px] flex flex-col justify-between">
@@ -17,78 +28,71 @@ export const WeeklyReport = () => {
 
 				<div className="flex flex-col mt-8 gap-4">
 					<div>
-						<p className="w-full text-right">Formato No. 1</p>
+						<p className="w-full text-right">Formato No. {formatNumber}</p>
 						<p>Para ser llenado por el alumno.</p>
 					</div>
 
 					<div className="border-black border-[1px] px-1 pb-3">
 						<div className="flex gap-4">
 							<p className="text-left min-w-[180px]">Empresa o Institución:</p>
-							<p className="font-medium">Empresa empresa empresita</p>
+							<p className="font-medium">{data.companyName}</p>
 						</div>
 
 						<div className="flex gap-4">
 							<p className="text-left min-w-[180px]">Área:</p>
-							<p className="font-medium">Desarrollo de Software</p>
+							<p className="font-medium">{data.workArea}</p>
 						</div>
 
 						<div className="flex gap-4">
 							<p className="text-left min-w-[180px]">Jefe Inmediato Superior:</p>
-							<p className="font-medium">Emanuel Palestino Hernández</p>
+							<p className="font-medium">{data.recipientName}</p>
 						</div>
 					</div>
 
 					<div className="border-black border-[1px] px-1 pb-3">
 						<div className="flex gap-4">
 							<p className="text-left min-w-[180px]">Nombre del Alumno:</p>
-							<p className="font-medium">Emanuel Palestino Hernández</p>
+							<p className="font-medium">{data.student.name}</p>
 						</div>
 
 						<div className="flex gap-16">
 							<div className="flex gap-4">
 								<p className="text-left min-w-[180px]">Carrera:</p>
-								<p className="font-medium min-w-[200px]">Ingeniería en Computación</p>
+								<p className="font-medium min-w-[200px]">{data.student.career}</p>
 							</div>
 
 							<div className="flex gap-4">
 								<p>Semestre:</p>
-								<p className="font-medium">9</p>
+								<p className="font-medium">{data.student.semester}</p>
 							</div>
 						</div>
 
 						<div className="flex gap-4">
 							<p className="text-left min-w-[180px]">Semana del </p>
-							<p className="font-medium">11-01-2023 al 18-01-2023</p>
+							<p className="font-medium">{period}</p>
 						</div>
 
 						<div className="flex gap-16">
 							<div className="flex gap-4">
 								<p className="text-left min-w-[180px]">Horario:</p>
-								<p className="font-medium min-w-[200px]">9am - 10pm</p>
+								<p className="font-medium min-w-[200px]">{data.period.schedule}</p>
 							</div>
 
 							<div className="flex gap-4">
 								<p>Total de horas trabajadas:</p>
-								<p className="font-medium">9</p>
+								<p className="font-medium">{totalHours}</p>
 							</div>
 						</div>
 					</div>
 
 					<div className="border-black border-[1px] px-1 pb-3 min-h-[245px]">
 						<p className="text-[16px] font-medium mb-2">Descripción de funciones realizadas:</p>
-						<p>
-							Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, velit laborum, magni quae a sapiente ipsum autem sed nulla ut quaerat doloremque tenetur in dolore, dolores facilis error veniam soluta!
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo laudantium accusamus praesentium aliquam earum dolores et, id deserunt amet voluptas officia dolore enim quaerat ipsa aperiam, ea accusantium. Consequuntur, possimus!
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem perferendis ratione pariatur possimus, placeat eveniet, esse ad eaque provident dolorem, modi perspiciatis illo quod omnis vel? Tempora magnam eaque placeat?
-							Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam mollitia minima eaque obcaecati vel doloremque, nesciunt necessitatibus quo placeat cupiditate quas natus sunt pariatur cumque quasi repellendus, quae rem fugiat.
-						</p>
+						<p>{description}</p>
 					</div>
 
 					<div className="border-black border-[1px] px-1 pb-3 min-h-[110px]">
 						<p className="text-[16px] font-medium mb-2">Comentarios:</p>
-						<p>
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet voluptas unde nostrum asperiores sint nam ratione aspernatur fugit cupiditate vitae, voluptatem, accusantium pariatur labore veritatis! Facere, repellat? Quam, accusantium dolorum!
-						</p>
+						<p>{comments}</p>
 					</div>
 				</div>
 			</div>

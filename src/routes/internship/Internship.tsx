@@ -68,7 +68,14 @@ export const Internship = () => {
 				</PDFWrapper>
 
 				<PDFWrapper target={weeklyReportTarget} opacity={1}>
-					<WeeklyReport />
+					<WeeklyReport
+						data={data}
+						comments="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
+						description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
+						formatNumber={1}
+						period="01/01/2023 - 01/01/2023"
+						totalHours={40}
+					/>
 				</PDFWrapper>
 			</div>
 		</Transition>
