@@ -5,6 +5,7 @@ import { PDFWrapper } from "../../components/PDFWrapper"
 import { Internship as InternshipModel } from "../../models/Internship"
 import { StudentState } from "../../models/StudentState"
 import { CompanySector } from "../../models/CompanySector"
+import { FinalReport } from "../../printingFormats/internship/finalReportView"
 
 
 const data: InternshipModel = {
@@ -61,7 +62,7 @@ export const Internship = () => {
 				<h1 className="text-2xl">Prácticas Profesionales</h1>
 				<button onClick={createPDF}>Generar PDF</button>
 				<PDFWrapper target={target}>
-					<PresentationLetter data={data} />
+					<FinalReport data={data} />
 				</PDFWrapper>
 			</div>
 		</Transition>
