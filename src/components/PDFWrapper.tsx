@@ -13,7 +13,7 @@ export const PDFWrapper: FC<PDFWrapperProps> = ({ children, target, opacity = 0 
 			className="w-[740px] h-[957.56px] overflow-hidden fixed inset-0 pointer-events-none origin-top-left"
 			style={{ opacity: opacity }}
 		>
-			<div className="pb-1 w-full" ref={target}>
+			<div className="p-1 w-full h-full" ref={target}>
 				{children}
 			</div>
 		</div>

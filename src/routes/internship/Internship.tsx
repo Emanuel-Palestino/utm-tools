@@ -5,6 +5,7 @@ import { PDFWrapper } from "../../components/PDFWrapper"
 import { Internship as InternshipModel } from "../../models/Internship"
 import { StudentState } from "../../models/StudentState"
 import { CompanySector } from "../../models/CompanySector"
+import { WeeklyReport } from "../../printingFormats/internship/WeeklyReport"
 
 
 const data: InternshipModel = {
@@ -53,15 +54,28 @@ const data: InternshipModel = {
 }
 
 export const Internship = () => {
-	const { target, createPDF } = usePDF('internship')
+	const { target: intershipTarget, createPDF: createIntership } = usePDF('Solicitud de Prácticas Profesionales')
+	const { target: weeklyReportTarget, createPDF: createWeeklyReport } = usePDF('Reporte Semanal')
 
 	return (
 		<Transition>
 			<div className="bg-utm-container-2 h-screen">
 				<h1 className="text-2xl">Prácticas Profesionales</h1>
-				<button onClick={createPDF}>Generar PDF</button>
-				<PDFWrapper target={target}>
+				<button onClick={createIntership}>Generar Solicitud</button>
+				<button onClick={createWeeklyReport}>Generar Reporte Semanal</button>
+				<PDFWrapper target={intershipTarget}>
 					<PresentationLetter data={data} />
+				</PDFWrapper>
+
+				<PDFWrapper target={weeklyReportTarget} opacity={1}>
+					<WeeklyReport
+						data={data}
+						comments="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
+						description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
+						formatNumber={1}
+						period="01/01/2023 - 01/01/2023"
+						totalHours={40}
+					/>
 				</PDFWrapper>
 			</div>
 		</Transition>
