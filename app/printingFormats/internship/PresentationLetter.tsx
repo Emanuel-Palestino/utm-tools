@@ -1,6 +1,7 @@
 import { FC } from 'react'
-import { Internship } from '../../models/Internship'
-import logo from './../../assets/UTMEscudo.png'
+import { Internship } from '@/src/models/Internship'
+import logo from '@/public/UTMEscudo.png'
+import Image from 'next/image'
 
 
 interface PresentationLetterProps {
@@ -12,7 +13,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
     return (
         <section className="w-full text-[15px]">
             <div id="header" className="flex gap-10 mb-1 px-6">
-                <img src={logo} alt="logo" className="w-24 h-28" />
+                <Image width={96} height={112} src={logo.src} alt="logo" className="w-24 h-28" />
                 <div className="text-[17px] mt-1">
                     <p className="font-bold text-[20px]">UNIVERSIDAD TECNOLÓGICA DE LA MIXTECA</p>
                     <p>SOLICITUD DE ESTANCIAS PROFESIONALES</p>
