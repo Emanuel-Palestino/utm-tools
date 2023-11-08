@@ -25,23 +25,6 @@ export const FinalReport: FC<FinalReportProps> = ({ data }) => {
                 <p className="text-right min-w-[300px]">Fecha:</p>
                 <p className="font-medium">{data.applicationDate}</p>
             </div>
-
-            {/* <div className="flex gap-4">
-                    <p className="text-right min-w-[300px]">Nombre:</p>
-                    <p className="font-medium">{data.student.name}</p>
-                </div>
-                <div className="flex gap-4">
-                    <p>Carrera:</p>
-                    <p className="font-medium">{data.student.career}</p>
-                </div>
-                <div className="flex gap-4">
-                    <p>Semestre:</p>
-                    <p className="font-medium">{data.student.semester}</p>
-                </div>
-                <div className="flex gap-4">
-                    <p>Empresa:</p>
-                    <p className="font-medium">{data.companyName}</p>
-                </div> */}
             <div className="flex gap-16 place-content-center">
                 <div className="flex gap-4">
                     <p>Nombre:</p>
