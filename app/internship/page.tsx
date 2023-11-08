@@ -60,25 +60,25 @@ const Internship = () => {
 	const { target: weeklyReportTarget, createPDF: createWeeklyReport } = usePDF('Reporte Semanal')
 
 	return (
-			<div className="bg-utm-container-2 h-screen">
-				<h1 className="text-2xl">Prácticas Profesionales</h1>
-				<button onClick={createIntership}>Generar Solicitud</button>
-				<button onClick={createWeeklyReport}>Generar Reporte Semanal</button>
-				<PDFWrapper target={intershipTarget} opacity={1}>
-					<PresentationLetter data={data} />
-				</PDFWrapper>
+		<div className="bg-utm-container-2 h-screen">
+			<h1 className="text-2xl">Prácticas Profesionales</h1>
+			<button onClick={createIntership}>Generar Solicitud</button>
+			<button onClick={createWeeklyReport}>Generar Reporte Semanal</button>
+			<PDFWrapper target={intershipTarget} >
+				<PresentationLetter data={data} />
+			</PDFWrapper>
 
-				<PDFWrapper target={weeklyReportTarget}>
-					<WeeklyReport
-						data={data}
-						comments="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
-						description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
-						formatNumber={1}
-						period="01/01/2023 - 01/01/2023"
-						totalHours={40}
-					/>
-				</PDFWrapper>
-			</div>
+			<PDFWrapper target={weeklyReportTarget}>
+				<WeeklyReport
+					data={data}
+					comments="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
+					description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
+					formatNumber={1}
+					period="01/01/2023 - 01/01/2023"
+					totalHours={40}
+				/>
+			</PDFWrapper>
+		</div>
 	)
 
 }

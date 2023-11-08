@@ -232,7 +232,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
             <p className="text-[12px] mb-4">Bajo protesta de decir verdad, manifiesto que los datos asentados en el presente documento son ciertos.</p>
 
-            <p className="mb-6">V°B° DE JEFATURA DE CARRERA:</p>
+            <p className="mb-4">V°B° DE JEFATURA DE CARRERA:</p>
 
             <div className="grid grid-cols-2">
                 <p>Firma del Solicitante (Alumno):</p>
