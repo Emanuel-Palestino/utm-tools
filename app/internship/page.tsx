@@ -1,11 +1,13 @@
-import { Transition } from "../../components/Transition"
-import { PresentationLetter } from "../../printingFormats/internship/PresentationLetter"
-import { usePDF } from "../../hooks/usePDF"
-import { PDFWrapper } from "../../components/PDFWrapper"
-import { Internship as InternshipModel } from "../../models/Internship"
-import { StudentState } from "../../models/StudentState"
-import { CompanySector } from "../../models/CompanySector"
-import { WeeklyReport } from "../../printingFormats/internship/WeeklyReport"
+'use client'
+
+import { Transition } from "@/app/ui/Transition"
+import { PresentationLetter } from "@/app/printingFormats/internship/PresentationLetter"
+import { usePDF } from "@/src/hooks/usePDF"
+import { PDFWrapper } from "@/app/ui/PDFWrapper"
+import { Internship as InternshipModel } from "@/src/models/Internship"
+import { StudentState } from "@/src/models/StudentState"
+import { CompanySector } from "@/src/models/CompanySector"
+import { WeeklyReport } from "@/app/printingFormats/internship/WeeklyReport"
 
 
 const data: InternshipModel = {
@@ -53,7 +55,8 @@ const data: InternshipModel = {
 	applicationDate: '2023-01-01'
 }
 
-export const Internship = () => {
+const Internship = () => {
+
 	const { target: intershipTarget, createPDF: createIntership } = usePDF('Solicitud de Prácticas Profesionales')
 	const { target: weeklyReportTarget, createPDF: createWeeklyReport } = usePDF('Reporte Semanal')
 
@@ -67,7 +70,7 @@ export const Internship = () => {
 					<PresentationLetter data={data} />
 				</PDFWrapper>
 
-				<PDFWrapper target={weeklyReportTarget} opacity={1}>
+				<PDFWrapper target={weeklyReportTarget}>
 					<WeeklyReport
 						data={data}
 						comments="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
@@ -82,3 +85,5 @@ export const Internship = () => {
 	)
 
 }
+
+export default Internship

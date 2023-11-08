@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import { FC } from 'react'
-import { Tool } from '../../models/Tool'
+import { Tool } from '@/src/models/Tool'
 import { format } from 'date-fns'
 import es from 'date-fns/locale/es'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 
 
 interface ToolDescriptionProps {
@@ -13,9 +13,9 @@ interface ToolDescriptionProps {
 
 export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => {
 
-	const navigate = useNavigate()
+	const router = useRouter()
 
-	const handleClick = () => navigate(tool.link)
+	const handleClick = () => router.push(tool.link)
 
 	return (
 		<motion.div
