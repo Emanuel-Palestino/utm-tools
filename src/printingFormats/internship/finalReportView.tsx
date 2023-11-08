@@ -26,8 +26,7 @@ export const FinalReport: FC<FinalReportProps> = ({ data }) => {
                 <p className="font-medium">{data.applicationDate}</p>
             </div>
 
-            <div className="flex gap-16">
-                <div className="flex gap-4">
+            {/* <div className="flex gap-4">
                     <p className="text-right min-w-[300px]">Nombre:</p>
                     <p className="font-medium">{data.student.name}</p>
                 </div>
@@ -42,6 +41,50 @@ export const FinalReport: FC<FinalReportProps> = ({ data }) => {
                 <div className="flex gap-4">
                     <p>Empresa:</p>
                     <p className="font-medium">{data.companyName}</p>
+                </div> */}
+            <div className="flex gap-16 place-content-center">
+                <div className="flex gap-4">
+                    <p>Nombre:</p>
+                    <p className="font-medium">{data.student.name}</p>
+                </div>
+            </div>
+            <div className="flex gap-16 place-content-center">
+                <div className="flex gap-4">
+                    <p>Carrera:</p>
+                    <p className="font-medium">{data.student.career}</p>
+                </div>
+            </div>
+            <div className="flex gap-16 place-content-center">
+                <div className="flex gap-4">
+                    <p>Semestre:</p>
+                    <p className="font-medium">{data.student.semester}</p>
+                </div>
+            </div>
+            <div className="flex gap-16 place-content-center">
+                <div className="flex gap-4">
+                    <p>Empresa:</p>
+                    <p className="font-medium">{data.companyName}</p>
+                </div>
+            </div>
+
+            <div id="content" className="p-5 flex flex-col gap-4 flex-wrap mb-1 border-solid border-black border-2">
+                {/* <script>
+                    <div class="divide-y divide-blue-200">
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                        <p>a</p>
+                    </div>
+                </script> */}
+            </div>
+
+            <div className="flex gap-16 place-content-center">
+                <div className="flex gap-4">
+                    <div>
+                        <p className="text-center">Firma</p>
+                        <p className="font-medium">{data.student.name}</p>
+                    </div>
                 </div>
             </div>
 
