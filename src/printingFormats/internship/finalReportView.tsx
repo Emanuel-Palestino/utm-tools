@@ -6,8 +6,8 @@ interface FinalReportProps {
     data: Internship
 }
 
-export const FinalReport: FC <FinalReportProps> = ({ data }) => {
-    return(
+export const FinalReport: FC<FinalReportProps> = ({ data }) => {
+    return (
         <section className="w-full text-[38px]">
             <div id="header" className="flex gap-16 mb-6 px-6">
                 <img src={logo} alt="logo" />
@@ -21,10 +21,29 @@ export const FinalReport: FC <FinalReportProps> = ({ data }) => {
                 </div>
             </div>
 
-            <div id="content" className="p-5 flex flex-col gap-4 flex-wrap mb-1 border-solid border-black border-2">
-                <p className="text-[42px] font-bold">FECHA: </p>
+            <div className="flex gap-4">
+                <p className="text-right min-w-[300px]">Fecha:</p>
+                <p className="font-medium">{data.applicationDate}</p>
             </div>
 
+            <div className="flex gap-16">
+                <div className="flex gap-4">
+                    <p className="text-right min-w-[300px]">Nombre:</p>
+                    <p className="font-medium">{data.student.name}</p>
+                </div>
+                <div className="flex gap-4">
+                    <p>Carrera:</p>
+                    <p className="font-medium">{data.student.career}</p>
+                </div>
+                <div className="flex gap-4">
+                    <p>Semestre:</p>
+                    <p className="font-medium">{data.student.semester}</p>
+                </div>
+                <div className="flex gap-4">
+                    <p>Empresa:</p>
+                    <p className="font-medium">{data.companyName}</p>
+                </div>
+            </div>
 
         </section>
     )
