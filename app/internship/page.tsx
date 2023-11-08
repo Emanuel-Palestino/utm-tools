@@ -64,7 +64,7 @@ const Internship = () => {
 				<h1 className="text-2xl">Prácticas Profesionales</h1>
 				<button onClick={createIntership}>Generar Solicitud</button>
 				<button onClick={createWeeklyReport}>Generar Reporte Semanal</button>
-				<PDFWrapper target={intershipTarget}>
+				<PDFWrapper target={intershipTarget} opacity={1}>
 					<PresentationLetter data={data} />
 				</PDFWrapper>
 

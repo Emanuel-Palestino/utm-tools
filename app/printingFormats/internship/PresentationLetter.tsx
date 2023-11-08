@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from 'react'
 import { Internship } from '@/src/models/Internship'
 import logo from '@/public/UTMEscudo.png'
@@ -12,9 +14,15 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
     return (
         <section className="w-full text-[15px]">
-            <div id="header" className="flex gap-10 mb-1 px-6">
-                <Image width={96} height={112} src={logo.src} alt="logo" className="w-24 h-28" />
-                <div className="text-[17px] mt-1">
+            <div id="header" className="mb-2 px-6">
+                <Image
+                    width={90}
+                    height={90}
+                    src={logo}
+                    alt="logo"
+                    className="inline-block w-[90px] h-[90px] align-top"
+                />
+                <div className="inline-block text-[17px] align-top ml-10">
                     <p className="font-bold text-[20px]">UNIVERSIDAD TECNOLÓGICA DE LA MIXTECA</p>
                     <p>SOLICITUD DE ESTANCIAS PROFESIONALES</p>
                     <p>DATOS PARA LA ELABORACIÓN DE LA CARTA DE PRESENTACIÓN</p>
@@ -222,9 +230,9 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                 </div>
             </div>
 
-            <p className="text-[12px] mb-2">Bajo protesta de decir verdad, manifiesto que los datos asentados en el presente documento son ciertos.</p>
+            <p className="text-[12px] mb-4">Bajo protesta de decir verdad, manifiesto que los datos asentados en el presente documento son ciertos.</p>
 
-            <p className="mb-3">V°B° DE JEFATURA DE CARRERA:</p>
+            <p className="mb-6">V°B° DE JEFATURA DE CARRERA:</p>
 
             <div className="grid grid-cols-2">
                 <p>Firma del Solicitante (Alumno):</p>

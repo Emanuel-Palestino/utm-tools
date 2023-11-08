@@ -18,7 +18,7 @@ export const ToolsItem: FC<ToolsItemProps> = ({ type, name, id, onClick }) => {
 			whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
 			layoutId={id}
 		>
-			<motion.small className="text-utm-on-container text-sm">{type}</motion.small>
+			<small className="text-utm-on-container text-sm">{type}</small>
 			<motion.p layoutId={`title_${id}`} className='text-utm-on-container text-xl font-medium'>{name}</motion.p>
 		</motion.button>
 	)
