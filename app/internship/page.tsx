@@ -1,6 +1,5 @@
 'use client'
 
-import { Transition } from "@/app/ui/Transition"
 import { PresentationLetter } from "@/app/printingFormats/internship/PresentationLetter"
 import { usePDF } from "@/src/hooks/usePDF"
 import { PDFWrapper } from "@/app/ui/PDFWrapper"
@@ -61,7 +60,6 @@ const Internship = () => {
 	const { target: weeklyReportTarget, createPDF: createWeeklyReport } = usePDF('Reporte Semanal')
 
 	return (
-		<Transition>
 			<div className="bg-utm-container-2 h-screen">
 				<h1 className="text-2xl">Prácticas Profesionales</h1>
 				<button onClick={createIntership}>Generar Solicitud</button>
@@ -81,7 +79,6 @@ const Internship = () => {
 					/>
 				</PDFWrapper>
 			</div>
-		</Transition>
 	)
 
 }
