@@ -8,7 +8,7 @@ interface FinalReportProps {
 
 export const FinalReport: FC<FinalReportProps> = ({ data }) => {
     return (
-        <section className="w-full text-[38px]">
+        <section className="w-full text-[38px] h-full" >
             <div id="header" className="flex gap-16 mb-6 px-6">
                 <img src={logo} alt="logo" />
                 <div className="text-[46px] mt-3">
@@ -50,16 +50,7 @@ export const FinalReport: FC<FinalReportProps> = ({ data }) => {
                 </div>
             </div>
 
-            <div id="content" className="p-5 flex flex-col gap-4 flex-wrap mb-1 border-solid border-black border-2">
-                {/* <script>
-                    <div class="divide-y divide-blue-200">
-                        <p>a</p>
-                        <p>a</p>
-                        <p>a</p>
-                        <p>a</p>
-                        <p>a</p>
-                    </div>
-                </script> */}
+            <div id="content" className="p-5 flex flex-col gap-4 flex-wrap mb-1 border-solid border-black border-2 h-96">
             </div>
 
             <div className="flex gap-16 place-content-center">

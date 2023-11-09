@@ -6,7 +6,7 @@ interface PDFWrapperProps {
 	opacity?: number
 }
 
-export const PDFWrapper: FC<PDFWrapperProps> = ({ children, target, opacity = 1 }) => {
+export const PDFWrapper: FC<PDFWrapperProps> = ({ children, target, opacity = 0 }) => {
 
 	return (
 		<div
