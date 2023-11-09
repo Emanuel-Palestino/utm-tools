@@ -33,7 +33,7 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, descri
 						<p>Para ser llenado por el alumno.</p>
 					</div>
 
-					<div className="border-black border-[1px] px-1 pb-3">
+					<div className="border-black border-[1px] p-1">
 						<div className="flex gap-4">
 							<p className="text-left min-w-[180px]">Empresa o Institución:</p>
 							<p className="font-medium">{data.companyName}</p>
@@ -50,7 +50,7 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, descri
 						</div>
 					</div>
 
-					<div className="border-black border-[1px] px-1 pb-3">
+					<div className="border-black border-[1px] p-1">
 						<div className="flex gap-4">
 							<p className="text-left min-w-[180px]">Nombre del Alumno:</p>
 							<p className="font-medium">{data.student.name}</p>
@@ -86,12 +86,12 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, descri
 						</div>
 					</div>
 
-					<div className="border-black border-[1px] px-1 pb-3 min-h-[245px]">
+					<div className="border-black border-[1px] p-1 min-h-[245px]">
 						<p className="text-[16px] font-medium mb-2">Descripción de funciones realizadas:</p>
 						<p>{description}</p>
 					</div>
 
-					<div className="border-black border-[1px] px-1 pb-3 min-h-[110px]">
+					<div className="border-black border-[1px] p-1 min-h-[110px]">
 						<p className="text-[16px] font-medium mb-2">Comentarios:</p>
 						<p>{comments}</p>
 					</div>

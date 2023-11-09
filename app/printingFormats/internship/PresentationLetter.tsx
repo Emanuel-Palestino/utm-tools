@@ -29,7 +29,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                 </div>
             </div>
 
-            <div id="content" className="p-2 pt-0 flex flex-col gap-[6px] flex-wrap border-solid border-black border-[1px]">
+            <div id="content" className="p-2 flex flex-col gap-[6px] flex-wrap border-solid border-black border-[1px]">
                 <p className="text-[16px] font-bold">I.- DATOS DEL ALUMNO</p>
 
                 <div className="flex justify-between">
