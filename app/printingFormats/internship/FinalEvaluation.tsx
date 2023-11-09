@@ -1,5 +1,7 @@
 import logo from '@/public/UTMEscudo.png'
+import { Internship } from '@/src/models/Internship'
 import Image from 'next/image'
+import { FC } from 'react'
 
 
 const evaluation: string[] = [
@@ -15,7 +17,11 @@ const evaluation: string[] = [
 	'Lealtad y discreción'
 ]
 
-export const FinalEvaluation = () => {
+interface FinalEvaluationProps {
+	data: Internship
+}
+
+export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 
 	return (
 		<section className="w-full h-full text-[13.5px]">
@@ -38,93 +44,93 @@ export const FinalEvaluation = () => {
 				<div className="flex flex-col mb-2">
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Empresa o Institución:</p>
-						<p className="font-semibold">Una empresa</p>
+						<p className="font-semibold">{data.companyName}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Giro:</p>
-						<p className="font-semibold">Giro de la empresa</p>
+						<p className="font-semibold">{data.industry}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Página Web:</p>
-						<p className="font-semibold">paginita</p>
+						<p className="font-semibold">{data.email}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Dirección:</p>
-						<p className="font-semibold">Una dirección de un lugar jua jua jua</p>
+						<p className="font-semibold">{data.address}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Estado:</p>
-						<p className="font-semibold">Oaxaca</p>
+						<p className="font-semibold">{data.address}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Jefe inmediato superior:</p>
-						<p className="font-semibold">Jefecito</p>
+						<p className="font-semibold">{data.recipientName}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Departamento:</p>
-						<p className="font-semibold">Departamento de las estancias creo</p>
+						<p className="font-semibold">{data.workArea}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Puesto:</p>
-						<p className="font-semibold">Puesto del jefe</p>
+						<p className="font-semibold">{data.recipientPosition}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Teléfono y ext.:</p>
-						<p className="font-semibold">+52 9511138798</p>
+						<p className="font-semibold">{data.phoneExtension} {data.phone}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">e-mail:</p>
-						<p className="font-semibold">correo@gmail.com</p>
+						<p className="font-semibold">{data.email}</p>
 					</div>
 				</div>
 
 				<div className="flex flex-col mb-2">
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Nombre del Alumno:</p>
-						<p className="font-semibold">Emanuel Palestino Hernández</p>
+						<p className="font-semibold">{data.student.name}</p>
 					</div>
 
 					<div className="grid grid-cols-[60%_auto]">
 						<div className="flex gap-4">
 							<p className="min-w-[160px]">Carrera:</p>
-							<p className="font-semibold">Ingeniería en Computación</p>
+							<p className="font-semibold">{data.student.career}</p>
 						</div>
 
 						<div className="flex gap-4">
 							<p>Semestre:</p>
-							<p className="font-semibold">9</p>
+							<p className="font-semibold">{data.student.semester}</p>
 						</div>
 					</div>
 
 
 					<div className="flex gap-4 items-center">
 						<p className="max-w-[160px]">Periodo de estancia en el departamento de:</p>
-						<p className="font-semibold">Desarrollo de software</p>
+						<p className="font-semibold">{data.workArea}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Del:</p>
-						<p className="font-semibold">sldkjfsdfkj sdfksdlf </p>
+						<p className="font-semibold">{data.period.startDate} al {data.period.endDate}</p>
 					</div>
 
 					<div className="grid grid-cols-[60%_auto]">
 						<div className="flex gap-4">
 							<p className="min-w-[160px]">Horario:</p>
-							<p className="font-semibold">9-6</p>
+							<p className="font-semibold">{data.period.schedule}</p>
 						</div>
 
 						<div className="flex gap-4">
 							<p className="min-w-[160px]">Total de horas trabajadas:</p>
-							<p className="font-semibold">280</p>
+							<p className="font-semibold">{data.period.totalHours}</p>
 						</div>
 					</div>
 
@@ -191,7 +197,6 @@ export const FinalEvaluation = () => {
 					<p className="border-t-[1px] border-black leading-4 min-w-[170px] pb-1">Firma y Sello</p>
 				</div>
 			</div>
-
 
 		</section>
 	)

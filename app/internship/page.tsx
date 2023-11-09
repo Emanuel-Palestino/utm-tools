@@ -83,8 +83,8 @@ const Internship = () => {
 				/>
 			</PDFWrapper>
 
-			<PDFWrapper target={finalEvaluationTarget} opacity={1}>
-				<FinalEvaluation />
+			<PDFWrapper target={finalEvaluationTarget}>
+				<FinalEvaluation data={data} />
 			</PDFWrapper>
 		</div>
 	)
