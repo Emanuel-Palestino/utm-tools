@@ -134,7 +134,7 @@ export const FinalEvaluation = () => {
 					</div>
 				</div>
 
-				<div className="text-[13px]">
+				<div className="text-[13px] mb-2">
 					<table className="w-full table-auto border-collapse border border-black">
 						<thead>
 							<tr>
