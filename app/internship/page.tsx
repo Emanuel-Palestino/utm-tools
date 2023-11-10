@@ -8,6 +8,7 @@ import { StudentState } from "@/src/models/StudentState"
 import { CompanySector } from "@/src/models/CompanySector"
 import { WeeklyReport } from "@/app/printingFormats/internship/WeeklyReport"
 import { FinalEvaluation } from "../printingFormats/internship/FinalEvaluation"
+import { CommitmentLetter } from "../printingFormats/CommitmentLetter"
 
 
 const data: InternshipModel = {
@@ -60,6 +61,7 @@ const Internship = () => {
 	const { target: intershipTarget, createPDF: createIntership } = usePDF('Solicitud de Prácticas Profesionales')
 	const { target: weeklyReportTarget, createPDF: createWeeklyReport } = usePDF('Reporte Semanal')
 	const { target: finalEvaluationTarget, createPDF: createFinalEvaluation } = usePDF('Reporte de Evaluación Final')
+	const { target: commitmentLetterTarget, createPDF: createCommitmentLetter } = usePDF('Carta Compromiso')
 
 	return (
 		<div className="bg-utm-container-2 h-screen">
@@ -67,6 +69,7 @@ const Internship = () => {
 			<button onClick={createIntership}>Generar Solicitud</button>
 			<button onClick={createWeeklyReport}>Generar Reporte Semanal</button>
 			<button onClick={createFinalEvaluation}>Generar Reporte de Evaluación Final</button>
+			<button onClick={createCommitmentLetter}>Generar Carta Compromiso</button>
 
 			<PDFWrapper target={intershipTarget} >
 				<PresentationLetter data={data} />
@@ -85,6 +88,10 @@ const Internship = () => {
 
 			<PDFWrapper target={finalEvaluationTarget}>
 				<FinalEvaluation data={data} />
+			</PDFWrapper>
+
+			<PDFWrapper target={commitmentLetterTarget} opacity={1}>
+				<CommitmentLetter />
 			</PDFWrapper>
 		</div>
 	)
