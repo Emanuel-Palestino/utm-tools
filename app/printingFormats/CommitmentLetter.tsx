@@ -1,11 +1,19 @@
+import { Internship } from "@/src/models/Internship"
+import { FC } from "react"
 
-export const CommitmentLetter = () => {
+
+interface CommitmentLetterProps {
+	data: Internship
+	date: string
+}
+
+export const CommitmentLetter: FC<CommitmentLetterProps> = ({ data, date }) => {
 
 	return (
 		<section className="w-full h-full text-[15px] px-16">
 			<div className="pt-10">
 				<p className="font-bold text-center text-[18px]">CARTA COMPROMISO</p>
-				<p className="text-right mt-5">Huajuapan de León, Oax. a 05 de Noviembre de 2023.</p>
+				<p className="text-right mt-5">Huajuapan de León, Oax. a {date}.</p>
 			</div>
 
 			<div className="mt-8">
@@ -18,12 +26,12 @@ export const CommitmentLetter = () => {
 
 			<div className="mt-4">
 				<p className="text-justify">
-					Quien suscribe, <strong>C. Emanuel Palestino Hernández</strong>, estudiante de la
-					carrera de <strong>Ingeniería en Computación</strong> con número de matrícula <strong>2019230993</strong>,
+					Quien suscribe, <strong>C. {data.student.name}</strong>, estudiante de la
+					carrera de <strong>{data.student.career}</strong> con número de matrícula <strong>{data.student.enrollment}</strong>,
 					por medio de la presente <strong>manifiesto mi compromiso y responsabilidad de cumplir con
 						las disposiciones, políticas y reglamentos internos establecidos por la empresa
-						Empresa empresita</strong>, durante el periodo de realización de la estancia profesional y/o servicio social que comprende del
-					<strong> 05-junio-2023</strong> al <strong>04-agosto-2023</strong>.
+						{data.companyName}</strong>, durante el periodo de realización de la estancia profesional y/o servicio social que comprende del
+					<strong> {data.period.startDate}</strong> al <strong>{data.period.endDate}</strong>.
 				</p>
 			</div>
 

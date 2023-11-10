@@ -90,8 +90,8 @@ const Internship = () => {
 				<FinalEvaluation data={data} />
 			</PDFWrapper>
 
-			<PDFWrapper target={commitmentLetterTarget} opacity={1}>
-				<CommitmentLetter />
+			<PDFWrapper target={commitmentLetterTarget}>
+				<CommitmentLetter data={data} date="05 de Noviembre de 2023" />
 			</PDFWrapper>
 		</div>
 	)
