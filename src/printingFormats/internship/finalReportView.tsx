@@ -8,7 +8,7 @@ interface FinalReportProps {
 
 export const FinalReport: FC<FinalReportProps> = ({ data }) => {
     return (
-        <section className="w-full text-[38px] h-full" >
+        <section className="w-full text-[38px]">
             <div id="header" className="flex gap-16 mb-6 px-6">
                 <img src={logo} alt="logo" />
                 <div className="text-[46px] mt-3">
@@ -21,7 +21,7 @@ export const FinalReport: FC<FinalReportProps> = ({ data }) => {
                 </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 py-[50px]">
                 <p className="text-right min-w-[300px]">Fecha:</p>
                 <p className="font-medium">{data.applicationDate}</p>
             </div>
@@ -43,22 +43,43 @@ export const FinalReport: FC<FinalReportProps> = ({ data }) => {
                     <p className="font-medium">{data.student.semester}</p>
                 </div>
             </div>
-            <div className="flex gap-16 place-content-center">
+            <div className="flex gap-16 place-content-center pb-[100px]">
                 <div className="flex gap-4">
                     <p>Empresa:</p>
                     <p className="font-medium">{data.companyName}</p>
                 </div>
             </div>
 
-            <div id="content" className="p-5 flex flex-col gap-4 flex-wrap mb-1 border-solid border-black border-2 h-96">
+            <div id="content" className="p-10 flex place-content-center flex-col gap-4 flex-wrap mb-1 border-solid border-black border-2 h-[1450px]">
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+                <p>───────────────────────────────────────────────────────────────────────</p>
+
             </div>
 
             <div className="flex gap-16 place-content-center">
-                <div className="flex gap-4">
-                    <div>
-                        <p className="text-center">Firma</p>
-                        <p className="font-medium">{data.student.name}</p>
-                    </div>
+                <div className="flex gap-4 p-5">
+                    <p>Firma</p>
+                </div>
+            </div>
+            <div className="flex gap-16 place-content-center">
+                <div className="flex gap-4 pt-[50px]">
+                    <p className="font-medium">{data.student.name}</p>
                 </div>
             </div>
 
