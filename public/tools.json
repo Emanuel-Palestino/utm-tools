@@ -7,6 +7,7 @@
 		"subtitle": "Documentación que se puede generar:",
 		"documentation": [
 			"Solicitud para Oficio de Presentación.",
+			"Carta Compromiso.",
 			"Reportes semanales (o del periodo seleccionado).",
 			"Reporte Final.",
 			"Evaluación Final por parte de la Empresa.",
@@ -14,5 +15,22 @@
 		],
 		"date": "2023-09-17",
 		"link": "/internship"
+	},
+	{
+		"id": "service_tool",
+		"type": "Documentación",
+		"name": "Servicio Social",
+		"description": "Los estudiantes deben realizar su Servicio Social al comenzar octavo semestre, este debe ser realizado en el sector público. El periodo exige un total de 480 horas a lo largo de 6 meses.",
+		"subtitle": "Documentación que se puede generar:",
+		"documentation": [
+			"Registro de Servicio Social.",
+			"Carta Compromiso.",
+			"Cronograma de Actividades.",
+			"Reporte Parcial de Actividades.",
+			"Reporte Final.",
+			"Formato para la Recepción de Documentos."
+		],
+		"date": "2023-11-10",
+		"link": "/social_service"
 	}
 ]
