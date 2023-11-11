@@ -75,7 +75,7 @@ const Internship = () => {
 			<button onClick={createFinalReport}>Generar Informe Final</button>
 
 
-			<PDFWrapper target={intershipTarget} >
+			{/* <PDFWrapper target={intershipTarget} >
 				<PresentationLetter data={data} />
 			</PDFWrapper>
 
@@ -96,10 +96,11 @@ const Internship = () => {
 
 			<PDFWrapper target={commitmentLetterTarget}>
 				<CommitmentLetter data={data} date="05 de Noviembre de 2023" />
-			</PDFWrapper>
+			</PDFWrapper> */}
 
 			<PDFWrapper target={finalReportTarget} >
-				<FinalReport data={data} />
+				<FinalReport data={data} informContent="La cuenta root: La cuenta root, también conocida como superusuario, permite realizar tareas de administración del sistema, como leer, escribir y eliminar cualquier archivo, independientemente de sus permisos, y establecer la propiedad y permisos de los archivos. Es importante no compartir la contraseña de root y ser considerado y responsable al usar esta cuenta.
+"/>
 			</PDFWrapper>
 
 		</div>
