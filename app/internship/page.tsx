@@ -9,6 +9,8 @@ import { CompanySector } from "@/src/models/CompanySector"
 import { WeeklyReport } from "@/app/printingFormats/internship/WeeklyReport"
 import { FinalEvaluation } from "../printingFormats/internship/FinalEvaluation"
 import { CommitmentLetter } from "../printingFormats/CommitmentLetter"
+import { Button } from "@nextui-org/react"
+import { Form } from "@/app/ui/internship/Form"
 
 
 const data: InternshipModel = {
@@ -35,7 +37,7 @@ const data: InternshipModel = {
 	period: {
 		startDate: '2023-01-01',
 		endDate: '2023-01-01',
-		schedule: 'Lunes a Viernes de 8:00 a 14:00 hrs.',
+		schedule: [9, 18],
 		totalHours: 480
 	},
 	isInternacional: false,
@@ -63,13 +65,18 @@ const Internship = () => {
 	const { target: finalEvaluationTarget, createPDF: createFinalEvaluation } = usePDF('Reporte de Evaluación Final')
 	const { target: commitmentLetterTarget, createPDF: createCommitmentLetter } = usePDF('Carta Compromiso')
 
+
+
 	return (
-		<div className="bg-utm-container-2 h-screen">
-			<h1 className="text-2xl">Prácticas Profesionales</h1>
-			<button onClick={createIntership}>Generar Solicitud</button>
-			<button onClick={createWeeklyReport}>Generar Reporte Semanal</button>
-			<button onClick={createFinalEvaluation}>Generar Reporte de Evaluación Final</button>
-			<button onClick={createCommitmentLetter}>Generar Carta Compromiso</button>
+		<div className="container mx-auto">
+			<h1 className="text-3xl py-2">Prácticas Profesionales</h1>
+
+			<Form />
+
+			<Button onClick={createIntership}>Generar Solicitud</Button>
+			<Button onClick={createWeeklyReport}>Generar Reporte Semanal</Button>
+			<Button onClick={createFinalEvaluation}>Generar Reporte de Evaluación Final</Button>
+			<Button onClick={createCommitmentLetter}>Generar Carta Compromiso</Button>
 
 			<PDFWrapper target={intershipTarget} >
 				<PresentationLetter data={data} />
