@@ -12,7 +12,7 @@ export interface Internship {
 	projectName: string				// Nombre del proyecto
 	address: string					// Dirección
 	phone: string					// Teléfono
-	phoneExtension: string			// Extensión
+	//phoneExtension: string			// Extensión
 	email: string					// Correo electrónico
 	webPage: string					// Página web
 	companyContact: string			// Contacto en la empresa

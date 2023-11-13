@@ -48,7 +48,6 @@ const data: InternshipModel = {
 	projectName: 'Sistema de Gestión de Prácticas Profesionales',
 	address: 'Av. Universidad 1001, Col. Lomas de San Jacinto, Oaxaca de Juárez, Oaxaca',
 	phone: '9511155807',
-	phoneExtension: '52',
 	email: 'contacto@utm.mx',
 	webPage: 'utm.mx',
 	companyContact: 'Emanuel Palestino Hernández',

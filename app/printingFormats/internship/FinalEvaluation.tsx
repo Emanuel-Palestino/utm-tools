@@ -84,7 +84,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Teléfono y ext.:</p>
-						<p className="font-semibold">{data.phoneExtension} {data.phone}</p>
+						<p className="font-semibold">{data.phone}</p>
 					</div>
 
 					<div className="flex gap-4">
