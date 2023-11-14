@@ -1,6 +1,6 @@
 import { CompanySector } from "./CompanySector"
+import { InternshipPeriod } from "./InternshipPeriod"
 import { InternshipStudent } from "./InternshipStudent"
-import { Period } from "./Period"
 import { Person } from "./Person"
 
 
@@ -24,8 +24,5 @@ export interface Internship {
 
 	student: InternshipStudent
 
-	period: Period & {
-		workArea: string				// Área de trabajo
-		projectName: string				// Nombre del proyecto
-	}
+	period: InternshipPeriod
 }
