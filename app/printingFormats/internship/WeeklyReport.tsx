@@ -41,7 +41,7 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, descri
 
 						<div className="flex gap-4">
 							<p className="text-left min-w-[180px]">Área:</p>
-							<p className="font-medium">{data.workArea}</p>
+							<p className="font-medium">{data.period.workArea}</p>
 						</div>
 
 						<div className="flex gap-4">
@@ -53,7 +53,7 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, descri
 					<div className="border-black border-[1px] p-1">
 						<div className="flex gap-4">
 							<p className="text-left min-w-[180px]">Nombre del Alumno:</p>
-							<p className="font-medium">{data.student.name}</p>
+							<p className="font-medium">{data.person.name}</p>
 						</div>
 
 						<div className="flex gap-16">

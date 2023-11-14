@@ -1,6 +1,7 @@
 import { CompanySector } from "./CompanySector"
 import { InternshipStudent } from "./InternshipStudent"
 import { Period } from "./Period"
+import { Person } from "./Person"
 
 
 export interface Internship {
@@ -8,8 +9,6 @@ export interface Internship {
 	sector: CompanySector			// Sector
 	industry: string				// Industria (Giro de la empresa)
 	companyName: string				// Nombre de la empresa
-	workArea: string				// Área de trabajo
-	projectName: string				// Nombre del proyecto
 	address: string					// Dirección
 	phone: string					// Teléfono
 	//phoneExtension: string			// Extensión
@@ -21,7 +20,12 @@ export interface Internship {
 	inAtentionOf: string			// A la atención de
 	applicationDate: string			// Fecha de solicitud
 
+	person: Person
+
 	student: InternshipStudent
 
-	period: Period
+	period: Period & {
+		workArea: string				// Área de trabajo
+		projectName: string				// Nombre del proyecto
+	}
 }

@@ -14,18 +14,20 @@ import { Form } from "@/app/ui/internship/Form"
 
 
 const data: InternshipModel = {
-	student: {
+	person: {
 		name: 'Emanuel Palestino Hernández',
-		career: 'Ingeniería en Computación',
-		semester: 9,
-		enrollment: '2019020337',
+		phone: '9511155807',
+		email: 'chemascamp@gmail.com',
 		isSpeakerOfIndigenousLanguage: false,
 		indigenousLanguage: '',
 		hasDisability: false,
 		disability: '',
-		phone: '9511155807',
+	},
+	student: {
+		career: 'Ingeniería en Computación',
+		semester: 9,
+		enrollment: '2019020337',
 		ss: '12345678901234',
-		email: 'chemascamp@gmail.com',
 		haveToRetakeSubjects: false,
 		haveMakeUpExam: false,
 		haveFirstMakeUpExam: false,
@@ -35,6 +37,8 @@ const data: InternshipModel = {
 		state: StudentState.ACTIVE
 	},
 	period: {
+		workArea: 'Desarrollo de Software',
+		projectName: 'Sistema de Gestión de Prácticas Profesionales',
 		startDate: '2023-01-01',
 		endDate: '2023-01-01',
 		schedule: [9, 18],
@@ -44,8 +48,7 @@ const data: InternshipModel = {
 	sector: CompanySector.PRIVATE,
 	industry: 'Tecnologías de la Información',
 	companyName: 'UTM',
-	workArea: 'Desarrollo de Software',
-	projectName: 'Sistema de Gestión de Prácticas Profesionales',
+
 	address: 'Av. Universidad 1001, Col. Lomas de San Jacinto, Oaxaca de Juárez, Oaxaca',
 	phone: '9511155807',
 	email: 'contacto@utm.mx',

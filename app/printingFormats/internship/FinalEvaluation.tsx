@@ -74,7 +74,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Departamento:</p>
-						<p className="font-semibold">{data.workArea}</p>
+						<p className="font-semibold">{data.period.workArea}</p>
 					</div>
 
 					<div className="flex gap-4">
@@ -96,7 +96,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 				<div className="flex flex-col mb-2">
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Nombre del Alumno:</p>
-						<p className="font-semibold">{data.student.name}</p>
+						<p className="font-semibold">{data.person.name}</p>
 					</div>
 
 					<div className="grid grid-cols-[60%_auto]">
@@ -114,7 +114,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 
 					<div className="flex gap-4 items-center">
 						<p className="max-w-[160px]">Periodo de estancia en el departamento de:</p>
-						<p className="font-semibold">{data.workArea}</p>
+						<p className="font-semibold">{data.period.workArea}</p>
 					</div>
 
 					<div className="flex gap-4">

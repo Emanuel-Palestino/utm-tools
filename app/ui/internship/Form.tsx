@@ -29,24 +29,24 @@ export const Form = () => {
 					<Card>
 						<CardBody>
 							<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4">
-								<Input type="text" {...register('student.name')} label="Nombre Completo" isRequired />
+								<Input type="text" {...register('person.name')} label="Nombre Completo" isRequired />
 
-								<Input type="text" inputMode="tel" label="Número Celular" {...register('student.phone')} isRequired />
+								<Input type="text" inputMode="tel" label="Número Celular" {...register('person.phone')} isRequired />
 
-								<Input type="email" inputMode="email" label="Correo Electrónico" {...register('student.email')} />
+								<Input type="email" inputMode="email" label="Correo Electrónico" {...register('person.email')} />
 
 								<Input
 									type="text"
 									label="Lengua Indígena"
 									description="Si eres hablante de lengua indígena, escríbela aquí. Si no, déjalo en blanco."
-									{...register('student.indigenousLanguage')}
+									{...register('person.indigenousLanguage')}
 								/>
 
 								<Input
 									type="text"
 									label="Discapacidad"
 									description="Si tienes alguna discapacidad, escríbela aquí. Si no, déjalo en blanco."
-									{...register('student.disability')}
+									{...register('person.disability')}
 								/>
 
 								<div className="col-span-2 flex justify-center mt-2">
@@ -138,7 +138,7 @@ export const Form = () => {
 									label="Área de Trabajo"
 									description="Área en el que realizarás tus prácticas profesionales."
 									isRequired
-									{...register('student.summerCourses')}
+									{...register('period.workArea')}
 
 								/>
 
@@ -146,7 +146,7 @@ export const Form = () => {
 									type="text"
 									label="Nombre del Proyecto"
 									description="Nombre del proyecto en el que trabajarás en tus prácticas profesionales."
-									{...register('student.summerCourses')}
+									{...register('period.projectName')}
 								/>
 
 								<Input type="date" defaultValue="2023-11-11" {...register('period.startDate')} label="Fecha de Inicio" isRequired />
