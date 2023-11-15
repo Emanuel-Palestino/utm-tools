@@ -4,41 +4,89 @@ import { Input } from "@nextui-org/input"
 import { Slider } from "@nextui-org/slider"
 import { InternshipPeriod } from "@/src/models/InternshipPeriod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { FC } from "react"
 
 
-export const PeriodForm = () => {
+interface PeriodFormProps {
+	nextForm: () => void
+}
+
+export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 
 	const {
-		register,
 		handleSubmit,
 		control,
-	} = useForm<InternshipPeriod>({ defaultValues: { schedule: [9, 18] } })
+	} = useForm<InternshipPeriod>({
+		defaultValues: {
+			startDate: new Date().toISOString().split('T')[0],
+			endDate: new Date().toISOString().split('T')[0],
+			schedule: [9, 18],
+			totalHours: 280
+		}
+	})
 
-	const onSubmit: SubmitHandler<InternshipPeriod> = (data) => console.log(data)
+	const onSubmit: SubmitHandler<InternshipPeriod> = (data) => {
+		data.totalHours = Number(data.totalHours)
+		localStorage.setItem('period', JSON.stringify(data))
+		nextForm()
+	}
 
 	return (
 		<Card>
 			<CardBody>
 				<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4">
-					<Input
-						type="text"
-						label="Área de Trabajo"
-						description="Área en el que realizarás tus prácticas profesionales."
-						isRequired
-						{...register('workArea')}
-
+					<Controller
+						name="workArea"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="Área de Trabajo"
+								description="Área en el que realizarás tus prácticas profesionales."
+								isRequired
+								{...field}
+							/>
+						)}
 					/>
 
-					<Input
-						type="text"
-						label="Nombre del Proyecto"
-						description="Nombre del proyecto en el que trabajarás en tus prácticas profesionales."
-						{...register('projectName')}
+					<Controller
+						name="projectName"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="Nombre del Proyecto"
+								description="Nombre del proyecto en el que trabajarás en tus prácticas profesionales."
+								{...field}
+							/>
+						)}
 					/>
 
-					<Input type="date" defaultValue="2023-11-11" {...register('startDate')} label="Fecha de Inicio" isRequired />
+					<Controller
+						name="startDate"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="date"
+								label="Fecha de Inicio"
+								isRequired
+								{...field}
+							/>
+						)}
+					/>
 
-					<Input type="date" defaultValue="2023-11-12" {...register('endDate')} label="Fecha de Término" isRequired />
+					<Controller
+						name="endDate"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="date"
+								label="Fecha de Término"
+								isRequired
+								{...field}
+							/>
+						)}
+					/>
 
 					<Controller
 						name="schedule"
@@ -56,18 +104,23 @@ export const PeriodForm = () => {
 						)}
 					/>
 
-					<Input
-						type="number"
-						label="Total de Horas"
-						inputMode="numeric"
-						defaultValue="280"
-						min={280}
-						isRequired
-						{...register('totalHours')}
+					<Controller
+						name="totalHours"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="number"
+								label="Total de Horas"
+								min={280}
+								isRequired
+								{...field}
+								value={String(field.value)}
+							/>
+						)}
 					/>
 
 					<div className="col-span-2 flex justify-center mt-2">
-						<Button className="bg-utm-container-3 text-utm-on-container-3" type="submit">Guardar Información</Button>
+						<Button className="bg-utm-container-3 text-utm-on-container-3 w-32" type="submit">Guardar</Button>
 					</div>
 				</form>
 			</CardBody>

@@ -11,30 +11,64 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 export const CompanyForm = () => {
 
 	const {
-		register,
 		control,
 		handleSubmit,
-	} = useForm<Company>()
+	} = useForm<Company>({
+		defaultValues: {
+			inAtentionOf: '',
+			webPage: ''
+		}
+	})
 
-	const onSubmit: SubmitHandler<Company> = (data) => console.log(data)
+	const onSubmit: SubmitHandler<Company> = data => {
+		localStorage.setItem('company', JSON.stringify(data))
+	}
 
 	return (
 		<Card>
 			<CardBody>
 				<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4">
-					<Input type="text" {...register('companyName')} label="Nombre de la Empresa" isRequired />
+					<Controller
+						name="companyName"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="Nombre de la Empresa"
+								isRequired
+								{...field}
+							/>
+						)}
+					/>
 
-					<Input type="text" {...register('industry')} label="Giro de la Empresa" isRequired />
+					<Controller
+						name="industry"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="Giro de la Empresa"
+								isRequired
+								{...field}
+							/>
+						)}
+					/>
 
-					<Select
-						label="Sector"
-						isRequired
-						{...register('sector')}
-					>
-						<SelectItem key={CompanySector.PUBLIC} value={CompanySector.PUBLIC}>Público</SelectItem>
-						<SelectItem key={CompanySector.PRIVATE} value={CompanySector.PRIVATE}>Privado</SelectItem>
-						<SelectItem key={CompanySector.SOCIAL} value={CompanySector.SOCIAL}>Social</SelectItem>
-					</Select>
+					<Controller
+						name="sector"
+						control={control}
+						render={({ field }) => (
+							<Select
+								label="Sector"
+								isRequired
+								{...field}
+							>
+								<SelectItem key={CompanySector.PUBLIC} value={CompanySector.PUBLIC}>Público</SelectItem>
+								<SelectItem key={CompanySector.PRIVATE} value={CompanySector.PRIVATE}>Privado</SelectItem>
+								<SelectItem key={CompanySector.SOCIAL} value={CompanySector.SOCIAL}>Social</SelectItem>
+							</Select>
+						)}
+					/>
 
 					<Controller
 						name="isInternacional"
@@ -42,44 +76,115 @@ export const CompanyForm = () => {
 						render={({ field }) => (<Switch {...field} value={String(field.value)}>¿Es Internacional?</Switch>)}
 					/>
 
-					<Input
-						type="number"
-						inputMode="tel"
-						label="Número Telefónico"
-						description="Número telefónico o celular."
-						isRequired
-						{...register('phone')}
+					<Controller
+						name="phone"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="number"
+								inputMode="tel"
+								label="Número Telefónico"
+								description="Número telefónico o celular."
+								isRequired
+								{...field}
+							/>
+						)}
 					/>
 
-					<Input type="email" inputMode="email" {...register('email')} label="Correo Electrónico" isRequired />
-
-					<Input type="text" {...register('address')} label="Dirección" isRequired />
-
-					<Input type="text" inputMode="url" {...register('webPage')} label="Página Web" />
-
-					<Input type="text" {...register('companyContact')} label="Contacto de la Empresa" isRequired />
-
-					<Input
-						type="text"
-						label="Nombre a quien se le dirigirá el oficio"
-						description="Nombre del titular de la empresa al que se le dirigirá el oficio de presentación. Debe ser sólo una persona."
-						isRequired
-						{...register('recipientName')}
+					<Controller
+						name="email"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="email"
+								label="Correo Electrónico"
+								isRequired
+								{...field}
+							/>
+						)}
 					/>
 
-					<Input
-						type="text"
-						label="Cargo de la Persona"
-						description="Cargo del titular de la empresa al que se le dirigirá el oficio de presentación."
-						isRequired
-						{...register('recipientPosition')}
+					<Controller
+						name="address"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="Dirección"
+								isRequired
+								{...field}
+							/>
+						)}
 					/>
 
-					<Input type="text" {...register('inAtentionOf')} label="En atención a" />
+					<Controller
+						name="webPage"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								inputMode="url"
+								label="Página Web"
+								{...field}
+							/>
+						)}
+					/>
 
+					<Controller
+						name="companyContact"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="Contacto de la Empresa"
+								isRequired
+								{...field}
+							/>
+						)}
+					/>
+
+					<Controller
+						name="recipientName"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="Nombre a quien se le dirigirá el oficio"
+								description="Nombre del titular de la empresa al que se le dirigirá el oficio de presentación. Debe ser sólo una persona."
+								isRequired
+								{...field}
+							/>
+						)}
+					/>
+
+					<Controller
+						name="recipientPosition"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="Cargo de la Persona"
+								description="Cargo del titular de la empresa al que se le dirigirá el oficio de presentación."
+								isRequired
+								{...field}
+							/>
+						)}
+					/>
+
+					<Controller
+						name="inAtentionOf"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="En atención a"
+								{...field}
+							/>
+						)}
+					/>
 
 					<div className="col-span-2 flex justify-center mt-2">
-						<Button className="bg-utm-container-3 text-utm-on-container-3" type="submit">Guardar</Button>
+						<Button className="bg-utm-container-3 text-utm-on-container-3 w-32" type="submit">Guardar</Button>
 					</div>
 				</form>
 			</CardBody>
