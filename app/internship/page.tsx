@@ -44,19 +44,21 @@ const data: InternshipModel = {
 		schedule: [9, 18],
 		totalHours: 480
 	},
-	isInternacional: false,
-	sector: CompanySector.PRIVATE,
-	industry: 'Tecnologías de la Información',
-	companyName: 'UTM',
+	company: {
+		isInternacional: false,
+		sector: CompanySector.PRIVATE,
+		industry: 'Tecnologías de la Información',
+		companyName: 'UTM',
 
-	address: 'Av. Universidad 1001, Col. Lomas de San Jacinto, Oaxaca de Juárez, Oaxaca',
-	phone: '9511155807',
-	email: 'contacto@utm.mx',
-	webPage: 'utm.mx',
-	companyContact: 'Emanuel Palestino Hernández',
-	recipientName: 'Emanuel Palestino Hernández',
-	recipientPosition: 'Desarrollador de Software',
-	inAtentionOf: '',
+		address: 'Av. Universidad 1001, Col. Lomas de San Jacinto, Oaxaca de Juárez, Oaxaca',
+		phone: '9511155807',
+		email: 'contacto@utm.mx',
+		webPage: 'utm.mx',
+		companyContact: 'Emanuel Palestino Hernández',
+		recipientName: 'Emanuel Palestino Hernández',
+		recipientPosition: 'Desarrollador de Software',
+		inAtentionOf: '',
+	},
 	applicationDate: '2023-01-01'
 }
 
