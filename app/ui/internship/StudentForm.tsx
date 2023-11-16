@@ -9,6 +9,7 @@ import { StudentState } from "@/src/models/StudentState"
 import { InternshipStudent } from "@/src/models/InternshipStudent"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
+import { useInternshipStore } from "@/app/store/internship"
 
 
 interface StudentFormProps {
@@ -16,6 +17,8 @@ interface StudentFormProps {
 }
 
 export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
+
+	const { save, values } = useInternshipStore(state => ({ save: state.setStudentData, values: state.studentData }))
 
 	const {
 		handleSubmit,
@@ -27,13 +30,14 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 			haveToRetakeSubjects: false,
 			haveMakeUpExam: false,
 			haveFirstMakeUpExam: false,
-			haveSecondMakeUpExam: false,
-		}
+			haveSecondMakeUpExam: false
+		},
+		values
 	})
 
-	const onSubmit: SubmitHandler<InternshipStudent> = (data) => {
+	const onSubmit: SubmitHandler<InternshipStudent> = data => {
 		data.semester = Number(data.semester)
-		localStorage.setItem('student', JSON.stringify(data))
+		save(data)
 		nextForm()
 	}
 

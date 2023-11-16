@@ -6,9 +6,12 @@ import { Button } from "@nextui-org/button"
 import { Company } from "@/src/models/Company"
 import { CompanySector } from "@/src/models/CompanySector"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { useInternshipStore } from "@/app/store/internship"
 
 
 export const CompanyForm = () => {
+
+	const { save, values } = useInternshipStore(state => ({ save: state.setCompanyData, values: state.companyData }))
 
 	const {
 		control,
@@ -17,12 +20,11 @@ export const CompanyForm = () => {
 		defaultValues: {
 			inAtentionOf: '',
 			webPage: ''
-		}
+		},
+		values
 	})
 
-	const onSubmit: SubmitHandler<Company> = data => {
-		localStorage.setItem('company', JSON.stringify(data))
-	}
+	const onSubmit: SubmitHandler<Company> = save
 
 	return (
 		<Card>

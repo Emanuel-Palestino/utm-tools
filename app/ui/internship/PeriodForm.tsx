@@ -5,6 +5,7 @@ import { Slider } from "@nextui-org/slider"
 import { InternshipPeriod } from "@/src/models/InternshipPeriod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
+import { useInternshipStore } from "@/app/store/internship"
 
 
 interface PeriodFormProps {
@@ -12,6 +13,8 @@ interface PeriodFormProps {
 }
 
 export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
+
+	const { save, values } = useInternshipStore(state => ({ save: state.setPeriodData, values: state.periodData }))
 
 	const {
 		handleSubmit,
@@ -22,12 +25,13 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 			endDate: new Date().toISOString().split('T')[0],
 			schedule: [9, 18],
 			totalHours: 280
-		}
+		},
+		values
 	})
 
-	const onSubmit: SubmitHandler<InternshipPeriod> = (data) => {
+	const onSubmit: SubmitHandler<InternshipPeriod> = data => {
 		data.totalHours = Number(data.totalHours)
-		localStorage.setItem('period', JSON.stringify(data))
+		save(data)
 		nextForm()
 	}
 

@@ -4,6 +4,7 @@ import { Button } from "@nextui-org/button"
 import { Person } from "@/src/models/Person"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
+import { useInternshipStore } from "@/app/store/internship"
 
 
 interface PersonFormProps {
@@ -11,6 +12,8 @@ interface PersonFormProps {
 }
 
 export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
+
+	const { save, values } = useInternshipStore(state => ({ save: state.setPersonalData, values: state.personalData }))
 
 	const {
 		handleSubmit,
@@ -25,10 +28,11 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 			hasDisability: false,
 			disability: ''
 		},
+		values: values
 	})
 
 	const onSubmit: SubmitHandler<Person> = data => {
-		localStorage.setItem('person', JSON.stringify(data))
+		save(data)
 		nextForm()
 	}
 
