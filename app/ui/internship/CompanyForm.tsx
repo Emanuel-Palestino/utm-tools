@@ -18,8 +18,18 @@ export const CompanyForm = () => {
 		handleSubmit,
 	} = useForm<Company>({
 		defaultValues: {
-			inAtentionOf: '',
-			webPage: ''
+			companyName: '',
+			industry: '',
+			sector: CompanySector.PRIVATE,
+			isInternacional: false,
+			phone: '',
+			email: '',
+			address: '',
+			webPage: '',
+			companyContact: '',
+			recipientName: '',
+			recipientPosition: '',
+			inAtentionOf: ''
 		},
 		values
 	})
@@ -64,6 +74,7 @@ export const CompanyForm = () => {
 								label="Sector"
 								isRequired
 								{...field}
+								selectedKeys={field.value ? [field.value] : []}
 							>
 								<SelectItem key={CompanySector.PUBLIC} value={CompanySector.PUBLIC}>Público</SelectItem>
 								<SelectItem key={CompanySector.PRIVATE} value={CompanySector.PRIVATE}>Privado</SelectItem>
@@ -75,7 +86,9 @@ export const CompanyForm = () => {
 					<Controller
 						name="isInternacional"
 						control={control}
-						render={({ field }) => (<Switch {...field} value={String(field.value)}>¿Es Internacional?</Switch>)}
+						render={({ field }) => (
+							<Switch {...field} value="" isSelected={field.value}>¿Es Internacional?</Switch>
+						)}
 					/>
 
 					<Controller

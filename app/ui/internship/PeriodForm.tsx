@@ -21,6 +21,8 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		control,
 	} = useForm<InternshipPeriod>({
 		defaultValues: {
+			projectName: '',
+			workArea: '',
 			startDate: new Date().toISOString().split('T')[0],
 			endDate: new Date().toISOString().split('T')[0],
 			schedule: [9, 18],

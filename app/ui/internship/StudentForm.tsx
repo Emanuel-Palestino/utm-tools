@@ -25,6 +25,11 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 		control,
 	} = useForm<InternshipStudent>({
 		defaultValues: {
+			career: 'Ingeniería en Computación',
+			state: StudentState.ACTIVE,
+			enrollment: '',
+			ss: '',
+			semester: 0,
 			haveSummerClass: false,
 			summerCourses: '',
 			haveToRetakeSubjects: false,
@@ -53,6 +58,7 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 								label="Estado"
 								isRequired
 								{...field}
+								selectedKeys={field.value ? [field.value] : []}
 							>
 								<SelectItem key={StudentState.ACTIVE} value={StudentState.ACTIVE}>Activo</SelectItem>
 								<SelectItem key={StudentState.GRADUATED} value={StudentState.GRADUATED}>Egresado</SelectItem>
@@ -69,6 +75,8 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 								label="Carrera"
 								isRequired
 								{...field}
+								inputValue={field.value || ''}
+								onSelectionChange={field.onChange}
 							>
 								{careers.map(career => (
 									<AutocompleteItem key={career} value={career}>
@@ -87,12 +95,13 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 								label="Semestre"
 								isRequired
 								{...field}
+								selectedKeys={field.value ? [String(field.value)] : []}
 							>
-								<SelectItem key={6} value={6}>Sexto</SelectItem>
-								<SelectItem key={7} value={7}>Séptimo</SelectItem>
-								<SelectItem key={8} value={8}>Octavo</SelectItem>
-								<SelectItem key={9} value={9}>Noveno</SelectItem>
-								<SelectItem key={10} value={10}>Décimo</SelectItem>
+								<SelectItem key="6" value="6">Sexto</SelectItem>
+								<SelectItem key="7" value="7">Séptimo</SelectItem>
+								<SelectItem key="8" value="8">Octavo</SelectItem>
+								<SelectItem key="9" value="9">Noveno</SelectItem>
+								<SelectItem key="10" value="10">Décimo</SelectItem>
 							</Select>
 						)}
 					/>
@@ -140,7 +149,7 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 						name="haveToRetakeSubjects"
 						control={control}
 						render={({ field }) => (
-							<Switch {...field} value={String(field.value)}>¿Tienes que recursar materias?</Switch>
+							<Switch {...field} value="" isSelected={field.value} >¿Tienes que recursar materias?</Switch>
 						)}
 					/>
 
@@ -148,7 +157,7 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 						name="haveFirstMakeUpExam"
 						control={control}
 						render={({ field }) => (
-							<Switch {...field} value={String(field.value)}>¿Tienes que presentar primer exámen extraordinario?</Switch>
+							<Switch {...field} value="" isSelected={field.value}>¿Tienes que presentar primer exámen extraordinario?</Switch>
 						)}
 					/>
 
@@ -156,7 +165,7 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 						name="haveSecondMakeUpExam"
 						control={control}
 						render={({ field }) => (
-							<Switch {...field} value={String(field.value)}>¿Tienes que presentar segundo exámen extraordinario?</Switch>
+							<Switch {...field} value="" isSelected={field.value}>¿Tienes que presentar segundo exámen extraordinario?</Switch>
 						)}
 					/>
 
