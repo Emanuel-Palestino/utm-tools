@@ -11,6 +11,8 @@ import { FinalEvaluation } from "../printingFormats/internship/FinalEvaluation"
 import { CommitmentLetter } from "../printingFormats/CommitmentLetter"
 import { Button } from "@nextui-org/react"
 import { Form } from "@/app/ui/internship/Form"
+import { useEffect } from "react"
+import { useInternshipStore } from "../store/internship"
 
 
 const data: InternshipModel = {
@@ -69,7 +71,9 @@ const Internship = () => {
 	const { target: finalEvaluationTarget, createPDF: createFinalEvaluation } = usePDF('Reporte de Evaluación Final')
 	const { target: commitmentLetterTarget, createPDF: createCommitmentLetter } = usePDF('Carta Compromiso')
 
-
+	useEffect(() => {
+		useInternshipStore.persist.rehydrate()
+	}, [])
 
 	return (
 		<div className="container mx-auto">

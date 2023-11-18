@@ -51,7 +51,8 @@ export const useInternshipStore = create<InternshipStore>()(
 			})
 		},
 		{
-			name: 'internship-storage'
+			name: 'internship-storage',
+			skipHydration: true
 		}
 	)
 )

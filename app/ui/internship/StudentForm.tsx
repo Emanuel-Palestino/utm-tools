@@ -18,7 +18,11 @@ interface StudentFormProps {
 
 export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 
-	const { save, values } = useInternshipStore(state => ({ save: state.setStudentData, values: state.studentData }))
+	const { save, values, isComplete } = useInternshipStore(state => ({
+		save: state.setStudentData,
+		values: state.studentData,
+		isComplete: state.isStudentDataComplete
+	}))
 
 	const {
 		handleSubmit,
@@ -170,7 +174,9 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 					/>
 
 					<div className="col-span-2 flex justify-center mt-2">
-						<Button className="bg-utm-container-3 text-utm-on-container-3 w-32" type="submit">Guardar</Button>
+						<Button className="bg-utm-container-3 text-utm-on-container-3 w-32" type="submit">
+							{isComplete ? 'Actualizar' : 'Guardar'}
+						</Button>
 					</div>
 				</form>
 			</CardBody>

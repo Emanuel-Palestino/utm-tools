@@ -11,7 +11,11 @@ import { useInternshipStore } from "@/app/store/internship"
 
 export const CompanyForm = () => {
 
-	const { save, values } = useInternshipStore(state => ({ save: state.setCompanyData, values: state.companyData }))
+	const { save, values } = useInternshipStore(state => ({
+		save: state.setCompanyData,
+		values: state.companyData,
+		isComplete: state.isCompanyDataComplete
+	}))
 
 	const {
 		control,
@@ -199,7 +203,9 @@ export const CompanyForm = () => {
 					/>
 
 					<div className="col-span-2 flex justify-center mt-2">
-						<Button className="bg-utm-container-3 text-utm-on-container-3 w-32" type="submit">Guardar</Button>
+						<Button className="bg-utm-container-3 text-utm-on-container-3 w-32" type="submit">
+							{values ? 'Actualizar' : 'Guardar'}
+						</Button>
 					</div>
 				</form>
 			</CardBody>
