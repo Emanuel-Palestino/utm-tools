@@ -23,11 +23,14 @@ interface InternshipStore {
 	setStudentData: (studentData: InternshipStudent) => void
 	setPeriodData: (periodData: InternshipPeriod) => void
 	setCompanyData: (companyData: Company) => void
+
+	documentsDownloaded: { [key: string]: boolean }
+	setDocumentDownloaded: (key: string, value: boolean) => void
 }
 
 export const useInternshipStore = create<InternshipStore>()(
 	persist(
-		set => {
+		(set, get) => {
 			return ({
 				isPersonalDataComplete: false,
 				personalData: undefined,
@@ -47,7 +50,12 @@ export const useInternshipStore = create<InternshipStore>()(
 
 				setPeriodData: (periodData: InternshipPeriod) => set(() => ({ periodData, isPeriodDataComplete: true })),
 
-				setCompanyData: (companyData: Company) => set(() => ({ companyData, isCompanyDataComplete: true }))
+				setCompanyData: (companyData: Company) => set(() => ({ companyData, isCompanyDataComplete: true })),
+
+				documentsDownloaded: {},
+				setDocumentDownloaded(key, value) {
+					set(() => ({ documentsDownloaded: { ...get().documentsDownloaded, [key]: value } }))
+				},
 			})
 		},
 		{

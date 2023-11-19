@@ -19,7 +19,8 @@ export const Form = () => {
 	}))
 
 	return (
-		<div className="p-4">
+		<div className="flex-grow">
+			<h2 className="text-2xl mb-4">Datos</h2>
 			<Tabs selectedKey={selectedTab} onSelectionChange={setSelectecTab}>
 				<Tab
 					key="personal"

@@ -8,8 +8,3 @@
 
 @tailwind components;
 @tailwind utilities;
-
-
-body {
-	@apply bg-utm-container-2;
-}
