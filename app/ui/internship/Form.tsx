@@ -1,9 +1,11 @@
+'use client'
+
 import { Tabs, Tab } from "@nextui-org/tabs"
 import { PersonForm } from "./PersonForm"
 import { StudentForm } from "./StudentForm"
 import { PeriodForm } from "./PeriodForm"
 import { CompanyForm } from "./CompanyForm"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Key } from "@react-types/shared"
 import { useInternshipStore } from "@/app/store/internship"
 
@@ -17,6 +19,10 @@ export const Form = () => {
 		periodData: state.isPeriodDataComplete,
 		companyData: state.isCompanyDataComplete
 	}))
+
+	useEffect(() => {
+		useInternshipStore.persist.rehydrate()
+	}, [])
 
 	return (
 		<div className="flex-grow">
