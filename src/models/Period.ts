@@ -1,6 +1,6 @@
 export interface Period {
 	startDate: string
 	endDate: string
-	schedule: string
+	schedule: number[]
 	totalHours: number
 }

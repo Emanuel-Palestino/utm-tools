@@ -44,59 +44,59 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 				<div className="flex flex-col mb-2">
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Empresa o Institución:</p>
-						<p className="font-semibold">{data.companyName}</p>
+						<p className="font-semibold">{data.company.companyName}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Giro:</p>
-						<p className="font-semibold">{data.industry}</p>
+						<p className="font-semibold">{data.company.industry}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Página Web:</p>
-						<p className="font-semibold">{data.email}</p>
+						<p className="font-semibold">{data.company.email}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Dirección:</p>
-						<p className="font-semibold">{data.address}</p>
+						<p className="font-semibold">{data.company.address}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Estado:</p>
-						<p className="font-semibold">{data.address}</p>
+						<p className="font-semibold">{data.company.address}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Jefe inmediato superior:</p>
-						<p className="font-semibold">{data.recipientName}</p>
+						<p className="font-semibold">{data.company.recipientName}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Departamento:</p>
-						<p className="font-semibold">{data.workArea}</p>
+						<p className="font-semibold">{data.period.workArea}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Puesto:</p>
-						<p className="font-semibold">{data.recipientPosition}</p>
+						<p className="font-semibold">{data.company.recipientPosition}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Teléfono y ext.:</p>
-						<p className="font-semibold">{data.phoneExtension} {data.phone}</p>
+						<p className="font-semibold">{data.company.phone}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">e-mail:</p>
-						<p className="font-semibold">{data.email}</p>
+						<p className="font-semibold">{data.company.email}</p>
 					</div>
 				</div>
 
 				<div className="flex flex-col mb-2">
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Nombre del Alumno:</p>
-						<p className="font-semibold">{data.student.name}</p>
+						<p className="font-semibold">{data.person.name}</p>
 					</div>
 
 					<div className="grid grid-cols-[60%_auto]">
@@ -114,7 +114,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 
 					<div className="flex gap-4 items-center">
 						<p className="max-w-[160px]">Periodo de estancia en el departamento de:</p>
-						<p className="font-semibold">{data.workArea}</p>
+						<p className="font-semibold">{data.period.workArea}</p>
 					</div>
 
 					<div className="flex gap-4">
