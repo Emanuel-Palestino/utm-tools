@@ -38,7 +38,7 @@ export const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 
 					<div className="flex gap-4">
 						<p className="min-w-[75px]">Nombre:</p>
-						<p className="font-semibold">{data.student.name}</p>
+						<p className="font-semibold">{data.person.name}</p>
 					</div>
 
 					<div className="flex gap-4">
@@ -53,7 +53,7 @@ export const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 
 					<div className="flex gap-4 pb-[15px]">
 						<p className="min-w-[75px]">Empresa:</p>
-						<p className="font-semibold">{data.companyName}</p>
+						<p className="font-semibold">{data.company.companyName}</p>
 					</div>
 
 					<div id="content" className="p-10 flex place-content-up flex-col gap-4 flex-wrap mb-1 border-solid border-black border-2 h-[600px] text-[15px]">
@@ -64,7 +64,7 @@ export const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 						<p className="place-content-center">Firma</p>
 					</div>
 					<div className="flex gap-4 place-content-center">
-						<p className="font-semibold min-w-[160px]">{data.student.name}</p>
+						<p className="font-semibold min-w-[160px]">{data.person.name}</p>
 					</div>
 
 				</div>

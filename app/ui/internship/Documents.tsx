@@ -14,6 +14,7 @@ import { Textarea } from "@nextui-org/input"
 import { Select, SelectItem } from "@nextui-org/select"
 import { formatedDate } from "@/app/utils/format"
 import { useForm } from "react-hook-form"
+import { FinalReport } from "@/app/printingFormats/internship/FinalReport"
 
 
 export const Documents = () => {
@@ -35,8 +36,14 @@ export const Documents = () => {
 	const { target: weeklyReportTarget, createPDF: createWeeklyReport } = usePDF('Reporte Semanal')
 	const { target: finalEvaluationTarget, createPDF: createFinalEvaluation } = usePDF('Reporte de Evaluación Final')
 	const { target: commitmentLetterTarget, createPDF: createCommitmentLetter } = usePDF('Carta Compromiso')
+	const { target: finalReportTarget, createPDF: createFinalReport } = usePDF('Reporte Final')
 
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
+	const {
+		isOpen: isFinalReportOpen,
+		onOpen: onFinalReportOpen,
+		onOpenChange: onFinalReportOpenChange
+	} = useDisclosure()
 
 	const { handleSubmit, register, watch } = useForm<{ formatNumber: number, period: string, totalHours: number, description: string, comments: string }>({
 		defaultValues: {
@@ -63,6 +70,11 @@ export const Documents = () => {
 			name: 'Reportes Parciales',
 			action: onOpen,
 			stateKey: 'none'
+		},
+		{
+			name: 'Reporte Final',
+			action: onFinalReportOpen,
+			stateKey: 'final-report'
 		},
 		{
 			name: 'Reporte de Evaluación Final',
@@ -105,14 +117,14 @@ export const Documents = () => {
 
 			<Modal isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
 				<ModalContent>
-					{(onClose) => (
+					{onClose => (
 						<>
 							<ModalHeader>Reporte Parcial</ModalHeader>
 							<ModalBody>
 								<form
 									id="report_form"
 									className="flex flex-col gap-4"
-									onSubmit={handleSubmit((data) => { console.log(data) })}
+									onSubmit={handleSubmit(() => { })}
 								>
 									<Select
 										label="Número de reporte"
@@ -160,6 +172,46 @@ export const Documents = () => {
 				</ModalContent>
 			</Modal >
 
+			<Modal isOpen={isFinalReportOpen} onOpenChange={onFinalReportOpenChange} size="lg">
+				<ModalContent>
+					{onClose => (
+						<>
+							<ModalHeader>Reporte Final de Actividades</ModalHeader>
+							<ModalBody>
+								<form
+									id="final_report_form"
+									onSubmit={handleSubmit(() => { })}
+								>
+									<Textarea
+										minRows={16}
+										label="Descripción de actividades"
+										isRequired
+										{...register('description')}
+									/>
+								</form>
+							</ModalBody>
+							<ModalFooter>
+								<Button color="danger" variant="light" onPress={onClose}>
+									Cancelar
+								</Button>
+								<Button
+									color="primary"
+									onPress={() => {
+										createFinalReport()
+										setDocumentDownded('final-report', true)
+										onClose()
+									}}
+									form="final_report_form"
+									type="submit"
+								>
+									Descargar
+								</Button>
+							</ModalFooter>
+						</>
+					)}
+				</ModalContent>
+			</Modal >
+
 			{dataComplete && (
 				<>
 					<PDFWrapper target={intershipTarget} >
@@ -177,6 +229,10 @@ export const Documents = () => {
 						/>
 					</PDFWrapper>
 
+					<PDFWrapper target={finalReportTarget}>
+						<FinalReport data={data} informContent={watch('description')} />
+					</PDFWrapper>
+
 					<PDFWrapper target={finalEvaluationTarget}>
 						<FinalEvaluation data={data} />
 					</PDFWrapper>
@@ -185,8 +241,7 @@ export const Documents = () => {
 						<CommitmentLetter data={data} date={formatedDate(new Date())} />
 					</PDFWrapper>
 				</>
-			)
-			}
+			)}
 		</>
 	)
 
