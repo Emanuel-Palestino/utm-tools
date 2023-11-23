@@ -66,6 +66,8 @@ export const Documents = () => {
 
 	const updatePeriod = async (p: string) => setValue('period', p)
 
+	const updatePeriodHours = async (h: number) => setValue('totalHours', h)
+
 	const documents = [
 		{
 			name: 'Solicitud',
@@ -158,6 +160,10 @@ export const Documents = () => {
 										)
 
 										await updatePeriod(`${formatedDate(reportWeeks[0])} al ${formatedDate(addDays(reportWeeks[reportWeeks.length - 1], 4))}`)
+
+										// Calculate the partial period hours
+										const periodHours = internshipData.period.totalHours / periodWeeks.length * internshipData.period.reportFrecuency
+										await updatePeriodHours(periodHours)
 
 										setDocumentDownded(`weekly-report-${data.formatNumber}`, true)
 										createWeeklyReport()
