@@ -22,7 +22,7 @@ import { INTERNSHIP_PERIODS } from "@/app/utils/constants"
 
 export const Documents = () => {
 
-	const { dataComplete, internshipData, documentsDownloaded, setDocumentDownded } = useInternshipStore(state => ({
+	const { dataComplete, internshipData, documentsDownloaded, setDocumentDownloaded } = useInternshipStore(state => ({
 		dataComplete: state.isCompanyDataComplete && state.isPeriodDataComplete && state.isPersonalDataComplete && state.isStudentDataComplete,
 		internshipData: {
 			applicationDate: new Date().toISOString().split('T')[0],
@@ -32,7 +32,7 @@ export const Documents = () => {
 			company: state.companyData!
 		},
 		documentsDownloaded: state.documentsDownloaded,
-		setDocumentDownded: state.setDocumentDownloaded
+		setDocumentDownloaded: (key: string) => state.setDocumentDownloaded(key, true)
 	}))
 
 	const { target: intershipTarget, createPDF: createIntership } = usePDF('Solicitud de Prácticas Profesionales')
@@ -108,7 +108,7 @@ export const Documents = () => {
 						isDisabled={!dataComplete}
 						onPress={() => {
 							doc.action()
-							if (doc.stateKey !== 'none') setDocumentDownded(doc.stateKey, true)
+							if (doc.stateKey !== 'none') setDocumentDownloaded(doc.stateKey)
 						}}
 						key={doc.name}
 						className="w-32 h-36"
@@ -165,7 +165,7 @@ export const Documents = () => {
 										const periodHours = internshipData.period.totalHours / periodWeeks.length * internshipData.period.reportFrecuency
 										await updatePeriodHours(periodHours)
 
-										setDocumentDownded(`weekly-report-${data.formatNumber}`, true)
+										setDocumentDownloaded(`weekly-report-${data.formatNumber}`)
 										createWeeklyReport()
 										onClose()
 									})}
@@ -243,7 +243,7 @@ export const Documents = () => {
 									id="final_report_form"
 									onSubmit={handleSubmit(() => {
 										createFinalReport()
-										setDocumentDownded('final-report', true)
+										setDocumentDownloaded('final-report')
 										onClose()
 									})}
 								>
