@@ -74,7 +74,7 @@ export const Documents = () => {
 		{
 			name: 'Reporte Final',
 			action: onFinalReportOpen,
-			stateKey: 'final-report'
+			stateKey: 'none'
 		},
 		{
 			name: 'Reporte de Evaluación Final',
@@ -90,14 +90,14 @@ export const Documents = () => {
 
 				{documents.map(doc => (
 					<Card
-						isPressable
+						isPressable={dataComplete}
+						isDisabled={!dataComplete}
 						onPress={() => {
 							doc.action()
 							setDocumentDownded(doc.stateKey, true)
 						}}
 						key={doc.name}
 						className="w-32 h-36"
-						isDisabled={!dataComplete}
 					>
 						<CardBody className="pb-0">
 							<svg xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 -960 960 960">
@@ -124,7 +124,11 @@ export const Documents = () => {
 								<form
 									id="report_form"
 									className="flex flex-col gap-4"
-									onSubmit={handleSubmit(() => { })}
+									onSubmit={handleSubmit(() => {
+										createWeeklyReport()
+										setDocumentDownded('weekly-report-1', true)
+										onClose()
+									})}
 								>
 									<Select
 										label="Número de reporte"
@@ -156,11 +160,6 @@ export const Documents = () => {
 								</Button>
 								<Button
 									color="primary"
-									onPress={() => {
-										createWeeklyReport()
-										setDocumentDownded('weekly-report-1', true)
-										onClose()
-									}}
 									form="report_form"
 									type="submit"
 								>
@@ -180,7 +179,11 @@ export const Documents = () => {
 							<ModalBody>
 								<form
 									id="final_report_form"
-									onSubmit={handleSubmit(() => { })}
+									onSubmit={handleSubmit(() => {
+										createFinalReport()
+										setDocumentDownded('final-report', true)
+										onClose()
+									})}
 								>
 									<Textarea
 										minRows={16}
@@ -196,11 +199,6 @@ export const Documents = () => {
 								</Button>
 								<Button
 									color="primary"
-									onPress={() => {
-										createFinalReport()
-										setDocumentDownded('final-report', true)
-										onClose()
-									}}
 									form="final_report_form"
 									type="submit"
 								>
