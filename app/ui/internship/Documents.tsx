@@ -15,13 +15,16 @@ import { Select, SelectItem } from "@nextui-org/select"
 import { formatedDate } from "@/app/utils/format"
 import { useForm } from "react-hook-form"
 import { FinalReport } from "@/app/printingFormats/internship/FinalReport"
+import { addDays, differenceInCalendarWeeks, eachWeekOfInterval } from "date-fns"
+import es from "date-fns/locale/es"
+import { INTERNSHIP_PERIODS } from "@/app/utils/constants"
 
 
 export const Documents = () => {
 
-	const { dataComplete, data, documentsDownloaded, setDocumentDownded } = useInternshipStore(state => ({
+	const { dataComplete, internshipData, documentsDownloaded, setDocumentDownded } = useInternshipStore(state => ({
 		dataComplete: state.isCompanyDataComplete && state.isPeriodDataComplete && state.isPersonalDataComplete && state.isStudentDataComplete,
-		data: {
+		internshipData: {
 			applicationDate: new Date().toISOString().split('T')[0],
 			person: state.personalData!,
 			student: state.studentData!,
@@ -39,21 +42,29 @@ export const Documents = () => {
 	const { target: finalReportTarget, createPDF: createFinalReport } = usePDF('Reporte Final')
 
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
+
 	const {
 		isOpen: isFinalReportOpen,
 		onOpen: onFinalReportOpen,
 		onOpenChange: onFinalReportOpenChange
 	} = useDisclosure()
 
-	const { handleSubmit, register, watch } = useForm<{ formatNumber: number, period: string, totalHours: number, description: string, comments: string }>({
+	const {
+		handleSubmit,
+		register,
+		watch,
+		setValue
+	} = useForm<{ formatNumber: number, period: string, totalHours: number, description: string, comments: string }>({
 		defaultValues: {
 			formatNumber: 1,
-			period: 'hoy - mañana',
+			period: '0000-00-00 - 0000-00-00',
 			totalHours: 40,
 			description: '',
 			comments: ''
 		}
 	})
+
+	const updatePeriod = async (p: string) => setValue('period', p)
 
 	const documents = [
 		{
@@ -83,6 +94,7 @@ export const Documents = () => {
 		}
 	]
 
+
 	return (
 		<>
 			<div className="grid grid-cols-2 gap-4 h-fit">
@@ -94,7 +106,7 @@ export const Documents = () => {
 						isDisabled={!dataComplete}
 						onPress={() => {
 							doc.action()
-							setDocumentDownded(doc.stateKey, true)
+							if (doc.stateKey !== 'none') setDocumentDownded(doc.stateKey, true)
 						}}
 						key={doc.name}
 						className="w-32 h-36"
@@ -115,6 +127,7 @@ export const Documents = () => {
 				))}
 			</div>
 
+
 			<Modal isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
 				<ModalContent>
 					{onClose => (
@@ -124,9 +137,30 @@ export const Documents = () => {
 								<form
 									id="report_form"
 									className="flex flex-col gap-4"
-									onSubmit={handleSubmit(() => {
+									onSubmit={handleSubmit(async data => {
+										// Create the report period string
+										const periodWeeks = eachWeekOfInterval({
+											...(internshipData.period.customPeriod ?
+												{
+													start: new Date(`${internshipData.period.startDate} UTC-6`),
+													end: new Date(`${internshipData.period.endDate} UTC-6`)
+												} :
+												{
+													start: new Date(`${INTERNSHIP_PERIODS[internshipData.period.periodNumber - 1].startDate} UTC-6`),
+													end: new Date(`${INTERNSHIP_PERIODS[internshipData.period.periodNumber - 1].endDate} UTC-6`)
+												}
+											)
+										}, { locale: es })
+
+										const reportWeeks = periodWeeks.slice(
+											(Number(data.formatNumber) - 1) * internshipData.period.reportFrecuency,
+											Number(data.formatNumber) * internshipData.period.reportFrecuency
+										)
+
+										await updatePeriod(`${formatedDate(reportWeeks[0])} al ${formatedDate(addDays(reportWeeks[reportWeeks.length - 1], 4))}`)
+
+										setDocumentDownded(`weekly-report-${data.formatNumber}`, true)
 										createWeeklyReport()
-										setDocumentDownded('weekly-report-1', true)
 										onClose()
 									})}
 								>
@@ -136,9 +170,31 @@ export const Documents = () => {
 										autoFocus
 										{...register('formatNumber')}
 									>
-										<SelectItem key="1" value="first-report">Primer Reporte</SelectItem>
-										<SelectItem key="2" value="second-report">Segundo Reporte</SelectItem>
-										<SelectItem key="3" value="third-report">Tercer Reporte</SelectItem>
+										{Array.from({
+											length: Math.ceil((differenceInCalendarWeeks(
+												...(internshipData.period.customPeriod ?
+													[
+														new Date(`${internshipData.period.endDate} UTC-6`),
+														new Date(`${internshipData.period.startDate} UTC-6`)
+													] :
+													[
+														new Date(`${INTERNSHIP_PERIODS[internshipData.period.periodNumber - 1].endDate} UTC-6`),
+														new Date(`${INTERNSHIP_PERIODS[internshipData.period.periodNumber - 1].startDate} UTC-6`)
+													]) as [Date, Date]
+											) + 1) / internshipData.period.reportFrecuency)
+										}).map((_, i) => (
+											<SelectItem
+												key={i + 1}
+												value={i + 1}
+												endContent={
+													documentsDownloaded[`weekly-report-${i + 1}`] ?
+														<span className="text-green-500 font-bold absolute right-3 top-1 pr-4">✓</span>
+														: <></>
+												}
+											>
+												{`${i + 1}° Reporte`}
+											</SelectItem>
+										))}
 									</Select>
 
 									<Textarea
@@ -213,12 +269,12 @@ export const Documents = () => {
 			{dataComplete && (
 				<>
 					<PDFWrapper target={intershipTarget} >
-						<PresentationLetter data={data} />
+						<PresentationLetter data={internshipData} />
 					</PDFWrapper>
 
 					<PDFWrapper target={weeklyReportTarget}>
 						<WeeklyReport
-							data={data}
+							data={internshipData}
 							comments={watch('comments')}
 							description={watch('description')}
 							formatNumber={Number(watch('formatNumber'))}
@@ -228,15 +284,15 @@ export const Documents = () => {
 					</PDFWrapper>
 
 					<PDFWrapper target={finalReportTarget}>
-						<FinalReport data={data} informContent={watch('description')} />
+						<FinalReport data={internshipData} informContent={watch('description')} />
 					</PDFWrapper>
 
 					<PDFWrapper target={finalEvaluationTarget}>
-						<FinalEvaluation data={data} />
+						<FinalEvaluation data={internshipData} />
 					</PDFWrapper>
 
 					<PDFWrapper target={commitmentLetterTarget}>
-						<CommitmentLetter data={data} date={formatedDate(new Date())} />
+						<CommitmentLetter data={internshipData} date={formatedDate(new Date())} />
 					</PDFWrapper>
 				</>
 			)}
