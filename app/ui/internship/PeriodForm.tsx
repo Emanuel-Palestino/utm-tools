@@ -4,8 +4,11 @@ import { Input } from "@nextui-org/input"
 import { Slider } from "@nextui-org/slider"
 import { InternshipPeriod } from "@/src/models/InternshipPeriod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { FC } from "react"
+import React, { FC } from "react"
 import { useInternshipStore } from "@/app/store/internship"
+import { Select, SelectItem } from "@nextui-org/select"
+import { INTERNSHIP_PERIODS } from "@/app/utils/constants"
+import { formatedDate } from "@/app/utils/format"
 
 
 interface PeriodFormProps {
@@ -23,6 +26,7 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 	const {
 		handleSubmit,
 		control,
+		watch
 	} = useForm<InternshipPeriod>({
 		defaultValues: {
 			projectName: '',
@@ -30,13 +34,18 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 			startDate: new Date().toISOString().split('T')[0],
 			endDate: new Date().toISOString().split('T')[0],
 			schedule: [9, 18],
-			totalHours: 280
+			totalHours: 280,
+			periodNumber: 1,
+			customPeriod: false,
+			reportFrecuency: 3
 		},
 		values
 	})
 
 	const onSubmit: SubmitHandler<InternshipPeriod> = data => {
 		data.totalHours = Number(data.totalHours)
+		data.reportFrecuency = Number(data.reportFrecuency)
+		data.periodNumber = Number(data.periodNumber)
 		save(data)
 		nextForm()
 	}
@@ -73,28 +82,76 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 					/>
 
 					<Controller
-						name="startDate"
+						name="periodNumber"
 						control={control}
 						render={({ field }) => (
-							<Input
-								type="date"
-								label="Fecha de Inicio"
+							<Select
+								label="Número de Periodo"
 								isRequired
 								{...field}
-							/>
+								selectedKeys={field.value ? [String(field.value)] : []}
+							>
+								{[
+									...INTERNSHIP_PERIODS.map((period, index) => (
+										<SelectItem key={index + 1} value={index + 1}>
+											{
+												`${index + 1} - ` +
+												`${formatedDate(new Date(`${period.startDate} UTC-6`))} al ` +
+												`${formatedDate(new Date(`${period.endDate} UTC-6`))}`
+											}
+										</SelectItem>
+									)),
+									<SelectItem key={-1} value={-1}>Periodo Personalizado</SelectItem>
+								]}
+
+							</Select>
 						)}
 					/>
 
+					{Number(watch('periodNumber')) === -1 && (
+						<>
+							<Controller
+								name="startDate"
+								control={control}
+								render={({ field }) => (
+									<Input
+										type="date"
+										label="Fecha de Inicio"
+										isRequired
+										{...field}
+									/>
+								)}
+							/>
+
+							<Controller
+								name="endDate"
+								control={control}
+								render={({ field }) => (
+									<Input
+										type="date"
+										label="Fecha de Término"
+										isRequired
+										{...field}
+									/>
+								)}
+							/>
+						</>
+					)}
+
 					<Controller
-						name="endDate"
+						name="reportFrecuency"
 						control={control}
 						render={({ field }) => (
-							<Input
-								type="date"
-								label="Fecha de Término"
+							<Select
+								label="Frecuencia de reportes"
 								isRequired
 								{...field}
-							/>
+								selectedKeys={field.value ? [String(field.value)] : []}
+							>
+								<SelectItem key={1} value={1}>Cada semana</SelectItem>
+								<SelectItem key={2} value={2}>Cada dos semanas</SelectItem>
+								<SelectItem key={3} value={3}>Cada tres semanas</SelectItem>
+							</Select>
 						)}
 					/>
 
