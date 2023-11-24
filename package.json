@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
+    "@vercel/analytics": "^1.1.1",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
     "next": "^14.0.1",
