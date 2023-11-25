@@ -19,7 +19,7 @@ export const CommitmentLetter: FC<CommitmentLetterProps> = ({ data, date }) => {
 
 			<div className="mt-8">
 				<strong className="leading-5">
-					<p>COORDNIACIÓN DE VINCULACIÓN</p>
+					<p>COORDINACIÓN DE VINCULACIÓN</p>
 					<p>DE ALUMNOS Y EGRESADOS</p>
 					<p>PRESENTE:</p>
 				</strong>
@@ -31,7 +31,7 @@ export const CommitmentLetter: FC<CommitmentLetterProps> = ({ data, date }) => {
 					carrera de <strong>{data.student.career}</strong> con número de matrícula <strong>{data.student.enrollment}</strong>,
 					por medio de la presente <strong>manifiesto mi compromiso y responsabilidad de cumplir con
 						las disposiciones, políticas y reglamentos internos establecidos por la empresa
-						{data.company.companyName}</strong>, durante el periodo de realización de la estancia profesional y/o servicio social que comprende del
+						{' ' + data.company.companyName}</strong>, durante el periodo de realización de la estancia profesional y/o servicio social que comprende del
 					<strong> {formatedDate(data.period.startDate)}</strong> al <strong>{formatedDate(data.period.endDate)}</strong>.
 				</p>
 			</div>

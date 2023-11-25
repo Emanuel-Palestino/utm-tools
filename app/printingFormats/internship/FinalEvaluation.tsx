@@ -40,7 +40,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 				<p className="border-t border-black ml-32 text-right mb-1">Formato Único</p>
 
 				<p className="mb-1 text-[13px]">EMPRESA / INSTITUCIÓN</p>
-				<p className="mb-2 text-[13px]">Con la finalidad de atender cada vez con mayor calidad y eficiencia las Estancias profesionales de nuestros alumnos, así como para tener referentes que orienten nuestras acciones que respondan a las nuevas necesidades del sector productivo, solicitamos a usted requisitar el siguiente formato:</p>
+				<p className="mb-1 text-[13px]">Con la finalidad de atender cada vez con mayor calidad y eficiencia las Estancias profesionales de nuestros alumnos, así como para tener referentes que orienten nuestras acciones que respondan a las nuevas necesidades del sector productivo, solicitamos a usted requisitar el siguiente formato:</p>
 
 				<div className="flex flex-col mb-2">
 					<div className="flex gap-4">
@@ -141,7 +141,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 					</div>
 				</div>
 
-				<div className="text-[13px] mb-2">
+				<div className="text-[13px] mb-1">
 					<table className="w-full table-auto border-collapse border border-black">
 						<thead>
 							<tr>
