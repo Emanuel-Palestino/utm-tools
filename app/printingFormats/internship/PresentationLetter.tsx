@@ -4,6 +4,7 @@ import { FC } from 'react'
 import { Internship } from '@/src/models/Internship'
 import logo from '@/public/UTMEscudo.png'
 import Image from 'next/image'
+import { formatedDate } from '@/app/utils/format'
 
 
 interface PresentationLetterProps {
@@ -126,7 +127,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[130px]">Del:</p>
-                    <p className="font-medium">{data.period.startDate} al {data.period.endDate}</p>
+                    <p className="font-medium">{formatedDate(data.period.startDate)} al {formatedDate(data.period.endDate)}</p>
                 </div>
 
                 <div className="flex gap-16">
@@ -235,7 +236,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
             <div className="grid grid-cols-2">
                 <p>Firma del Solicitante (Alumno):</p>
-                <p>Fecha de Solicitud: {data.applicationDate}</p>
+                <p>Fecha de Solicitud: {formatedDate(data.applicationDate)}</p>
             </div>
         </section>
     )

@@ -5,7 +5,7 @@ import { Person } from "./Person"
 
 
 export interface Internship {
-	applicationDate: string			// Fecha de solicitud
+	applicationDate: Date			// Fecha de solicitud
 
 	person: Person
 

@@ -31,8 +31,8 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		defaultValues: {
 			projectName: '',
 			workArea: '',
-			startDate: new Date().toISOString().split('T')[0],
-			endDate: new Date().toISOString().split('T')[0],
+			startDate: new Date(),
+			endDate: new Date(),
 			schedule: [9, 18],
 			totalHours: 280,
 			periodNumber: 1,
@@ -46,6 +46,15 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		data.totalHours = Number(data.totalHours)
 		data.reportFrecuency = Number(data.reportFrecuency)
 		data.periodNumber = Number(data.periodNumber)
+
+		if (data.periodNumber === -1) {
+			data.startDate = new Date(`${data.startDate} UTC-6`)
+			data.endDate = new Date(`${data.endDate} UTC-6`)
+		} else {
+			data.startDate = INTERNSHIP_PERIODS[data.periodNumber - 1].startDate
+			data.endDate = INTERNSHIP_PERIODS[data.periodNumber - 1].endDate
+		}
+
 		save(data)
 		nextForm()
 	}
@@ -96,8 +105,8 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 										<SelectItem key={index + 1} value={index + 1}>
 											{
 												`${index + 1} - ` +
-												`${formatedDate(new Date(`${period.startDate} UTC-6`))} al ` +
-												`${formatedDate(new Date(`${period.endDate} UTC-6`))}`
+												`${formatedDate(period.startDate)} al ` +
+												`${formatedDate(period.endDate)}`
 											}
 										</SelectItem>
 									)),
@@ -119,6 +128,7 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 										label="Fecha de Inicio"
 										isRequired
 										{...field}
+										value={field.value instanceof Date ? field.value.toISOString().split('T')[0] : field.value}
 									/>
 								)}
 							/>
@@ -132,6 +142,7 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 										label="Fecha de Término"
 										isRequired
 										{...field}
+										value={field.value instanceof Date ? field.value.toISOString().split('T')[0] : field.value}
 									/>
 								)}
 							/>

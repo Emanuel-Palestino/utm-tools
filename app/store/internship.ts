@@ -2,8 +2,9 @@ import { Company } from '@/src/models/Company'
 import { InternshipPeriod } from '@/src/models/InternshipPeriod'
 import { InternshipStudent } from '@/src/models/InternshipStudent'
 import { Person } from '@/src/models/Person'
+import SuperJSON from 'superjson'
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { PersistStorage, persist } from 'zustand/middleware'
 
 
 interface InternshipStore {
@@ -26,6 +27,18 @@ interface InternshipStore {
 
 	documentsDownloaded: { [key: string]: boolean }
 	setDocumentDownloaded: (key: string, value: boolean) => void
+}
+
+const storage: PersistStorage<InternshipPeriod> = {
+	getItem: (name) => {
+		const str = localStorage.getItem(name)
+		if (!str) return null
+		return SuperJSON.parse(str)
+	},
+	setItem: (name, value) => {
+		localStorage.setItem(name, SuperJSON.stringify(value))
+	},
+	removeItem: (name) => localStorage.removeItem(name)
 }
 
 export const useInternshipStore = create<InternshipStore>()(
@@ -60,7 +73,8 @@ export const useInternshipStore = create<InternshipStore>()(
 		},
 		{
 			name: 'internship-storage',
-			skipHydration: true
+			skipHydration: true,
+			storage
 		}
 	)
 )

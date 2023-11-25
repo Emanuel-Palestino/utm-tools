@@ -16,8 +16,6 @@ import { formatedDate } from "@/app/utils/format"
 import { useForm } from "react-hook-form"
 import { FinalReport } from "@/app/printingFormats/internship/FinalReport"
 import { addDays, differenceInCalendarWeeks, eachWeekOfInterval } from "date-fns"
-import es from "date-fns/locale/es"
-import { INTERNSHIP_PERIODS } from "@/app/utils/constants"
 
 
 export const Documents = () => {
@@ -25,7 +23,7 @@ export const Documents = () => {
 	const { dataComplete, internshipData, documentsDownloaded, setDocumentDownloaded } = useInternshipStore(state => ({
 		dataComplete: state.isCompanyDataComplete && state.isPeriodDataComplete && state.isPersonalDataComplete && state.isStudentDataComplete,
 		internshipData: {
-			applicationDate: new Date().toISOString().split('T')[0],
+			applicationDate: new Date(),
 			person: state.personalData!,
 			student: state.studentData!,
 			period: state.periodData!,
@@ -142,17 +140,9 @@ export const Documents = () => {
 									onSubmit={handleSubmit(async data => {
 										// Create the report period string
 										const periodWeeks = eachWeekOfInterval({
-											...(internshipData.period.customPeriod ?
-												{
-													start: new Date(`${internshipData.period.startDate} UTC-6`),
-													end: new Date(`${internshipData.period.endDate} UTC-6`)
-												} :
-												{
-													start: new Date(`${INTERNSHIP_PERIODS[internshipData.period.periodNumber - 1].startDate} UTC-6`),
-													end: new Date(`${INTERNSHIP_PERIODS[internshipData.period.periodNumber - 1].endDate} UTC-6`)
-												}
-											)
-										}, { locale: es })
+											start: internshipData.period.startDate,
+											end: internshipData.period.endDate
+										})
 
 										const reportWeeks = periodWeeks.slice(
 											(Number(data.formatNumber) - 1) * internshipData.period.reportFrecuency,
@@ -178,15 +168,8 @@ export const Documents = () => {
 									>
 										{Array.from({
 											length: Math.ceil((differenceInCalendarWeeks(
-												...(internshipData.period.customPeriod ?
-													[
-														new Date(`${internshipData.period.endDate} UTC-6`),
-														new Date(`${internshipData.period.startDate} UTC-6`)
-													] :
-													[
-														new Date(`${INTERNSHIP_PERIODS[internshipData.period.periodNumber - 1].endDate} UTC-6`),
-														new Date(`${INTERNSHIP_PERIODS[internshipData.period.periodNumber - 1].startDate} UTC-6`)
-													]) as [Date, Date]
+												internshipData.period.endDate,
+												internshipData.period.startDate
 											) + 1) / internshipData.period.reportFrecuency)
 										}).map((_, i) => (
 											<SelectItem

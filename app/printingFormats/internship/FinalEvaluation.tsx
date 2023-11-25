@@ -1,3 +1,4 @@
+import { formatedDate } from '@/app/utils/format'
 import logo from '@/public/UTMEscudo.png'
 import { Internship } from '@/src/models/Internship'
 import Image from 'next/image'
@@ -119,7 +120,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Del:</p>
-						<p className="font-semibold">{data.period.startDate} al {data.period.endDate}</p>
+						<p className="font-semibold">{formatedDate(data.period.startDate)} al {formatedDate(data.period.endDate)}</p>
 					</div>
 
 					<div className="grid grid-cols-[60%_auto]">

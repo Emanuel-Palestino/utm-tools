@@ -1,3 +1,4 @@
+import { formatedDate } from '@/app/utils/format'
 import logo from '@/public/UTMEscudo.png'
 import { Internship } from '@/src/models/Internship'
 import Image from 'next/image'
@@ -33,7 +34,7 @@ export const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 
 					<div className="flex gap-4">
 						<p className="min-w-[75px]">Fecha:</p>
-						<p className="font-semibold">{data.applicationDate}</p>
+						<p className="font-semibold">{formatedDate(data.applicationDate)}</p>
 					</div>
 
 					<div className="flex gap-4">

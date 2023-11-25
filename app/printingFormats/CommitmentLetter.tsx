@@ -1,5 +1,6 @@
 import { Internship } from "@/src/models/Internship"
 import { FC } from "react"
+import { formatedDate } from "../utils/format"
 
 
 interface CommitmentLetterProps {
@@ -31,7 +32,7 @@ export const CommitmentLetter: FC<CommitmentLetterProps> = ({ data, date }) => {
 					por medio de la presente <strong>manifiesto mi compromiso y responsabilidad de cumplir con
 						las disposiciones, políticas y reglamentos internos establecidos por la empresa
 						{data.company.companyName}</strong>, durante el periodo de realización de la estancia profesional y/o servicio social que comprende del
-					<strong> {data.period.startDate}</strong> al <strong>{data.period.endDate}</strong>.
+					<strong> {formatedDate(data.period.startDate)}</strong> al <strong>{formatedDate(data.period.endDate)}</strong>.
 				</p>
 			</div>
 
