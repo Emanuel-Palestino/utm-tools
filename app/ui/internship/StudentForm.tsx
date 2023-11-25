@@ -53,7 +53,7 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 	return (
 		<Card>
 			<CardBody>
-				<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-2 gap-4">
+				<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-4">
 					<Controller
 						name="state"
 						control={control}
@@ -173,7 +173,7 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 						)}
 					/>
 
-					<div className="col-span-2 flex justify-center mt-2">
+					<div className="flex justify-center mt-2 md:col-span-2">
 						<Button className="bg-utm-container-3 text-utm-on-container-3 w-32" type="submit">
 							{isComplete ? 'Actualizar' : 'Guardar'}
 						</Button>

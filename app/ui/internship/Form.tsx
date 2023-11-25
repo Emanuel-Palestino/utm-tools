@@ -26,8 +26,12 @@ export const Form = () => {
 
 	return (
 		<div className="flex-grow">
-			<h2 className="text-2xl mb-4">Datos</h2>
-			<Tabs selectedKey={selectedTab} onSelectionChange={setSelectecTab}>
+			<h2 className="text-2xl mb-4 text-center md:text-left">Datos</h2>
+			<Tabs
+				selectedKey={selectedTab}
+				onSelectionChange={setSelectecTab}
+				classNames={{ base: 'w-full', tabList: 'w-full grid grid-cols-2 md:flex' }}
+			>
 				<Tab
 					key="personal"
 					title={
