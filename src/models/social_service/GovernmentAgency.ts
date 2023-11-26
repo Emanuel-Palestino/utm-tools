@@ -3,10 +3,10 @@ export interface GovernmentAgency {
 	supervisorName: string
 	supervisorEmail: string
 	supervisorPosition: string
-	workArea: string
+	supervisorWorkArea: string
+	supervisorPhone: string
 	address: string
 	state: string
 	city: string
-	phone: string
 	email: string
 }
