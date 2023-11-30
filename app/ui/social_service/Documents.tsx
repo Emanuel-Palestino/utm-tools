@@ -37,7 +37,6 @@ export const Documents = () => {
 	const {
 		handleSubmit,
 		register,
-		watch,
 		setValue
 	} = useForm<{ formatNumber: number, period: string, totalHours: number, description: string, comments: string }>({
 		defaultValues: {
