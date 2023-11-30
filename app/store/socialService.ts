@@ -1,6 +1,6 @@
 import { Person } from "@/src/models/Person"
 import { GovernmentAgency } from "@/src/models/social_service/GovernmentAgency"
-import { SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
+import { Activity, SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
 import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
@@ -17,12 +17,16 @@ interface SocialServiceStore {
 	isPeriodDataComplete: boolean
 	periodData: SocialServicePeriod | undefined
 
+	isActivitiesDataComplete: boolean
+	activitiesData: Activity[] | undefined
+
 	isGovernmentAgencyDataComplete: boolean
 	governmentAgencyData: GovernmentAgency | undefined
 
 	setPersonalData: (personalData: Person) => void
 	setStudentData: (studentData: SocialServiceStudent) => void
 	setPeriodData: (periodData: SocialServicePeriod) => void
+	setActivitiesData: (activitiesData: Activity[]) => void
 	setGovernmentAgencyData: (governmentAgencyData: GovernmentAgency) => void
 
 	documentsDownloaded: { [key: string]: boolean }
@@ -41,6 +45,9 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 			isPeriodDataComplete: false,
 			periodData: undefined,
 
+			isActivitiesDataComplete: false,
+			activitiesData: undefined,
+
 			isGovernmentAgencyDataComplete: false,
 			governmentAgencyData: undefined,
 
@@ -49,6 +56,8 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 			setStudentData: (studentData: SocialServiceStudent) => set(() => ({ studentData, isStudentDataComplete: true })),
 
 			setPeriodData: (periodData: SocialServicePeriod) => set(() => ({ periodData, isPeriodDataComplete: true })),
+
+			setActivitiesData: (activitiesData: Activity[]) => set(() => ({ activitiesData, isActivitiesDataComplete: true })),
 
 			setGovernmentAgencyData: (governmentAgencyData: GovernmentAgency) => set(() => ({ governmentAgencyData, isGovernmentAgencyDataComplete: true })),
 
@@ -59,6 +68,7 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 		}),
 		{
 			name: 'social-service-storage',
+			skipHydration: true,
 			storage: createStorage<SocialServiceStore>()
 		}
 

@@ -8,7 +8,7 @@ export interface SocialServicePeriod extends Period {
 	activities: Activity[]
 }
 
-interface Activity {
+export interface Activity {
 	description: string
 	startDate: Date
 	endDate: Date
