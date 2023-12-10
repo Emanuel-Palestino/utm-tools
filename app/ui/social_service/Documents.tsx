@@ -9,6 +9,9 @@ import { Select, SelectItem } from "@nextui-org/select"
 import { formatedDate } from "@/app/utils/format"
 import { useForm } from "react-hook-form"
 import { addDays, differenceInCalendarWeeks, eachWeekOfInterval } from "date-fns"
+import { PDFWrapper } from "../PDFWrapper"
+import { ScheduleOfActivities } from "@/app/printingFormats/social_service/ScheduleOfActivities"
+import { usePDF } from "@/src/hooks/usePDF"
 
 
 export const Documents = () => {
@@ -25,6 +28,8 @@ export const Documents = () => {
 		documentsDownloaded: state.documentsDownloaded,
 		setDocumentDownloaded: (key: string) => state.setDocumentDownloaded(key, true)
 	}))
+
+	const { target: scheduleOfActivities, createPDF: createScheduleOfActivities } = usePDF('Cronograma de Actividades', true)
 
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
@@ -54,6 +59,11 @@ export const Documents = () => {
 
 	const documents = [
 		{
+			name: 'Cronograma de Actividades',
+			action: createScheduleOfActivities,
+			stateKey: 'schedule-activities'
+		},
+		{
 			name: 'Reportes Parciales',
 			action: onOpen,
 			stateKey: 'none'
@@ -73,8 +83,8 @@ export const Documents = () => {
 
 				{documents.map(doc => (
 					<Card
-						isPressable={dataComplete}
-						isDisabled={!dataComplete}
+						isPressable={true}
+						isDisabled={false}
 						onPress={() => {
 							doc.action()
 							if (doc.stateKey !== 'none') setDocumentDownloaded(doc.stateKey)
@@ -226,8 +236,11 @@ export const Documents = () => {
 				</ModalContent>
 			</Modal >
 
-			{dataComplete && (
+			{dataComplete || true && (
 				<>
+					<PDFWrapper target={scheduleOfActivities} landscape>
+						<ScheduleOfActivities />
+					</PDFWrapper>
 				</>
 			)}
 		</>
