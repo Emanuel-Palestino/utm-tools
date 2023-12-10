@@ -4,7 +4,7 @@ import generatePDF, { Margin, Options, Resolution } from 'react-to-pdf'
 
 const options: Options = {
 	method: 'save',
-	resolution: Resolution.MEDIUM,
+	resolution: Resolution.NORMAL,
 	page: {
 		margin: Margin.MEDIUM,
 		format: 'letter',
@@ -13,14 +13,15 @@ const options: Options = {
 }
 
 export const usePDF = (filename: string, landscape: boolean = false) => {
-
 	const target = useRef(null)
 
-	if (landscape)
-		options.page = { ...options.page, orientation: 'landscape' }
-
 	const createPDF = () => {
-		generatePDF(target, { filename, ...options })
+		if (landscape) {
+			const pageOptions = { ...options.page }
+			pageOptions.orientation = 'landscape'
+			generatePDF(target, { filename, ...options, page: pageOptions })
+		} else
+			generatePDF(target, { filename, ...options })
 	}
 
 	return { target, createPDF }
