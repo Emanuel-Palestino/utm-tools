@@ -12,9 +12,12 @@ const options: Options = {
 	}
 }
 
-export const usePDF = (filename: string) => {
+export const usePDF = (filename: string, landscape: boolean = false) => {
 
 	const target = useRef(null)
+
+	if (landscape)
+		options.page = { ...options.page, orientation: 'landscape' }
 
 	const createPDF = () => {
 		generatePDF(target, { filename, ...options })
