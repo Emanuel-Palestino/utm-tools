@@ -12,6 +12,7 @@ import { addDays, differenceInCalendarWeeks, eachWeekOfInterval } from "date-fns
 import { PDFWrapper } from "../PDFWrapper"
 import { ScheduleOfActivities } from "@/app/printingFormats/social_service/ScheduleOfActivities"
 import { usePDF } from "@/src/hooks/usePDF"
+import { PartialReport } from "@/app/printingFormats/social_service/PartialReport"
 
 
 export const Documents = () => {
@@ -30,8 +31,9 @@ export const Documents = () => {
 	}))
 
 	const { target: scheduleOfActivities, createPDF: createScheduleOfActivities } = usePDF('Cronograma de Actividades', true)
+	const { target: partialReport, createPDF: createPartialReport } = usePDF('Reporte Parcial de Actividades')
 
-	const { isOpen, onOpen, onOpenChange } = useDisclosure()
+	const { isOpen, /* onOpen, */ onOpenChange } = useDisclosure()
 
 	const {
 		isOpen: isFinalReportOpen,
@@ -65,7 +67,7 @@ export const Documents = () => {
 		},
 		{
 			name: 'Reportes Parciales',
-			action: onOpen,
+			action: createPartialReport,
 			stateKey: 'none'
 		},
 		{
@@ -240,6 +242,10 @@ export const Documents = () => {
 				<>
 					<PDFWrapper target={scheduleOfActivities} landscape>
 						<ScheduleOfActivities />
+					</PDFWrapper>
+
+					<PDFWrapper target={partialReport}>
+						<PartialReport />
 					</PDFWrapper>
 				</>
 			)}
