@@ -13,6 +13,7 @@ import { PDFWrapper } from "../PDFWrapper"
 import { ScheduleOfActivities } from "@/app/printingFormats/social_service/ScheduleOfActivities"
 import { usePDF } from "@/src/hooks/usePDF"
 import { PartialReport } from "@/app/printingFormats/social_service/PartialReport"
+import { FinalEvaluation } from "@/app/printingFormats/social_service/FinalEvaluation"
 
 
 export const Documents = () => {
@@ -32,14 +33,9 @@ export const Documents = () => {
 
 	const { target: scheduleOfActivities, createPDF: createScheduleOfActivities } = usePDF('Cronograma de Actividades', true)
 	const { target: partialReport, createPDF: createPartialReport } = usePDF('Reporte Parcial de Actividades')
+	const { target: finalReport, createPDF: createFinalReport } = usePDF('Reporte Final')
 
 	const { isOpen, /* onOpen, */ onOpenChange } = useDisclosure()
-
-	const {
-		isOpen: isFinalReportOpen,
-		onOpen: onFinalReportOpen,
-		onOpenChange: onFinalReportOpenChange
-	} = useDisclosure()
 
 	const {
 		handleSubmit,
@@ -71,8 +67,8 @@ export const Documents = () => {
 			stateKey: 'none'
 		},
 		{
-			name: 'Reporte Final',
-			action: onFinalReportOpen,
+			name: 'Reporte de Evaluación Final',
+			action: createFinalReport,
 			stateKey: 'none'
 		}
 	]
@@ -199,45 +195,6 @@ export const Documents = () => {
 				</ModalContent>
 			</Modal >
 
-			<Modal isOpen={isFinalReportOpen} onOpenChange={onFinalReportOpenChange} size="lg">
-				<ModalContent>
-					{onClose => (
-						<>
-							<ModalHeader>Reporte Final de Actividades</ModalHeader>
-							<ModalBody>
-								<form
-									id="final_report_form"
-									onSubmit={handleSubmit(() => {
-										//createFinalReport()
-										setDocumentDownloaded('final-report')
-										onClose()
-									})}
-								>
-									<Textarea
-										minRows={16}
-										label="Descripción de actividades"
-										isRequired
-										{...register('description')}
-									/>
-								</form>
-							</ModalBody>
-							<ModalFooter>
-								<Button color="danger" variant="light" onPress={onClose}>
-									Cancelar
-								</Button>
-								<Button
-									color="primary"
-									form="final_report_form"
-									type="submit"
-								>
-									Descargar
-								</Button>
-							</ModalFooter>
-						</>
-					)}
-				</ModalContent>
-			</Modal >
-
 			{dataComplete || true && (
 				<>
 					<PDFWrapper target={scheduleOfActivities} landscape>
@@ -246,6 +203,10 @@ export const Documents = () => {
 
 					<PDFWrapper target={partialReport}>
 						<PartialReport />
+					</PDFWrapper>
+
+					<PDFWrapper target={finalReport}>
+						<FinalEvaluation />
 					</PDFWrapper>
 				</>
 			)}

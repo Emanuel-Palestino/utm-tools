@@ -72,7 +72,7 @@ export const PartialReport = () => {
 						</div>
 
 						<div className="flex gap-2">
-							<p className="text-left w-[180px] font-semibold">TELÉFONO:</p>
+							<p className="text-left font-semibold">TELÉFONO:</p>
 							<p>95323423424</p>
 						</div>
 					</div>
