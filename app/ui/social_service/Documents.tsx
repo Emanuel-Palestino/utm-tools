@@ -14,6 +14,7 @@ import { ScheduleOfActivities } from "@/app/printingFormats/social_service/Sched
 import { usePDF } from "@/src/hooks/usePDF"
 import { PartialReport } from "@/app/printingFormats/social_service/PartialReport"
 import { FinalEvaluation } from "@/app/printingFormats/social_service/FinalEvaluation"
+import { DocumentReception } from "@/app/printingFormats/social_service/DocumentReception"
 
 
 export const Documents = () => {
@@ -34,6 +35,7 @@ export const Documents = () => {
 	const { target: scheduleOfActivities, createPDF: createScheduleOfActivities } = usePDF('Cronograma de Actividades', true)
 	const { target: partialReport, createPDF: createPartialReport } = usePDF('Reporte Parcial de Actividades')
 	const { target: finalReport, createPDF: createFinalReport } = usePDF('Reporte Final')
+	const { target: documentReception, createPDF: createDocumentReception } = usePDF('Formato de Recepción de Documentos')
 
 	const { isOpen, /* onOpen, */ onOpenChange } = useDisclosure()
 
@@ -69,7 +71,12 @@ export const Documents = () => {
 		{
 			name: 'Reporte de Evaluación Final',
 			action: createFinalReport,
-			stateKey: 'none'
+			stateKey: 'final-evaluation'
+		},
+		{
+			name: 'Recepción de Documentos',
+			action: createDocumentReception,
+			stateKey: 'document-reception'
 		}
 	]
 
@@ -207,6 +214,10 @@ export const Documents = () => {
 
 					<PDFWrapper target={finalReport}>
 						<FinalEvaluation />
+					</PDFWrapper>
+
+					<PDFWrapper target={documentReception}>
+						<DocumentReception />
 					</PDFWrapper>
 				</>
 			)}
