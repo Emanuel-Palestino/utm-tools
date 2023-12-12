@@ -96,18 +96,18 @@ export const PartialReport = () => {
 				</div>
 
 				<div className="text-[13px] mt-4">
-					<table className="w-full table-auto border-collapse">
+					<table className="w-full table-auto border-collapse border-t border-l border-black">
 						<thead>
 							<tr>
-								<th className="border border-black p-2">No.</th>
-								<th className="border border-black p-2">DESCRIPCIÓN DE ACTIVIDADES REALIZADAS EN EL PERIODO SEÑALADO:</th>
+								<th className="border-b border-r border-black p-2">No.</th>
+								<th className="border-b border-r border-black p-2">DESCRIPCIÓN DE ACTIVIDADES REALIZADAS EN EL PERIODO SEÑALADO:</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr>
-								<td className="border border-black p-2">1.-</td>
-								<td className="border border-black p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique porro doloribus, deleniti commodi earum odit unde itaque quia, est, iusto voluptates tempore. Eos soluta praesentium quasi provident neque, impedit maiores!</td>
+								<td className="border-b border-r border-black p-2">1.-</td>
+								<td className="border-b border-r border-black p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique porro doloribus, deleniti commodi earum odit unde itaque quia, est, iusto voluptates tempore. Eos soluta praesentium quasi provident neque, impedit maiores!</td>
 							</tr>
 						</tbody>
 					</table>

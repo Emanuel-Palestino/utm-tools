@@ -48,7 +48,7 @@ export const ScheduleOfActivities = () => {
 						<p>23498729347</p>
 					</div>
 
-					<div className="flex gap-4">
+					<div className="flex gap-4 items-center">
 						<p className="w-[230px] font-semibold text-right">NOMBRE DEL PROGRAMA O PROYECTO:</p>
 						<p>algo algo algo algo</p>
 					</div>
@@ -66,93 +66,93 @@ export const ScheduleOfActivities = () => {
 
 				<div className="text-[13px] mt-4 px-8">
 					<table className="w-full table-auto border-collapse">
-						<thead>
+						<thead className="border-t border-l border-black">
 							<tr>
-								<th rowSpan={2} className="border border-black">NÚM.</th>
-								<th rowSpan={2} className="border border-black w-96">ACTIVIDAD</th>
+								<th rowSpan={2} className="border-b border-r border-black">NÚM.</th>
+								<th rowSpan={2} className="border-b border-r border-black w-96">ACTIVIDAD</th>
 
-								<th colSpan={3} className="text-center border border-black">DEL</th>
-								<th colSpan={3} className="text-center border border-black">AL</th>
+								<th colSpan={3} className="text-center border-b border-r border-black">DEL</th>
+								<th colSpan={3} className="text-center border-b border-r border-black">AL</th>
 
-								<th rowSpan={2} className="border border-black">NÚMERO DE HORAS</th>
+								<th rowSpan={2} className="border-b border-r border-black">NÚMERO DE HORAS</th>
 							</tr>
 							<tr className="text-[12px]">
-								<th className="border border-black">Día</th>
-								<th className="border border-black">Mes</th>
-								<th className="border border-black">Año</th>
+								<th className="border-b border-r border-black">Día</th>
+								<th className="border-b border-r border-black">Mes</th>
+								<th className="border-b border-r border-black">Año</th>
 
-								<th className="border border-black">Día</th>
-								<th className="border border-black">Mes</th>
-								<th className="border border-black">Año</th>
+								<th className="border-b border-r border-black">Día</th>
+								<th className="border-b border-r border-black">Mes</th>
+								<th className="border-b border-r border-black">Año</th>
 							</tr>
 						</thead>
 
-						<tbody>
+						<tbody className="border-l border-black">
 							<tr className="text-center">
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
 							</tr>
 							<tr className="text-center">
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
 							</tr>
 							<tr className="text-center">
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
 							</tr>
 							<tr className="text-center">
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
 							</tr>
 							<tr className="text-center">
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
 							</tr>
 							<tr className="text-center">
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
-								<td className="border border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
+								<td className="border-b border-r border-black">a</td>
 							</tr>
 						</tbody>
 						<tfoot>

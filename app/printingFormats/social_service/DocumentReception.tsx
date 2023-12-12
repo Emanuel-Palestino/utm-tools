@@ -18,47 +18,49 @@ const Section = () => {
 	return (
 		<div>
 			<div className="mt-5">
-				<table className="w-full table-auto border-collapse border border-black text-center">
+				<table className="w-full table-auto border-collapse border-t border-l border-black text-center">
 					<thead>
 						<tr className="text-[11px]">
-							<th className="border border-black p-1" colSpan={3}>NOMBRE</th>
-							<th className="border border-black p-1">MATRÍCULA</th>
-							<th className="border border-black p-1" colSpan={2}>PERIODO DE SERVICIO SOCIAL</th>
-							<th className="border border-black p-1">SEMESTRE</th>
-							<th className="border border-black p-1">CARRERA</th>
+							<th className="border-b border-r border-black p-1" colSpan={3}>NOMBRE</th>
+							<th className="border-b border-r border-black p-1">MATRÍCULA</th>
+							<th className="border-b border-r border-black p-1" colSpan={2}>PERIODO DE SERVICIO SOCIAL</th>
+							<th className="border-b border-r border-black p-1">SEMESTRE</th>
+							<th className="border-b border-r border-black p-1">CARRERA</th>
 						</tr>
 					</thead>
 
 					<tbody>
 						<tr>
-							<td className="border border-black" colSpan={3}>Emanuel Palestino Hernández</td>
-							<td className="border border-black">201963040</td>
-							<td className="border border-black" colSpan={2}>2020-01-01 - 2020-01-01</td>
-							<td className="border border-black">9</td>
-							<td className="border border-black">Ingeniería en Computación</td>
+							<td className="border-b border-r border-black" colSpan={3}>Emanuel Palestino Hernández</td>
+							<td className="border-b border-r border-black">201963040</td>
+							<td className="border-b border-r border-black" colSpan={2}>2020-01-01 - 2020-01-01</td>
+							<td className="border-b border-r border-black">9</td>
+							<td className="border-b border-r border-black">Ingeniería en Computación</td>
 						</tr>
 						<tr>
-							<td className="text-left p-1 h-16 align-top" colSpan={8}><span className="font-bold">Observaciones: </span></td>
+							<td className="border-b border-r border-black text-left p-1 h-16 align-top" colSpan={8}>
+								<span className="font-bold">Observaciones: </span>
+							</td>
 						</tr>
 						<tr className="text-[10px]">
-							<td className="border border-black p-1">FORMATO DE SOLICITUD PARA LA PRESTACIÓN DE SERVICIO SOCIAL</td>
-							<td className="border border-black p-1">CRONOGRAMA DE ACTIVIDADES</td>
-							<td className="border border-black p-1">ACUSE DE OFICIO DE PRESENTACIÓN</td>
-							<td className="border border-black p-1">OFICIO DE ACEPTACIÓN EMITIDO POR LA INSTITUCIÓN O DEPENDENCIA</td>
-							<td className="border border-black p-1">REPORTES MENSUALES DE ACTIVIDADES</td>
-							<td className="border border-black p-1">EVALUACIÓN FINAL POR PARTE DE LA INSTITUCIÓN O DEPENDENCIA</td>
-							<td className="border border-black p-1">OFICIO DE TERMINACIÓN EMITIDO POR PARTE DE LA INSTITUCIÓN O DEPENDENCIA</td>
-							<td className="border border-black p-1">INFORME FINAL CON V°B° DE JEFATURA DE CARRERA</td>
+							<td className="border-b border-r border-black p-1">FORMATO DE SOLICITUD PARA LA PRESTACIÓN DE SERVICIO SOCIAL</td>
+							<td className="border-b border-r border-black p-1">CRONOGRAMA DE ACTIVIDADES</td>
+							<td className="border-b border-r border-black p-1">ACUSE DE OFICIO DE PRESENTACIÓN</td>
+							<td className="border-b border-r border-black p-1">OFICIO DE ACEPTACIÓN EMITIDO POR LA INSTITUCIÓN O DEPENDENCIA</td>
+							<td className="border-b border-r border-black p-1">REPORTES MENSUALES DE ACTIVIDADES</td>
+							<td className="border-b border-r border-black p-1">EVALUACIÓN FINAL POR PARTE DE LA INSTITUCIÓN O DEPENDENCIA</td>
+							<td className="border-b border-r border-black p-1">OFICIO DE TERMINACIÓN EMITIDO POR PARTE DE LA INSTITUCIÓN O DEPENDENCIA</td>
+							<td className="border-b border-r border-black p-1">INFORME FINAL CON V°B° DE JEFATURA DE CARRERA</td>
 						</tr>
 						<tr>
-							<td className="border border-black h-12"></td>
-							<td className="border border-black"></td>
-							<td className="border border-black"></td>
-							<td className="border border-black"></td>
-							<td className="border border-black"></td>
-							<td className="border border-black"></td>
-							<td className="border border-black"></td>
-							<td className="border border-black"></td>
+							<td className="border-b border-r border-black h-12"></td>
+							<td className="border-b border-r border-black"></td>
+							<td className="border-b border-r border-black"></td>
+							<td className="border-b border-r border-black"></td>
+							<td className="border-b border-r border-black"></td>
+							<td className="border-b border-r border-black"></td>
+							<td className="border-b border-r border-black"></td>
+							<td className="border-b border-r border-black"></td>
 						</tr>
 					</tbody>
 				</table>

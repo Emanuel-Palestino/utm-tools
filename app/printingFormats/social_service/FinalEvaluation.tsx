@@ -114,10 +114,10 @@ export const FinalEvaluation = () => {
 				</div>
 
 				<div className="mb-1">
-					<table className="w-full table-auto border-collapse border border-black">
+					<table className="w-full table-auto border-collapse border-t border-l border-black">
 						<thead>
 							<tr>
-								<th className="border border-black bg-gray-300" colSpan={6}>
+								<th className="border-b border-r border-black bg-gray-300" colSpan={6}>
 									Evaluación General del Alumno
 								</th>
 							</tr>
@@ -125,21 +125,21 @@ export const FinalEvaluation = () => {
 
 						<tbody>
 							<tr className="text-center">
-								<td className="border border-black"></td>
-								<td className="border border-black w-20">Muy Bien</td>
-								<td className="border border-black w-20">Bien</td>
-								<td className="border border-black w-20">Regular</td>
-								<td className="border border-black w-20">Mal</td>
-								<td className="border border-black w-20">Pésimo</td>
+								<td className="border-b border-r border-black"></td>
+								<td className="border-b border-r border-black w-20">Muy Bien</td>
+								<td className="border-b border-r border-black w-20">Bien</td>
+								<td className="border-b border-r border-black w-20">Regular</td>
+								<td className="border-b border-r border-black w-20">Mal</td>
+								<td className="border-b border-r border-black w-20">Pésimo</td>
 							</tr>
 							{evaluation.map(e => (
 								<tr key={`e_${e}`}>
-									<td className="border border-black">{e}</td>
-									<td className="border border-black"></td>
-									<td className="border border-black"></td>
-									<td className="border border-black"></td>
-									<td className="border border-black"></td>
-									<td className="border border-black"></td>
+									<td className="border-b border-r border-black">{e}</td>
+									<td className="border-b border-r border-black"></td>
+									<td className="border-b border-r border-black"></td>
+									<td className="border-b border-r border-black"></td>
+									<td className="border-b border-r border-black"></td>
+									<td className="border-b border-r border-black"></td>
 								</tr>
 							))}
 						</tbody>
