@@ -15,6 +15,7 @@ import { usePDF } from "@/src/hooks/usePDF"
 import { PartialReport } from "@/app/printingFormats/social_service/PartialReport"
 import { FinalEvaluation } from "@/app/printingFormats/social_service/FinalEvaluation"
 import { DocumentReception } from "@/app/printingFormats/social_service/DocumentReception"
+import { Registration } from "@/app/printingFormats/social_service/Registration"
 
 
 export const Documents = () => {
@@ -32,6 +33,7 @@ export const Documents = () => {
 		setDocumentDownloaded: (key: string) => state.setDocumentDownloaded(key, true)
 	}))
 
+	const { target: registration, createPDF: createRegistration } = usePDF('Registro de Servicio Social')
 	const { target: scheduleOfActivities, createPDF: createScheduleOfActivities } = usePDF('Cronograma de Actividades', true)
 	const { target: partialReport, createPDF: createPartialReport } = usePDF('Reporte Parcial de Actividades')
 	const { target: finalReport, createPDF: createFinalReport } = usePDF('Reporte Final')
@@ -58,6 +60,11 @@ export const Documents = () => {
 	const updatePeriodHours = async (h: number) => setValue('totalHours', h)
 
 	const documents = [
+		{
+			name: 'Registro de Servicio Social',
+			action: createRegistration,
+			stateKey: 'registration'
+		},
 		{
 			name: 'Cronograma de Actividades',
 			action: createScheduleOfActivities,
@@ -218,6 +225,10 @@ export const Documents = () => {
 
 					<PDFWrapper target={documentReception}>
 						<DocumentReception />
+					</PDFWrapper>
+
+					<PDFWrapper target={registration}>
+						<Registration />
 					</PDFWrapper>
 				</>
 			)}
