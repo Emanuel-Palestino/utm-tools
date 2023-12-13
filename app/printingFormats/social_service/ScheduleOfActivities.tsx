@@ -1,5 +1,4 @@
-import Image from "next/image"
-import logo from '@/public/UTMEscudo.png'
+import { Header } from "./Header"
 
 
 export const ScheduleOfActivities = () => {
@@ -7,16 +6,7 @@ export const ScheduleOfActivities = () => {
 	return (
 		<section className="w-full h-full text-[14px] flex flex-col justify-between">
 			<div>
-				<div className="px-6 w-full flex gap-12 items-center">
-					<Image width={100} height={100} src={logo} alt="logo" className="flex-shrink-0 basis-[130px]" />
-					<div className="text-center text-[19px]">
-						<div className="flex">
-							<div className="w-0 h-0 border-r-[50px] border-r-[#b3b2b2] border-b-[80px] border-b-transparent"></div>
-							<p className="text-right font-bold bg-[#b3b2b2] p-2 px-10 text-white">COORDINACIÓN DE ESTANCIAS PROFESIONALES, SERVICIO SOCIAL Y VIAJES DE PRÁCTICAS ESCOLARES</p>
-						</div>
-						<p className="text-center font-semibold mt-4 text-[19px]">CRONOGRAMA DE ACTIVIDADES DE SERVICIO SOCIAL</p>
-					</div>
-				</div>
+				<Header title="CRONOGRAMA DE ACTIVIDADES DE SERVICIO SOCIAL" landscape />
 
 				<p className="text-right text-[16px] px-6 mt-8">FECHA: 12 de noviembre de 2023</p>
 
