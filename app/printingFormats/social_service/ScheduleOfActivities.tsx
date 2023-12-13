@@ -1,56 +1,79 @@
+import { Activity, SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
 import { Header } from "./Header"
+import { Person } from "@/src/models/Person"
+import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
+import { GovernmentAgency } from "@/src/models/social_service/GovernmentAgency"
+import { FC } from "react"
+import { formatedDate } from "@/app/utils/format"
+import { getDate, getMonth, getYear } from "date-fns"
 
 
-export const ScheduleOfActivities = () => {
+interface ScheduleOfActivitiesProps {
+	person: Person
+	student: SocialServiceStudent
+	governmentAgency: GovernmentAgency
+	period: SocialServicePeriod
+	activities: Activity[]
+	date: Date
+}
+
+export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
+	person,
+	student,
+	governmentAgency,
+	period,
+	activities,
+	date
+}) => {
 
 	return (
 		<section className="w-full h-full text-[14px] flex flex-col justify-between">
 			<div>
 				<Header title="CRONOGRAMA DE ACTIVIDADES DE SERVICIO SOCIAL" landscape />
 
-				<p className="text-right text-[16px] px-6 mt-8">FECHA: 12 de noviembre de 2023</p>
+				<p className="text-right text-[16px] px-6 mt-8">FECHA: {formatedDate(date)}</p>
 
 				<div className="flex flex-col gap-1 px-8 mt-4">
 					<div className="flex gap-4">
 						<p className="w-[230px] font-semibold text-right">NOMBRE COMPLETO DEL ALUMNO:</p>
-						<p>Emanuel Palestino Hernández</p>
+						<p>{`${person.paternalSurname} ${person.maternalSurname} ${person.name}`}</p>
 					</div>
 
 					<div className="flex gap-8">
 						<div className="flex gap-4">
 							<p className="w-[230px] font-semibold text-right">CARRERA:</p>
-							<p>Ingeniería en Computación</p>
+							<p>{student.career}</p>
 						</div>
 
 						<div className="flex gap-4">
 							<p className="font-semibold">SEMESTRE:</p>
-							<p>Octavo</p>
+							<p>{student.semester}</p>
 						</div>
 
 						<div className="flex gap-4">
 							<p className="font-semibold">MATRÍCULA:</p>
-							<p>23498729347</p>
+							<p>{student.enrollment}</p>
 						</div>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="w-[230px] font-semibold text-right">INSTITUCIÓN Y/O DEPENDENCIA:</p>
-						<p>23498729347</p>
+						<p>{governmentAgency.name}</p>
 					</div>
 
 					<div className="flex gap-4 items-center">
 						<p className="w-[230px] font-semibold text-right">NOMBRE DEL PROGRAMA O PROYECTO:</p>
-						<p>algo algo algo algo</p>
+						<p>{period.projectName}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="w-[230px] font-semibold text-right">PERIODO:</p>
-						<p>Del 5 de octubre del 2020 al 5 de octubre del 2020</p>
+						<p>Del {formatedDate(period.startDate)} al {formatedDate(period.endDate)}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="w-[230px] font-semibold flex-shrink-0 text-right">OBJETIVO:</p>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti necessitatibus officia nam rerum repellendus odit assumenda nostrum neque adipisci consectetur dicta tempore, optio quidem magni molestias praesentium rem. Reprehenderit, officia!</p>
+						<p>{period.projectObjective}</p>
 					</div>
 				</div>
 
@@ -78,79 +101,27 @@ export const ScheduleOfActivities = () => {
 						</thead>
 
 						<tbody className="border-l border-black">
-							<tr className="text-center">
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-							</tr>
-							<tr className="text-center">
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-							</tr>
-							<tr className="text-center">
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-							</tr>
-							<tr className="text-center">
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-							</tr>
-							<tr className="text-center">
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-							</tr>
-							<tr className="text-center">
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-								<td className="border-b border-r border-black">a</td>
-							</tr>
+							{activities.map((activity, index) => (
+								<tr key={`activity-${index}`} className="text-center">
+									<td className="border-b border-r border-black">{index + 1}</td>
+									<td className="border-b border-r border-black">{activity.description}</td>
+									<td className="border-b border-r border-black">{getDate(activity.startDate)}</td>
+									<td className="border-b border-r border-black">{getMonth(activity.startDate) + 1}</td>
+									<td className="border-b border-r border-black">{getYear(activity.startDate)}</td>
+									<td className="border-b border-r border-black">{getDate(activity.endDate)}</td>
+									<td className="border-b border-r border-black">{getMonth(activity.endDate) + 1}</td>
+									<td className="border-b border-r border-black">{getYear(activity.endDate)}</td>
+									<td className="border-b border-r border-black">{activity.hours}</td>
+								</tr>
+							))}
 						</tbody>
+
 						<tfoot>
 							<tr className="text-[14px]">
 								<td></td>
 								<td></td>
 								<td colSpan={6} className="text-right font-semibold p-1">TOTAL DE HORAS:</td>
-								<td className="text-center font-semibold border-2 border-black">999</td>
+								<td className="text-center font-semibold border-2 border-black">{period.totalHours}</td>
 							</tr>
 						</tfoot>
 					</table>
