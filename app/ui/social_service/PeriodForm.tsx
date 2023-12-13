@@ -39,6 +39,10 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 	const onSubmit: SubmitHandler<SocialServicePeriod> = data => {
 		data.totalHours = Number(data.totalHours)
 		data.months = Number(data.months)
+
+		data.startDate = new Date(`${data.startDate} UTC-6`)
+		data.endDate = new Date(`${data.endDate} UTC-6`)
+
 		save(data)
 		nextForm()
 	}
