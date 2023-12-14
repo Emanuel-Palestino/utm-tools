@@ -1,5 +1,11 @@
+import { formatedDate } from '@/app/utils/format'
 import logo from '@/public/UTMEscudo.png'
+import { Person } from '@/src/models/Person'
+import { GovernmentAgency } from '@/src/models/social_service/GovernmentAgency'
+import { SocialServicePeriod } from '@/src/models/social_service/SocialServicePeriod'
+import { SocialServiceStudent } from '@/src/models/social_service/SocialServiceStudent'
 import Image from 'next/image'
+import { FC } from 'react'
 
 
 const evaluation: string[] = [
@@ -15,7 +21,15 @@ const evaluation: string[] = [
 	'Lealtad y Discreción'
 ]
 
-export const FinalEvaluation = () => {
+interface FinalEvaluationProps {
+	person: Person
+	student: SocialServiceStudent
+	period: SocialServicePeriod
+	governmentAgency: GovernmentAgency
+	formatNumber: number
+}
+
+export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, period, governmentAgency, formatNumber }) => {
 
 	return (
 		<section className="w-full h-full text-[13px]">
@@ -30,7 +44,7 @@ export const FinalEvaluation = () => {
 
 
 			<div className="px-8">
-				<p className="text-right mt-6">Formato No. 1</p>
+				<p className="text-right mt-6">Formato No. {formatNumber}</p>
 
 				<p className="mb-1">C. JEFE DE ÁREA.</p>
 				<p className="mb-1">Con la finalidad de atender cada vez con mayor calidad y eficiencia del SERVICIO SOCIAL de nuestro alumno(a), así como para tener referentes que nos orienten al mejor funcionamiento de las necesidades del Sector Público. Le agradeceré el llenado del siguiente formato:</p>
@@ -38,78 +52,78 @@ export const FinalEvaluation = () => {
 				<div className="flex flex-col gap-1 mt-4 mb-2">
 					<div className="flex gap-2 items-center">
 						<p className="text-left w-[170px] font-semibold">NOMBRE COMPLETO DEL ALUMNO:</p>
-						<p>Emanuel Palestino Hernández</p>
+						<p>{`${person.paternalSurname} ${person.maternalSurname} ${person.name}`}</p>
 					</div>
 
 					<div className="flex gap-6">
 						<div className="flex gap-2">
 							<p className="text-left w-[170px] font-semibold">CARRERA:</p>
-							<p>Ingeniería en Computación</p>
+							<p>{student.career}</p>
 						</div>
 
 						<div className="flex gap-2">
 							<p className="font-semibold">SEMESTRE:</p>
-							<p>Octavo</p>
+							<p>{student.semester}</p>
 						</div>
 
 						<div className="flex gap-2">
 							<p className="font-semibold">MATRÍCULA:</p>
-							<p>239847293784</p>
+							<p>{student.enrollment}</p>
 						</div>
 					</div>
 
 					<div className="flex gap-2">
 						<p className="text-left w-[170px] font-semibold">PERIODO:</p>
-						<p>Del 5 de octubre del 2023 a 5 de octubre del 2023</p>
+						<p>Del {formatedDate(period.startDate)} al {formatedDate(period.endDate)}</p>
 					</div>
 
 					<div className="flex gap-6">
 						<div className="flex gap-2">
 							<p className="text-left w-[170px] font-semibold">HORARIO:</p>
-							<p>De 9am a 10pm</p>
+							<p>{period.schedule}</p>
 						</div>
 
 						<div className="flex gap-2">
 							<p className="font-semibold">TOTAL DE HORAS REALIZADAS:</p>
-							<p>555</p>
+							<p>{period.totalHours}</p>
 						</div>
 					</div>
 
 					<div className="flex gap-2 items-center">
 						<p className="text-left w-[170px] font-semibold">INSTITUCIÓN Y/O DEPENDENCIA:</p>
-						<p>Municipio de oaxaca oaxaca</p>
+						<p>{governmentAgency.name}</p>
 					</div>
 
 					<div className="flex gap-2">
 						<p className="text-left w-[170px] font-semibold">ÁREA O DEPARTAMENTO:</p>
-						<p>Estadística y Computación</p>
+						<p>{governmentAgency.supervisorWorkArea}</p>
 					</div>
 
 					<div className="flex gap-2">
 						<p className="text-left w-[170px] font-semibold">DIRECCIÓN:</p>
-						<p>calle 1 oaxaca oaxaca huajuapan</p>
+						<p>{governmentAgency.address}</p>
 					</div>
 
 					<div className="flex gap-2">
 						<p className="text-left w-[170px] font-semibold">CIUDAD O LOCALIDAD:</p>
-						<p>Huajuapan de leon</p>
+						<p>{governmentAgency.city}</p>
 					</div>
 
 					<div className="flex gap-6">
 						<div className="flex gap-2">
 							<p className="text-left w-[170px] font-semibold">ESTADO:</p>
-							<p>Oaxaca</p>
+							<p>{governmentAgency.state}</p>
 						</div>
 
 						<div className="flex gap-2">
 							<p className="text-left font-semibold">TELÉFONO:</p>
-							<p>95323423424</p>
+							<p>{governmentAgency.supervisorPhone}</p>
 						</div>
 					</div>
 
 					<div className="flex gap-2">
 						<p className="text-left w-[170px] font-semibold">RESPONSABLE INMEDIATO:</p>
-						<p>Emanuel palestino Hernández</p>
+						<p>{governmentAgency.supervisorName}</p>
 					</div>
 				</div>
 
