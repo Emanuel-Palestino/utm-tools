@@ -1,20 +1,32 @@
+import { formatedDate } from "@/app/utils/format"
+import { Person } from "@/src/models/Person"
+import { SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
+import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
+import { FC } from "react"
 
-export const DocumentReception = () => {
+
+interface DocumentReceptionProps {
+	person: Person
+	student: SocialServiceStudent
+	period: SocialServicePeriod
+}
+
+export const DocumentReception: FC<DocumentReceptionProps> = props => {
 
 	return (
 		<section className="w-full h-full text-[13px]">
 			<p className="text-center text-[14px]">COORDINACIÓN DE ESTANCIAS PROFESIONALES, SERVICIO SOCIAL Y VIAJE DE PRÁCTICAS ESCOLARES</p>
 			<p className="text-center font-semibold">Recepción de Documentos</p>
 
-			<Section />
+			<Section {...props} />
 			<span className="block h-10" />
-			<Section />
+			<Section {...props} />
 		</section>
 	)
 
 }
 
-const Section = () => {
+const Section: FC<DocumentReceptionProps> = ({ person, student, period }) => {
 	return (
 		<div>
 			<div className="mt-5">
@@ -31,11 +43,11 @@ const Section = () => {
 
 					<tbody>
 						<tr>
-							<td className="border-b border-r border-black" colSpan={3}>Emanuel Palestino Hernández</td>
-							<td className="border-b border-r border-black">201963040</td>
-							<td className="border-b border-r border-black" colSpan={2}>2020-01-01 - 2020-01-01</td>
-							<td className="border-b border-r border-black">9</td>
-							<td className="border-b border-r border-black">Ingeniería en Computación</td>
+							<td className="border-b border-r border-black p-1" colSpan={3}>{`${person.paternalSurname} ${person.maternalSurname} ${person.name}`}</td>
+							<td className="border-b border-r border-black p-1">{student.enrollment}</td>
+							<td className="border-b border-r border-black p-1" colSpan={2}>{formatedDate(period.startDate)} AL <br /> {formatedDate(period.endDate)}</td>
+							<td className="border-b border-r border-black p-1">{student.semester}</td>
+							<td className="border-b border-r border-black p-1">{student.career}</td>
 						</tr>
 						<tr>
 							<td className="border-b border-r border-black text-left p-1 h-16 align-top" colSpan={8}>
@@ -82,17 +94,17 @@ const Section = () => {
 
 					<div className="flex gap-4 items-center">
 						<p className="w-[80px]">DIRECCIÓN:</p>
-						<p></p>
+						<p>{student.address}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="w-[80px]">CORREO:</p>
-						<p>emanuel.palestino.h@gmail.com</p>
+						<p>{person.email}</p>
 					</div>
 
 					<div className="flex gap-4">
 						<p className="w-[80px]">CEL.:</p>
-						<p>9512349087</p>
+						<p>{person.phone}</p>
 					</div>
 				</div>
 			</div>
