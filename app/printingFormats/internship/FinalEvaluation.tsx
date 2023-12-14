@@ -1,4 +1,4 @@
-import { formatedDate } from '@/app/utils/format'
+import { formatSchedule, formatedDate } from '@/app/utils/format'
 import logo from '@/public/UTMEscudo.png'
 import { Internship } from '@/src/models/Internship'
 import Image from 'next/image'
@@ -126,7 +126,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 					<div className="grid grid-cols-[60%_auto]">
 						<div className="flex gap-4">
 							<p className="min-w-[160px]">Horario:</p>
-							<p className="font-semibold">{data.period.schedule}</p>
+							<p className="font-semibold">{formatSchedule(data.period.schedule)}</p>
 						</div>
 
 						<div className="flex gap-4">

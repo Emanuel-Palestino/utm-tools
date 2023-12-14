@@ -5,7 +5,7 @@ import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceS
 import { GovernmentAgency } from "@/src/models/social_service/GovernmentAgency"
 import { Activity, SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
 import { FC } from "react"
-import { formatedDate } from "@/app/utils/format"
+import { formatSchedule, formatedDate } from "@/app/utils/format"
 
 
 interface PartialReportProps {
@@ -104,7 +104,7 @@ export const PartialReport: FC<PartialReportProps> = ({
 					<div className="flex gap-6">
 						<div className="flex gap-2">
 							<p className="text-left w-[180px] font-semibold">HORARIO:</p>
-							<p>{period.schedule}</p>
+							<p>{formatSchedule(period.schedule)}</p>
 						</div>
 
 						<div className="flex gap-2">

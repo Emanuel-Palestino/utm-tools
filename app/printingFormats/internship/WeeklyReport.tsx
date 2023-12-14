@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Internship } from '@/src/models/Internship'
 import logo from '@/public/UTMEscudo.png'
 import Image from 'next/image'
+import { formatSchedule } from '@/app/utils/format'
 
 
 interface WeeklyReportProps {
@@ -76,7 +77,7 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, descri
 						<div className="flex gap-16">
 							<div className="flex gap-4">
 								<p className="text-left min-w-[180px]">Horario:</p>
-								<p className="font-medium min-w-[200px]">{data.period.schedule}</p>
+								<p className="font-medium min-w-[200px]">{formatSchedule(data.period.schedule)}</p>
 							</div>
 
 							<div className="flex gap-4">

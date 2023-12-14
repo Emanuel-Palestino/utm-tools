@@ -9,3 +9,11 @@ export const formatedDate = (date: Date) => {
 
 	return `${day} de ${month.charAt(0).toUpperCase()}${month.slice(1)} de ${year}`
 }
+
+export const formatSchedule = (hours: number[]) => {
+	const [start, end] = hours
+	const formattedStart = String(start).padStart(2, '0')
+	const formattedEnd = String(end).padStart(2, '0')
+
+	return `${formattedStart}:00 hrs - ${formattedEnd}:00 hrs`
+}

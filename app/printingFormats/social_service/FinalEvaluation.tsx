@@ -1,4 +1,4 @@
-import { formatedDate } from '@/app/utils/format'
+import { formatSchedule, formatedDate } from '@/app/utils/format'
 import logo from '@/public/UTMEscudo.png'
 import { Person } from '@/src/models/Person'
 import { GovernmentAgency } from '@/src/models/social_service/GovernmentAgency'
@@ -80,7 +80,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 					<div className="flex gap-6">
 						<div className="flex gap-2">
 							<p className="text-left w-[170px] font-semibold">HORARIO:</p>
-							<p>{period.schedule}</p>
+							<p>{formatSchedule(period.schedule)}</p>
 						</div>
 
 						<div className="flex gap-2">

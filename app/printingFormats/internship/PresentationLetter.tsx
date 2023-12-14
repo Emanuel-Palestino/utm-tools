@@ -4,7 +4,7 @@ import { FC } from 'react'
 import { Internship } from '@/src/models/Internship'
 import logo from '@/public/UTMEscudo.png'
 import Image from 'next/image'
-import { formatedDate } from '@/app/utils/format'
+import { formatSchedule, formatedDate } from '@/app/utils/format'
 
 
 interface PresentationLetterProps {
@@ -133,7 +133,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                 <div className="flex gap-16">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[130px]">Horario:</p>
-                        <p className="font-medium">{data.period.schedule}</p>
+                        <p className="font-medium">{formatSchedule(data.period.schedule)}</p>
                     </div>
 
                     <div className="flex gap-4">
