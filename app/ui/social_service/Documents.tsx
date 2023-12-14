@@ -1,67 +1,85 @@
 'use client'
 
-import { useInternshipStore } from "@/app/store/internship"
 import { Card, CardBody, CardFooter } from "@nextui-org/card"
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/modal"
 import { Button } from "@nextui-org/button"
 import { Textarea } from "@nextui-org/input"
 import { Select, SelectItem } from "@nextui-org/select"
-import { formatedDate } from "@/app/utils/format"
 import { useForm } from "react-hook-form"
-import { addDays, differenceInCalendarWeeks, eachWeekOfInterval } from "date-fns"
+import { PDFWrapper } from "../PDFWrapper"
+import { ScheduleOfActivities } from "@/app/printingFormats/social_service/ScheduleOfActivities"
+import { usePDF } from "@/src/hooks/usePDF"
+import { PartialReport } from "@/app/printingFormats/social_service/PartialReport"
+import { FinalEvaluation } from "@/app/printingFormats/social_service/FinalEvaluation"
+import { DocumentReception } from "@/app/printingFormats/social_service/DocumentReception"
+import { Registration } from "@/app/printingFormats/social_service/Registration"
+import { useSocialServiceStore } from "@/app/store/socialService"
 
 
 export const Documents = () => {
 
-	const { dataComplete, internshipData, documentsDownloaded, setDocumentDownloaded } = useInternshipStore(state => ({
-		dataComplete: state.isCompanyDataComplete && state.isPeriodDataComplete && state.isPersonalDataComplete && state.isStudentDataComplete,
-		internshipData: {
-			applicationDate: new Date(),
+	/* Social Service data in local storage */
+	const { dataComplete, socialServiceData, documentsDownloaded, setDocumentDownloaded } = useSocialServiceStore(state => ({
+		dataComplete: state.isGovernmentAgencyDataComplete && state.isActivitiesDataComplete && state.isPeriodDataComplete && state.isPersonalDataComplete && state.isStudentDataComplete,
+		socialServiceData: {
 			person: state.personalData!,
 			student: state.studentData!,
 			period: state.periodData!,
-			company: state.companyData!
+			activities: state.activitiesData!,
+			governmentAgency: state.governmentAgencyData!
 		},
 		documentsDownloaded: state.documentsDownloaded,
 		setDocumentDownloaded: (key: string) => state.setDocumentDownloaded(key, true)
 	}))
 
+	/* PDF documents */
+	const { target: registration, createPDF: createRegistration } = usePDF('Registro de Servicio Social')
+	const { target: scheduleOfActivities, createPDF: createScheduleOfActivities } = usePDF('Cronograma de Actividades', true)
+	const { target: partialReport, createPDF: createPartialReport } = usePDF('Reporte Parcial de Actividades')
+	const { target: finalReport, createPDF: createFinalReport } = usePDF('Reporte Final')
+	const { target: documentReception, createPDF: createDocumentReception } = usePDF('Formato de Recepción de Documentos')
+
+	/* Partial report modal */
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
-	const {
-		isOpen: isFinalReportOpen,
-		onOpen: onFinalReportOpen,
-		onOpenChange: onFinalReportOpenChange
-	} = useDisclosure()
-
+	/* Form handle for partial report data */
 	const {
 		handleSubmit,
 		register,
-		setValue
-	} = useForm<{ formatNumber: number, period: string, totalHours: number, description: string, comments: string }>({
+		watch
+	} = useForm<{ formatNumber: number, description: string }>({
 		defaultValues: {
 			formatNumber: 1,
-			period: '0000-00-00 - 0000-00-00',
-			totalHours: 40,
 			description: '',
-			comments: ''
 		}
 	})
 
-	const updatePeriod = async (p: string) => setValue('period', p)
-
-	const updatePeriodHours = async (h: number) => setValue('totalHours', h)
-
+	/* Downloadable documents */
 	const documents = [
+		{
+			name: 'Registro de Servicio Social',
+			action: createRegistration,
+			stateKey: 'registration'
+		},
+		{
+			name: 'Cronograma de Actividades',
+			action: createScheduleOfActivities,
+			stateKey: 'schedule-activities'
+		},
 		{
 			name: 'Reportes Parciales',
 			action: onOpen,
 			stateKey: 'none'
 		},
 		{
-			name: 'Reporte Final',
-			action: onFinalReportOpen,
-			stateKey: 'none'
+			name: 'Reporte de Evaluación Final',
+			action: createFinalReport,
+			stateKey: 'final-evaluation'
+		},
+		{
+			name: 'Recepción de Documentos',
+			action: createDocumentReception,
+			stateKey: 'document-reception'
 		}
 	]
 
@@ -108,26 +126,9 @@ export const Documents = () => {
 								<form
 									id="report_form"
 									className="flex flex-col gap-4"
-									onSubmit={handleSubmit(async data => {
-										// Create the report period string
-										const periodWeeks = eachWeekOfInterval({
-											start: internshipData.period.startDate,
-											end: internshipData.period.endDate
-										})
-
-										const reportWeeks = periodWeeks.slice(
-											(Number(data.formatNumber) - 1) * internshipData.period.reportFrecuency,
-											Number(data.formatNumber) * internshipData.period.reportFrecuency
-										)
-
-										await updatePeriod(`${formatedDate(reportWeeks[0])} al ${formatedDate(addDays(reportWeeks[reportWeeks.length - 1], 4))}`)
-
-										// Calculate the partial period hours
-										const periodHours = internshipData.period.totalHours / periodWeeks.length * internshipData.period.reportFrecuency
-										await updatePeriodHours(periodHours)
-
-										setDocumentDownloaded(`weekly-report-${data.formatNumber}`)
-										//createWeeklyReport()
+									onSubmit={handleSubmit(data => {
+										setDocumentDownloaded(`partial-report-${data.formatNumber}`)
+										createPartialReport()
 										onClose()
 									})}
 								>
@@ -137,17 +138,12 @@ export const Documents = () => {
 										autoFocus
 										{...register('formatNumber')}
 									>
-										{Array.from({
-											length: Math.ceil((differenceInCalendarWeeks(
-												internshipData.period.endDate,
-												internshipData.period.startDate
-											) + 1) / internshipData.period.reportFrecuency)
-										}).map((_, i) => (
+										{Array.from({ length: socialServiceData.period.months }).map((_, i) => (
 											<SelectItem
 												key={i + 1}
 												value={i + 1}
 												endContent={
-													documentsDownloaded[`weekly-report-${i + 1}`] ?
+													documentsDownloaded[`partial-report-${i + 1}`] ?
 														<span className="text-green-500 font-bold absolute right-3 top-1 pr-4">✓</span>
 														: <></>
 												}
@@ -161,12 +157,8 @@ export const Documents = () => {
 										minRows={8}
 										label="Descripción de actividades"
 										isRequired
+										description="Usa saltos de línea para separar las actividades."
 										{...register('description')}
-									/>
-
-									<Textarea
-										label="Comentarios"
-										{...register('comments')}
 									/>
 								</form>
 							</ModalBody>
@@ -187,47 +179,58 @@ export const Documents = () => {
 				</ModalContent>
 			</Modal >
 
-			<Modal isOpen={isFinalReportOpen} onOpenChange={onFinalReportOpenChange} size="lg">
-				<ModalContent>
-					{onClose => (
-						<>
-							<ModalHeader>Reporte Final de Actividades</ModalHeader>
-							<ModalBody>
-								<form
-									id="final_report_form"
-									onSubmit={handleSubmit(() => {
-										//createFinalReport()
-										setDocumentDownloaded('final-report')
-										onClose()
-									})}
-								>
-									<Textarea
-										minRows={16}
-										label="Descripción de actividades"
-										isRequired
-										{...register('description')}
-									/>
-								</form>
-							</ModalBody>
-							<ModalFooter>
-								<Button color="danger" variant="light" onPress={onClose}>
-									Cancelar
-								</Button>
-								<Button
-									color="primary"
-									form="final_report_form"
-									type="submit"
-								>
-									Descargar
-								</Button>
-							</ModalFooter>
-						</>
-					)}
-				</ModalContent>
-			</Modal >
-
 			{dataComplete && (
 				<>
+					<PDFWrapper target={scheduleOfActivities} landscape>
+						<ScheduleOfActivities
+							person={socialServiceData.person}
+							student={socialServiceData.student}
+							governmentAgency={socialServiceData.governmentAgency}
+							period={socialServiceData.period}
+							activities={socialServiceData.activities}
+							date={new Date()}
+						/>
+					</PDFWrapper>
+
+					<PDFWrapper target={partialReport}>
+						<PartialReport
+							person={socialServiceData.person}
+							student={socialServiceData.student}
+							governmentAgency={socialServiceData.governmentAgency}
+							period={socialServiceData.period}
+							formatNumber={Number(watch('formatNumber'))}
+							activity={socialServiceData.activities[(Number(watch('formatNumber') || 1)) - 1]}
+							description={watch('description')}
+						/>
+					</PDFWrapper>
+
+					<PDFWrapper target={finalReport}>
+						<FinalEvaluation
+							person={socialServiceData.person}
+							student={socialServiceData.student}
+							period={socialServiceData.period}
+							governmentAgency={socialServiceData.governmentAgency}
+							formatNumber={socialServiceData.period.months + 1}
+						/>
+					</PDFWrapper>
+
+					<PDFWrapper target={documentReception}>
+						<DocumentReception
+							person={socialServiceData.person}
+							student={socialServiceData.student}
+							period={socialServiceData.period}
+						/>
+					</PDFWrapper>
+
+					<PDFWrapper target={registration}>
+						<Registration
+							person={socialServiceData.person}
+							student={socialServiceData.student}
+							period={socialServiceData.period}
+							governmentAgency={socialServiceData.governmentAgency}
+							date={new Date()}
+						/>
+					</PDFWrapper>
 				</>
 			)}
 		</>

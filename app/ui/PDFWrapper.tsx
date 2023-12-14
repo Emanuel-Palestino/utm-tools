@@ -4,14 +4,19 @@ interface PDFWrapperProps {
 	children: React.ReactNode
 	target: React.MutableRefObject<null>
 	opacity?: number
+	landscape?: boolean
 }
 
-export const PDFWrapper: FC<PDFWrapperProps> = ({ children, target, opacity = 0 }) => {
+export const PDFWrapper: FC<PDFWrapperProps> = ({ children, target, opacity = 0, landscape = false }) => {
 
 	return (
 		<div
-			className="w-[740px] h-[980px] overflow-hidden fixed inset-0 pointer-events-none origin-top-left"
-			style={{ opacity: opacity }}
+			className="overflow-hidden fixed inset-0 pointer-events-none origin-top-left"
+			style={{
+				opacity: opacity,
+				width: landscape ? '980px' : '740px',
+				height: landscape ? '740px' : '980px'
+			}}
 		>
 			<div className="w-full h-full" ref={target}>
 				{children}

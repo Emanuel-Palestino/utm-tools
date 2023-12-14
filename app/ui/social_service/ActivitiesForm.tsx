@@ -35,7 +35,12 @@ export const ActivitiesForm: FC<ActivitiesFormProps> = ({ nextForm }) => {
 	const { fields } = useFieldArray({ control, name: 'activities' })
 
 	const onSubmit = handleSubmit(data => {
-		save(data.activities)
+		save(data.activities.map(activity => ({
+			...activity,
+			startDate: new Date(`${activity.startDate} UTC-6`),
+			endDate: new Date(`${activity.endDate} UTC-6`)
+		})))
+
 		nextForm()
 	})
 
