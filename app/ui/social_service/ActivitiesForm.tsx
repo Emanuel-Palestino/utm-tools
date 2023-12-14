@@ -1,6 +1,6 @@
 import { Activity } from "@/src/models/social_service/SocialServicePeriod"
 import { Card, CardBody } from "@nextui-org/card"
-import { Input } from "@nextui-org/input"
+import { Input, Textarea } from "@nextui-org/input"
 import { Button } from "@nextui-org/button"
 import { FC } from "react"
 import { Controller, useFieldArray, useForm } from "react-hook-form"
@@ -47,23 +47,23 @@ export const ActivitiesForm: FC<ActivitiesFormProps> = ({ nextForm }) => {
 	return (
 		<Card>
 			<CardBody>
-				<form onSubmit={onSubmit} className="flex flex-col gap-4">
+				<form onSubmit={onSubmit} className="flex flex-col gap-6 md:gap-4">
 					{fields.map((_, index) => (
-						<div key={`activity_${index}`} className="w-full flex gap-2">
+						<div key={`activity_${index}`} className="w-full flex flex-col md:flex-row gap-2">
 							<Controller
 								name={`activities.${index}.description`}
 								control={control}
 								render={({ field }) => (
-									<Input
+									<Textarea
 										type="text"
-										label="Descripción de la Actividad"
+										label={`Descripción de la Actividad ${index + 1}`}
 										{...field}
-										className="basis-1/2"
+										className="md:basis-1/2"
 									/>
 								)}
 							/>
 
-							<div className="flex flex-grow gap-2 items-center">
+							<div className="flex flex-grow flex-wrap md:flex-nowrap gap-2">
 								<Controller
 									name={`activities.${index}.startDate`}
 									control={control}

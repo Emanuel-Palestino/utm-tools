@@ -30,7 +30,7 @@ export const Form = () => {
 			<Tabs
 				selectedKey={selectedTab}
 				onSelectionChange={setSelectecTab}
-				classNames={{ base: 'w-full', tabList: 'w-full grid grid-cols-2 md:flex' }}
+				classNames={{ base: 'w-full', tabList: 'w-full flex flex-col md:flex-row' }}
 			>
 				<Tab
 					key="personal"
@@ -57,18 +57,6 @@ export const Form = () => {
 				</Tab>
 
 				<Tab
-					key="period"
-					title={
-						<div className="flex items-center gap-2">
-							<span>Periodo y Prácticas</span>
-							{completed.periodData && <span className="text-green-500 font-bold">✓</span>}
-						</div>
-					}
-				>
-					<PeriodForm nextForm={() => setSelectecTab('company')} />
-				</Tab>
-
-				<Tab
 					key="company"
 					title={
 						<div className="flex items-center gap-2">
@@ -78,6 +66,18 @@ export const Form = () => {
 					}
 				>
 					<CompanyForm />
+				</Tab>
+
+				<Tab
+					key="period"
+					title={
+						<div className="flex items-center gap-2">
+							<span>Periodo y Prácticas</span>
+							{completed.periodData && <span className="text-green-500 font-bold">✓</span>}
+						</div>
+					}
+				>
+					<PeriodForm nextForm={() => setSelectecTab('company')} />
 				</Tab>
 			</Tabs>
 		</div>

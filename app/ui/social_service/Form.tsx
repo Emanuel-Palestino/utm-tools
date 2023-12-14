@@ -32,7 +32,7 @@ export const Form = () => {
 			<Tabs
 				selectedKey={selectedTab}
 				onSelectionChange={setSelectecTab}
-				classNames={{ base: 'w-full', tabList: 'w-full grid grid-cols-2 md:flex' }}
+				classNames={{ base: 'w-full', tabList: 'w-1/2 min-w-fit mx-auto flex flex-col md:w-full md:flex-row' }}
 			>
 				<Tab
 					key="personal"
@@ -59,6 +59,18 @@ export const Form = () => {
 				</Tab>
 
 				<Tab
+					key="company"
+					title={
+						<div className="flex items-center gap-2">
+							<span>Institución o Dependencia</span>
+							{completed.governmentAgencyData && <span className="text-green-500 font-bold">✓</span>}
+						</div>
+					}
+				>
+					<GovernmentAgencyForm />
+				</Tab>
+
+				<Tab
 					key="period"
 					title={
 						<div className="flex items-center gap-2">
@@ -80,18 +92,6 @@ export const Form = () => {
 					}
 				>
 					<ActivitiesForm nextForm={() => setSelectecTab('company')} />
-				</Tab>
-
-				<Tab
-					key="company"
-					title={
-						<div className="flex items-center gap-2">
-							<span>Institución o Dependencia</span>
-							{completed.governmentAgencyData && <span className="text-green-500 font-bold">✓</span>}
-						</div>
-					}
-				>
-					<GovernmentAgencyForm />
 				</Tab>
 			</Tabs>
 		</div>
