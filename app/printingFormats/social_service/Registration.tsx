@@ -71,12 +71,12 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 
 					<div className="flex gap-2 items-center">
 						<p className="w-[180px] font-semibold">Hablande de lengua indígena:</p>
-						<p>{person.isSpeakerOfIndigenousLanguage ? 'Sí' : 'No'} &emsp; {person.indigenousLanguage}</p>
+						<p>{person.isSpeakerOfIndigenousLanguage ? 'Sí' : 'No'} &emsp; {person.isSpeakerOfIndigenousLanguage ? person.indigenousLanguage : null}</p>
 					</div>
 
 					<div className="flex gap-2 items-center">
 						<p className="w-[180px] font-semibold">¿Tienes algún tipo de discapacidad?</p>
-						<p>{person.hasDisability ? 'Sí' : 'No'} &emsp; {person.disability}</p>
+						<p>{person.hasDisability ? 'Sí' : 'No'} &emsp; {person.hasDisability ? person.disability : null}</p>
 					</div>
 
 					<p className="text-center font-bold mt-4">DATOS DE LA INSTITUCIÓN DONDE SE REALIZARÁ EL SERVICIO SOCIAL</p>

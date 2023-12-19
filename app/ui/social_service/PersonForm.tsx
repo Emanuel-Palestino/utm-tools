@@ -5,6 +5,7 @@ import { Person } from "@/src/models/Person"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
 import { useSocialServiceStore } from "@/app/store/socialService"
+import { Switch } from "@nextui-org/react"
 
 
 interface PersonFormProps {
@@ -21,7 +22,8 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 
 	const {
 		handleSubmit,
-		control
+		control,
+		watch
 	} = useForm<Person>({
 		defaultValues: {
 			name: '',
@@ -87,30 +89,50 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 					/>
 
 					<Controller
-						name="indigenousLanguage"
+						name="isSpeakerOfIndigenousLanguage"
 						control={control}
 						render={({ field }) => (
-							<Input
-								type="text"
-								label="Lengua Indígena"
-								description="Si eres hablante de lengua indígena, escríbela aquí. Si no, déjalo en blanco."
-								{...field}
-							/>
+							<Switch {...field} value="" isSelected={field.value} >¿Hablas alguna lengua indígena? </Switch>
 						)}
 					/>
 
+					{watch('isSpeakerOfIndigenousLanguage') && (
+						<Controller
+							name="indigenousLanguage"
+							control={control}
+							render={({ field }) => (
+								<Input
+									type="text"
+									label="Lengua Indígena"
+									isRequired={watch('isSpeakerOfIndigenousLanguage')}
+									{...field}
+								/>
+							)}
+						/>
+					)}
+
 					<Controller
-						name="disability"
+						name="hasDisability"
 						control={control}
 						render={({ field }) => (
-							<Input
-								type="text"
-								label="Discapacidad"
-								description="Si tienes alguna discapacidad, escríbela aquí. Si no, déjalo en blanco."
-								{...field}
-							/>
+							<Switch {...field} value="" isSelected={field.value} >¿Tienes alguna discapacidad? </Switch>
 						)}
 					/>
+
+					{watch('hasDisability') && (
+						<Controller
+							name="disability"
+							control={control}
+							render={({ field }) => (
+								<Input
+									type="text"
+									label="Discapacidad"
+									isRequired={watch('hasDisability')}
+									{...field}
+								/>
+							)}
+						/>
+					)}
 
 					<div className="flex justify-center mt-2 md:col-span-2">
 						<Button className="bg-utm-container-3 text-utm-on-container-3 w-32" type="submit">
