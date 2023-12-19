@@ -5,7 +5,7 @@ import { Person } from "@/src/models/Person"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
 import { useSocialServiceStore } from "@/app/store/socialService"
-import { Switch } from "@nextui-org/react"
+import { Switch } from "@nextui-org/switch"
 
 
 interface PersonFormProps {
@@ -92,7 +92,7 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 						name="isSpeakerOfIndigenousLanguage"
 						control={control}
 						render={({ field }) => (
-							<Switch {...field} value="" isSelected={field.value} >¿Hablas alguna lengua indígena? </Switch>
+							<Switch {...field} value="" isSelected={field.value} >¿Hablas alguna lengua indígena?</Switch>
 						)}
 					/>
 
@@ -115,7 +115,7 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 						name="hasDisability"
 						control={control}
 						render={({ field }) => (
-							<Switch {...field} value="" isSelected={field.value} >¿Tienes alguna discapacidad? </Switch>
+							<Switch {...field} value="" isSelected={field.value} >¿Tienes alguna discapacidad?</Switch>
 						)}
 					/>
 

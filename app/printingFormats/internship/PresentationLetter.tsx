@@ -51,7 +51,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                     </div>
                     <div className="flex gap-4">
                         <p>Menciona el tipo de discapacidad:</p>
-                        <p className="font-medium">{data.person.disability}</p>
+                        <p className="font-medium">{data.person.hasDisability ? data.person.disability : null}</p>
                     </div>
                 </div>
 
