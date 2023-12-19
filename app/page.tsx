@@ -14,7 +14,7 @@ const Index = () => {
 
 	return (
 		<main className="w-screen h-screen relative bg-utm-background">
-			<section className="container h-full mx-auto grid grid-cols-3 grid-rows-3 gap-6 py-4 px-2">
+			<section className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 py-4 px-2">
 				{tools.map(tool => (
 					<ToolsItem
 						key={tool.id}

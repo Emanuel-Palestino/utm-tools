@@ -26,7 +26,7 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 		>
 			<motion.div
 				layoutId={tool.id}
-				className="relative rounded-xl bg-utm-container-2 w-[50rem] h-auto p-8 flex flex-col justify-between items-center gap-8 text-utm-on-container-2"
+				className="relative rounded-xl bg-utm-container-2 w-full md:w-[50rem] h-auto p-4 md:p-8 flex flex-col justify-between items-center gap-4 md:gap-8 text-utm-on-container-2"
 			>
 				<motion.button
 					initial={{ opacity: 0 }}
@@ -41,13 +41,13 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 				</motion.button>
 
 
-				<motion.h2 layoutId={`title_${tool.id}`} className='text-3xl font-medium'>{tool.name}</motion.h2>
+				<motion.h2 layoutId={`title_${tool.id}`} className='text-2xl md:text-3xl font-medium'>{tool.name}</motion.h2>
 
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.2 }}
-					className="flex flex-col gap-4"
+					className="flex flex-col gap-4 text-sm md:text-base"
 				>
 					<p>{tool.description}</p>
 
@@ -60,7 +60,7 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 						</ul>
 					</div>
 
-					<p className='text-utm-container-2-dark text-sm'>
+					<p className='text-utm-container-2-dark text-xs md:text-sm'>
 						Última actualizacion: {format(new Date(`${tool.date} GMT-6`), "dd 'de' MMMM 'del' y", { locale: es })}
 					</p>
 				</motion.div>

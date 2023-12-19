@@ -13,7 +13,7 @@ export const ToolsItem: FC<ToolsItemProps> = ({ type, name, id, onClick }) => {
 
 	return (
 		<motion.button
-			className="flex flex-col justify-center items-center bg-utm-container rounded-xl"
+			className="flex flex-col justify-center items-center bg-utm-container rounded-xl h-40 md:h-60"
 			onClick={onClick}
 			whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
 			layoutId={id}
