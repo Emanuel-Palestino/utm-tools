@@ -57,6 +57,7 @@ export const ActivitiesForm: FC<ActivitiesFormProps> = ({ nextForm }) => {
 									<Textarea
 										type="text"
 										label={`Descripción de la Actividad ${index + 1}`}
+										minRows={2}
 										{...field}
 										className="md:basis-1/2"
 									/>
