@@ -1,6 +1,6 @@
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/navbar"
 import { Link as UILink } from "@nextui-org/link"
-import logo from "@/public/logo.png"
+import logo from "@/public/Logo.png"
 import Image from "next/image"
 import Link from "next/link"
 
