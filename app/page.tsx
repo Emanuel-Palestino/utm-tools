@@ -13,7 +13,7 @@ const Index = () => {
 	const [selectedTool, setSelectedTool] = useState<Tool | null>(null)
 
 	return (
-		<main className="w-screen h-screen relative bg-utm-background">
+		<main className="">
 			<section className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 py-4 px-2">
 				{tools.map(tool => (
 					<ToolsItem

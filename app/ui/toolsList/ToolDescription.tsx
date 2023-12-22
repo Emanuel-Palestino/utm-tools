@@ -19,7 +19,7 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 
 	return (
 		<motion.div
-			className="absolute inset-0 w-full h-full flex place-items-center place-content-center bg-[rgba(0,0,0,0.6)] overflow-hidden"
+			className="absolute inset-0 z-50 w-full h-full flex place-items-center place-content-center bg-[rgba(0,0,0,0.6)] overflow-hidden"
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}

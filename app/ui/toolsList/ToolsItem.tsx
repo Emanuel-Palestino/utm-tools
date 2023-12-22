@@ -13,13 +13,13 @@ export const ToolsItem: FC<ToolsItemProps> = ({ type, name, id, onClick }) => {
 
 	return (
 		<motion.button
-			className="flex flex-col justify-center items-center bg-utm-container rounded-xl h-40 md:h-60"
+			className="flex flex-col justify-center items-center bg-utm-container-2 rounded-xl h-40 md:h-60"
 			onClick={onClick}
 			whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
 			layoutId={id}
 		>
-			<small className="text-utm-on-container text-sm">{type}</small>
-			<motion.p layoutId={`title_${id}`} className='text-utm-on-container text-xl font-medium'>{name}</motion.p>
+			<small className="text-utm-on-container-2 text-sm">{type}</small>
+			<motion.p layoutId={`title_${id}`} className='text-utm-on-container-2 text-xl font-medium'>{name}</motion.p>
 		</motion.button>
 	)
 
