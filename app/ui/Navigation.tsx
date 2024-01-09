@@ -1,21 +1,40 @@
+'use client'
+
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/navbar"
 import { Link as UILink } from "@nextui-org/link"
 import logo from "@/public/Logo.png"
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useEffect } from "react"
+
+const routerTitles: { [key: string]: string } = {
+	'/internship': 'Prácticas Profesionales',
+	'/social_service': 'Servicio Social'
+}
 
 
 export const Navigation = () => {
 
+	const router = usePathname()
+
+	useEffect(() => {
+		document.title = routerTitles[router] ? `UTM Tools | ${routerTitles[router]}` : 'UTM Tools'
+	}, [router])
+
 	return (
-		<Navbar>
+		<Navbar maxWidth="xl" height="5rem" isBordered>
 			<NavbarBrand>
 				<Link href="/" className="flex items-center gap-1 sm:gap-2">
 					<Image className="hidden sm:block" src={logo} alt="Logo" width={50} height={50} />
 					<Image className="block sm:hidden" src={logo} alt="Logo" width={36} height={36} />
-					<p className="font-bold text-xl text-inherit">Herramientas UTM</p>
+					<p className="hidden sm:block font-bold text-xl text-inherit">Herramientas UTM</p>
 				</Link>
 			</NavbarBrand>
+
+			<NavbarContent justify="center">
+				<h2 className="text-2xl">{routerTitles[router]}</h2>
+			</NavbarContent>
 
 			<NavbarContent className="flex gap-2 md:gap-6" justify="end">
 				<NavbarItem>

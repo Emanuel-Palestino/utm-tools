@@ -32,7 +32,7 @@ export const Form = () => {
 			<Tabs
 				selectedKey={selectedTab}
 				onSelectionChange={setSelectecTab}
-				classNames={{ base: 'w-full', tabList: 'w-1/2 min-w-fit mx-auto flex flex-col md:w-full md:flex-row' }}
+				classNames={{ base: 'w-full', tabList: 'w-full flex flex-col md:flex-row' }}
 			>
 				<Tab
 					key="personal"
