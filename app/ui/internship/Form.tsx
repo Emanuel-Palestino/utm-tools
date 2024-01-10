@@ -54,7 +54,7 @@ export const Form = () => {
 						</div>
 					}
 				>
-					<StudentForm nextForm={() => setSelectecTab('period')} />
+					<StudentForm nextForm={() => setSelectecTab('company')} />
 				</Tab>
 
 				<Tab
@@ -66,7 +66,7 @@ export const Form = () => {
 						</div>
 					}
 				>
-					<CompanyForm />
+					<CompanyForm nextForm={() => setSelectecTab('company')} />
 				</Tab>
 
 				<Tab
@@ -78,7 +78,7 @@ export const Form = () => {
 						</div>
 					}
 				>
-					<PeriodForm nextForm={() => setSelectecTab('company')} />
+					<PeriodForm />
 				</Tab>
 			</Tabs>
 		</div>

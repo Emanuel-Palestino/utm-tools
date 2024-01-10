@@ -4,18 +4,13 @@ import { Input } from "@nextui-org/input"
 import { Slider } from "@nextui-org/slider"
 import { InternshipPeriod } from "@/src/models/InternshipPeriod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import React, { FC } from "react"
 import { useInternshipStore } from "@/app/store/internship"
 import { Select, SelectItem } from "@nextui-org/select"
 import { INTERNSHIP_PERIODS } from "@/app/utils/constants"
 import { formatedDate } from "@/app/utils/format"
 
 
-interface PeriodFormProps {
-	nextForm: () => void
-}
-
-export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
+export const PeriodForm = () => {
 
 	const { save, values, isComplete } = useInternshipStore(state => ({
 		save: state.setPeriodData,
@@ -56,7 +51,6 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		}
 
 		save(data)
-		nextForm()
 	}
 
 	return (
