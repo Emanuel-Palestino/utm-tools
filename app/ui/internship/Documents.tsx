@@ -178,7 +178,7 @@ export const Documents = () => {
 												value={i + 1}
 												endContent={
 													documentsDownloaded[`weekly-report-${i + 1}`] ?
-														<span className="text-green-600 font-bold absolute right-3 pr-4">
+														<span className="fill-green-600 font-bold absolute right-3 pr-4">
 															<DownloadIcon />
 														</span>
 														: <></>
