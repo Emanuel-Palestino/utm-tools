@@ -105,7 +105,6 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 								<SelectItem key="7" value="7">Séptimo</SelectItem>
 								<SelectItem key="8" value="8">Octavo</SelectItem>
 								<SelectItem key="9" value="9">Noveno</SelectItem>
-								<SelectItem key="10" value="10">Décimo</SelectItem>
 							</Select>
 						)}
 					/>
