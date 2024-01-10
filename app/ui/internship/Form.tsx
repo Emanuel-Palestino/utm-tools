@@ -8,6 +8,7 @@ import { CompanyForm } from "./CompanyForm"
 import { useEffect, useState } from "react"
 import { Key } from "@react-types/shared"
 import { useInternshipStore } from "@/app/store/internship"
+import { CheckIcon } from "@/app/icons"
 
 
 export const Form = () => {
@@ -37,7 +38,7 @@ export const Form = () => {
 					title={
 						<div className="flex items-center gap-2">
 							<span>Información Personal</span>
-							{completed.personaData && <span className="text-green-500 font-bold">✓</span>}
+							{completed.personaData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 						</div>
 					}
 				>
@@ -49,7 +50,7 @@ export const Form = () => {
 					title={
 						<div className="flex items-center gap-2">
 							<span>Información Escolar</span>
-							{completed.studentData && <span className="text-green-500 font-bold">✓</span>}
+							{completed.studentData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 						</div>
 					}
 				>
@@ -61,7 +62,7 @@ export const Form = () => {
 					title={
 						<div className="flex items-center gap-2">
 							<span>Información de la Empresa</span>
-							{completed.companyData && <span className="text-green-500 font-bold">✓</span>}
+							{completed.companyData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 						</div>
 					}
 				>
@@ -73,7 +74,7 @@ export const Form = () => {
 					title={
 						<div className="flex items-center gap-2">
 							<span>Periodo y Prácticas</span>
-							{completed.periodData && <span className="text-green-500 font-bold">✓</span>}
+							{completed.periodData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 						</div>
 					}
 				>
