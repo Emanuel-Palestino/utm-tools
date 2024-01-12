@@ -10,12 +10,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'utm-background': '#221b00',
-        'utm-container': '#2d2306',
         'utm-on-container': '#e1c54b',
         'utm-container-2': '#ffdcbe',
-        'utm-on-container-2': '#5a3200',
-        'utm-container-2-dark': '#8b5000',
+        'utm-container': '#2d2306',
         'utm-container-3': '#7e2a2c',
         'utm-on-container-3': '#ffdad8',
       },
@@ -23,7 +20,30 @@ const config: Config = {
   },
   darkMode: "class",
   plugins: [
-    nextui()
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            background: "#FFFAF2", // the page background color, white
+            foreground: "#1A1101", // the page text color, almost black
+            //divider: "", // used for divider and single line border, blue
+            //overlay: "#1b0209", // used for modal, popover, etc., dark red-brown
+            focus: "#E1C54B", // used for focus state outline, red
+            //content1: "#FFFAF2", // used for card, modal, popover, etc., olive
+
+            //default: {}, // default color, white
+            primary: "#E1C54B", // primary brand color, blue
+            secondary: {
+              DEFAULT: "#7E2A2C", // secondary color, red
+              foreground: "#FFDAD8"
+            }, // secondary color, red
+            //success: "#7f740c", // success messages, olive
+            //warning: "#592726", // warning messages, dark red-brown
+            danger: "#7E2A2C", // danger alerts, red
+          }
+        }
+      }
+    })
   ],
 }
 
