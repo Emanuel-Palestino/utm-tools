@@ -26,16 +26,16 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 		>
 			<motion.div
 				layoutId={tool.id}
-				className="relative rounded-xl bg-utm-container-2 w-full md:w-[50rem] h-auto p-4 md:p-8 flex flex-col justify-between items-center gap-4 md:gap-8 text-utm-on-container-2"
+				className="relative rounded-xl bg-background w-full md:w-[50rem] h-auto p-4 md:p-8 flex flex-col justify-between items-center gap-4 md:gap-8"
 			>
 				<motion.button
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.3, duration: 0.4 }}
-					className="absolute right-4 top-4 w-8 h-8 bg-utm-on-container-2 rounded-xl grid place-items-center transition-transform active:scale-90"
+					className="absolute right-4 top-4 w-8 h-8 bg-utm-container rounded-xl grid place-items-center transition-transform active:scale-90"
 					onClick={onClose}
 				>
-					<svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-utm-container-2" viewBox="0 0 16 16">
+					<svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-utm-on-container" viewBox="0 0 16 16">
 						<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
 					</svg>
 				</motion.button>
@@ -60,7 +60,7 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 						</ul>
 					</div>
 
-					<p className='text-utm-container-2-dark text-xs md:text-sm'>
+					<p className="text-xs md:text-sm">
 						Última actualizacion: {format(new Date(`${tool.date} GMT-6`), "dd 'de' MMMM 'del' y", { locale: es })}
 					</p>
 				</motion.div>
@@ -69,7 +69,7 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.3, duration: 0.4 }}
-					className="w-52 h-10 rounded-xl bg-utm-container-3 text-utm-on-container-3 transition-transform active:scale-95"
+					className="w-52 h-10 rounded-xl bg-secondary text-secondary-foreground transition-transform active:scale-95"
 					onClick={handleClick}
 				>
 					Generar Documentación

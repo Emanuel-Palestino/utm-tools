@@ -192,7 +192,7 @@ export const PeriodForm = () => {
 					/>
 
 					<div className="flex justify-center mt-2 md:col-span-2">
-						<Button className="bg-utm-container-3 text-utm-on-container-3 w-32" type="submit">
+						<Button className="w-32" color="primary" type="submit">
 							{isComplete ? 'Actualizar' : 'Guardar'}
 						</Button>
 					</div>
