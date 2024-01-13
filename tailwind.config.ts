@@ -39,7 +39,11 @@ const config: Config = {
             }, // secondary color, red
             //success: "#7f740c", // success messages, olive
             //warning: "#592726", // warning messages, dark red-brown
-            danger: "#7E2A2C", // danger alerts, red
+            danger: {
+              "50": '#FFE9E9',
+              "100": '#F0C5C6',
+              DEFAULT: "#7E2A2C"
+            }, // danger alerts, red --- https://smart-swatch.netlify.app/#7E2A2C
           }
         }
       }
