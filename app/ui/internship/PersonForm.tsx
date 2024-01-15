@@ -6,7 +6,19 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
 import { useInternshipStore } from "@/app/store/internship"
 import { Switch } from "@nextui-org/switch"
+import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 
+
+const schema = z.object({
+	name: z.string().min(3).max(30).regex(/^[a-zA-ZÀ-ÿ\s]*$/, { message: 'Solo puede contener letras.' }),
+	phone: z.string().min(10).max(13).trim().regex(/^[0-9\s]*$/, { message: 'Solo puede contener números y/o espacios en blanco.' }),
+	email: z.literal('').or(z.string().email()),
+	isSpeakerOfIndigenousLanguage: z.boolean(),
+	indigenousLanguage: z.string().min(3).regex(/^[a-zA-ZÀ-ÿ\s]*$/, { message: 'Solo puede contener letras.' }).optional(),
+	hasDisability: z.boolean(),
+	disability: z.string().min(3).regex(/^[a-zA-ZÀ-ÿ\s]*$/, { message: 'Solo puede contener letras.' }).optional()
+})
 
 interface PersonFormProps {
 	nextForm: () => void
@@ -25,6 +37,8 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 		control,
 		watch
 	} = useForm<Person>({
+		resolver: zodResolver(schema),
+		shouldUnregister: true,
 		defaultValues: {
 			name: '',
 			phone: '',
@@ -49,24 +63,46 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 					<Controller
 						name="name"
 						control={control}
-						render={({ field }) => (
-							<Input type="text" {...field} label="Nombre Completo" isRequired />
+						render={({ field, fieldState: { invalid, error } }) => (
+							<Input
+								type="text"
+								{...field}
+								label="Nombre Completo"
+								isRequired
+								isInvalid={invalid}
+								errorMessage={error ? error.message : ''}
+							/>
 						)}
 					/>
 
 					<Controller
 						name="phone"
 						control={control}
-						render={({ field }) => (
-							<Input type="text" inputMode="tel" label="Número Celular" {...field} isRequired />
+						render={({ field, fieldState: { invalid, error } }) => (
+							<Input
+								type="text"
+								inputMode="tel"
+								label="Número Celular"
+								{...field}
+								isRequired
+								isInvalid={invalid}
+								errorMessage={error ? error.message : ''}
+							/>
 						)}
 					/>
 
 					<Controller
 						name="email"
 						control={control}
-						render={({ field }) => (
-							<Input type="email" inputMode="email" label="Correo Electrónico" {...field} />
+						render={({ field, fieldState: { invalid, error } }) => (
+							<Input
+								type="email"
+								inputMode="email"
+								label="Correo Electrónico"
+								{...field}
+								isInvalid={invalid}
+								errorMessage={error ? error.message : ''}
+							/>
 						)}
 					/>
 
@@ -82,12 +118,14 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 						<Controller
 							name="indigenousLanguage"
 							control={control}
-							render={({ field }) => (
+							render={({ field, fieldState: { invalid, error } }) => (
 								<Input
 									type="text"
 									label="Lengua Indígena"
 									isRequired={watch('isSpeakerOfIndigenousLanguage')}
 									{...field}
+									isInvalid={invalid}
+									errorMessage={error ? error.message : ''}
 								/>
 							)}
 						/>
@@ -105,12 +143,14 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 						<Controller
 							name="disability"
 							control={control}
-							render={({ field }) => (
+							render={({ field, fieldState: { invalid, error } }) => (
 								<Input
 									type="text"
 									label="Discapacidad"
 									isRequired={watch('hasDisability')}
 									{...field}
+									isInvalid={invalid}
+									errorMessage={error ? error.message : ''}
 								/>
 							)}
 						/>

@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@nextui-org/react": "^2.2.9",
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.2",
@@ -19,6 +20,7 @@
     "react-hook-form": "^7.48.2",
     "react-to-pdf": "^1.0.1",
     "superjson": "^2.2.1",
+    "zod": "^3.22.4",
     "zustand": "^4.4.6"
   },
   "devDependencies": {
