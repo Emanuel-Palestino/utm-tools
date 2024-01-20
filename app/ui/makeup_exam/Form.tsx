@@ -4,7 +4,8 @@ import { MakeUpExam } from "@/src/models/MakeUpExam"
 import { Card, CardBody } from "@nextui-org/card"
 import { Input } from "@nextui-org/input"
 import { Radio, RadioGroup } from "@nextui-org/radio"
-import { Button } from "@nextui-org/react"
+import { Button } from "@nextui-org/button"
+import { Select, SelectItem } from "@nextui-org/select"
 import { Controller, useForm } from "react-hook-form"
 import { PDFWrapper } from "../PDFWrapper"
 import { Format } from "@/app/printingFormats/makeup_exam/Format"
@@ -27,6 +28,7 @@ export const Form = () => {
 			group: '',
 			percentageOfScholarship: 100,
 			courses: '',
+			semester: 'Primero',
 			makeUpExamNumber: 1,
 			retakenCourses: 0,
 
@@ -124,6 +126,30 @@ export const Form = () => {
 									isRequired
 									{...field}
 								/>
+							)}
+						/>
+
+						<Controller
+							name="semester"
+							control={control}
+							render={({ field }) => (
+								<Select
+									label="Semestre"
+									isRequired
+									{...field}
+									selectedKeys={[field.value]}
+								>
+									<SelectItem key="Primero" value="Primero">Primero</SelectItem>
+									<SelectItem key="Segundo" value="Segundo">Segundo</SelectItem>
+									<SelectItem key="Tercero" value="Tercero">Tercero</SelectItem>
+									<SelectItem key="Cuarto" value="Cuarto">Cuarto</SelectItem>
+									<SelectItem key="Quinto" value="Quinto">Quinto</SelectItem>
+									<SelectItem key="Sexto" value="Sexto">Sexto</SelectItem>
+									<SelectItem key="Séptimo" value="Séptimo">Séptimo</SelectItem>
+									<SelectItem key="Octavo" value="Octavo">Octavo</SelectItem>
+									<SelectItem key="Noveno" value="Noveno">Noveno</SelectItem>
+									<SelectItem key="Décimo" value="Décimo">Décimo</SelectItem>
+								</Select>
 							)}
 						/>
 

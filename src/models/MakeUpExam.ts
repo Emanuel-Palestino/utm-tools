@@ -6,6 +6,7 @@ export interface MakeUpExam {
 	group: string
 	percentageOfScholarship: number
 	courses: string
+	semester: string
 	makeUpExamNumber: number
 	retakenCourses: number
 }
