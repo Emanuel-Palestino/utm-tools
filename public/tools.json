@@ -31,5 +31,17 @@
 		],
 		"date": "2023-11-10",
 		"link": "/social_service"
+	},
+	{
+		"id": "application_makeup_exam",
+		"type": "Solicitud",
+		"name": "Examen Extraordinario",
+		"description": "El examen extraordinario lo tienes que realizar si no has aprobado una materia de tu semestre. Tienes dos oportunidades para presentar exámenes extraordinarios y aprobar la materia. Si ambos intentos no son exitosos, podrás optar por un examen especial.",
+		"subtitle": "Lo que se generará es:",
+		"documentation": [
+			"Formato con datos rellenados para estudiante y servicios escolares."
+		],
+		"date": "2024-01-16",
+		"link": "/extraordinario"
 	}
 ]
