@@ -1,20 +1,22 @@
+import { formatedDate } from '@/app/utils/format'
 import logo from '@/public/UTMEscudo.png'
+import { MakeUpExam } from '@/src/models/MakeUpExam'
 import Image from 'next/image'
 import { FC } from 'react'
 
 
-export const Format = () => {
+export const Format: FC<{ data: MakeUpExam, date: Date }> = ({ data, date }) => {
 
 	return (
 		<section className="w-full h-full text-[15px] px-6 flex flex-col justify-between">
-			<Section to="Servicios Escolares" />
-			<Section to="el alumno" />
+			<Section to="Servicios Escolares" data={data} date={date} />
+			<Section to="el alumno" data={data} date={date} />
 		</section>
 	)
 
 }
 
-const Section: FC<{ to: string }> = ({ to }) => {
+const Section: FC<{ to: string, data: MakeUpExam, date: Date }> = ({ to, data, date }) => {
 
 	return (
 		<div>
@@ -30,46 +32,46 @@ const Section: FC<{ to: string }> = ({ to }) => {
 			<div className="flex flex-col gap-3">
 				<div className="flex gap-4">
 					<p className="font-semibold">NOMBRE DEL ALUMNO:</p>
-					<p>Palestino Hernández Emanuel</p>
+					<p>{data.paternalSurname} {data.maternalSurname} {data.name}</p>
 				</div>
 
 				<div className="flex gap-6">
 					<div className="flex gap-4">
 						<p className="font-semibold">MATRÍCULA:</p>
-						<p>2019020337</p>
+						<p>{data.enrollment}</p>
 					</div>
 					<div className="flex gap-4">
 						<p className="font-semibold">GRUPO ACTUAL:</p>
-						<p>902-A</p>
+						<p>{data.group}</p>
 					</div>
 					<div className="flex gap-4">
 						<p className="font-semibold">PORCENTAJE DE BECA:</p>
-						<p>100%</p>
+						<p>{data.percentageOfScholarship}%</p>
 					</div>
 				</div>
 
 				<div className="flex gap-4 items-center">
 					<p className="font-semibold">MATERIA(S):</p>
-					<p>Ingenieria de requerimientos, pruebas de software, matematicas aplicadas, otra materia de relleno</p>
+					<p>{data.makeupExamCourses}</p>
 				</div>
 
 				<div className="flex gap-4">
 					<p className="font-semibold">SEMESTRE AL QUE CORRESPONDE(N) LAS MATERIA(S):</p>
-					<p>Noveno</p>
+					<p>{data.semester}</p>
 				</div>
 
 				<div className="flex gap-4">
-					<p>1° Extraordinario (✔)</p>
-					<p>2° Extraordinario (✔)</p>
+					<p>1° Extraordinario ({data.makeUpExamNumber == 1 ? '✔' : null})</p>
+					<p>2° Extraordinario ({data.makeUpExamNumber == 2 ? '✔' : null})</p>
 					<div className="flex gap-4">
 						<p>Número de materias cursadas y/o recursadas:</p>
-						<p>5</p>
+						<p>{data.courses}</p>
 					</div>
 				</div>
 			</div>
 
 			<div className="mt-4 text-center">
-				<p>HUAJUAPAN DE LEÓN, OAX, A 19 de Enero de 2023</p>
+				<p>HUAJUAPAN DE LEÓN, OAX, A {formatedDate(date)}</p>
 			</div>
 
 			<p className="font-bold mt-2 leading-none text-[14px]">En caso de que el alumno no tenga derecho a presentar el examen de acuerdo al Reglamento de alumnos de Licenciatura vigente, la calificación obtenida en el examen no tendrá validez.</p>

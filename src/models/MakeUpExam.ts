@@ -5,8 +5,8 @@ export interface MakeUpExam {
 	enrollment: string
 	group: string
 	percentageOfScholarship: number
-	courses: string
+	makeupExamCourses: string
 	semester: string
 	makeUpExamNumber: number
-	retakenCourses: number
+	courses: number
 }

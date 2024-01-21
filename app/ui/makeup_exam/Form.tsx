@@ -10,15 +10,19 @@ import { Controller, useForm } from "react-hook-form"
 import { PDFWrapper } from "../PDFWrapper"
 import { Format } from "@/app/printingFormats/makeup_exam/Format"
 import { usePDF } from "@/src/hooks/usePDF"
+import { useState } from "react"
 
 
 export const Form = () => {
 
 	const { target, createPDF } = usePDF('Solicitud de Examen Extraordinario')
+	const [data, setData] = useState<MakeUpExam>()
+
+	const updateData = async (data: MakeUpExam) => setData(data)
 
 	const {
 		handleSubmit,
-		control,
+		control
 	} = useForm<MakeUpExam>({
 		defaultValues: {
 			name: '',
@@ -27,17 +31,18 @@ export const Form = () => {
 			enrollment: '',
 			group: '',
 			percentageOfScholarship: 100,
-			courses: '',
+			makeupExamCourses: '',
 			semester: 'Primero',
 			makeUpExamNumber: 1,
-			retakenCourses: 0,
+			courses: 0,
 
 		}
 	})
 
-	const onSubmit = handleSubmit(data => {
+	const onSubmit = handleSubmit(async data => {
 		data.makeUpExamNumber = Number(data.makeUpExamNumber)
-		data.retakenCourses = Number(data.retakenCourses)
+		data.courses = Number(data.courses)
+		await updateData(data)
 
 		createPDF()
 	})
@@ -117,7 +122,7 @@ export const Form = () => {
 
 						<h3 className="col-span-3 text-xl">Solicitud</h3>
 						<Controller
-							name="courses"
+							name="makeupExamCourses"
 							control={control}
 							render={({ field }) => (
 								<Input
@@ -134,7 +139,7 @@ export const Form = () => {
 							control={control}
 							render={({ field }) => (
 								<Select
-									label="Semestre"
+									label="Semestre de la(s) materia(s)"
 									isRequired
 									{...field}
 									selectedKeys={[field.value]}
@@ -170,7 +175,7 @@ export const Form = () => {
 						/>
 
 						<Controller
-							name="retakenCourses"
+							name="courses"
 							control={control}
 							render={({ field }) => (
 								<Input
@@ -190,9 +195,11 @@ export const Form = () => {
 				</CardBody>
 			</Card>
 
-			<PDFWrapper target={target}>
-				<Format />
-			</PDFWrapper>
+			{data ? (
+				<PDFWrapper target={target}>
+					<Format data={data} date={new Date()} />
+				</PDFWrapper>
+			) : null}
 		</>
 
 	)
