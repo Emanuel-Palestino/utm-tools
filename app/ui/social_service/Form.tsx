@@ -29,7 +29,7 @@ export const Form = () => {
 
 	return (
 		<div className="flex-grow">
-			<h2 className="text-2xl mb-4 text-center md:text-left">Datos</h2>
+			<h2 className="text-lg sm:text-xl mb-2 md:mb-4 text-center md:text-left">Datos</h2>
 			<Tabs
 				selectedKey={selectedTab}
 				onSelectionChange={setSelectecTab}

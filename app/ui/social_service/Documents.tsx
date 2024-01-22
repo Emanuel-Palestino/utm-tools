@@ -88,7 +88,7 @@ export const Documents = () => {
 	return (
 		<>
 			<div className="flex flex-wrap xl:grid xl:grid-cols-2 gap-4 h-fit place-content-center lg:place-content-start">
-				<h2 className="w-full text-2xl xl:col-span-2 xl:mb-14 text-center md:text-left">Documentación</h2>
+				<h2 className="w-full text-lg sm:text-xl xl:col-span-2 text-center md:text-left">Documentación</h2>
 
 				{documents.map(doc => (
 					<Card
