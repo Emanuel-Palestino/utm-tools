@@ -11,8 +11,8 @@ import { GitHubIcon, EmailIcon } from "@/app/icons"
 
 
 const routerTitles: { [key: string]: string } = {
-	'/internship': 'Prácticas Profesionales',
-	'/social_service': 'Servicio Social',
+	'/practicas_profesionales': 'Prácticas Profesionales',
+	'/servicio_social': 'Servicio Social',
 	'/extraordinario': 'Extraordinario'
 }
 
