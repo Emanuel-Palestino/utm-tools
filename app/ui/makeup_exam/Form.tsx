@@ -51,8 +51,8 @@ export const Form = () => {
 		<>
 			<Card>
 				<CardBody>
-					<form onSubmit={onSubmit} className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-4 p-1">
-						<h3 className="md:col-span-3 text-xl">Datos Escolares</h3>
+					<form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-4 p-1">
+						<h3 className="md:col-span-2 xl:col-span-3 text-xl">Datos Escolares</h3>
 
 						<Controller
 							name="name"
@@ -120,7 +120,7 @@ export const Form = () => {
 						/>
 
 
-						<h3 className="md:col-span-3 text-xl">Solicitud</h3>
+						<h3 className="md:col-span-2 xl:col-span-3 text-xl">Solicitud</h3>
 						<Controller
 							name="makeupExamCourses"
 							control={control}
@@ -188,7 +188,7 @@ export const Form = () => {
 							)}
 						/>
 
-						<div className="flex justify-center mt-2 md:col-span-3">
+						<div className="flex justify-center mt-2 md:col-span-2 xl:col-span-3">
 							<Button className="w-32" color="primary" type="submit">Descargar Solicitud</Button>
 						</div>
 					</form>
