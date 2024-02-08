@@ -4,9 +4,14 @@ import { Button } from "@nextui-org/button"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { GovernmentAgency } from "@/src/models/social_service/GovernmentAgency"
+import { FC } from "react"
 
 
-export const GovernmentAgencyForm = () => {
+interface GovernmentAgencyFormProps {
+	nextForm: () => void
+}
+
+export const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }) => {
 
 	const { save, values } = useSocialServiceStore(state => ({
 		save: state.setGovernmentAgencyData,
@@ -33,7 +38,10 @@ export const GovernmentAgencyForm = () => {
 		values
 	})
 
-	const onSubmit: SubmitHandler<GovernmentAgency> = save
+	const onSubmit: SubmitHandler<GovernmentAgency> = data => {
+		save(data)
+		nextForm()
+	}
 
 	return (
 		<Card>

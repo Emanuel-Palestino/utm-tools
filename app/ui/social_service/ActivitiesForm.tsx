@@ -2,16 +2,11 @@ import { Activity } from "@/src/models/social_service/SocialServicePeriod"
 import { Card, CardBody } from "@nextui-org/card"
 import { Input, Textarea } from "@nextui-org/input"
 import { Button } from "@nextui-org/button"
-import { FC } from "react"
 import { Controller, useFieldArray, useForm } from "react-hook-form"
 import { useSocialServiceStore } from "@/app/store/socialService"
 
 
-interface ActivitiesFormProps {
-	nextForm: () => void
-}
-
-export const ActivitiesForm: FC<ActivitiesFormProps> = ({ nextForm }) => {
+export const ActivitiesForm = () => {
 
 	const { activities, save, isComplete, periodMonths } = useSocialServiceStore(state => ({
 		save: state.setActivitiesData,
@@ -40,8 +35,6 @@ export const ActivitiesForm: FC<ActivitiesFormProps> = ({ nextForm }) => {
 			startDate: new Date(`${activity.startDate} UTC-6`),
 			endDate: new Date(`${activity.endDate} UTC-6`)
 		})))
-
-		nextForm()
 	})
 
 	return (
