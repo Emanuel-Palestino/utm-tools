@@ -66,7 +66,7 @@ export const Form = () => {
 						</div>
 					}
 				>
-					<CompanyForm nextForm={() => setSelectecTab('company')} />
+					<CompanyForm nextForm={() => setSelectecTab('period')} />
 				</Tab>
 
 				<Tab
