@@ -1,5 +1,4 @@
 import { Card, CardBody } from "@nextui-org/card"
-import { Autocomplete, AutocompleteItem } from "@nextui-org/autocomplete"
 import { Select, SelectItem } from "@nextui-org/select"
 import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
@@ -51,19 +50,18 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 						name="career"
 						control={control}
 						render={({ field }) => (
-							<Autocomplete
+							<Select
 								label="Carrera"
 								isRequired
 								{...field}
-								inputValue={field.value || ''}
-								onSelectionChange={field.onChange}
+								selectedKeys={field.value ? [String(field.value)] : []}
 							>
 								{careers.map(career => (
-									<AutocompleteItem key={career} value={career}>
+									<SelectItem key={career} value={career}>
 										{career}
-									</AutocompleteItem>
+									</SelectItem>
 								))}
-							</Autocomplete>
+							</Select>
 						)}
 					/>
 
