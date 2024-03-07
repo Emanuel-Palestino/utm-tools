@@ -119,6 +119,7 @@ export const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }
 							<Input
 								type="text"
 								label="Nombre del Responsable Inmediato"
+								description="Nombre del responsable de la institución donde se realizará el servicio social."
 								isRequired
 								{...field}
 							/>
