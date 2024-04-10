@@ -41,8 +41,8 @@ export const ActivitiesForm = () => {
 		<Card>
 			<CardBody>
 				<ul className="p-2 pl-6 mb-3 text-sm text-gray-600 list-disc list-outside">
-					<li>El número de actividades a rellenar corresponde a la <b>cantidad de meses</b> que dura el <b>periodo</b> del servicio social.</li>
-					<li>Este <b>listado de actividades</b> aparecerá únicamente en el <b>cronograma de actividades</b>. Debido a esto la <b>descripción</b> debe ser <b>corta.</b></li>
+					<li>Las principales actividades a realizar en el servicio social.</li>
+					<li>Este <b>listado de actividades</b> aparecerá únicamente en el documento <b>cronograma de actividades</b>. Debido a esto la <b>descripción</b> debe ser <b>corta.</b></li>
 					<li>Las <b>fechas</b> se utilizarán para generar los <b>reportes parciales</b> (mensuales).</li>
 				</ul>
 				<form onSubmit={onSubmit} className="flex flex-col gap-6 md:gap-4">

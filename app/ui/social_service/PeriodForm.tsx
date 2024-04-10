@@ -116,7 +116,7 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 						render={({ field }) => (
 							<Input
 								type="number"
-								label="Cantidad de Meses"
+								label="Número de Actividades"
 								min={6}
 								isRequired
 								{...field}
