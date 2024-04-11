@@ -1,24 +1,12 @@
-'use client'
-
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/navbar"
 import { Link as UILink } from "@nextui-org/link"
 import logo from "@/public/Logo.png"
 import Image from "next/image"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { GitHubIcon, EmailIcon } from "@/app/icons"
 
 
-const routerTitles: { [key: string]: string } = {
-	'/practicas_profesionales': 'Estancias Profesionales',
-	'/servicio_social': 'Servicio Social',
-	'/extraordinario': 'Extraordinario'
-}
-
-
 export const Navigation = () => {
-
-	const router = usePathname()
 
 	return (
 		<Navbar maxWidth="xl" height="5rem" isBordered>
@@ -29,10 +17,6 @@ export const Navigation = () => {
 					<p className="hidden md:block font-bold text-xl text-inherit">Herramientas UTM</p>
 				</Link>
 			</NavbarBrand>
-
-			<NavbarContent justify="center">
-				<h2 className="text-xl sm:text-2xl">{routerTitles[router]}</h2>
-			</NavbarContent>
 
 			<NavbarContent className="flex gap-3 md:gap-6" justify="end">
 				<NavbarItem>

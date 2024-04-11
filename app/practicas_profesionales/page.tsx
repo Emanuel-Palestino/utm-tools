@@ -12,6 +12,8 @@ const Internship = () => {
 
 	return (
 		<div className="container mx-auto py-5 px-3">
+			<h1 className="text-center text-xl sm:text-2xl">Estancias Profesionales</h1>
+
 			<div className="w-full flex flex-wrap gap-12">
 				<Form />
 				<Documents />
