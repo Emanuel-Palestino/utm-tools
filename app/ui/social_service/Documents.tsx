@@ -6,15 +6,17 @@ import { Button } from "@nextui-org/button"
 import { Textarea } from "@nextui-org/input"
 import { Select, SelectItem } from "@nextui-org/select"
 import { useForm } from "react-hook-form"
-import { PDFWrapper } from "../PDFWrapper"
-import { ScheduleOfActivities } from "@/app/printingFormats/social_service/ScheduleOfActivities"
 import { usePDF } from "@/src/hooks/usePDF"
-import { PartialReport } from "@/app/printingFormats/social_service/PartialReport"
-import { FinalEvaluation } from "@/app/printingFormats/social_service/FinalEvaluation"
-import { DocumentReception } from "@/app/printingFormats/social_service/DocumentReception"
-import { Registration } from "@/app/printingFormats/social_service/Registration"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { DownloadIcon, DocumentIcon } from "@/app/icons"
+import dynamic from "next/dynamic"
+
+const Registration = dynamic(() =>import('@/app/printingFormats/social_service/Registration').then(mod => mod.Registration))
+const DocumentReception = dynamic(() =>import('@/app/printingFormats/social_service/DocumentReception').then(mod => mod.DocumentReception))
+const FinalEvaluation = dynamic(() =>import('@/app/printingFormats/social_service/FinalEvaluation').then(mod => mod.FinalEvaluation))
+const PartialReport = dynamic(() =>import('@/app/printingFormats/social_service/PartialReport').then(mod => mod.PartialReport))
+const ScheduleOfActivities = dynamic(() =>import('@/app/printingFormats/social_service/ScheduleOfActivities').then(mod => mod.ScheduleOfActivities))
+const PDFWrapper = dynamic(() =>import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 
 
 export const Documents = () => {

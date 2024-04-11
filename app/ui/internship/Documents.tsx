@@ -1,11 +1,6 @@
 'use client'
 
 import { usePDF } from "@/src/hooks/usePDF"
-import { PDFWrapper } from "../PDFWrapper"
-import { PresentationLetter } from "@/app/printingFormats/internship/PresentationLetter"
-import { WeeklyReport } from "@/app/printingFormats/internship/WeeklyReport"
-import { FinalEvaluation } from "@/app/printingFormats/internship/FinalEvaluation"
-import { CommitmentLetter } from "@/app/printingFormats/CommitmentLetter"
 import { useInternshipStore } from "@/app/store/internship"
 import { Card, CardBody, CardFooter } from "@nextui-org/card"
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/modal"
@@ -14,9 +9,16 @@ import { Textarea } from "@nextui-org/input"
 import { Select, SelectItem } from "@nextui-org/select"
 import { formatedDate } from "@/app/utils/format"
 import { useForm } from "react-hook-form"
-import { FinalReport } from "@/app/printingFormats/internship/FinalReport"
 import { addDays, differenceInCalendarWeeks, eachWeekOfInterval } from "date-fns"
 import { DownloadIcon, DocumentIcon } from "@/app/icons"
+import dynamic from "next/dynamic"
+
+const PresentationLetter = dynamic(() => import('@/app/printingFormats/internship/PresentationLetter').then(mod => mod.PresentationLetter))
+const WeeklyReport = dynamic(() => import('@/app/printingFormats/internship/WeeklyReport').then(mod => mod.WeeklyReport))
+const FinalEvaluation = dynamic(() => import('@/app/printingFormats/internship/FinalEvaluation').then(mod => mod.FinalEvaluation))
+const CommitmentLetter = dynamic(() => import('@/app/printingFormats/CommitmentLetter').then(mod => mod.CommitmentLetter))
+const FinalReport = dynamic(() => import('@/app/printingFormats/internship/FinalReport').then(mod => mod.FinalReport))
+const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 
 
 export const Documents = () => {
@@ -33,6 +35,7 @@ export const Documents = () => {
 		documentsDownloaded: state.documentsDownloaded,
 		setDocumentDownloaded: (key: string) => state.setDocumentDownloaded(key, true)
 	}))
+
 
 	const { target: intershipTarget, createPDF: createIntership } = usePDF('Solicitud de Prácticas Profesionales')
 	const { target: weeklyReportTarget, createPDF: createWeeklyReport } = usePDF('Reporte Semanal')
