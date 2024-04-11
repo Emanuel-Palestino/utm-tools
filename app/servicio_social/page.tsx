@@ -1,6 +1,12 @@
 import { Documents } from "../ui/social_service/Documents"
 import { Form } from "../ui/social_service/Form"
+import { Metadata } from "next"
 
+
+export const metadata: Metadata = {
+	title: 'Servicio Social',
+	description: 'Generación de documentación completa para la solicitud y seguimiento de servicio social de la Universidad Tecnológica de la Mixteca.'
+}
 
 const SocialService = () => {
 

@@ -1,4 +1,10 @@
 import { Form } from "../ui/makeup_exam/Form"
+import { Metadata } from "next"
+
+
+export const metadata: Metadata = {
+	title: 'Extraordinario'
+}
 
 const Extraordinario = () => {
 

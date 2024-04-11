@@ -1,6 +1,12 @@
 import { Form } from "@/app/ui/internship/Form"
 import { Documents } from "../ui/internship/Documents"
+import { Metadata } from "next"
 
+
+export const metadata: Metadata = {
+	title: 'Estancias Profesionales',
+	description: 'Generación de documentación completa y seguimiento para estancias profesionales de la Universidad Tecnológica de la Mixteca.'
+}
 
 const Internship = () => {
 

@@ -6,12 +6,11 @@ import logo from "@/public/Logo.png"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect } from "react"
 import { GitHubIcon, EmailIcon } from "@/app/icons"
 
 
 const routerTitles: { [key: string]: string } = {
-	'/practicas_profesionales': 'Prácticas Profesionales',
+	'/practicas_profesionales': 'Estancias Profesionales',
 	'/servicio_social': 'Servicio Social',
 	'/extraordinario': 'Extraordinario'
 }
@@ -20,10 +19,6 @@ const routerTitles: { [key: string]: string } = {
 export const Navigation = () => {
 
 	const router = usePathname()
-
-	useEffect(() => {
-		document.title = routerTitles[router] ? `UTM Tools | ${routerTitles[router]}` : 'UTM Tools'
-	}, [router])
 
 	return (
 		<Navbar maxWidth="xl" height="5rem" isBordered>
