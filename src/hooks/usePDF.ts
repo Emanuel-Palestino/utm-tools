@@ -1,12 +1,12 @@
 import { useRef } from 'react'
-import generatePDF, { Margin, Options, Resolution } from 'react-to-pdf'
+import { Options } from 'react-to-pdf'
 
 
 const options: Options = {
 	method: 'save',
-	resolution: Resolution.NORMAL,
+	resolution: 2,
 	page: {
-		margin: Margin.MEDIUM,
+		margin: 10,
 		format: 'letter',
 		orientation: 'portrait'
 	}
@@ -15,7 +15,9 @@ const options: Options = {
 export const usePDF = (filename: string, landscape: boolean = false) => {
 	const target = useRef(null)
 
-	const createPDF = () => {
+	const createPDF = async () => {
+		const generatePDF = (await import('react-to-pdf')).default
+
 		if (landscape) {
 			const pageOptions = { ...options.page }
 			pageOptions.orientation = 'landscape'
