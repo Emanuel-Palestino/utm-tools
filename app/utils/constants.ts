@@ -4,24 +4,24 @@ import { PersistStorage } from "zustand/middleware"
 // Months start at 0
 export const INTERNSHIP_PERIODS = [
 	{
-		startDate: new Date(2023, 6, 3),
-		endDate: new Date(2023, 7, 18)
+		startDate: new Date(2024, 6, 1),
+		endDate: new Date(2024, 7, 16)
 	},
 	{
-		startDate: new Date(2023, 6, 10),
-		endDate: new Date(2023, 7, 25)
+		startDate: new Date(2024, 6, 8),
+		endDate: new Date(2024, 7, 23)
 	},
 	{
-		startDate: new Date(2023, 6, 17),
-		endDate: new Date(2023, 8, 1)
+		startDate: new Date(2024, 6, 15),
+		endDate: new Date(2024, 7, 30)
 	},
 	{
-		startDate: new Date(2023, 6, 24),
-		endDate: new Date(2023, 8, 8)
+		startDate: new Date(2024, 6, 22),
+		endDate: new Date(2024, 8, 6)
 	},
 	{
-		startDate: new Date(2023, 6, 31),
-		endDate: new Date(2023, 8, 15)
+		startDate: new Date(2024, 6, 29),
+		endDate: new Date(2024, 8, 13)
 	}
 ]
 
