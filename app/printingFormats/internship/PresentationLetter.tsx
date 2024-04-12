@@ -1,9 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { FC } from 'react'
 import { Internship } from '@/src/models/Internship'
 import logo from '@/public/UTMEscudo.png'
-import Image from 'next/image'
 import { formatSchedule, formatedDate } from '@/app/utils/format'
 
 
@@ -16,10 +16,10 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
     return (
         <section className="w-full text-[15px]">
             <div id="header" className="mb-2 px-6">
-                <Image
+                <img
                     width={90}
                     height={90}
-                    src={logo}
+                    src={logo.src}
                     alt="logo"
                     className="inline-block w-[90px] h-[90px] align-top"
                 />

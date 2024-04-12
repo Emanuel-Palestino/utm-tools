@@ -1,4 +1,4 @@
-import Image from "next/image"
+/* eslint-disable @next/next/no-img-element */
 import logo from '@/public/UTMEscudo.png'
 import { Person } from "@/src/models/Person"
 import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
@@ -32,7 +32,7 @@ export const PartialReport: FC<PartialReportProps> = ({
 		<section className="w-full h-full text-[14px] flex flex-col justify-between">
 			<div className="px-4">
 				<div className="flex px-6 items-center">
-					<Image width={90} height={90} src={logo} alt="logo" className="w-[90px] h-[90px]" />
+					<img width={90} height={90} src={logo.src} alt="logo" className="w-[90px] h-[90px]" />
 					<div className="flex-grow mt-1">
 						<p className="text-[20px] text-center mb-2 font-bold">UNIVERSIDAD TECNOLÓGICA  DE LA MIXTECA</p>
 						<p className="w-full text-center text-[17px] font-semibold">REPORTE MENSUAL DE ACTIVIDADES DEL SERVICIO SOCIAL</p>

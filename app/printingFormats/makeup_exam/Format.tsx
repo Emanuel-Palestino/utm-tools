@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { formatedDate } from '@/app/utils/format'
 import logo from '@/public/UTMEscudo.png'
 import { MakeUpExam } from '@/src/models/MakeUpExam'
-import Image from 'next/image'
 import { FC } from 'react'
 
 
@@ -21,7 +21,7 @@ const Section: FC<{ to: string, data: MakeUpExam, date: Date }> = ({ to, data, d
 	return (
 		<div>
 			<div className="h-28">
-				<Image width={90} height={90} src={logo} alt="logo" className="inline-block align-top" />
+				<img width={90} height={90} src={logo.src} alt="logo" className="inline-block align-top" />
 				<div className="ml-16 pl-4 inline-block align-top text-center mt-4 text-[18px]">
 					<p className="leading-none">UNIVERSIDAD TECNOLÓGICA DE LA MIXTECA</p>
 					<p className="font-semibold leading-none">DEPTO. DE SERVICIOS ESCOLARES</p>
