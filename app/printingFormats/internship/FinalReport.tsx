@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { formatedDate } from '@/app/utils/format'
 import logo from '@/public/UTMEscudo.png'
 import { Internship } from '@/src/models/Internship'
-import Image from 'next/image'
 import React from 'react'
 import { FC } from 'react'
 
@@ -16,7 +16,7 @@ export const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 		<section className="w-full h-full text-[13.5px]">
 
 			<div className="relative px-6 h-[150px]">
-				<Image width={90} height={90} src={logo} alt="logo" className="inline-block align-top" />
+				<img width={90} height={90} src={logo.src} alt="logo" className="inline-block align-top" />
 				<div className="ml-12 inline-block align-top text-center mt-1 text-[20px]">
 					<p className="leading-none">UNIVERSIDAD TECNOLÓGICA DE LA MIXTECA</p>
 					<p className="font-semibold leading-none">ESTANCIA PROFESIONAL</p>

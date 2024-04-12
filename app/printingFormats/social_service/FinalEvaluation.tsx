@@ -1,10 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import { formatSchedule, formatedDate } from '@/app/utils/format'
 import logo from '@/public/UTMEscudo.png'
 import { Person } from '@/src/models/Person'
 import { GovernmentAgency } from '@/src/models/social_service/GovernmentAgency'
 import { SocialServicePeriod } from '@/src/models/social_service/SocialServicePeriod'
 import { SocialServiceStudent } from '@/src/models/social_service/SocialServiceStudent'
-import Image from 'next/image'
 import { FC } from 'react'
 
 
@@ -35,7 +35,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 		<section className="w-full h-full text-[13px]">
 
 			<div className="flex px-6 items-center">
-				<Image width={90} height={90} src={logo} alt="logo" className="w-[90px] h-[90px]" />
+				<img width={90} height={90} src={logo.src} alt="logo" className="w-[90px] h-[90px]" />
 				<div className="flex-grow mt-1">
 					<p className="text-[20px] text-center mb-2 font-bold">UNIVERSIDAD TECNOLÓGICA  DE LA MIXTECA</p>
 					<p className="w-full text-center text-[17px] font-semibold">REPORTE DE EVALUACIÓN FINAL DEL SERVICIO SOCIAL</p>

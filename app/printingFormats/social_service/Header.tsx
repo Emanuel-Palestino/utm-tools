@@ -1,4 +1,4 @@
-import Image from "next/image"
+/* eslint-disable @next/next/no-img-element */
 import logo from '@/public/UTMEscudo.png'
 import { FC } from "react"
 
@@ -12,7 +12,7 @@ export const Header: FC<HeaderProps> = ({ title, landscape = false }) => {
 
 	return (
 		<div className="px-2 w-full flex gap-6 items-center">
-			<Image width={100} height={100} src={logo} alt="logo" className="flex-shrink-0 basis-[130px]" />
+			<img width={100} height={100} src={logo.src} alt="logo" className="flex-shrink-0 basis-[130px]" />
 			<div
 				className="text-center"
 				style={{ fontSize: landscape ? '19px' : '15px' }}
