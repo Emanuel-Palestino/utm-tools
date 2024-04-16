@@ -60,7 +60,7 @@ export const CommitmentLetter: FC<CommitmentLetterProps> = ({ data, date }) => {
 				<p>Sin otro en particular, con respeto me despido.</p>
 			</div>
 
-			<p className="mt-10 text-center text-[16px]">Atentamente</p>
+			<p className="mt-10 text-center text-[16px] tracking-widest">Atentamente</p>
 
 			<div className="mt-4">
 				<div className="flex justify-around mb-12">

@@ -30,7 +30,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                 </div>
             </div>
 
-            <div id="content" className="p-2 flex flex-col gap-[6px] flex-wrap border-solid border-black border-[1px]">
+            <div id="content" className="px-2 flex flex-col gap-[5px] flex-wrap border-solid border-black border-[1px]">
                 <p className="text-[16px] font-bold">I.- DATOS DEL ALUMNO</p>
 
                 <div className="flex justify-between">
@@ -123,14 +123,14 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                 </div>
 
 
-                <p className="text-center">PERIODO (Fecha de inicio y de terminación)</p>
+                <p className="text-center text-[17px] font-bold">PERIODO (Fecha de inicio y de terminación)</p>
 
                 <div className="flex gap-4">
                     <p className="text-right min-w-[130px]">Del:</p>
-                    <p className="font-medium">{formatedDate(data.period.startDate)} al {formatedDate(data.period.endDate)}</p>
+                    <p className="font-medium">{formatedDate(data.period.startDate)} <span className="inline-block w-28 text-center ">al</span> {formatedDate(data.period.endDate)}</p>
                 </div>
 
-                <div className="flex gap-16">
+                <div className="flex gap-20">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[130px]">Horario:</p>
                         <p className="font-medium">{formatSchedule(data.period.schedule)}</p>
@@ -230,12 +230,12 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                 </div>
             </div>
 
-            <p className="text-[12px] mb-4">Bajo protesta de decir verdad, manifiesto que los datos asentados en el presente documento son ciertos.</p>
+            <p className="text-[14px] mb-6">Bajo protesta de decir verdad, manifiesto que los datos asentados en el presente documento son ciertos.</p>
 
-            <p className="mb-4">V°B° DE JEFATURA DE CARRERA:</p>
+            <p className="mb-8">V°B° DE JEFATURA DE CARRERA: ___________________________</p>
 
-            <div className="grid grid-cols-2">
-                <p>Firma del Solicitante (Alumno):</p>
+            <div className="flex gap-x-8">
+                <p>Firma del Solicitante (Alumno): _____________________________</p>
                 <p>Fecha de Solicitud: {formatedDate(data.applicationDate)}</p>
             </div>
         </section>

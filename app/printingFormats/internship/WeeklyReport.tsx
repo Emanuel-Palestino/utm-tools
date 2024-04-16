@@ -20,8 +20,8 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, descri
 		<section className="w-full h-full text-[15px] flex flex-col justify-between">
 			<div>
 				<div className="flex flex-wrap px-6">
-					<img width={90} height={90} src={logo.src} alt="logo" className="w-[90px] h-[90px]" />
-					<div className="flex-grow text-[20px] text-center mt-1">
+					<img width={120} height={120} src={logo.src} alt="logo" className="w-[120px] h-[120px]" />
+					<div className="flex-grow text-[20px] text-center mt-4">
 						<p>UNIVERSIDAD TECNOLÓGICA  DE LA MIXTECA</p>
 						<p className="font-semibold">ESTANCIA PROFESIONAL</p>
 					</div>

@@ -13,61 +13,59 @@ interface FinalReportProps {
 
 export const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 	return (
-		<section className="w-full h-full text-[13.5px]">
+		<section className="w-full h-full text-[14px]">
 
-			<div className="relative px-6 h-[150px]">
-				<img width={90} height={90} src={logo.src} alt="logo" className="inline-block align-top" />
-				<div className="ml-12 inline-block align-top text-center mt-1 text-[20px]">
+			<div className="relative px-10 h-[110px]">
+				<img width={120} height={120} src={logo.src} alt="logo" className="inline-block align-top" />
+				<div className="ml-12 inline-block align-top text-center mt-6 text-[20px]">
 					<p className="leading-none">UNIVERSIDAD TECNOLÓGICA DE LA MIXTECA</p>
-					<p className="font-semibold leading-none">ESTANCIA PROFESIONAL</p>
-					<div className="ml-12 inline-block align-top text-center mt-1 text-[15px]">
-						<p className="font-semibold leading-normal">Carretera          a          Acatlima          Km.          2.5</p>
-						<p className="font-semibold leading-normal">Huajuapan          de          León,          Oaxaca. </p>
-					</div>
-					<p className="mt-1">INFORME FINAL DE ESTANCIA PROFESIONAL</p>
+					<p className="mt-1 font-semibold">INFORME FINAL DE ESTANCIA PROFESIONAL</p>
 				</div>
 			</div>
 
+			<div className="w-full flex gap-2 justify-end pr-10 mb-6">
+				<p className="font-semibold">FECHA:</p>
+				<p>{formatedDate(data.applicationDate)}</p>
+			</div>
+
 			<div className="px-10">
-				<div className="flex flex-col mb-2 ">
-
-
+				<div className="flex flex-col mb-2 gap-1 ">
 					<div className="flex gap-4">
-						<p className="min-w-[75px]">Fecha:</p>
-						<p className="font-semibold">{formatedDate(data.applicationDate)}</p>
-					</div>
-
-					<div className="flex gap-4">
-						<p className="min-w-[75px]">Nombre:</p>
+						<p className="min-w-[75px]">Nombre del alumno:</p>
 						<p className="font-semibold">{data.person.name}</p>
 					</div>
 
-					<div className="flex gap-4">
-						<p className="min-w-[75px]">Carrera:</p>
-						<p className="font-semibold">{data.student.career}</p>
+					<div className="flex gap-12">
+						<div className="flex gap-4">
+							<p className="min-w-[75px]">Carrera:</p>
+							<p className="font-semibold">{data.student.career}</p>
+						</div>
+
+						<div className="flex gap-4">
+							<p className="min-w-[75px]">Semestre:</p>
+							<p className="font-semibold">{data.student.semester}</p>
+						</div>
 					</div>
 
-					<div className="flex gap-4">
-						<p className="min-w-[75px]">Semestre:</p>
-						<p className="font-semibold">{data.student.semester}</p>
-					</div>
 
-					<div className="flex gap-4 pb-[15px]">
-						<p className="min-w-[75px]">Empresa:</p>
+					<div className="flex gap-4">
+						<p className="min-w-[75px]">Periodo de estancia en la empresa/institución:</p>
 						<p className="font-semibold">{data.company.companyName}</p>
 					</div>
 
-					<div id="content" className="p-10 flex place-content-up flex-col gap-4 flex-wrap mb-1 border-solid border-black border-2 h-[600px] text-[15px]">
+					<div className="flex gap-4 pb-3">
+						<p className="">Del:</p>
+						<p className="font-medium">{formatedDate(data.period.startDate)} <span className="inline-block w-28 text-center">al</span> {formatedDate(data.period.endDate)}</p>
+					</div>
+
+					<div id="content" className="p-6 flex place-content-up flex-col gap-4 flex-wrap mb-1 border-solid border-black border-2 h-[590px] text-[15px]">
 						{informContent}
 					</div>
 
-					<div className="flex gap-4 place-content-center py-[25px]">
-						<p className="place-content-center">Firma</p>
+					<div className="flex justify-around text-center mt-12">
+						<p className="border-t-[1px] border-black min-w-[170px]">Firma del Alumno</p>
+						<p className="border-t-[1px] border-black leading-4 min-w-[170px] pb-1">Vo. Bo. <br />Jefatura de Carrera</p>
 					</div>
-					<div className="flex gap-4 place-content-center">
-						<p className="font-semibold min-w-[160px]">{data.person.name}</p>
-					</div>
-
 				</div>
 			</div>
 

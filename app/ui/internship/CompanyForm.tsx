@@ -139,6 +139,7 @@ export const CompanyForm: FC<CompanyFormProps> = ({ nextForm }) => {
 								type="text"
 								label="Dirección"
 								isRequired
+								description="Dirección completa, calle, número, colonia, municipio, estado y código postal."
 								{...field}
 							/>
 						)}
