@@ -32,8 +32,8 @@ export const PartialReport: FC<PartialReportProps> = ({
 		<section className="w-full h-full text-[14px] flex flex-col justify-between">
 			<div className="px-4">
 				<div className="flex px-6 items-center">
-					<img width={90} height={90} src={logo.src} alt="logo" className="w-[90px] h-[90px]" />
-					<div className="flex-grow mt-1">
+					<img width={120} height={120} src={logo.src} alt="logo" className="w-[120px] h-[120px]" />
+					<div className="flex-grow">
 						<p className="text-[20px] text-center mb-2 font-bold">UNIVERSIDAD TECNOLÓGICA  DE LA MIXTECA</p>
 						<p className="w-full text-center text-[17px] font-semibold">REPORTE MENSUAL DE ACTIVIDADES DEL SERVICIO SOCIAL</p>
 					</div>
@@ -41,7 +41,7 @@ export const PartialReport: FC<PartialReportProps> = ({
 
 				<p className="text-right mt-8">Formato No. {formatNumber}</p>
 
-				<div className="flex flex-col gap-1 mt-4">
+				<div className="flex flex-col gap-2 mt-4">
 					<div className="flex gap-2 items-center">
 						<p className="text-left w-[180px] font-semibold">NOMBRE COMPLETO DEL ALUMNO:</p>
 						<p>{`${person.paternalSurname} ${person.maternalSurname} ${person.name}`}</p>
@@ -70,7 +70,7 @@ export const PartialReport: FC<PartialReportProps> = ({
 					</div>
 
 					<div className="flex gap-2 items-center">
-						<p className="text-left w-[180px] font-semibold">INSTITUCIÓN Y/O DEPENDENCIA:</p>
+						<p className="text-left w-[180px] font-semibold">INSTITUCIÓN:</p>
 						<p>{governmentAgency.name}</p>
 					</div>
 
@@ -89,7 +89,7 @@ export const PartialReport: FC<PartialReportProps> = ({
 						<p>{governmentAgency.city}</p>
 					</div>
 
-					<div className="flex gap-6">
+					<div className="flex gap-10">
 						<div className="flex gap-2">
 							<p className="text-left w-[180px] font-semibold">ESTADO:</p>
 							<p>{governmentAgency.state}</p>
@@ -101,7 +101,7 @@ export const PartialReport: FC<PartialReportProps> = ({
 						</div>
 					</div>
 
-					<div className="flex gap-6">
+					<div className="flex gap-10">
 						<div className="flex gap-2">
 							<p className="text-left w-[180px] font-semibold">HORARIO:</p>
 							<p>{formatSchedule(period.schedule)}</p>
@@ -114,8 +114,8 @@ export const PartialReport: FC<PartialReportProps> = ({
 					</div>
 
 					<div className="flex gap-2">
-						<p className="text-left w-[180px] font-semibold">PERIODO:</p>
-						<p>Del {formatedDate(activity.startDate)} al {formatedDate(activity.endDate)}</p>
+						<p className="text-left w-[180px] font-semibold">PERIODO DEL:</p>
+						<p>{formatedDate(activity.startDate)} <span className="inline-block w-32 font-semibold text-center">AL</span> {formatedDate(activity.endDate)}</p>
 					</div>
 				</div>
 
@@ -124,7 +124,7 @@ export const PartialReport: FC<PartialReportProps> = ({
 						<thead>
 							<tr>
 								<th className="border-b border-r border-black p-2">No.</th>
-								<th className="border-b border-r border-black p-2">DESCRIPCIÓN DE ACTIVIDADES REALIZADAS EN EL PERIODO SEÑALADO:</th>
+								<th className="border-b border-r border-black p-2">A CONTINUACIÓN DESCRIBA LAS ACTIVIDADES REALIZADAS EN EL PERIODO SEÑALADO:</th>
 							</tr>
 						</thead>
 
@@ -136,7 +136,7 @@ export const PartialReport: FC<PartialReportProps> = ({
 
 									return (
 										<tr key={`activity-description-${index}`}>
-											<td className="border-b border-r border-black p-2">{index + 1}.-</td>
+											<td className="border-b border-r border-black p-2 text-center">{index + 1}.-</td>
 											<td className="border-b border-r border-black p-2">{paragraph}</td>
 										</tr>
 									)

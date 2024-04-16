@@ -22,11 +22,11 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 			<div className="px-4">
 				<Header title="Formato de solicitud para la presentación de Servicio Social" />
 
-				<p className="text-right mt-2">{formatedDate(date)}</p>
+				<p className="text-right mt-2 pr-4">FECHA: {formatedDate(date)}</p>
 
 				<div className="flex flex-col gap-2 mt-4">
 					<div className="flex gap-2 items-center">
-						<p className="w-[180px] font-semibold">Nombre del Alumno(a) / Egresado(a):</p>
+						<p className="w-[180px] font-semibold">Nombre del Alumno (A) / Egresado(A):</p>
 						<p>{`${person.paternalSurname} ${person.maternalSurname} ${person.name}`}</p>
 					</div>
 
@@ -42,7 +42,7 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 						</div>
 					</div>
 
-					<div className="flex gap-8">
+					<div className="flex gap-12">
 						<div className="flex gap-2">
 							<p className="w-[180px] font-semibold">Semestre:</p>
 							<p>{student.semester}</p>
@@ -140,23 +140,23 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 					</div>
 
 					<div className="flex gap-2">
-						<p className="w-[180px] font-semibold">Email Laboral:</p>
+						<p className="w-[180px] font-semibold">Dirección de correo electrónico:</p>
 						<p>{governmentAgency.email}</p>
 					</div>
 
 					<div className="flex gap-8">
 						<div className="flex gap-2">
-							<p className="w-[180px] font-semibold">Fecha de inicio:</p>
+							<p className="w-[180px] font-semibold">Fecha de Inicio:</p>
 							<p>{formatedDate(period.startDate)}</p>
 						</div>
 
 						<div className="flex gap-2">
-							<p className="font-semibold">Fecha de termino:</p>
+							<p className="font-semibold">Fecha de Termino:</p>
 							<p>{formatedDate(period.endDate)}</p>
 						</div>
 					</div>
 
-					<div className="flex gap-8">
+					<div className="flex gap-12">
 						<div className="flex gap-2">
 							<p className="w-[180px] font-semibold">Duración (meses):</p>
 							<p>{period.months}</p>

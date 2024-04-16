@@ -31,7 +31,7 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 			<div>
 				<Header title="CRONOGRAMA DE ACTIVIDADES DE SERVICIO SOCIAL" landscape />
 
-				<p className="text-right text-[16px] px-6 mt-8">FECHA: {formatedDate(date)}</p>
+				<p className="text-right text-[16px] px-10 mt-8">FECHA: {formatedDate(date)}</p>
 
 				<div className="flex flex-col gap-1 px-8 mt-4">
 					<div className="flex gap-4">
@@ -42,7 +42,7 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 					<div className="flex gap-8">
 						<div className="flex gap-4">
 							<p className="w-[230px] font-semibold text-right">CARRERA:</p>
-							<p>{student.career}</p>
+							<p className="w-[250px]">{student.career}</p>
 						</div>
 
 						<div className="flex gap-4">
@@ -67,8 +67,8 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 					</div>
 
 					<div className="flex gap-4">
-						<p className="w-[230px] font-semibold text-right">PERIODO:</p>
-						<p>Del {formatedDate(period.startDate)} al {formatedDate(period.endDate)}</p>
+						<p className="w-[230px] font-semibold text-right">PERIODO DEL:</p>
+						<p>{formatedDate(period.startDate)} <span className="inline-block w-20 text-center font-semibold">AL</span> {formatedDate(period.endDate)}</p>
 					</div>
 
 					<div className="flex gap-4">
@@ -87,7 +87,7 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 								<th colSpan={3} className="text-center border-b border-r border-black">DEL</th>
 								<th colSpan={3} className="text-center border-b border-r border-black">AL</th>
 
-								<th rowSpan={2} className="border-b border-r border-black">NÚMERO DE HORAS</th>
+								<th rowSpan={2} className="border-b border-r border-black w-36">NÚMERO DE HORAS POR ACTIVIDAD</th>
 							</tr>
 							<tr className="text-[12px]">
 								<th className="border-b border-r border-black">Día</th>
@@ -105,11 +105,11 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 								<tr key={`activity-${index}`} className="text-center">
 									<td className="border-b border-r border-black">{index + 1}</td>
 									<td className="border-b border-r border-black">{activity.description}</td>
-									<td className="border-b border-r border-black">{getDate(activity.startDate)}</td>
-									<td className="border-b border-r border-black">{getMonth(activity.startDate) + 1}</td>
+									<td className="border-b border-r border-black">{String(getDate(activity.startDate)).padStart(2, '0')}</td>
+									<td className="border-b border-r border-black">{String(getMonth(activity.startDate) + 1).padStart(2, '0')}</td>
 									<td className="border-b border-r border-black">{getYear(activity.startDate)}</td>
-									<td className="border-b border-r border-black">{getDate(activity.endDate)}</td>
-									<td className="border-b border-r border-black">{getMonth(activity.endDate) + 1}</td>
+									<td className="border-b border-r border-black">{String(getDate(activity.endDate)).padStart(2, '0')}</td>
+									<td className="border-b border-r border-black">{String(getMonth(activity.endDate) + 1).padStart(2, '0')}</td>
 									<td className="border-b border-r border-black">{getYear(activity.endDate)}</td>
 									<td className="border-b border-r border-black">{activity.hours}</td>
 								</tr>

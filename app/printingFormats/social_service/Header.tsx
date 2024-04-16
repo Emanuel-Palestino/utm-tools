@@ -25,7 +25,7 @@ export const Header: FC<HeaderProps> = ({ title, landscape = false }) => {
 					</div>
 					<p
 						className="text-right font-bold bg-[#b3b2b2] p-2 text-white"
-						style={{ paddingLeft: landscape ? '24px' : '16px', paddingRight: landscape ? '24px' : '16px' }}
+						style={{ paddingLeft: landscape ? '40px' : '16px', paddingRight: landscape ? '50px' : '16px' }}
 					>
 						COORDINACIÓN DE ESTANCIAS PROFESIONALES, SERVICIO SOCIAL Y VIAJES DE PRÁCTICAS ESCOLARES
 					</p>
