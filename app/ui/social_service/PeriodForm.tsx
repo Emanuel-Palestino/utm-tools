@@ -3,9 +3,10 @@ import { Button } from "@nextui-org/button"
 import { Input, Textarea } from "@nextui-org/input"
 import { Slider } from "@nextui-org/slider"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import React, { FC } from "react"
+import React, { FC, useEffect } from "react"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
+import { addMonths } from "date-fns"
 
 
 interface PeriodFormProps {
@@ -23,6 +24,8 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 	const {
 		handleSubmit,
 		control,
+		watch,
+		setValue
 	} = useForm<SocialServicePeriod>({
 		defaultValues: {
 			startDate: new Date(),
@@ -46,6 +49,13 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		save(data)
 		nextForm()
 	}
+
+	/* Update end date depending on start date */
+	let startDate = watch('startDate')
+
+	useEffect(() => {
+		setValue('endDate', addMonths(new Date(`${startDate} GMT-6`), 6))
+	}, [setValue, startDate])
 
 	return (
 		<Card>

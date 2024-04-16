@@ -75,8 +75,6 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 								{...field}
 								selectedKeys={field.value ? [String(field.value)] : []}
 							>
-								<SelectItem key="6" value="6">Sexto</SelectItem>
-								<SelectItem key="7" value="7">Séptimo</SelectItem>
 								<SelectItem key="8" value="8">Octavo</SelectItem>
 								<SelectItem key="9" value="9">Noveno</SelectItem>
 								<SelectItem key="10" value="10">Décimo</SelectItem>
