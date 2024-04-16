@@ -16,10 +16,10 @@ export const DocumentReception: FC<DocumentReceptionProps> = props => {
 	return (
 		<section className="w-full h-full text-[13px]">
 			<p className="text-center text-[14px]">COORDINACIÓN DE ESTANCIAS PROFESIONALES, SERVICIO SOCIAL Y VIAJE DE PRÁCTICAS ESCOLARES</p>
-			<p className="text-center font-semibold">Recepción de Documentos</p>
+			<p className="text-center font-bold text-[14px]">Recepción de Documentos</p>
 
 			<Section {...props} />
-			<span className="block h-10" />
+			<span className="block h-12" />
 			<Section {...props} />
 		</section>
 	)

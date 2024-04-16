@@ -9,16 +9,16 @@ import { FC } from 'react'
 
 
 const evaluation: string[] = [
-	'Disciplina',
-	'Puntualidad',
-	'Presentación',
-	'Responsabilidad',
-	'Desempeño',
-	'Calidad en el Trabajo',
-	'Nivel de Conocimientos',
-	'Iniciativa',
-	'Eficiencia',
-	'Lealtad y Discreción'
+	'DISCIPLINA',
+	'PUNTUALIDAD',
+	'PRESENTACIÓN',
+	'RESPONSABILIDAD',
+	'DESEMPEÑO',
+	'CALIDAD EN EL TRABAJO',
+	'NIVEL DE CONOCIMIENTOS',
+	'INICIATIVA',
+	'EFICIENCIA',
+	'LEALTAD Y HONESTIDAD'
 ]
 
 interface FinalEvaluationProps {
@@ -27,16 +27,17 @@ interface FinalEvaluationProps {
 	period: SocialServicePeriod
 	governmentAgency: GovernmentAgency
 	formatNumber: number
+	description: string
 }
 
-export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, period, governmentAgency, formatNumber }) => {
+export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, period, governmentAgency, formatNumber, description }) => {
 
 	return (
 		<section className="w-full h-full text-[13px]">
 
 			<div className="flex px-6 items-center">
-				<img width={90} height={90} src={logo.src} alt="logo" className="w-[90px] h-[90px]" />
-				<div className="flex-grow mt-1">
+				<img width={120} height={120} src={logo.src} alt="logo" className="w-[120px] h-[120px] ml-4" />
+				<div className="flex-grow mt-[-10px]">
 					<p className="text-[20px] text-center mb-2 font-bold">UNIVERSIDAD TECNOLÓGICA  DE LA MIXTECA</p>
 					<p className="w-full text-center text-[17px] font-semibold">REPORTE DE EVALUACIÓN FINAL DEL SERVICIO SOCIAL</p>
 				</div>
@@ -44,18 +45,18 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 
 
 			<div className="px-8">
-				<p className="text-right mt-6">Formato No. {formatNumber}</p>
+				<p className="text-right">Formato No. {formatNumber}</p>
 
-				<p className="mb-1">C. JEFE DE ÁREA.</p>
-				<p className="mb-1">Con la finalidad de atender cada vez con mayor calidad y eficiencia del SERVICIO SOCIAL de nuestro alumno(a), así como para tener referentes que nos orienten al mejor funcionamiento de las necesidades del Sector Público. Le agradeceré el llenado del siguiente formato:</p>
+				<p className="mb-1 text-[12px]">C. JEFE DE ÁREA.</p>
+				<p className="mb-1 text-[11px]">Con la finalidad de mejorar la calidad y eficiencia del SERVICIO SOCIAL de nuestro alumno(a), así como para tener referentes que nos orienten al mejor funcionamiento de las necesidades del Sector Público. Le agradeceré el llenado del siguiente formato:</p>
 
 				<div className="flex flex-col gap-1 mt-4 mb-2">
 					<div className="flex gap-2 items-center">
-						<p className="text-left w-[170px] font-semibold">NOMBRE COMPLETO DEL ALUMNO:</p>
+						<p className="text-left w-[170px] font-semibold">NOMBRE DEL ALUMNO:</p>
 						<p>{`${person.paternalSurname} ${person.maternalSurname} ${person.name}`}</p>
 					</div>
 
-					<div className="flex gap-6">
+					<div className="flex gap-8">
 						<div className="flex gap-2">
 							<p className="text-left w-[170px] font-semibold">CARRERA:</p>
 							<p>{student.career}</p>
@@ -72,9 +73,9 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 						</div>
 					</div>
 
-					<div className="flex gap-2">
-						<p className="text-left w-[170px] font-semibold">PERIODO:</p>
-						<p>Del {formatedDate(period.startDate)} al {formatedDate(period.endDate)}</p>
+					<div className="flex items-center gap-2">
+						<p className="text-left w-[170px] font-semibold">PERIODO EN QUE CUBRIÓ SERVICIO SOCIAL DEL:</p>
+						<p>{formatedDate(period.startDate)} <span className="inline-block w-32 text-center font-semibold">AL</span> {formatedDate(period.endDate)}</p>
 					</div>
 
 					<div className="flex gap-6">
@@ -84,13 +85,13 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 						</div>
 
 						<div className="flex gap-2">
-							<p className="font-semibold">TOTAL DE HORAS REALIZADAS:</p>
+							<p className="font-semibold">TOTAL DE HORAS ACUMULADAS:</p>
 							<p>{period.totalHours}</p>
 						</div>
 					</div>
 
 					<div className="flex gap-2 items-center">
-						<p className="text-left w-[170px] font-semibold">INSTITUCIÓN Y/O DEPENDENCIA:</p>
+						<p className="text-left w-[170px] font-semibold">INSTITUCIÓN:</p>
 						<p>{governmentAgency.name}</p>
 					</div>
 
@@ -104,15 +105,23 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 						<p>{governmentAgency.address}</p>
 					</div>
 
-					<div className="flex gap-2">
-						<p className="text-left w-[170px] font-semibold">CIUDAD O LOCALIDAD:</p>
-						<p>{governmentAgency.city}</p>
+					<div className="flex gap-12">
+						<div className="flex gap-2">
+							<p className="text-left w-[170px] font-semibold">CIUDAD O LOCALIDAD:</p>
+							<p>{governmentAgency.city}</p>
+						</div>
+
+						<div className="flex gap-2">
+							<p className="text-left font-semibold">ESTADO:</p>
+							<p>{governmentAgency.state}</p>
+						</div>
 					</div>
+
 
 					<div className="flex gap-6">
 						<div className="flex gap-2">
-							<p className="text-left w-[170px] font-semibold">ESTADO:</p>
-							<p>{governmentAgency.state}</p>
+							<p className="text-left w-[170px] font-semibold">RESPONSABLE INMEDIATO:</p>
+							<p>{governmentAgency.supervisorName}</p>
 						</div>
 
 						<div className="flex gap-2">
@@ -121,14 +130,16 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 						</div>
 					</div>
 
-					<div className="flex gap-2">
-						<p className="text-left w-[170px] font-semibold">RESPONSABLE INMEDIATO:</p>
-						<p>{governmentAgency.supervisorName}</p>
+					<div className="flex gap-2 items-center">
+						<p>
+							<span className="text-left font-semibold">DESCRIPCIÓN BREVE DE ACTIVIDADES ASIGNADAS AL ALUMNO: </span>
+							{description}
+						</p>
 					</div>
 				</div>
 
 				<div className="mb-1">
-					<table className="w-full table-auto border-collapse border-t border-l border-black">
+					<table className="w-full table-auto border-collapse border-t border-l border-black text-[11px]">
 						<thead>
 							<tr>
 								<th className="border-b border-r border-black bg-gray-300" colSpan={6}>
@@ -173,7 +184,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 					</div>
 				</div>
 
-				<div className="flex gap-4 mb-8 flex-wrap">
+				<div className="flex gap-4 mb-14 flex-wrap">
 					<p>Observaciones:</p>
 					<p className="border-b border-black flex-grow w-auto"></p>
 					<p className="border-b border-black flex-grow w-full"></p>

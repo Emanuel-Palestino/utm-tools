@@ -11,12 +11,12 @@ import { useSocialServiceStore } from "@/app/store/socialService"
 import { DownloadIcon, DocumentIcon } from "@/app/icons"
 import dynamic from "next/dynamic"
 
-const Registration = dynamic(() =>import('@/app/printingFormats/social_service/Registration').then(mod => mod.Registration))
-const DocumentReception = dynamic(() =>import('@/app/printingFormats/social_service/DocumentReception').then(mod => mod.DocumentReception))
-const FinalEvaluation = dynamic(() =>import('@/app/printingFormats/social_service/FinalEvaluation').then(mod => mod.FinalEvaluation))
-const PartialReport = dynamic(() =>import('@/app/printingFormats/social_service/PartialReport').then(mod => mod.PartialReport))
-const ScheduleOfActivities = dynamic(() =>import('@/app/printingFormats/social_service/ScheduleOfActivities').then(mod => mod.ScheduleOfActivities))
-const PDFWrapper = dynamic(() =>import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const Registration = dynamic(() => import('@/app/printingFormats/social_service/Registration').then(mod => mod.Registration))
+const DocumentReception = dynamic(() => import('@/app/printingFormats/social_service/DocumentReception').then(mod => mod.DocumentReception))
+const FinalEvaluation = dynamic(() => import('@/app/printingFormats/social_service/FinalEvaluation').then(mod => mod.FinalEvaluation))
+const PartialReport = dynamic(() => import('@/app/printingFormats/social_service/PartialReport').then(mod => mod.PartialReport))
+const ScheduleOfActivities = dynamic(() => import('@/app/printingFormats/social_service/ScheduleOfActivities').then(mod => mod.ScheduleOfActivities))
+const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 
 
 export const Documents = () => {
@@ -45,7 +45,14 @@ export const Documents = () => {
 	/* Partial report modal */
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
-	/* Form handle for partial report data */
+	/* Final Evaluation modal */
+	const {
+		isOpen: isEvaluationModalOpen,
+		onOpen: onEvaluationModalOpen,
+		onOpenChange: onEvaluationModalChange
+	} = useDisclosure()
+
+	/* Form handle for partial report data and final evaluation data */
 	const {
 		handleSubmit,
 		register,
@@ -76,7 +83,7 @@ export const Documents = () => {
 		},
 		{
 			name: 'Reporte de Evaluación Final',
-			action: createFinalReport,
+			action: onEvaluationModalOpen,
 			stateKey: 'final-evaluation'
 		},
 		{
@@ -120,11 +127,13 @@ export const Documents = () => {
 			</div>
 
 
+			{/* Modal for partial report data */}
 			<Modal isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
 				<ModalContent>
 					{onClose => (
 						<>
 							<ModalHeader>Reporte Parcial</ModalHeader>
+
 							<ModalBody>
 								<form
 									id="report_form"
@@ -167,10 +176,12 @@ export const Documents = () => {
 									/>
 								</form>
 							</ModalBody>
+
 							<ModalFooter>
 								<Button color="danger" variant="light" onPress={onClose}>
 									Cancelar
 								</Button>
+
 								<Button
 									color="primary"
 									form="report_form"
@@ -183,6 +194,51 @@ export const Documents = () => {
 					)}
 				</ModalContent>
 			</Modal >
+
+			{/* Modal for final evaluation description */}
+			<Modal isOpen={isEvaluationModalOpen} onOpenChange={onEvaluationModalChange} size="md">
+				<ModalContent>
+					{onClose => (
+						<>
+							<ModalHeader>Reporte de Evaluación Final</ModalHeader>
+
+							<ModalBody>
+								<form
+									id="report_form"
+									className="flex flex-col gap-4"
+									onSubmit={handleSubmit(() => {
+										setDocumentDownloaded('final-evaluation')
+										createFinalReport()
+										onClose()
+									})}
+								>
+									<Textarea
+										minRows={4}
+										label="Breve descripción de las actividades realizadas"
+										isRequired
+										{...register('description')}
+									/>
+								</form>
+							</ModalBody>
+
+							<ModalFooter>
+								<Button color="danger" variant="light" onPress={onClose}>
+									Cancelar
+								</Button>
+
+								<Button
+									color="primary"
+									form="report_form"
+									type="submit"
+								>
+									Descargar
+								</Button>
+							</ModalFooter>
+						</>
+					)}
+				</ModalContent>
+			</Modal >
+
 
 			{dataComplete && (
 				<>
@@ -216,6 +272,7 @@ export const Documents = () => {
 							period={socialServiceData.period}
 							governmentAgency={socialServiceData.governmentAgency}
 							formatNumber={socialServiceData.period.months + 1}
+							description={watch('description')}
 						/>
 					</PDFWrapper>
 
