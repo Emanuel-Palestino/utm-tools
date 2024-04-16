@@ -31,6 +31,7 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 			career: 'Ingeniería en Computación',
 			state: StudentState.ACTIVE,
 			enrollment: '',
+			group: '',
 			ss: '',
 			semester: 0,
 			haveSummerClass: false,
@@ -114,6 +115,19 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 							<Input
 								type="text"
 								label="Matrícula"
+								isRequired
+								{...field}
+							/>
+						)}
+					/>
+
+					<Controller
+						name="group"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="Grupo"
 								isRequired
 								{...field}
 							/>

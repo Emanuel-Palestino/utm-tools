@@ -66,7 +66,7 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                     </div>
                     <div className="flex gap-4">
                         <p>Grupo:</p>
-                        <p className="font-medium">{data.student.semester}</p>
+                        <p className="font-medium">{data.student.group}</p>
                     </div>
                 </div>
 
