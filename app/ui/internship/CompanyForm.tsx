@@ -34,6 +34,7 @@ export const CompanyForm: FC<CompanyFormProps> = ({ nextForm }) => {
 			phone: '',
 			email: '',
 			address: '',
+			state: '',
 			webPage: '',
 			companyContact: '',
 			recipientName: '',
@@ -140,6 +141,18 @@ export const CompanyForm: FC<CompanyFormProps> = ({ nextForm }) => {
 								label="Dirección"
 								isRequired
 								description="Dirección completa, calle, número, colonia, municipio, estado y código postal."
+								{...field}
+							/>
+						)}
+					/>
+
+					<Controller
+						name="state"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="text"
+								label="Estado de la República"
 								{...field}
 							/>
 						)}

@@ -65,7 +65,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Estado:</p>
-						<p className="font-semibold">{data.company.address}</p>
+						<p className="font-semibold">{data.company.state}</p>
 					</div>
 
 					<div className="flex gap-4">

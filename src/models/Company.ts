@@ -7,6 +7,7 @@ export interface Company {
 	industry: string				// Industria (Giro de la empresa)
 	companyName: string				// Nombre de la empresa
 	address: string					// Dirección
+	state?: string					// Estado	
 	phone: string					// Teléfono
 	//phoneExtension: string			// Extensión
 	email: string					// Correo electrónico
