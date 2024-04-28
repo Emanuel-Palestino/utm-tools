@@ -1,14 +1,16 @@
 'use client'
 
 import { Tabs, Tab } from "@nextui-org/tabs"
-import { PersonForm } from "./PersonForm"
-import { StudentForm } from "./StudentForm"
-import { PeriodForm } from "./PeriodForm"
-import { CompanyForm } from "./CompanyForm"
 import { useEffect, useState } from "react"
 import { Key } from "@react-types/shared"
 import { useInternshipStore } from "@/app/store/internship"
 import { CheckIcon } from "@/app/icons"
+import dynamic from "next/dynamic"
+
+const PersonForm = dynamic(() => import('./PersonForm').then(mod => mod.PersonForm))
+const StudentForm = dynamic(() => import('./StudentForm').then(mod => mod.StudentForm))
+const PeriodForm = dynamic(() => import('./PeriodForm').then(mod => mod.PeriodForm))
+const CompanyForm = dynamic(() => import('./CompanyForm').then(mod => mod.CompanyForm))
 
 
 export const Form = () => {
