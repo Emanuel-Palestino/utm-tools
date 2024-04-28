@@ -45,7 +45,7 @@ export const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }
 
 	return (
 		<Card>
-			<CardBody>
+			<CardBody className="p-4">
 				<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-4">
 					<Controller
 						name="name"

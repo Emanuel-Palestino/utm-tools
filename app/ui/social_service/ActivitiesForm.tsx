@@ -39,7 +39,7 @@ export const ActivitiesForm = () => {
 
 	return (
 		<Card>
-			<CardBody>
+			<CardBody className="p-4">
 				<ul className="p-2 pl-6 mb-3 text-sm text-gray-600 list-disc list-outside">
 					<li>Las principales actividades a realizar en el servicio social.</li>
 					<li>Este <b>listado de actividades</b> aparecerá únicamente en el documento <b>cronograma de actividades</b>. Debido a esto la <b>descripción</b> debe ser <b>corta.</b></li>

@@ -189,7 +189,7 @@ export const Form = () => {
 						/>
 
 						<div className="flex justify-center mt-2 md:col-span-2 xl:col-span-3">
-							<Button className="w-32" color="primary" type="submit">Descargar Solicitud</Button>
+							<Button className="w-36" color="primary" type="submit">Descargar Solicitud</Button>
 						</div>
 					</form>
 				</CardBody>

@@ -26,12 +26,14 @@ export const Form = () => {
 	}, [])
 
 	return (
-		<div className="flex-grow">
-			<h2 className="text-lg sm:text-xl mb-2 md:mb-4 text-center md:text-left">Datos</h2>
+		<section>
+			<h2 className="text-lg sm:text-2xl mb-2 md:mb-4 text-center md:text-left">1 - Ingresa los datos necesarios</h2>
+
 			<Tabs
 				selectedKey={selectedTab}
 				onSelectionChange={setSelectecTab}
-				classNames={{ base: 'w-full', tabList: 'w-full flex flex-col md:flex-row' }}
+				classNames={{ base: 'w-full', tabList: 'w-full flex flex-col lg:flex-row' }}
+				size="lg"
 			>
 				<Tab
 					key="personal"
@@ -81,7 +83,7 @@ export const Form = () => {
 					<PeriodForm />
 				</Tab>
 			</Tabs>
-		</div>
+		</section>
 	)
 
 }
