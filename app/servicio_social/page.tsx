@@ -1,3 +1,4 @@
+import { Disclaimer } from "../ui/Disclaimer"
 import { Documents } from "../ui/social_service/Documents"
 import { Form } from "../ui/social_service/Form"
 import { Metadata } from "next"
@@ -18,6 +19,8 @@ const SocialService = () => {
 				<Form />
 				<Documents />
 			</div>
+
+			<Disclaimer />
 		</div>
 	)
 

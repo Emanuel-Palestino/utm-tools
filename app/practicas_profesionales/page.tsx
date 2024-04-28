@@ -1,6 +1,7 @@
 import { Form } from "@/app/ui/internship/Form"
 import { Documents } from "../ui/internship/Documents"
 import { Metadata } from "next"
+import { Disclaimer } from "../ui/Disclaimer"
 
 
 export const metadata: Metadata = {
@@ -18,6 +19,8 @@ const Internship = () => {
 				<Form />
 				<Documents />
 			</div>
+
+			<Disclaimer />
 		</div>
 	)
 
