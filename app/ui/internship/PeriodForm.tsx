@@ -64,7 +64,7 @@ export const PeriodForm = () => {
 							<Input
 								type="text"
 								label="Área de Trabajo"
-								description="Área en el que realizarás tus prácticas profesionales."
+								description="Área en el que realizarás tus estancias profesionales."
 								isRequired
 								{...field}
 							/>
@@ -78,7 +78,7 @@ export const PeriodForm = () => {
 							<Input
 								type="text"
 								label="Nombre del Proyecto"
-								description="Nombre del proyecto en el que trabajarás en tus prácticas profesionales."
+								description="Nombre del proyecto en el que trabajarás en tus estancias profesionales."
 								{...field}
 							/>
 						)}

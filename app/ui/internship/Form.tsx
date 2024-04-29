@@ -77,7 +77,7 @@ export const Form = () => {
 					key="period"
 					title={
 						<div className="flex items-center gap-2">
-							<span>Periodo y Prácticas</span>
+							<span>Periodo y Estancias</span>
 							{completed.periodData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 						</div>
 					}
