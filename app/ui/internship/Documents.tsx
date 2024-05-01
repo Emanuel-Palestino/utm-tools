@@ -9,7 +9,7 @@ import { Textarea } from "@nextui-org/input"
 import { Select, SelectItem } from "@nextui-org/select"
 import { formatedDate } from "@/app/utils/format"
 import { useForm } from "react-hook-form"
-import { addDays, differenceInCalendarWeeks, eachWeekOfInterval } from "date-fns"
+import { differenceInCalendarWeeks } from "date-fns"
 import { DownloadIcon, DocumentIcon } from "@/app/icons"
 import dynamic from "next/dynamic"
 
@@ -144,11 +144,14 @@ export const Documents = () => {
 									id="report_form"
 									className="flex flex-col gap-4"
 									onSubmit={handleSubmit(async data => {
+										const eachWeekOfInterval = (await import('date-fns/eachWeekOfInterval')).default
+										const addDays = (await import('date-fns/addDays')).default
+
 										// Create the report period string
 										const periodWeeks = eachWeekOfInterval({
 											start: internshipData.period.startDate,
 											end: internshipData.period.endDate
-										})
+										}, { weekStartsOn: 1 })
 
 										const reportWeeks = periodWeeks.slice(
 											(Number(data.formatNumber) - 1) * internshipData.period.reportFrecuency,
