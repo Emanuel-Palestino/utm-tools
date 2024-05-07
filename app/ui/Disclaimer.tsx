@@ -22,14 +22,11 @@ export const Disclaimer = () => {
 						<ModalHeader className="text-2xl mb-3">Mensaje</ModalHeader>
 						<ModalBody>
 							<p>
-								Herramientas UTM es un <b>proyecto ajeno</b> a la Universidad Tecnológica de la Mixteca.
-								Se creó con el fin de facilitar la <b>generación de documentación y seguimiento</b> para estancias profesionales y servicio social.
+								Herramientas UTM es un proyecto de ayuda para la <b>generación de documentación y seguimiento</b> para estancias profesionales y servicio social.
+								Por lo que <b>no es una herramienta oficial</b>.
 							</p>
 							<p>
-								Por lo que <b>no ha sido aprobado</b> por la institución. Aún así, puede ser usado sin problemas.
-							</p>
-							<p>
-								Adicional a esto, Herramientas UTM <b>no almacena la información</b> introducida por los usuarios.
+								Además, Herramientas UTM se actualiza constantemente y <b>no almacena la información</b> introducida por los usuarios.
 							</p>
 						</ModalBody>
 						<ModalFooter className="mt-2">
