@@ -6,19 +6,17 @@ import { Card, CardBody, CardFooter } from "@nextui-org/card"
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/modal"
 import { Button } from "@nextui-org/button"
 import { Textarea } from "@nextui-org/input"
-import { Select, SelectItem } from "@nextui-org/select"
 import { formatedDate } from "@/app/utils/format"
 import { useForm } from "react-hook-form"
-import { differenceInCalendarWeeks } from "date-fns"
 import { DownloadIcon, DocumentIcon } from "@/app/icons"
 import dynamic from "next/dynamic"
 
 const PresentationLetter = dynamic(() => import('@/app/printingFormats/internship/PresentationLetter').then(mod => mod.PresentationLetter))
-const WeeklyReport = dynamic(() => import('@/app/printingFormats/internship/WeeklyReport').then(mod => mod.WeeklyReport))
 const FinalEvaluation = dynamic(() => import('@/app/printingFormats/internship/FinalEvaluation').then(mod => mod.FinalEvaluation))
 const CommitmentLetter = dynamic(() => import('@/app/printingFormats/CommitmentLetter').then(mod => mod.CommitmentLetter))
 const FinalReport = dynamic(() => import('@/app/printingFormats/internship/FinalReport').then(mod => mod.FinalReport))
 const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const PartialReportModal = dynamic(() => import('./PartialReportModal').then(mod => mod.PartialReportModal))
 
 
 export const Documents = () => {
@@ -38,7 +36,6 @@ export const Documents = () => {
 
 
 	const { target: intershipTarget, createPDF: createIntership } = usePDF('Solicitud de Estancias Profesionales')
-	const { target: weeklyReportTarget, createPDF: createWeeklyReport } = usePDF('Reporte Semanal')
 	const { target: finalEvaluationTarget, createPDF: createFinalEvaluation } = usePDF('Reporte de Evaluación Final')
 	const { target: commitmentLetterTarget, createPDF: createCommitmentLetter } = usePDF('Carta Compromiso')
 	const { target: finalReportTarget, createPDF: createFinalReport } = usePDF('Reporte Final')
@@ -54,8 +51,7 @@ export const Documents = () => {
 	const {
 		handleSubmit,
 		register,
-		watch,
-		setValue
+		watch
 	} = useForm<{ formatNumber: number, period: string, totalHours: number, description: string, comments: string }>({
 		defaultValues: {
 			formatNumber: 1,
@@ -65,10 +61,6 @@ export const Documents = () => {
 			comments: ''
 		}
 	})
-
-	const updatePeriod = async (p: string) => setValue('period', p)
-
-	const updatePeriodHours = async (h: number) => setValue('totalHours', h)
 
 	const documents = [
 		{
@@ -134,99 +126,6 @@ export const Documents = () => {
 			</section>
 
 
-			<Modal isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
-				<ModalContent>
-					{onClose => (
-						<>
-							<ModalHeader>Reporte Parcial</ModalHeader>
-							<ModalBody>
-								<form
-									id="report_form"
-									className="flex flex-col gap-4"
-									onSubmit={handleSubmit(async data => {
-										const eachWeekOfInterval = (await import('date-fns/eachWeekOfInterval')).default
-										const addDays = (await import('date-fns/addDays')).default
-
-										// Create the report period string
-										const periodWeeks = eachWeekOfInterval({
-											start: internshipData.period.startDate,
-											end: internshipData.period.endDate
-										}, { weekStartsOn: 1 })
-
-										const reportWeeks = periodWeeks.slice(
-											(Number(data.formatNumber) - 1) * internshipData.period.reportFrecuency,
-											Number(data.formatNumber) * internshipData.period.reportFrecuency
-										)
-
-										await updatePeriod(`${formatedDate(reportWeeks[0])} al ${formatedDate(addDays(reportWeeks[reportWeeks.length - 1], 4))}`)
-
-										// Calculate the partial period hours
-										const periodHours = internshipData.period.totalHours / periodWeeks.length * internshipData.period.reportFrecuency
-										await updatePeriodHours(periodHours)
-
-										setDocumentDownloaded(`weekly-report-${data.formatNumber}`)
-										createWeeklyReport()
-										onClose()
-									})}
-								>
-									<Select
-										label="Número de reporte"
-										isRequired
-										autoFocus
-										{...register('formatNumber')}
-									>
-										{Array.from({
-											length: Math.ceil((differenceInCalendarWeeks(
-												internshipData.period.endDate,
-												internshipData.period.startDate
-											) + 1) / internshipData.period.reportFrecuency)
-										}).map((_, i) => (
-											<SelectItem
-												key={i + 1}
-												value={i + 1}
-												endContent={
-													documentsDownloaded[`weekly-report-${i + 1}`] ?
-														<span className="fill-green-600 font-bold absolute right-3 pr-4">
-															<DownloadIcon />
-														</span>
-														: <></>
-												}
-											>
-												{`${i + 1}° Reporte`}
-											</SelectItem>
-										))}
-									</Select>
-
-									<Textarea
-										minRows={8}
-										label="Descripción de actividades"
-										isRequired
-										{...register('description')}
-									/>
-
-									<Textarea
-										label="Comentarios"
-										{...register('comments')}
-									/>
-								</form>
-							</ModalBody>
-							<ModalFooter>
-								<Button color="danger" variant="light" onPress={onClose}>
-									Cancelar
-								</Button>
-								<Button
-									color="primary"
-									form="report_form"
-									type="submit"
-								>
-									Descargar
-								</Button>
-							</ModalFooter>
-						</>
-					)}
-				</ModalContent>
-			</Modal >
-
 			<Modal isOpen={isFinalReportOpen} onOpenChange={onFinalReportOpenChange} size="lg">
 				<ModalContent>
 					{onClose => (
@@ -268,19 +167,15 @@ export const Documents = () => {
 
 			{dataComplete && (
 				<>
+					{isOpen && (
+						<PartialReportModal
+							isOpen={isOpen}
+							onOpenChange={onOpenChange}
+						/>
+					)}
+
 					<PDFWrapper target={intershipTarget} >
 						<PresentationLetter data={internshipData} />
-					</PDFWrapper>
-
-					<PDFWrapper target={weeklyReportTarget}>
-						<WeeklyReport
-							data={internshipData}
-							comments={watch('comments')}
-							description={watch('description')}
-							formatNumber={Number(watch('formatNumber'))}
-							period={watch('period')}
-							totalHours={watch('totalHours')}
-						/>
 					</PDFWrapper>
 
 					<PDFWrapper target={finalReportTarget}>

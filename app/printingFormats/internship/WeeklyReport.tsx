@@ -2,19 +2,16 @@
 import { FC } from 'react'
 import { Internship } from '@/src/models/Internship'
 import logo from '@/public/UTMEscudo.png'
-import { formatSchedule } from '@/app/utils/format'
+import { formatedDate, formatSchedule } from '@/app/utils/format'
+import { PartialReport } from '@/src/models/PartialReport'
 
 
 interface WeeklyReportProps {
-	data: Internship
-	formatNumber: number
-	description: string
-	comments: string
-	period: string
-	totalHours: number
+	data: Omit<Internship, 'applicationDate'>
+	partialReport: PartialReport
 }
 
-export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, description, comments, period, totalHours }) => {
+export const WeeklyReport: FC<WeeklyReportProps> = ({ data, partialReport }) => {
 
 	return (
 		<section className="w-full h-full text-[15px] flex flex-col justify-between">
@@ -30,7 +27,7 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, descri
 
 				<div className="flex flex-col mt-8 gap-4">
 					<div>
-						<p className="w-full text-right">Formato No. {formatNumber}</p>
+						<p className="w-full text-right">Formato No. {partialReport.formatNumber}</p>
 						<p>Para ser llenado por el alumno.</p>
 					</div>
 
@@ -71,7 +68,7 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, descri
 
 						<div className="flex gap-4">
 							<p className="text-left min-w-[180px]">Semana del </p>
-							<p className="font-medium">{period}</p>
+							<p className="font-medium">{formatedDate(partialReport.startDate)} <span className="inline-block w-20 text-center font-normal">AL</span> {formatedDate(partialReport.endDate)}</p>
 						</div>
 
 						<div className="flex gap-16">
@@ -82,19 +79,19 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, formatNumber, descri
 
 							<div className="flex gap-4">
 								<p>Total de horas trabajadas:</p>
-								<p className="font-medium">{totalHours}</p>
+								<p className="font-medium">{partialReport.hours}</p>
 							</div>
 						</div>
 					</div>
 
 					<div className="border-black border-[1px] p-1 min-h-[245px]">
 						<p className="text-[16px] font-medium mb-2">Descripción de funciones realizadas:</p>
-						<p>{description}</p>
+						<p>{partialReport.description}</p>
 					</div>
 
 					<div className="border-black border-[1px] p-1 min-h-[110px]">
 						<p className="text-[16px] font-medium mb-2">Comentarios:</p>
-						<p>{comments}</p>
+						<p>{partialReport.comments}</p>
 					</div>
 				</div>
 			</div>
