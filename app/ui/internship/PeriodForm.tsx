@@ -10,7 +10,7 @@ import { INTERNSHIP_PERIODS } from "@/app/utils/constants"
 import { formatedDate } from "@/app/utils/format"
 
 
-export const PeriodForm = () => {
+const PeriodForm = () => {
 
 	const { save, values, isComplete } = useInternshipStore(state => ({
 		save: state.setPeriodData,
@@ -202,3 +202,5 @@ export const PeriodForm = () => {
 	)
 
 }
+
+export default PeriodForm

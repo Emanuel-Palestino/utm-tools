@@ -12,7 +12,7 @@ interface PersonFormProps {
 	nextForm: () => void
 }
 
-export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
+const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 
 	const { save, values, isComplete } = useInternshipStore(state => ({
 		save: state.setPersonalData,
@@ -127,3 +127,5 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 	)
 
 }
+
+export default PersonForm

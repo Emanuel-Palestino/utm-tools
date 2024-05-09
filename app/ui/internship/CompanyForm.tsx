@@ -14,7 +14,7 @@ interface CompanyFormProps {
 	nextForm: () => void
 }
 
-export const CompanyForm: FC<CompanyFormProps> = ({ nextForm }) => {
+const CompanyForm: FC<CompanyFormProps> = ({ nextForm }) => {
 
 	const { save, values } = useInternshipStore(state => ({
 		save: state.setCompanyData,
@@ -235,3 +235,5 @@ export const CompanyForm: FC<CompanyFormProps> = ({ nextForm }) => {
 	)
 
 }
+
+export default CompanyForm

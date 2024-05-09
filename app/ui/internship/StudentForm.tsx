@@ -15,7 +15,7 @@ interface StudentFormProps {
 	nextForm: () => void
 }
 
-export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
+const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 
 	const { save, values, isComplete } = useInternshipStore(state => ({
 		save: state.setStudentData,
@@ -195,3 +195,5 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 	)
 
 }
+
+export default StudentForm
