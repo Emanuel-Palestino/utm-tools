@@ -7,7 +7,7 @@ import { FC } from 'react'
 
 
 interface FinalReportProps {
-	data: Internship,
+	data: Omit<Internship, 'applicationDate'>,
 	informContent: string
 }
 
@@ -25,7 +25,7 @@ export const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 
 			<div className="w-full flex gap-2 justify-end pr-10 mb-6">
 				<p className="font-semibold">FECHA:</p>
-				<p>{formatedDate(data.applicationDate)}</p>
+				<p>{formatedDate(new Date())}</p>
 			</div>
 
 			<div className="px-10">
@@ -62,7 +62,7 @@ export const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 						{informContent}
 					</div>
 
-					<div className="flex justify-around text-center mt-12">
+					<div className="flex justify-around text-center mt-16">
 						<p className="border-t-[1px] border-black min-w-[170px]">Firma del Alumno</p>
 						<p className="border-t-[1px] border-black leading-4 min-w-[170px] pb-1">Vo. Bo. <br />Jefatura de Carrera</p>
 					</div>

@@ -3,20 +3,17 @@
 import { usePDF } from "@/src/hooks/usePDF"
 import { useInternshipStore } from "@/app/store/internship"
 import { Card, CardBody, CardFooter } from "@nextui-org/card"
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/modal"
-import { Button } from "@nextui-org/button"
-import { Textarea } from "@nextui-org/input"
+import { useDisclosure } from "@nextui-org/modal"
 import { formatedDate } from "@/app/utils/format"
-import { useForm } from "react-hook-form"
 import { DownloadIcon, DocumentIcon } from "@/app/icons"
 import dynamic from "next/dynamic"
 
 const PresentationLetter = dynamic(() => import('@/app/printingFormats/internship/PresentationLetter').then(mod => mod.PresentationLetter))
 const FinalEvaluation = dynamic(() => import('@/app/printingFormats/internship/FinalEvaluation').then(mod => mod.FinalEvaluation))
 const CommitmentLetter = dynamic(() => import('@/app/printingFormats/CommitmentLetter').then(mod => mod.CommitmentLetter))
-const FinalReport = dynamic(() => import('@/app/printingFormats/internship/FinalReport').then(mod => mod.FinalReport))
 const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 const PartialReportModal = dynamic(() => import('./PartialReportModal').then(mod => mod.PartialReportModal))
+const FinalReportModal = dynamic(() => import('./FinalReportModal').then(mod => mod.FinalReportModal))
 
 
 export const Documents = () => {
@@ -38,7 +35,6 @@ export const Documents = () => {
 	const { target: intershipTarget, createPDF: createIntership } = usePDF('Solicitud de Estancias Profesionales')
 	const { target: finalEvaluationTarget, createPDF: createFinalEvaluation } = usePDF('Reporte de Evaluación Final')
 	const { target: commitmentLetterTarget, createPDF: createCommitmentLetter } = usePDF('Carta Compromiso')
-	const { target: finalReportTarget, createPDF: createFinalReport } = usePDF('Reporte Final')
 
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
@@ -47,20 +43,6 @@ export const Documents = () => {
 		onOpen: onFinalReportOpen,
 		onOpenChange: onFinalReportOpenChange
 	} = useDisclosure()
-
-	const {
-		handleSubmit,
-		register,
-		watch
-	} = useForm<{ formatNumber: number, period: string, totalHours: number, description: string, comments: string }>({
-		defaultValues: {
-			formatNumber: 1,
-			period: '0000-00-00 - 0000-00-00',
-			totalHours: 40,
-			description: '',
-			comments: ''
-		}
-	})
 
 	const documents = [
 		{
@@ -125,46 +107,6 @@ export const Documents = () => {
 				</div>
 			</section>
 
-
-			<Modal isOpen={isFinalReportOpen} onOpenChange={onFinalReportOpenChange} size="lg">
-				<ModalContent>
-					{onClose => (
-						<>
-							<ModalHeader>Reporte Final de Actividades</ModalHeader>
-							<ModalBody>
-								<form
-									id="final_report_form"
-									onSubmit={handleSubmit(() => {
-										createFinalReport()
-										setDocumentDownloaded('final-report')
-										onClose()
-									})}
-								>
-									<Textarea
-										minRows={16}
-										label="Descripción de actividades"
-										isRequired
-										{...register('description')}
-									/>
-								</form>
-							</ModalBody>
-							<ModalFooter>
-								<Button color="danger" variant="light" onPress={onClose}>
-									Cancelar
-								</Button>
-								<Button
-									color="primary"
-									form="final_report_form"
-									type="submit"
-								>
-									Descargar
-								</Button>
-							</ModalFooter>
-						</>
-					)}
-				</ModalContent>
-			</Modal >
-
 			{dataComplete && (
 				<>
 					{isOpen && (
@@ -178,10 +120,6 @@ export const Documents = () => {
 						<PresentationLetter data={internshipData} />
 					</PDFWrapper>
 
-					<PDFWrapper target={finalReportTarget}>
-						<FinalReport data={internshipData} informContent={watch('description')} />
-					</PDFWrapper>
-
 					<PDFWrapper target={finalEvaluationTarget}>
 						<FinalEvaluation data={internshipData} />
 					</PDFWrapper>
@@ -189,6 +127,13 @@ export const Documents = () => {
 					<PDFWrapper target={commitmentLetterTarget}>
 						<CommitmentLetter data={internshipData} date={formatedDate(new Date())} />
 					</PDFWrapper>
+
+					{isFinalReportOpen && (
+						<FinalReportModal
+							isOpen={isFinalReportOpen}
+							onOpenChange={onFinalReportOpenChange}
+						/>
+					)}
 				</>
 			)}
 		</>
