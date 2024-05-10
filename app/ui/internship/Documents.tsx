@@ -7,6 +7,7 @@ import { useDisclosure } from "@nextui-org/modal"
 import { formatedDate } from "@/app/utils/format"
 import { DownloadIcon, DocumentIcon } from "@/app/icons"
 import dynamic from "next/dynamic"
+import { DocumentReception } from "@/app/printingFormats/internship/DocumentReception"
 
 const PresentationLetter = dynamic(() => import('@/app/printingFormats/internship/PresentationLetter').then(mod => mod.PresentationLetter))
 const FinalEvaluation = dynamic(() => import('@/app/printingFormats/internship/FinalEvaluation').then(mod => mod.FinalEvaluation))
@@ -35,6 +36,7 @@ export const Documents = () => {
 	const { target: intershipTarget, createPDF: createIntership } = usePDF('Solicitud de Estancias Profesionales')
 	const { target: finalEvaluationTarget, createPDF: createFinalEvaluation } = usePDF('Reporte de Evaluación Final')
 	const { target: commitmentLetterTarget, createPDF: createCommitmentLetter } = usePDF('Carta Compromiso')
+	const { target: documentReceptionTarget, createPDF: createDocumentReception } = usePDF('Formato de Recpeción de Documentos')
 
 	const { isOpen, onOpen, onOpenChange } = useDisclosure()
 
@@ -69,6 +71,11 @@ export const Documents = () => {
 			name: 'Reporte de Evaluación Final',
 			action: createFinalEvaluation,
 			stateKey: 'final-evaluation'
+		},
+		{
+			name: 'Recepción de Documentos',
+			action: createDocumentReception,
+			stateKey: 'document-reception'
 		}
 	]
 
@@ -134,6 +141,14 @@ export const Documents = () => {
 							onOpenChange={onFinalReportOpenChange}
 						/>
 					)}
+
+					<PDFWrapper target={documentReceptionTarget}>
+						<DocumentReception
+							person={internshipData.person}
+							student={internshipData.student}
+							period={internshipData.period}
+						/>
+					</PDFWrapper>
 				</>
 			)}
 		</>
