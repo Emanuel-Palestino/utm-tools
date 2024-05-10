@@ -11,7 +11,7 @@ import { PartialReport } from '@/src/models/PartialReport'
 import dynamic from 'next/dynamic'
 import { usePDF } from '@/src/hooks/usePDF'
 
-const WeeklyReport = dynamic(() => import('@/app/printingFormats/internship/WeeklyReport').then(mod => mod.WeeklyReport))
+const WeeklyReport = dynamic(() => import('@/app/printingFormats/internship/WeeklyReport'))
 const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 
 
@@ -20,7 +20,7 @@ interface PartialReportModalProps {
 	onOpenChange: (isOpen: boolean) => void
 }
 
-export const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange }) => {
+const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange }) => {
 
 	const { internshipData, reports, addReport, documentsDownloaded, setDocumentDownloaded } = useInternshipStore(state => ({
 		internshipData: {
@@ -196,3 +196,5 @@ export const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpen
 	)
 
 }
+
+export default PartialReportModal

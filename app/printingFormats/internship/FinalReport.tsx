@@ -11,7 +11,7 @@ interface FinalReportProps {
 	informContent: string
 }
 
-export const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
+const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 	return (
 		<section className="w-full h-full text-[14px]">
 
@@ -72,3 +72,5 @@ export const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 		</section>
 	)
 }
+
+export default FinalReport

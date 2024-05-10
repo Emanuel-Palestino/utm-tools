@@ -11,7 +11,7 @@ interface PresentationLetterProps {
     data: Internship
 }
 
-export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
+const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
 
     return (
         <section className="w-full text-[15px]">
@@ -242,3 +242,5 @@ export const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
     )
 
 }
+
+export default PresentationLetter

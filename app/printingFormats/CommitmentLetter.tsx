@@ -8,7 +8,7 @@ interface CommitmentLetterProps {
 	date: string
 }
 
-export const CommitmentLetter: FC<CommitmentLetterProps> = ({ data, date }) => {
+const CommitmentLetter: FC<CommitmentLetterProps> = ({ data, date }) => {
 
 	return (
 		<section className="w-full h-full text-[15px] px-16">
@@ -78,3 +78,5 @@ export const CommitmentLetter: FC<CommitmentLetterProps> = ({ data, date }) => {
 	)
 
 }
+
+export default CommitmentLetter

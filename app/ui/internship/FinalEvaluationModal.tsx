@@ -8,15 +8,15 @@ import { useForm } from "react-hook-form"
 import { Textarea } from "@nextui-org/input"
 
 const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
-const FinalReport = dynamic(() => import('@/app/printingFormats/internship/FinalReport'))
+const FinalEvaluation = dynamic(() => import('@/app/printingFormats/internship/FinalEvaluation'))
 
 
-interface FinalReportModalProps {
+interface FinalEvaluationProps {
 	isOpen: boolean
 	onOpenChange: (isOpen: boolean) => void
 }
 
-const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) => {
+const FinalEvaluationModal: FC<FinalEvaluationProps> = ({ isOpen, onOpenChange }) => {
 
 	const { internshipData, setDocumentDownloaded } = useInternshipStore(state => ({
 		internshipData: {
@@ -25,7 +25,7 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 			person: state.personalData!,
 			student: state.studentData!
 		},
-		setDocumentDownloaded: () => state.setDocumentDownloaded('final-report', true)
+		setDocumentDownloaded: () => state.setDocumentDownloaded('final-evaluation', true)
 	}))
 	const {
 		handleSubmit,
@@ -37,7 +37,7 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 		}
 	})
 
-	const { target: finalReportTarget, createPDF: createFinalReport } = usePDF('Reporte Final')
+	const { target, createPDF } = usePDF('Reporte de Evaluación Final')
 
 	return (
 		<>
@@ -45,20 +45,20 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 				<ModalContent>
 					{onClose => (
 						<>
-							<ModalHeader>Reporte Final de Actividades</ModalHeader>
+							<ModalHeader>Reporte de Evaluación Final</ModalHeader>
 
 							<ModalBody>
 								<form
-									id="final_report_form"
+									id="final_evaluation_form"
 									onSubmit={handleSubmit(async () => {
-										await createFinalReport()
+										await createPDF()
 										setDocumentDownloaded()
 										onClose()
 									})}
 								>
 									<Textarea
-										minRows={16}
-										label="Descripción de actividades"
+										minRows={4}
+										label="Descripción breve de actividades asignadas"
 										isRequired
 										{...register('description')}
 									/>
@@ -72,7 +72,7 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 
 								<Button
 									color="primary"
-									form="final_report_form"
+									form="final_evaluation_form"
 									type="submit"
 								>
 									Descargar
@@ -83,12 +83,12 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 				</ModalContent>
 			</Modal >
 
-			<PDFWrapper target={finalReportTarget}>
-				<FinalReport data={internshipData} informContent={watch('description')} />
+			<PDFWrapper target={target}>
+				<FinalEvaluation data={internshipData} description={watch('description')} />
 			</PDFWrapper>
 		</>
 	)
 
 }
 
-export default FinalReportModal
+export default FinalEvaluationModal

@@ -19,10 +19,11 @@ const evaluation: string[] = [
 ]
 
 interface FinalEvaluationProps {
-	data: Internship
+	data: Omit<Internship, 'applicationDate'>
+	description: string
 }
 
-export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
+const FinalEvaluation: FC<FinalEvaluationProps> = ({ data, description }) => {
 
 	return (
 		<section className="w-full h-full text-[13.5px]">
@@ -137,7 +138,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Descripción de funciones asignadas al alumno:</p>
-						<p className="font-semibold">Desarrollo</p>
+						<p className="font-semibold">{description}</p>
 					</div>
 				</div>
 
@@ -203,3 +204,5 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ data }) => {
 	)
 
 }
+
+export default FinalEvaluation

@@ -7,14 +7,14 @@ import { useDisclosure } from "@nextui-org/modal"
 import { formatedDate } from "@/app/utils/format"
 import { DownloadIcon, DocumentIcon } from "@/app/icons"
 import dynamic from "next/dynamic"
-import { DocumentReception } from "@/app/printingFormats/internship/DocumentReception"
 
-const PresentationLetter = dynamic(() => import('@/app/printingFormats/internship/PresentationLetter').then(mod => mod.PresentationLetter))
-const FinalEvaluation = dynamic(() => import('@/app/printingFormats/internship/FinalEvaluation').then(mod => mod.FinalEvaluation))
-const CommitmentLetter = dynamic(() => import('@/app/printingFormats/CommitmentLetter').then(mod => mod.CommitmentLetter))
+const PresentationLetter = dynamic(() => import('@/app/printingFormats/internship/PresentationLetter'))
+const CommitmentLetter = dynamic(() => import('@/app/printingFormats/CommitmentLetter'))
 const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
-const PartialReportModal = dynamic(() => import('./PartialReportModal').then(mod => mod.PartialReportModal))
-const FinalReportModal = dynamic(() => import('./FinalReportModal').then(mod => mod.FinalReportModal))
+const PartialReportModal = dynamic(() => import('./PartialReportModal'))
+const FinalReportModal = dynamic(() => import('./FinalReportModal'))
+const FinalEvaluationModal = dynamic(() => import('./FinalEvaluationModal'))
+const DocumentReception = dynamic(() => import('@/app/printingFormats/internship/DocumentReception'))
 
 
 export const Documents = () => {
@@ -34,7 +34,6 @@ export const Documents = () => {
 
 
 	const { target: intershipTarget, createPDF: createIntership } = usePDF('Solicitud de Estancias Profesionales')
-	const { target: finalEvaluationTarget, createPDF: createFinalEvaluation } = usePDF('Reporte de Evaluación Final')
 	const { target: commitmentLetterTarget, createPDF: createCommitmentLetter } = usePDF('Carta Compromiso')
 	const { target: documentReceptionTarget, createPDF: createDocumentReception } = usePDF('Formato de Recpeción de Documentos')
 
@@ -44,6 +43,12 @@ export const Documents = () => {
 		isOpen: isFinalReportOpen,
 		onOpen: onFinalReportOpen,
 		onOpenChange: onFinalReportOpenChange
+	} = useDisclosure()
+
+	const {
+		isOpen: isFinalEvaluationOpen,
+		onOpen: onFinalEvaluationOpen,
+		onOpenChange: onFinalEvaluationOpenChange
 	} = useDisclosure()
 
 	const documents = [
@@ -65,11 +70,11 @@ export const Documents = () => {
 		{
 			name: 'Reporte Final',
 			action: onFinalReportOpen,
-			stateKey: 'none'
+			stateKey: 'final-report'
 		},
 		{
 			name: 'Reporte de Evaluación Final',
-			action: createFinalEvaluation,
+			action: onFinalEvaluationOpen,
 			stateKey: 'final-evaluation'
 		},
 		{
@@ -127,10 +132,6 @@ export const Documents = () => {
 						<PresentationLetter data={internshipData} />
 					</PDFWrapper>
 
-					<PDFWrapper target={finalEvaluationTarget}>
-						<FinalEvaluation data={internshipData} />
-					</PDFWrapper>
-
 					<PDFWrapper target={commitmentLetterTarget}>
 						<CommitmentLetter data={internshipData} date={formatedDate(new Date())} />
 					</PDFWrapper>
@@ -139,6 +140,13 @@ export const Documents = () => {
 						<FinalReportModal
 							isOpen={isFinalReportOpen}
 							onOpenChange={onFinalReportOpenChange}
+						/>
+					)}
+
+					{isFinalEvaluationOpen && (
+						<FinalEvaluationModal
+							isOpen={isFinalEvaluationOpen}
+							onOpenChange={onFinalEvaluationOpenChange}
 						/>
 					)}
 

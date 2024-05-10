@@ -11,7 +11,7 @@ interface DocumentReceptionProps {
 	period: InternshipPeriod
 }
 
-export const DocumentReception: FC<DocumentReceptionProps> = props => {
+const DocumentReception: FC<DocumentReceptionProps> = props => {
 
 	return (
 		<section className="w-full h-full text-[13px]">
@@ -106,3 +106,5 @@ const Section: FC<DocumentReceptionProps> = ({ person, student, period }) => {
 		</div>
 	)
 }
+
+export default DocumentReception

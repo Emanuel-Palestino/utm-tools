@@ -11,7 +11,7 @@ interface WeeklyReportProps {
 	partialReport: PartialReport
 }
 
-export const WeeklyReport: FC<WeeklyReportProps> = ({ data, partialReport }) => {
+const WeeklyReport: FC<WeeklyReportProps> = ({ data, partialReport }) => {
 
 	return (
 		<section className="w-full h-full text-[15px] flex flex-col justify-between">
@@ -104,3 +104,5 @@ export const WeeklyReport: FC<WeeklyReportProps> = ({ data, partialReport }) => 
 	)
 
 }
+
+export default WeeklyReport
