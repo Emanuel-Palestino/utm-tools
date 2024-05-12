@@ -66,6 +66,7 @@ const PeriodForm = () => {
 								label="Área de Trabajo"
 								description="Área en el que realizarás tus estancias profesionales."
 								isRequired
+								autoFocus
 								{...field}
 							/>
 						)}

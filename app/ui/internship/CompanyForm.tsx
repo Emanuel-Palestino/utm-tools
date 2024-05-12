@@ -61,6 +61,7 @@ const CompanyForm: FC<CompanyFormProps> = ({ nextForm }) => {
 								type="text"
 								label="Nombre de la Empresa"
 								isRequired
+								autoFocus
 								{...field}
 							/>
 						)}
