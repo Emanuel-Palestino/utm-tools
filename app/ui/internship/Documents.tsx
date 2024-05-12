@@ -55,32 +55,38 @@ export const Documents = () => {
 		{
 			name: 'Solicitud',
 			action: createIntership,
-			stateKey: 'presentation-letter'
+			stateKey: 'presentation-letter',
+			instantDownload: true
 		},
 		{
 			name: 'Carta Compromiso',
 			action: createCommitmentLetter,
-			stateKey: 'commitment-letter'
+			stateKey: 'commitment-letter',
+			instantDownload: true
 		},
 		{
 			name: 'Reportes Parciales',
 			action: onOpen,
-			stateKey: 'none'
+			stateKey: 'none',
+			instantDownload: false
 		},
 		{
 			name: 'Reporte Final',
 			action: onFinalReportOpen,
-			stateKey: 'final-report'
+			stateKey: 'final-report',
+			instantDownload: false
 		},
 		{
 			name: 'Reporte de Evaluación Final',
 			action: onFinalEvaluationOpen,
-			stateKey: 'final-evaluation'
+			stateKey: 'final-evaluation',
+			instantDownload: false
 		},
 		{
 			name: 'Recepción de Documentos',
 			action: createDocumentReception,
-			stateKey: 'document-reception'
+			stateKey: 'document-reception',
+			instantDownload: true
 		}
 	]
 
@@ -97,7 +103,7 @@ export const Documents = () => {
 							isDisabled={!dataComplete}
 							onPress={() => {
 								doc.action()
-								if (doc.stateKey !== 'none') setDocumentDownloaded(doc.stateKey)
+								if (doc.instantDownload) setDocumentDownloaded(doc.stateKey)
 							}}
 							key={doc.name}
 							className="w-32 h-36"
