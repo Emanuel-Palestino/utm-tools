@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import '@/app/global.css'
 import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Navigation } from './ui/Navigation'
 
 
@@ -38,7 +37,6 @@ export default function RootLayout({
 				<Navigation />
 				{children}
 				<Analytics />
-				<SpeedInsights />
 			</body>
 		</html>
 	)
