@@ -4,8 +4,10 @@ import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextu
 import { Button } from "@nextui-org/button"
 import dynamic from "next/dynamic"
 import { FC } from "react"
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import { Textarea } from "@nextui-org/input"
+import { createAIModel } from "@/app/actions/openai"
+import { GenerateIcon } from "@/app/icons/GenerateIcon"
 
 const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 const FinalReport = dynamic(() => import('@/app/printingFormats/internship/FinalReport'))
@@ -18,18 +20,21 @@ interface FinalReportModalProps {
 
 const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) => {
 
-	const { internshipData, setDocumentDownloaded } = useInternshipStore(state => ({
+	const { internshipData, reports, setDocumentDownloaded } = useInternshipStore(state => ({
 		internshipData: {
 			period: state.periodData!,
 			company: state.companyData!,
 			person: state.personalData!,
 			student: state.studentData!
 		},
+		reports: state.reports,
 		setDocumentDownloaded: () => state.setDocumentDownloaded('final-report', true)
 	}))
+
 	const {
 		handleSubmit,
-		register,
+		control,
+		setValue,
 		watch
 	} = useForm<{ description: string }>({
 		defaultValues: {
@@ -37,11 +42,32 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 		}
 	})
 
+	const generateFinalReport = async () => {
+
+		if (!reports['weekly-report-1'] || !reports['weekly-report-2'] || !reports['weekly-report-3']) {
+			console.error('No se han registrado todos los reportes parciales')
+			return
+		}
+
+		const { error, message } = await createAIModel([
+			reports['weekly-report-1'].description,
+			reports['weekly-report-2'].description,
+			reports['weekly-report-3'].description
+		])
+
+		if (error) {
+			console.error(error)
+			return
+		}
+
+		setValue('description', message || '')
+	}
+
 	const { target: finalReportTarget, createPDF: createFinalReport } = usePDF('Reporte Final')
 
 	return (
 		<>
-			<Modal isOpen={isOpen} onOpenChange={onOpenChange} size="lg">
+			<Modal isOpen={isOpen} onOpenChange={onOpenChange} size="xl">
 				<ModalContent>
 					{onClose => (
 						<>
@@ -56,11 +82,28 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 										onClose()
 									})}
 								>
-									<Textarea
-										minRows={16}
-										label="Descripción de actividades"
-										isRequired
-										{...register('description')}
+									<Controller
+										name="description"
+										control={control}
+										render={({ field }) => (
+											<Textarea
+												minRows={20}
+												size="lg"
+												label="Descripción de actividades"
+												isRequired
+												endContent={
+													<Button
+														onPress={generateFinalReport}
+														className="min-w-1 p-3 absolute top-2 right-2"
+													>
+														<GenerateIcon />
+													</Button>
+												}
+												classNames={{ innerWrapper: 'pr-6' }}
+												{...field}
+											/>
+										)}
+
 									/>
 								</form>
 							</ModalBody>
