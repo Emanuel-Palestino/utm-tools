@@ -6,12 +6,13 @@ import { Key } from "@react-types/shared"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { CheckIcon } from "@/app/icons"
 import dynamic from "next/dynamic"
+import SkeletonForm from "../SkeletonForm"
 
-const PersonForm = dynamic(() => import('./PersonForm').then(mod => mod.PersonForm))
-const PeriodForm = dynamic(() => import('./PeriodForm').then(mod => mod.PeriodForm))
-const GovernmentAgencyForm = dynamic(() => import('./GovernmentAgencyForm').then(mod => mod.GovernmentAgencyForm))
-const ActivitiesForm = dynamic(() => import('./ActivitiesForm').then(mod => mod.ActivitiesForm))
-const StudentForm = dynamic(() => import('./StudentForm').then(mod => mod.StudentForm))
+const PersonForm = dynamic(() => import('./PersonForm'), { loading: () => <SkeletonForm rows={5} /> })
+const StudentForm = dynamic(() => import('./StudentForm'), {loading: () => <SkeletonForm rows={4} /> })
+const GovernmentAgencyForm = dynamic(() => import('./GovernmentAgencyForm'), { loading: () => <SkeletonForm rows={6} /> })
+const PeriodForm = dynamic(() => import('./PeriodForm'), { loading: () => <SkeletonForm rows={5} /> })
+const ActivitiesForm = dynamic(() => import('./ActivitiesForm'), { loading: () => <SkeletonForm rows={5} /> })
 
 
 export const Form = () => {
@@ -32,6 +33,7 @@ export const Form = () => {
 	return (
 		<section>
 			<h2 className="text-lg sm:text-2xl mb-2 md:mb-4 text-center md:text-left">1 - Ingresa los datos necesarios</h2>
+
 			<Tabs
 				selectedKey={selectedTab}
 				onSelectionChange={setSelectecTab}

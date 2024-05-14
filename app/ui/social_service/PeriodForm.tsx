@@ -13,7 +13,7 @@ interface PeriodFormProps {
 	nextForm: () => void
 }
 
-export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
+const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 
 	const { save, values, isComplete } = useSocialServiceStore(state => ({
 		save: state.setPeriodData,
@@ -172,3 +172,5 @@ export const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 	)
 
 }
+
+export default PeriodForm

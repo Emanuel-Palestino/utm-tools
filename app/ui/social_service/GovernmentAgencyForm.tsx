@@ -11,7 +11,7 @@ interface GovernmentAgencyFormProps {
 	nextForm: () => void
 }
 
-export const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }) => {
+const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }) => {
 
 	const { save, values } = useSocialServiceStore(state => ({
 		save: state.setGovernmentAgencyData,
@@ -189,3 +189,5 @@ export const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }
 	)
 
 }
+
+export default GovernmentAgencyForm

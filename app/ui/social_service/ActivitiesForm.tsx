@@ -6,7 +6,7 @@ import { Controller, useFieldArray, useForm } from "react-hook-form"
 import { useSocialServiceStore } from "@/app/store/socialService"
 
 
-export const ActivitiesForm = () => {
+const ActivitiesForm = () => {
 
 	const { activities, save, isComplete, periodMonths } = useSocialServiceStore(state => ({
 		save: state.setActivitiesData,
@@ -121,3 +121,5 @@ export const ActivitiesForm = () => {
 	)
 
 }
+
+export default ActivitiesForm
