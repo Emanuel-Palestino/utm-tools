@@ -69,27 +69,32 @@ export const Documents = () => {
 		{
 			name: 'Registro de Servicio Social',
 			action: createRegistration,
-			stateKey: 'registration'
+			stateKey: 'registration',
+			instantDownload: true
 		},
 		{
 			name: 'Cronograma de Actividades',
 			action: createScheduleOfActivities,
-			stateKey: 'schedule-activities'
+			stateKey: 'schedule-activities',
+			instantDownload: true
 		},
 		{
 			name: 'Reportes Parciales',
 			action: onOpen,
-			stateKey: 'none'
+			stateKey: 'none',
+			instantDownload: false
 		},
 		{
 			name: 'Reporte de Evaluación Final',
 			action: onEvaluationModalOpen,
-			stateKey: 'final-evaluation'
+			stateKey: 'final-evaluation',
+			instantDownload: false
 		},
 		{
 			name: 'Recepción de Documentos',
 			action: createDocumentReception,
-			stateKey: 'document-reception'
+			stateKey: 'document-reception',
+			instantDownload: true
 		}
 	]
 
@@ -106,7 +111,7 @@ export const Documents = () => {
 							isDisabled={!dataComplete}
 							onPress={() => {
 								doc.action()
-								if (doc.stateKey !== 'none') setDocumentDownloaded(doc.stateKey)
+								if (doc.instantDownload) setDocumentDownloaded(doc.stateKey)
 							}}
 							key={doc.name}
 							className="w-32 h-36"
