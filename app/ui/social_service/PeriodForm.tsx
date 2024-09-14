@@ -31,7 +31,7 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 			startDate: new Date(),
 			endDate: new Date(),
 			schedule: [9, 18],
-			totalHours: 460,
+			totalHours: 480,
 			months: 6,
 			projectName: '',
 			projectObjective: ''
