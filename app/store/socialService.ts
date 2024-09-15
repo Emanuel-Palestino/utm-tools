@@ -69,7 +69,18 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 		{
 			name: 'social-service-storage',
 			skipHydration: true,
-			storage: createStorage<SocialServiceStore>()
+			storage: createStorage<SocialServiceStore>(),
+			version: 1,
+			migrate: (persistedState: any, version) => {
+				if (version === 0) {
+					if (persistedState.periodData) {
+						persistedState.periodData.schedules = [persistedState.periodData.schedule]
+						delete persistedState.periodData.schedule
+					}
+				}
+
+				return persistedState
+			}
 		}
 
 	)
