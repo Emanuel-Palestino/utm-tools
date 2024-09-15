@@ -71,10 +71,14 @@ const WeeklyReport: FC<WeeklyReportProps> = ({ data, partialReport }) => {
 							<p className="font-medium">{formatedDate(partialReport.startDate)} <span className="inline-block w-20 text-center font-normal">AL</span> {formatedDate(partialReport.endDate)}</p>
 						</div>
 
-						<div className="flex gap-16">
+						<div className="flex gap-8 justify-between pr-2">
 							<div className="flex gap-4">
 								<p className="text-left min-w-[180px]">Horario:</p>
-								<p className="font-medium min-w-[200px]">{formatSchedule(data.period.schedule)}</p>
+								<p className="font-medium min-w-[200px]">{
+									data.period.schedules.length === 1
+										? formatSchedule(data.period.schedules[0])
+										: `${formatSchedule(data.period.schedules[0])} y ${formatSchedule(data.period.schedules[1])}`
+								}</p>
 							</div>
 
 							<div className="flex gap-4">

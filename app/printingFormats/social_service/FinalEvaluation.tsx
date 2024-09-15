@@ -81,7 +81,11 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 					<div className="flex gap-6">
 						<div className="flex gap-2">
 							<p className="text-left w-[170px] font-semibold">HORARIO:</p>
-							<p>{formatSchedule(period.schedule)}</p>
+							<p>{
+								period.schedules.length === 1
+									? formatSchedule(period.schedules[0])
+									: `${formatSchedule(period.schedules[0])} y ${formatSchedule(period.schedules[1])}`
+							}</p>
 						</div>
 
 						<div className="flex gap-2">
