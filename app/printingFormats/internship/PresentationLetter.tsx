@@ -130,10 +130,14 @@ const PresentationLetter: FC<PresentationLetterProps> = ({ data }) => {
                     <p className="font-medium">{formatedDate(data.period.startDate)} <span className="inline-block w-28 text-center ">al</span> {formatedDate(data.period.endDate)}</p>
                 </div>
 
-                <div className="flex gap-20">
+                <div className="flex gap-8 justify-between pr-3">
                     <div className="flex gap-4">
                         <p className="text-right min-w-[130px]">Horario:</p>
-                        <p className="font-medium">{formatSchedule(data.period.schedule)}</p>
+                        <p className="font-medium">{
+                            data.period.schedules.length === 1
+                                ? formatSchedule(data.period.schedules[0])
+                                : `${formatSchedule(data.period.schedules[0])} y ${formatSchedule(data.period.schedules[1])}`
+                        }</p>
                     </div>
 
                     <div className="flex gap-4">

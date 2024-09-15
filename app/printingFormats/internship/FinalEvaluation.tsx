@@ -28,7 +28,7 @@ const FinalEvaluation: FC<FinalEvaluationProps> = ({ data, description }) => {
 	return (
 		<section className="w-full h-full text-[13.5px]">
 
-			<div className="relative px-6 h-[95px]">
+			<div className="relative px-6 h-[92px]">
 				<img width={90} height={90} src={logo.src} alt="logo" className="inline-block align-top" />
 				<div className="ml-12 inline-block align-top text-center mt-1 text-[20px]">
 					<p className="leading-none">UNIVERSIDAD TECNOLÓGICA DE LA MIXTECA</p>
@@ -95,7 +95,7 @@ const FinalEvaluation: FC<FinalEvaluationProps> = ({ data, description }) => {
 					</div>
 				</div>
 
-				<div className="flex flex-col mb-2">
+				<div className="flex flex-col mb-1">
 					<div className="flex gap-4">
 						<p className="min-w-[160px]">Nombre del Alumno:</p>
 						<p className="font-semibold">{data.person.name}</p>
@@ -115,7 +115,7 @@ const FinalEvaluation: FC<FinalEvaluationProps> = ({ data, description }) => {
 
 
 					<div className="flex gap-4 items-center">
-						<p className="max-w-[160px]">Periodo de estancia en el departamento de:</p>
+						<p className="max-w-[160px] leading-4">Periodo de estancia en el departamento de:</p>
 						<p className="font-semibold">{data.period.workArea}</p>
 					</div>
 
@@ -124,25 +124,29 @@ const FinalEvaluation: FC<FinalEvaluationProps> = ({ data, description }) => {
 						<p className="font-semibold">{formatedDate(data.period.startDate)} al {formatedDate(data.period.endDate)}</p>
 					</div>
 
-					<div className="grid grid-cols-[60%_auto]">
+					<div className="flex gap-8 justify-between pr-2">
 						<div className="flex gap-4">
 							<p className="min-w-[160px]">Horario:</p>
-							<p className="font-semibold">{formatSchedule(data.period.schedule)}</p>
+							<p className="font-semibold">{
+								data.period.schedules.length === 1
+									? formatSchedule(data.period.schedules[0])
+									: `${formatSchedule(data.period.schedules[0])} y ${formatSchedule(data.period.schedules[1])}`
+							}</p>
 						</div>
 
-						<div className="flex gap-4">
+						<div className="flex gap-1">
 							<p className="min-w-[160px]">Total de horas trabajadas:</p>
 							<p className="font-semibold">{data.period.totalHours}</p>
 						</div>
 					</div>
 
-					<div className="flex gap-4">
-						<p className="min-w-[160px]">Descripción de funciones asignadas al alumno:</p>
-						<p className="font-semibold">{description}</p>
+					<div className="flex gap-4 items-center">
+						<p className="min-w-[160px] leading-4">Descripción de funciones asignadas al alumno:</p>
+						<p className="font-semibold leading-4">{description}</p>
 					</div>
 				</div>
 
-				<div className="text-[13px] mb-1">
+				<div className="text-[13px]">
 					<table className="w-full table-auto border-collapse border border-black">
 						<thead>
 							<tr>
@@ -176,7 +180,7 @@ const FinalEvaluation: FC<FinalEvaluationProps> = ({ data, description }) => {
 					</table>
 				</div>
 
-				<div className="mb-2">
+				<div className="mb-1">
 					<p>¿Considera necesario reforzar y/o incorporar algunos temas en la carrera del alumno?</p>
 					<div className="flex gap-1">
 						<p>Sí</p>

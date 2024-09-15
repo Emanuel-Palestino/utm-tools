@@ -2,11 +2,12 @@ import { Card, CardBody } from "@nextui-org/card"
 import { Button } from "@nextui-org/button"
 import { Input, Textarea } from "@nextui-org/input"
 import { Slider } from "@nextui-org/slider"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-form"
 import React, { FC, useEffect } from "react"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
 import { addMonths } from "date-fns"
+import { MinusIcon, PlusIcon } from "@/app/icons"
 
 
 interface PeriodFormProps {
@@ -30,7 +31,8 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		defaultValues: {
 			startDate: new Date(),
 			endDate: new Date(),
-			schedule: [9, 18],
+			// values is passed due to the field array takes always the default value
+			schedules: values?.schedules || [[9, 18]],
 			totalHours: 480,
 			months: 6,
 			projectName: '',
@@ -38,6 +40,8 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		},
 		values
 	})
+
+	const { fields, append, remove } = useFieldArray({ control, name: 'schedules' })
 
 	const onSubmit: SubmitHandler<SocialServicePeriod> = data => {
 		data.totalHours = Number(data.totalHours)
@@ -89,21 +93,52 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 						)}
 					/>
 
-					<Controller
-						name="schedule"
-						control={control}
-						render={({ field }) => (
-							<Slider
-								label="Horario"
-								step={1}
-								maxValue={22}
-								minValue={6}
-								getValue={value => Array.isArray(value) ? `${value[0]}:00 hrs. a ${value[1]}:00 hrs.` : ''}
-								showSteps
-								{...field}
+					<section>
+						<div className="flex gap-2 items-end">
+							<p className="font-medium text-lg">Horarios</p>
+							<Button
+								isIconOnly
+								color="primary"
+								size="sm"
+								onPress={() => append([[9, 18]])}
+								isDisabled={fields.length >= 2}
+								className="text-white min-w-6 w-6 h-6"
+							>
+								<PlusIcon />
+							</Button>
+						</div>
+
+						{fields.map((field, index) => (
+							<Controller
+								key={field.id}
+								name={`schedules.${index}` as const}
+								control={control}
+								render={({ field }) => (
+									<Slider
+										label={`Horario ${index + 1}`}
+										step={1}
+										maxValue={22}
+										minValue={6}
+										getValue={value => Array.isArray(value) ? `${value[0]}:00 hrs. a ${value[1]}:00 hrs.` : ''}
+										showSteps
+										{...field}
+										endContent={
+											fields.length > 1 &&
+											<Button
+												isIconOnly
+												color="danger"
+												size="sm"
+												onPress={() => remove(index)}
+												className="text-white min-w-6 w-6 h-6"
+											>
+												<MinusIcon />
+											</Button>
+										}
+									/>
+								)}
 							/>
-						)}
-					/>
+						))}
+					</section>
 
 					<Controller
 						name="totalHours"

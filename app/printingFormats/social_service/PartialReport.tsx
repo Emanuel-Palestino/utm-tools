@@ -104,7 +104,11 @@ export const PartialReport: FC<PartialReportProps> = ({
 					<div className="flex gap-10">
 						<div className="flex gap-2">
 							<p className="text-left w-[180px] font-semibold">HORARIO:</p>
-							<p>{formatSchedule(period.schedule)}</p>
+							<p>{
+								period.schedules.length === 1
+									? formatSchedule(period.schedules[0])
+									: `${formatSchedule(period.schedules[0])} y ${formatSchedule(period.schedules[1])}`
+							}</p>
 						</div>
 
 						<div className="flex gap-2">
