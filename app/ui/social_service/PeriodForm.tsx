@@ -6,7 +6,7 @@ import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-fo
 import React, { FC, useEffect } from "react"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
-import { addMonths } from "date-fns"
+import { addMonths, differenceInMonths } from "date-fns"
 import { MinusIcon, PlusIcon } from "@/app/icons"
 
 
@@ -26,7 +26,8 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		handleSubmit,
 		control,
 		watch,
-		setValue
+		setValue,
+		formState: { dirtyFields }
 	} = useForm<SocialServicePeriod>({
 		defaultValues: {
 			startDate: new Date(),
@@ -45,10 +46,11 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 
 	const onSubmit: SubmitHandler<SocialServicePeriod> = data => {
 		data.totalHours = Number(data.totalHours)
-		data.months = Number(data.months)
 
 		data.startDate = new Date(`${data.startDate} UTC-6`)
 		data.endDate = new Date(`${data.endDate} UTC-6`)
+
+		data.months = differenceInMonths(data.endDate, data.startDate)
 
 		save(data)
 		nextForm()
@@ -58,8 +60,9 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 	let startDate = watch('startDate')
 
 	useEffect(() => {
-		setValue('endDate', addMonths(new Date(`${startDate} GMT-6`), 6))
-	}, [setValue, startDate])
+		if (dirtyFields.startDate)
+			setValue('endDate', addMonths(new Date(`${startDate} GMT-6`), 6))
+	}, [setValue, dirtyFields.startDate, startDate])
 
 	return (
 		<Card>
@@ -87,6 +90,7 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 								type="date"
 								label="Fecha de Término"
 								isRequired
+								min={addMonths(new Date(`${startDate} GMT-6`), 6).toISOString().split('T')[0]}
 								{...field}
 								value={field.value instanceof Date ? field.value.toISOString().split('T')[0] : field.value}
 							/>
@@ -147,22 +151,7 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 							<Input
 								type="number"
 								label="Total de Horas"
-								min={280}
-								isRequired
-								{...field}
-								value={String(field.value)}
-							/>
-						)}
-					/>
-
-					<Controller
-						name="months"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="number"
-								label="Número de Actividades"
-								min={6}
+								min={480}
 								isRequired
 								{...field}
 								value={String(field.value)}
