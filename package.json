@@ -24,14 +24,14 @@
     "@nextui-org/theme": "^2.2.11",
     "@vercel/analytics": "^1.1.1",
     "date-fns": "^2.30.0",
-    "framer-motion": "^10.16.4",
-    "next": "^14.2.3",
+    "framer-motion": "^11.5.4",
+    "next": "^14.2.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.48.2",
+    "react-hook-form": "^7.53.0",
     "react-to-pdf": "^1.0.1",
     "superjson": "^2.2.1",
-    "zustand": "^4.4.6"
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@types/node": "^20.8.10",
