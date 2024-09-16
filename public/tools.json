@@ -13,14 +13,14 @@
 			"Evaluación Final por parte de la Empresa.",
 			"Formato para la Recepción de Documentos"
 		],
-		"date": "2024-05-11",
+		"date": "2024-09-15",
 		"link": "/practicas_profesionales"
 	},
 	{
 		"id": "service_tool",
 		"type": "Documentación",
 		"name": "Servicio Social",
-		"description": "Los estudiantes deben realizar su Servicio Social al comenzar octavo semestre, este debe ser realizado en el sector público. El periodo exige un total de 480 horas a lo largo de 6 meses.",
+		"description": "Los estudiantes deben realizar su Servicio Social al comenzar octavo semestre, este debe ser realizado en el sector público. El periodo exige un total de 480 horas a lo largo de al menos 6 meses.",
 		"subtitle": "Documentación que se puede generar:",
 		"documentation": [
 			"Registro de Servicio Social.",
@@ -29,7 +29,7 @@
 			"Reporte de Evaluación Final.",
 			"Formato para la Recepción de Documentos."
 		],
-		"date": "2024-04-15",
+		"date": "2024-09-15",
 		"link": "/servicio_social"
 	},
 	{
