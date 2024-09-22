@@ -72,7 +72,7 @@ const ActivitiesForm = () => {
 
 			{isPeriodComplete ?
 				<CardBody>
-					<section className="p-2 mb-1">
+					<section className="p-2 mb-1 w-full flex justify-end md:justify-normal">
 						<Button
 							color="primary"
 							size="md"
@@ -104,7 +104,7 @@ const ActivitiesForm = () => {
 									)}
 								/>
 
-								<div className="flex flex-grow flex-wrap md:flex-nowrap gap-2 items-center">
+								<div className="flex flex-grow flex-wrap md:flex-nowrap gap-2 items-center justify-center">
 									<Controller
 										name={`activities.${index}.startDate`}
 										control={control}
@@ -162,7 +162,6 @@ const ActivitiesForm = () => {
 											isIconOnly
 											color="primary"
 											size="sm"
-											className="text-white"
 											onClick={() => remove(index)}
 										>
 											<MinusIcon />
