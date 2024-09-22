@@ -22,6 +22,8 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		isComplete: state.isPeriodDataComplete
 	}))
 
+	const today = new Date()
+
 	const {
 		handleSubmit,
 		control,
@@ -30,8 +32,8 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		formState: { dirtyFields }
 	} = useForm<SocialServicePeriod>({
 		defaultValues: {
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: today,
+			endDate: addMonths(today, 6),
 			// values is passed due to the field array takes always the default value
 			schedules: values?.schedules || [[9, 18]],
 			totalHours: 480,
