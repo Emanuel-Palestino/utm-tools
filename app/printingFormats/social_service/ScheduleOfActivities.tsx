@@ -62,7 +62,7 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 					</div>
 
 					<div className="flex gap-4 items-center">
-						<p className="w-[230px] font-semibold text-right">NOMBRE DEL PROGRAMA O PROYECTO:</p>
+						<p className="w-[230px] font-semibold text-right leading-4">NOMBRE DEL PROGRAMA O PROYECTO:</p>
 						<p>{period.projectName}</p>
 					</div>
 

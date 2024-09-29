@@ -56,8 +56,8 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 						<p>{`${person.paternalSurname} ${person.maternalSurname} ${person.name}`}</p>
 					</div>
 
-					<div className="flex gap-8">
-						<div className="flex gap-2">
+					<div className="flex gap-8 items-center">
+						<div className="flex gap-2 items-center">
 							<p className="text-left w-[170px] font-semibold">CARRERA:</p>
 							<p>{student.career}</p>
 						</div>
@@ -74,7 +74,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 					</div>
 
 					<div className="flex items-center gap-2">
-						<p className="text-left w-[170px] font-semibold">PERIODO EN QUE CUBRIÓ SERVICIO SOCIAL DEL:</p>
+						<p className="text-left w-[170px] font-semibold leading-4">PERIODO EN QUE CUBRIÓ SERVICIO SOCIAL DEL:</p>
 						<p>{formatedDate(period.startDate)} <span className="inline-block w-32 text-center font-semibold">AL</span> {formatedDate(period.endDate)}</p>
 					</div>
 
