@@ -5,6 +5,7 @@ import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceS
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 import { createStorage } from "../utils/constants"
+import { PartialReport } from "@/src/models/PartialReport"
 
 
 interface SocialServiceStore {
@@ -23,11 +24,15 @@ interface SocialServiceStore {
 	isGovernmentAgencyDataComplete: boolean
 	governmentAgencyData: GovernmentAgency | undefined
 
+	reports: { [key: string]: PartialReport }
+
 	setPersonalData: (personalData: Person) => void
 	setStudentData: (studentData: SocialServiceStudent) => void
 	setPeriodData: (periodData: SocialServicePeriod) => void
 	setActivitiesData: (activitiesData: Activity[]) => void
 	setGovernmentAgencyData: (governmentAgencyData: GovernmentAgency) => void
+
+	setReport: (key: string, report: PartialReport) => void
 
 	documentsDownloaded: { [key: string]: boolean }
 	setDocumentDownloaded: (key: string, value: boolean) => void
@@ -51,6 +56,8 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 			isGovernmentAgencyDataComplete: false,
 			governmentAgencyData: undefined,
 
+			reports: {},
+
 			setPersonalData: (personalData: Person) => set(() => ({ personalData, isPersonalDataComplete: true })),
 
 			setStudentData: (studentData: SocialServiceStudent) => set(() => ({ studentData, isStudentDataComplete: true })),
@@ -60,6 +67,10 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 			setActivitiesData: (activitiesData: Activity[]) => set(() => ({ activitiesData, isActivitiesDataComplete: true })),
 
 			setGovernmentAgencyData: (governmentAgencyData: GovernmentAgency) => set(() => ({ governmentAgencyData, isGovernmentAgencyDataComplete: true })),
+
+			setReport: (key, report) => {
+				set(() => ({ reports: { ...get().reports, [key]: report } }))
+			},
 
 			documentsDownloaded: {},
 			setDocumentDownloaded(key, value) {
