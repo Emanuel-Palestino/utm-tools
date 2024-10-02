@@ -1,10 +1,7 @@
 'use client'
 
 import { Card, CardBody, CardFooter } from "@nextui-org/card"
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/modal"
-import { Button } from "@nextui-org/button"
-import { Textarea } from "@nextui-org/input"
-import { useForm } from "react-hook-form"
+import { useDisclosure } from "@nextui-org/modal"
 import { usePDF } from "@/src/hooks/usePDF"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { DownloadIcon, DocumentIcon } from "@/app/icons"
@@ -12,11 +9,11 @@ import dynamic from "next/dynamic"
 
 const Registration = dynamic(() => import('@/app/printingFormats/social_service/Registration').then(mod => mod.Registration))
 const DocumentReception = dynamic(() => import('@/app/printingFormats/social_service/DocumentReception').then(mod => mod.DocumentReception))
-const FinalEvaluation = dynamic(() => import('@/app/printingFormats/social_service/FinalEvaluation').then(mod => mod.FinalEvaluation))
 const ScheduleOfActivities = dynamic(() => import('@/app/printingFormats/social_service/ScheduleOfActivities').then(mod => mod.ScheduleOfActivities))
 const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 
 const PartialReportModal = dynamic(() => import('@/app/ui/social_service/PartialReportModal'))
+const FinalEvaluationModal = dynamic(() => import('@/app/ui/social_service/FinalEvaluationModal'))
 
 
 export const Documents = () => {
@@ -38,7 +35,6 @@ export const Documents = () => {
 	/* PDF documents */
 	const { target: registration, createPDF: createRegistration } = usePDF('Registro de Servicio Social')
 	const { target: scheduleOfActivities, createPDF: createScheduleOfActivities } = usePDF('Cronograma de Actividades', true)
-	const { target: finalReport, createPDF: createFinalReport } = usePDF('Reporte Final')
 	const { target: documentReception, createPDF: createDocumentReception } = usePDF('Formato de Recepción de Documentos')
 
 	/* Partial report modal */
@@ -54,18 +50,6 @@ export const Documents = () => {
 		onOpen: onEvaluationModalOpen,
 		onOpenChange: onEvaluationModalChange
 	} = useDisclosure()
-
-	/* Form handle for partial report data and final evaluation data */
-	const {
-		handleSubmit,
-		register,
-		watch
-	} = useForm<{ formatNumber: number, description: string }>({
-		defaultValues: {
-			formatNumber: 1,
-			description: '',
-		}
-	})
 
 	/* Downloadable documents */
 	const documents = [
@@ -135,58 +119,19 @@ export const Documents = () => {
 				</div>
 			</section>
 
-
-			{/* Modal for final evaluation description */}
-			<Modal isOpen={isEvaluationModalOpen} onOpenChange={onEvaluationModalChange} size="md">
-				<ModalContent>
-					{onClose => (
-						<>
-							<ModalHeader>Reporte de Evaluación Final</ModalHeader>
-
-							<ModalBody>
-								<form
-									id="report_form"
-									className="flex flex-col gap-4"
-									onSubmit={handleSubmit(() => {
-										setDocumentDownloaded('final-evaluation')
-										createFinalReport()
-										onClose()
-									})}
-								>
-									<Textarea
-										minRows={4}
-										label="Breve descripción de las actividades realizadas"
-										isRequired
-										{...register('description')}
-									/>
-								</form>
-							</ModalBody>
-
-							<ModalFooter>
-								<Button color="danger" variant="light" onPress={onClose}>
-									Cancelar
-								</Button>
-
-								<Button
-									color="primary"
-									form="report_form"
-									type="submit"
-								>
-									Descargar
-								</Button>
-							</ModalFooter>
-						</>
-					)}
-				</ModalContent>
-			</Modal >
-
-
 			{dataComplete && (
 				<>
 					{isReportModalOpen && (
 						<PartialReportModal
 							isOpen={isReportModalOpen}
 							onOpenChange={onReportModalChange}
+						/>
+					)}
+
+					{isEvaluationModalOpen && (
+						<FinalEvaluationModal
+							isOpen={isEvaluationModalOpen}
+							onOpenChange={onEvaluationModalChange}
 						/>
 					)}
 
@@ -198,17 +143,6 @@ export const Documents = () => {
 							period={socialServiceData.period}
 							activities={socialServiceData.activities}
 							date={new Date()}
-						/>
-					</PDFWrapper>
-
-					<PDFWrapper target={finalReport}>
-						<FinalEvaluation
-							person={socialServiceData.person}
-							student={socialServiceData.student}
-							period={socialServiceData.period}
-							governmentAgency={socialServiceData.governmentAgency}
-							formatNumber={socialServiceData.period.months + 1}
-							description={watch('description')}
 						/>
 					</PDFWrapper>
 
