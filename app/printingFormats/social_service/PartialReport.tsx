@@ -18,7 +18,7 @@ interface PartialReportProps {
 	description: string
 }
 
-export const PartialReport: FC<PartialReportProps> = ({
+const PartialReport: FC<PartialReportProps> = ({
 	person,
 	student,
 	governmentAgency,
@@ -157,3 +157,5 @@ export const PartialReport: FC<PartialReportProps> = ({
 	)
 
 }
+
+export default PartialReport
