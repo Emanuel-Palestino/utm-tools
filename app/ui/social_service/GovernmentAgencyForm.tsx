@@ -1,7 +1,7 @@
 import { Card, CardBody } from "@nextui-org/card"
 import { Input } from "@nextui-org/input"
 import { Button } from "@nextui-org/button"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { GovernmentAgency } from "@/src/models/social_service/GovernmentAgency"
 import { FC } from "react"
@@ -20,7 +20,7 @@ const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }) => {
 	}))
 
 	const {
-		control,
+		register,
 		handleSubmit,
 	} = useForm<GovernmentAgency>({
 		defaultValues: {
@@ -47,135 +47,75 @@ const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }) => {
 		<Card>
 			<CardBody className="p-4">
 				<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-4">
-					<Controller
-						name="name"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Nombre de la Institución"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Nombre de la Institución"
+						{...register('name', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="state"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Estado de la República"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Estado de la República"
+						{...register('state', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="city"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Ciudad o Localidad"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Ciudad o Localidad"
+						{...register('city', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="address"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Dirección"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Dirección"
+						{...register('address', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="email"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Correo de la Institución"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="email"
+						label="Correo de la Institución"
+						{...register('email', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="supervisorName"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Nombre del Responsable Inmediato"
-								description="Nombre del responsable de la institución donde se realizará el servicio social."
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Nombre del Responsable Inmediato"
+						description="Nombre del responsable de la institución donde se realizará el servicio social."
+						{...register('supervisorName', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="supervisorPosition"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Cargo del Responsable Inmediato"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Cargo del Responsable Inmediato"
+						{...register('supervisorPosition', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="supervisorWorkArea"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Área de Trabajo del Responsable Inmediato"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Área de Trabajo del Responsable Inmediato"
+						{...register('supervisorWorkArea', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="supervisorPhone"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Teléfono del Responsable Inmediato"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Teléfono del Responsable Inmediato"
+						{...register('supervisorPhone', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="supervisorEmail"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Correo del Responsable Inmediato"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="email"
+						label="Correo del Responsable Inmediato"
+						{...register('supervisorEmail', { required: true })}
+						isRequired
 					/>
 
 					<div className="flex justify-center mt-2 md:col-span-2">

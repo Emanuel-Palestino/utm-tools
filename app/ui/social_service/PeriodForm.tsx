@@ -3,7 +3,7 @@ import { Button } from "@nextui-org/button"
 import { Input, Textarea } from "@nextui-org/input"
 import { Slider } from "@nextui-org/slider"
 import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-form"
-import React, { FC } from "react"
+import { FC } from "react"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
 import { addMonths, differenceInBusinessDays, differenceInMonths, formatISO, parseISO } from "date-fns"
@@ -27,6 +27,7 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 	const {
 		handleSubmit,
 		control,
+		register,
 		watch,
 		setValue,
 		getValues
@@ -48,6 +49,7 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 
 	const onSubmit: SubmitHandler<SocialServicePeriod> = data => {
 		data.months = differenceInMonths(data.endDate, data.startDate)
+		data.totalHours = Number(data.totalHours)
 		save(data)
 		nextForm()
 	}
@@ -173,46 +175,26 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 						))}
 					</section>
 
-					<Controller
-						name="totalHours"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="number"
-								label="Total de Horas"
-								min={480}
-								isRequired
-								{...field}
-								value={String(field.value)}
-								onChange={e => field.onChange(Number(e.target.value))}
-							/>
-						)}
+					<Input
+						type="number"
+						label="Total de Horas"
+						min={480}
+						{...register('totalHours', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="projectName"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Nombre del Proyecto"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Nombre del Proyecto"
+						{...register('projectName', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="projectObjective"
-						control={control}
-						render={({ field }) => (
-							<Textarea
-								type="text"
-								label="Objetivo del Proyecto"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Textarea
+						type="text"
+						label="Objetivo del Proyecto"
+						{...register('projectObjective', { required: true })}
+						isRequired
 					/>
 
 					<div className="flex justify-center mt-2 md:col-span-2">

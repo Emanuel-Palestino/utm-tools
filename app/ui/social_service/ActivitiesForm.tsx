@@ -24,7 +24,7 @@ const ActivitiesForm = () => {
 
 	const totalHoursPerDay = periodData.schedules.reduce((acc, [start, end]) => acc + (end - start), 0)
 
-	const { handleSubmit, control, getValues, setValue } = useForm<{ activities: Activity[] }>({
+	const { handleSubmit, control, register, getValues, setValue } = useForm<{ activities: Activity[] }>({
 		defaultValues: {
 			activities: activities || [{
 				description: '',
@@ -90,18 +90,13 @@ const ActivitiesForm = () => {
 					<form onSubmit={onSubmit} className="flex flex-col gap-6 md:gap-4">
 						{fields.map((field, index) => (
 							<div key={field.id} className="w-full flex flex-col md:flex-row gap-2">
-								<Controller
-									name={`activities.${index}.description`}
-									control={control}
-									render={({ field }) => (
-										<Textarea
-											type="text"
-											label={`Descripción de la Actividad ${index + 1}`}
-											minRows={2}
-											{...field}
-											className="md:basis-1/2"
-										/>
-									)}
+								<Textarea
+									type="text"
+									label={`Descripción de la Actividad ${index + 1}`}
+									minRows={2}
+									className="md:basis-1/2"
+									{...register(`activities.${index}.description`, { required: true })}
+									isRequired
 								/>
 
 								<div className="flex flex-grow flex-wrap md:flex-nowrap gap-2 items-center justify-center">
@@ -141,20 +136,13 @@ const ActivitiesForm = () => {
 										)}
 									/>
 
-									<Controller
-										name={`activities.${index}.hours`}
-										control={control}
-										render={({ field }) => (
-											<Input
-												type="number"
-												label="Horas"
-												isRequired
-												min={1}
-												step={1}
-												{...field}
-												value={String(field.value)}
-											/>
-										)}
+									<Input
+										type="number"
+										label="Horas"
+										min={1}
+										step={1}
+										{...register(`activities.${index}.hours`, { required: true })}
+										isRequired
 									/>
 
 									{fields.length > 1 && (

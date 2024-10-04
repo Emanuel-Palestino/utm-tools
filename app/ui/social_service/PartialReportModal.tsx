@@ -38,6 +38,7 @@ const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange 
 
 	const {
 		handleSubmit,
+		register,
 		control,
 		setValue,
 		watch
@@ -87,35 +88,28 @@ const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange 
 										onClose()
 									})}
 								>
-									<Controller
-										name="formatNumber"
-										control={control}
-										render={({ field }) => (
-											<Select
-												label="Número de reporte"
-												isRequired
-												autoFocus
-												{...field}
-												selectedKeys={field.value ? [String(field.value)] : []}
+									<Select
+										label="Número de reporte"
+										autoFocus
+										{...register('formatNumber', { required: true })}
+										isRequired
+									>
+										{Array.from({ length: socialServiceData.period.months }).map((_, i) => (
+											<SelectItem
+												key={i + 1}
+												value={i + 1}
+												endContent={
+													documentsDownloaded[`partial-report-${i + 1}`] ?
+														<span className="fill-green-600 font-bold absolute right-3 pr-4">
+															<DownloadIcon />
+														</span>
+														: <></>
+												}
 											>
-												{Array.from({ length: socialServiceData.period.months }).map((_, i) => (
-													<SelectItem
-														key={i + 1}
-														value={i + 1}
-														endContent={
-															documentsDownloaded[`partial-report-${i + 1}`] ?
-																<span className="fill-green-600 font-bold absolute right-3 pr-4">
-																	<DownloadIcon />
-																</span>
-																: <></>
-														}
-													>
-														{`${i + 1}° Reporte`}
-													</SelectItem>
-												))}
-											</Select>
-										)}
-									/>
+												{`${i + 1}° Reporte`}
+											</SelectItem>
+										))}
+									</Select>
 
 									<Controller
 										name="description"
