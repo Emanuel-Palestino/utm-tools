@@ -58,7 +58,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 
 					<div className="flex gap-8 items-center">
 						<div className="flex gap-2 items-center">
-							<p className="text-left w-[170px] font-semibold">CARRERA:</p>
+							<p className="text-left text-balance min-w-[170px] font-semibold">CARRERA:</p>
 							<p>{student.career}</p>
 						</div>
 
@@ -135,7 +135,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 					</div>
 
 					<div className="flex gap-2 items-center">
-						<p>
+						<p className="leading-4">
 							<span className="text-left font-semibold">DESCRIPCIÓN BREVE DE ACTIVIDADES ASIGNADAS AL ALUMNO: </span>
 							{description}
 						</p>
