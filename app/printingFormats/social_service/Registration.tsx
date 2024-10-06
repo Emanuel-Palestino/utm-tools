@@ -12,7 +12,7 @@ interface RegistrationProps {
 	student: SocialServiceStudent
 	period: SocialServicePeriod
 	governmentAgency: GovernmentAgency
-	date: Date
+	date: number
 }
 
 export const Registration: FC<RegistrationProps> = ({ person, student, period, governmentAgency, date }) => {

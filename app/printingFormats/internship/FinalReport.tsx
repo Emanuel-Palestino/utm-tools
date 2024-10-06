@@ -25,7 +25,7 @@ const FinalReport: FC<FinalReportProps> = ({ data, informContent }) => {
 
 			<div className="w-full flex gap-2 justify-end pr-10 mb-6">
 				<p className="font-semibold">FECHA:</p>
-				<p>{formatedDate(new Date())}</p>
+				<p>{formatedDate(Date.now())}</p>
 			</div>
 
 			<div className="px-10">

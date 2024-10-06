@@ -197,7 +197,7 @@ export const Form = () => {
 
 			{data ? (
 				<PDFWrapper target={target}>
-					<Format data={data} date={new Date()} />
+					<Format data={data} date={Date.now()} />
 				</PDFWrapper>
 			) : null}
 		</>

@@ -5,7 +5,7 @@ import { MakeUpExam } from '@/src/models/MakeUpExam'
 import { FC } from 'react'
 
 
-export const Format: FC<{ data: MakeUpExam, date: Date }> = ({ data, date }) => {
+export const Format: FC<{ data: MakeUpExam, date: number }> = ({ data, date }) => {
 
 	return (
 		<section className="w-full h-full text-[15px] px-6 flex flex-col justify-between">
@@ -16,7 +16,7 @@ export const Format: FC<{ data: MakeUpExam, date: Date }> = ({ data, date }) => 
 
 }
 
-const Section: FC<{ to: string, data: MakeUpExam, date: Date }> = ({ to, data, date }) => {
+const Section: FC<{ to: string, data: MakeUpExam, date: number }> = ({ to, data, date }) => {
 
 	return (
 		<div>
