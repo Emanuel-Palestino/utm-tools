@@ -4,7 +4,6 @@ import { Activity, SocialServicePeriod } from "@/src/models/social_service/Socia
 import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-import { createStorage } from "../utils/constants"
 import { PartialReport } from "@/src/models/PartialReport"
 
 
@@ -88,8 +87,7 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 		{
 			name: 'social-service-storage',
 			skipHydration: true,
-			storage: createStorage<SocialServiceStore>(),
-			version: 1,
+			version: 2,
 			migrate: (persistedState: any, version) => {
 				if (version === 0) {
 					if (persistedState.periodData) {

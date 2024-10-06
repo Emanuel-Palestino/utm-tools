@@ -22,7 +22,7 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		isComplete: state.isPeriodDataComplete
 	}))
 
-	const today = new Date()
+	const today = Date.now()
 
 	const {
 		handleSubmit,
@@ -34,7 +34,7 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 	} = useForm<SocialServicePeriod>({
 		defaultValues: {
 			startDate: today,
-			endDate: addMonths(today, 6),
+			endDate: addMonths(today, 6).getTime(),
 			// values is passed due to the field array takes always the default value
 			schedules: values?.schedules || [[9, 18]],
 			totalHours: 480,
@@ -58,10 +58,10 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 	let startDate = watch('startDate')
 	let endDate = watch('endDate')
 
-	const onDatesChange = (start: Date, end: Date) => {
+	const onDatesChange = (startTs: number, endTs: number) => {
 		const schedules = getValues('schedules')
 		const totalHoursPerDay = schedules.reduce((acc, [start, end]) => acc + (end - start), 0)
-		setValue('totalHours', totalHoursPerDay * differenceInBusinessDays(end, start))
+		setValue('totalHours', totalHoursPerDay * differenceInBusinessDays(endTs, startTs))
 	}
 
 	return (
@@ -73,7 +73,7 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 						control={control}
 						rules={{
 							onChange: ({ target }) => {
-								const endDate = addMonths(target.value, 6)
+								const endDate = addMonths(target.value, 6).getTime()
 								setValue('endDate', endDate)
 								onDatesChange(target.value, endDate)
 							}
@@ -84,8 +84,8 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 								label="Fecha de Inicio"
 								isRequired
 								{...field}
-								value={field.value instanceof Date ? formatISO(field.value, { representation: 'date' }) : field.value}
-								onChange={e => field.onChange(parseISO(e.target.value))}
+								value={typeof field.value === 'number' ? formatISO(field.value, { representation: 'date' }) : field.value}
+								onChange={e => field.onChange(parseISO(e.target.value).getTime())}
 							/>
 						)}
 					/>
@@ -103,8 +103,8 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 								isRequired
 								min={formatISO(addMonths(startDate, 6), { representation: 'date' })}
 								{...field}
-								value={field.value instanceof Date ? formatISO(field.value, { representation: 'date' }) : field.value}
-								onChange={e => field.onChange(parseISO(e.target.value))}
+								value={typeof field.value === 'number' ? formatISO(field.value, { representation: 'date' }) : field.value}
+								onChange={e => field.onChange(parseISO(e.target.value).getTime())}
 							/>
 						)}
 					/>
@@ -175,12 +175,19 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 						))}
 					</section>
 
-					<Input
-						type="number"
-						label="Total de Horas"
-						min={480}
-						{...register('totalHours', { required: true })}
-						isRequired
+					<Controller
+						name="totalHours"
+						control={control}
+						render={({ field }) => (
+							<Input
+								type="number"
+								label="Total de Horas"
+								min={480}
+								isRequired
+								{...field}
+								value={String(field.value)}
+							/>
+						)}
 					/>
 
 					<Input

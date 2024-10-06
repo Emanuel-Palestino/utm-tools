@@ -43,8 +43,8 @@ const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange 
 	} = useForm<PartialReport>({
 		defaultValues: {
 			formatNumber: 1,
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: Date.now(),
+			endDate: Date.now(),
 			hours: 0,
 			description: '',
 			comments: ''
@@ -90,8 +90,8 @@ const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange 
 										)
 
 										// Save the dates
-										data.startDate = reportWeeks[0]
-										data.endDate = addDays(reportWeeks[reportWeeks.length - 1], 4)
+										data.startDate = reportWeeks[0].getTime()
+										data.endDate = addDays(reportWeeks[reportWeeks.length - 1], 4).getTime()
 
 										// Calculate the partial period hours
 										data.hours = internshipData.period.totalHours / periodWeeks.length * internshipData.period.reportFrecuency

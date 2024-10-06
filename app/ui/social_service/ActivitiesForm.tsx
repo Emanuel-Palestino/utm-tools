@@ -17,8 +17,8 @@ const ActivitiesForm = () => {
 		isPeriodComplete: state.isPeriodDataComplete,
 		periodData: {
 			schedules: state.periodData?.schedules || [[9, 18]],
-			startDate: state.periodData?.startDate || new Date(),
-			endDate: state.periodData?.endDate || new Date()
+			startDate: state.periodData?.startDate || Date.now(),
+			endDate: state.periodData?.endDate || Date.now()
 		}
 	}))
 
@@ -51,7 +51,7 @@ const ActivitiesForm = () => {
 		// If it's not the last activity, update the start date and the hours of the next activity
 		const nextEndDate = getValues(`activities.${index + 1}.endDate`)
 
-		const nextStartDate = addDays(currentEndDate, 1)
+		const nextStartDate = addDays(currentEndDate, 1).getTime()
 		setValue(`activities.${index + 1}.startDate`, nextStartDate)
 
 		const nextHours = totalHoursPerDay * differenceInBusinessDays(nextEndDate, nextStartDate)
@@ -109,7 +109,7 @@ const ActivitiesForm = () => {
 												label="Fecha de Inicio"
 												isRequired
 												{...field}
-												value={field.value instanceof Date ? formatISO(field.value, { representation: 'date' }) : field.value}
+												value={typeof field.value === 'number' ? formatISO(field.value, { representation: 'date' }) : field.value}
 												readOnly
 												isReadOnly
 												isDisabled
@@ -130,8 +130,8 @@ const ActivitiesForm = () => {
 												isRequired
 												{...field}
 												// cast the value to a date object
-												onChange={e => field.onChange(parseISO(e.target.value))}
-												value={field.value instanceof Date ? formatISO(field.value, { representation: 'date' }) : field.value}
+												onChange={e => field.onChange(parseISO(e.target.value).getTime())}
+												value={typeof field.value === 'number' ? formatISO(field.value, { representation: 'date' }) : field.value}
 											/>
 										)}
 									/>

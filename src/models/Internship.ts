@@ -6,7 +6,7 @@ import { Person } from "./Person"
 
 
 export type Internship = {
-	applicationDate: Date			// Fecha de solicitud
+	applicationDate: number			// Fecha de solicitud. Timestamp in milliseconds
 	person: Person
 	student: InternshipStudent
 	period: InternshipPeriod

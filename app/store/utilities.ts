@@ -1,6 +1,5 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-import { createStorage } from "../utils/constants"
 
 
 interface UtilitiesStore {
@@ -17,7 +16,6 @@ export const useUtilitiesStore = create<UtilitiesStore>()(
 		}),
 		{
 			name: 'utilities-storage',
-			storage: createStorage<UtilitiesStore>()
 		}
 	)
 
