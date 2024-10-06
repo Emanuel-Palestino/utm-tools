@@ -78,9 +78,9 @@ const ActivitiesForm = () => {
 							size="md"
 							onClick={() => append({
 								description: '',
-								startDate: getValues('activities')[fields.length - 1].endDate,
+								startDate: getValues(`activities.${fields.length - 1}.endDate`),
 								endDate: periodData.endDate,
-								hours: 0
+								hours: totalHoursPerDay * differenceInBusinessDays(periodData.endDate, getValues(`activities.${fields.length - 1}.endDate`))
 							})}
 						>
 							Agregar Actividad
