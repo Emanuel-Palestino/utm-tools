@@ -81,7 +81,7 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 							</div>
 							<div className="flex gap-2">
 								<p className="font-semibold">Nombre de la lengua indígena:</p>
-								<p>{person.hasDisability ? person.disability : ''}</p>
+								<p>{person.isSpeakerOfIndigenousLanguage ? person.indigenousLanguage : ''}</p>
 							</div>
 						</div>
 					</div>
@@ -108,8 +108,8 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 					</div>
 
 					<div className="flex gap-2 items-center">
-						<p className="w-[180px] font-semibold leading-4">Nombre del Programa o Proyecto</p>
-						<p>{period.projectName}</p>
+						<p className="min-w-[180px] font-semibold leading-4">Nombre del Programa o Proyecto</p>
+						<p className="leading-4">{period.projectName}</p>
 					</div>
 
 					<div className="flex gap-8">
