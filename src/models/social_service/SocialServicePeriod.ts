@@ -10,7 +10,7 @@ export type SocialServicePeriod = Period & {
 
 export type Activity = {
 	description: string
-	startDate: Date
-	endDate: Date
+	startDate: number // timestamp in milliseconds
+	endDate: number // timestamp in milliseconds
 	hours: number
 }

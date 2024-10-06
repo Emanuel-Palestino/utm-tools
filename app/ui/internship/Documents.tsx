@@ -22,7 +22,7 @@ export const Documents = () => {
 	const { dataComplete, internshipData, documentsDownloaded, setDocumentDownloaded } = useInternshipStore(state => ({
 		dataComplete: state.isCompanyDataComplete && state.isPeriodDataComplete && state.isPersonalDataComplete && state.isStudentDataComplete,
 		internshipData: {
-			applicationDate: new Date(),
+			applicationDate: Date.now(),
 			person: state.personalData!,
 			student: state.studentData!,
 			period: state.periodData!,
@@ -135,7 +135,7 @@ export const Documents = () => {
 					</PDFWrapper>
 
 					<PDFWrapper target={commitmentLetterTarget}>
-						<CommitmentLetter data={internshipData} date={formatedDate(new Date())} />
+						<CommitmentLetter data={internshipData} date={formatedDate(Date.now())} />
 					</PDFWrapper>
 
 					{isFinalReportOpen && (

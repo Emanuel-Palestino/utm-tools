@@ -14,7 +14,7 @@ interface ScheduleOfActivitiesProps {
 	governmentAgency: GovernmentAgency
 	period: SocialServicePeriod
 	activities: Activity[]
-	date: Date
+	date: number
 }
 
 export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({

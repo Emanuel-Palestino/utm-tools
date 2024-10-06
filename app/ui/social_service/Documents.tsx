@@ -138,7 +138,7 @@ export const Documents = () => {
 							governmentAgency={socialServiceData.governmentAgency}
 							period={socialServiceData.period}
 							activities={socialServiceData.activities}
-							date={new Date()}
+							date={Date.now()}
 						/>
 					</PDFWrapper>
 
@@ -156,7 +156,7 @@ export const Documents = () => {
 							student={socialServiceData.student}
 							period={socialServiceData.period}
 							governmentAgency={socialServiceData.governmentAgency}
-							date={new Date()}
+							date={Date.now()}
 						/>
 					</PDFWrapper>
 				</>

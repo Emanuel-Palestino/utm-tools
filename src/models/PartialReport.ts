@@ -1,7 +1,7 @@
 export type PartialReport = {
 	formatNumber: number
-	startDate: Date
-	endDate: Date
+	startDate: number // timestamp in milliseconds
+	endDate: number // timestamp in milliseconds
 	hours: number
 	description: string
 	comments?: string

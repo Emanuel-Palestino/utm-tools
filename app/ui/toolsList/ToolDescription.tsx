@@ -60,7 +60,7 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 					</div>
 
 					<p className="text-xs md:text-sm">
-						Última actualizacion: {formatedDate(new Date(`${tool.date} GMT-6`))}
+						Última actualizacion: {formatedDate(new Date(`${tool.date} GMT-6`).getTime())}
 					</p>
 				</motion.div>
 

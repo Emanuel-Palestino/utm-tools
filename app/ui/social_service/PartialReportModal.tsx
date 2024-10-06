@@ -45,8 +45,8 @@ const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange 
 	} = useForm<PartialReport>({
 		defaultValues: {
 			formatNumber: 1,
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: Date.now(),
+			endDate: Date.now(),
 			hours: 0,
 			description: ''
 		},
@@ -73,8 +73,8 @@ const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange 
 									id="report_form"
 									className="flex flex-col gap-4"
 									onSubmit={handleSubmit(async data => {
-										data.startDate = addMonths(socialServiceData.period.startDate, formatNumber - 1)
-										data.endDate = addMonths(socialServiceData.period.startDate, formatNumber)
+										data.startDate = addMonths(socialServiceData.period.startDate, formatNumber - 1).getTime()
+										data.endDate = addMonths(socialServiceData.period.startDate, formatNumber).getTime()
 
 										const hoursPerDay = socialServiceData.period.schedules.reduce((acc, [start, end]) => acc + (end - start), 0)
 										data.hours = differenceInBusinessDays(data.endDate, data.startDate) * hoursPerDay

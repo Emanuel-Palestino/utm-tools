@@ -2,9 +2,9 @@ import { format } from "date-fns"
 import es from "date-fns/locale/es"
 
 
-export const formatedDate = (date: Date) => {
+export const formatedDate = (dateTs: number) => {
 	// ñ is added to capitalize the month later
-	const formattedDate = format(date, "dd 'de' 'ñ'MMMM 'de' yyyy", { locale: es })
+	const formattedDate = format(dateTs, "dd 'de' 'ñ'MMMM 'de' yyyy", { locale: es })
 	// Capitalize the month
 	return formattedDate.replace(/ñ(.)/, letter => letter[1].toUpperCase())
 }

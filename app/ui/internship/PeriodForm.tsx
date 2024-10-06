@@ -9,6 +9,7 @@ import { Select, SelectItem } from "@nextui-org/select"
 import { INTERNSHIP_PERIODS } from "@/app/utils/constants"
 import { formatedDate } from "@/app/utils/format"
 import { MinusIcon, PlusIcon } from "@/app/icons"
+import { formatISO, parseISO } from "date-fns"
 
 
 const PeriodForm = () => {
@@ -27,8 +28,8 @@ const PeriodForm = () => {
 		defaultValues: {
 			projectName: '',
 			workArea: '',
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: Date.now(),
+			endDate: Date.now(),
 			// values is passed due to the field array takes always the default value
 			schedules: values?.schedules || [[9, 18]],
 			totalHours: 280,
@@ -46,10 +47,7 @@ const PeriodForm = () => {
 		data.reportFrecuency = Number(data.reportFrecuency)
 		data.periodNumber = Number(data.periodNumber)
 
-		if (data.periodNumber === -1) {
-			data.startDate = new Date(`${data.startDate} UTC-6`)
-			data.endDate = new Date(`${data.endDate} UTC-6`)
-		} else {
+		if (data.periodNumber !== -1) {
 			data.startDate = INTERNSHIP_PERIODS[data.periodNumber - 1].startDate
 			data.endDate = INTERNSHIP_PERIODS[data.periodNumber - 1].endDate
 		}
@@ -127,7 +125,8 @@ const PeriodForm = () => {
 										label="Fecha de Inicio"
 										isRequired
 										{...field}
-										value={field.value instanceof Date ? field.value.toISOString().split('T')[0] : field.value}
+										value={typeof field.value === 'number' ? formatISO(field.value, { representation: 'date' }) : field.value}
+										onChange={e => field.onChange(parseISO(e.target.value).getTime())}
 									/>
 								)}
 							/>
@@ -141,7 +140,8 @@ const PeriodForm = () => {
 										label="Fecha de Término"
 										isRequired
 										{...field}
-										value={field.value instanceof Date ? field.value.toISOString().split('T')[0] : field.value}
+										value={typeof field.value === 'number' ? formatISO(field.value, { representation: 'date' }) : field.value}
+										onChange={e => field.onChange(parseISO(e.target.value).getTime())}
 									/>
 								)}
 							/>
