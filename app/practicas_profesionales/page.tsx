@@ -13,11 +13,18 @@ const Internship = () => {
 
 	return (
 		<div className="container mx-auto py-5 px-3">
-			<h1 className="text-center text-xl sm:text-3xl font-semibold mb-8 mt-1">Estancias Profesionales</h1>
+			<h1 className="text-center text-xl sm:text-3xl font-semibold mb-8 mt-1">Documentación para Estancias Profesionales de la UTM</h1>
 
 			<div className="w-full flex flex-col gap-12">
-				<Form />
-				<Documents />
+				<section>
+					<h2 className="text-lg sm:text-2xl mb-2 md:mb-4 text-center md:text-left">1 - Ingresa los datos necesarios</h2>
+					<Form />
+				</section>
+
+				<section>
+					<h2 className="text-xl sm:text-2xl text-center md:text-left mb-4">2 - Descarga tu documentación</h2>
+					<Documents />
+				</section>
 			</div>
 
 			<Disclaimer />

@@ -27,7 +27,7 @@ const SocialService = () => {
 
 	return (
 		<div className="container mx-auto py-5 px-3">
-			<h1 className="text-center text-xl sm:text-3xl font-semibold mb-8 mt-1">Documentación para el Servicio Social de la UTM</h1>
+			<h1 className="text-center text-xl sm:text-3xl font-semibold mb-8 mt-1">Documentación para realizar el Servicio Social de la UTM</h1>
 
 			<div className="w-full flex flex-col gap-12">
 				<section>
