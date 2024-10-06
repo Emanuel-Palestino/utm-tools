@@ -17,6 +17,9 @@ interface RegistrationProps {
 
 export const Registration: FC<RegistrationProps> = ({ person, student, period, governmentAgency, date }) => {
 
+	const selectedOptionClass = 'font-extrabold border-2 border-black rounded-lg p-1 w-[31px] text-center h-[31px] leading-[18px]'
+	const unselectedOptionClass = 'p-1 border-2 border-white text-gray-600 w-[31px] h-[31px] text-center leading-[18px]'
+
 	return (
 		<section className="w-full h-full text-[14px] flex flex-col justify-between">
 			<div className="px-4">
@@ -26,7 +29,7 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 
 				<div className="flex flex-col gap-2 mt-4">
 					<div className="flex gap-2 items-center">
-						<p className="w-[180px] font-semibold">Nombre del Alumno (A) / Egresado(A):</p>
+						<p className="w-[180px] font-semibold leading-4">Nombre del Alumno (A) / Egresado(A):</p>
 						<p>{`${person.paternalSurname} ${person.maternalSurname} ${person.name}`}</p>
 					</div>
 
@@ -70,13 +73,31 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 					</div>
 
 					<div className="flex gap-2 items-center">
-						<p className="w-[180px] font-semibold">Hablande de lengua indígena:</p>
-						<p>{person.isSpeakerOfIndigenousLanguage ? 'Sí' : 'No'} &emsp; {person.isSpeakerOfIndigenousLanguage ? person.indigenousLanguage : null}</p>
+						<p className="w-[180px] font-semibold leading-4">Hablande de lengua indígena:</p>
+						<div className="flex gap-4 items-center">
+							<div className="flex gap-2">
+								<p className={person.isSpeakerOfIndigenousLanguage ? selectedOptionClass : unselectedOptionClass}>Sí</p>
+								<p className={!person.isSpeakerOfIndigenousLanguage ? selectedOptionClass : unselectedOptionClass}>No</p>
+							</div>
+							<div className="flex gap-2">
+								<p className="font-semibold">Nombre de la lengua indígena:</p>
+								<p>{person.isSpeakerOfIndigenousLanguage ? person.indigenousLanguage : ''}</p>
+							</div>
+						</div>
 					</div>
 
 					<div className="flex gap-2 items-center">
-						<p className="w-[180px] font-semibold">¿Tienes algún tipo de discapacidad?</p>
-						<p>{person.hasDisability ? 'Sí' : 'No'} &emsp; {person.hasDisability ? person.disability : null}</p>
+						<p className="w-[180px] font-semibold leading-4">¿Tienes algún tipo de discapacidad?</p>
+						<div className="flex gap-4 items-center">
+							<div className="flex gap-2">
+								<p className={person.hasDisability ? selectedOptionClass : unselectedOptionClass}>Sí</p>
+								<p className={!person.hasDisability ? selectedOptionClass : unselectedOptionClass}>No</p>
+							</div>
+							<div className="flex gap-2">
+								<p className="font-semibold">Nombre del tipo de discapacidad:</p>
+								<p>{person.hasDisability ? person.disability : ''}</p>
+							</div>
+						</div>
 					</div>
 
 					<p className="text-center font-bold mt-4">DATOS DE LA INSTITUCIÓN DONDE SE REALIZARÁ EL SERVICIO SOCIAL</p>
@@ -87,8 +108,8 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 					</div>
 
 					<div className="flex gap-2 items-center">
-						<p className="w-[180px] font-semibold">Nombre del Programa o Proyecto</p>
-						<p>{period.projectName}</p>
+						<p className="min-w-[180px] font-semibold leading-4">Nombre del Programa o Proyecto</p>
+						<p className="leading-4">{period.projectName}</p>
 					</div>
 
 					<div className="flex gap-8">
@@ -140,7 +161,7 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 					</div>
 
 					<div className="flex gap-2">
-						<p className="w-[180px] font-semibold">Dirección de correo electrónico:</p>
+						<p className="w-[180px] font-semibold leading-4">Dirección de correo electrónico:</p>
 						<p>{governmentAgency.email}</p>
 					</div>
 
@@ -176,7 +197,7 @@ export const Registration: FC<RegistrationProps> = ({ person, student, period, g
 					<p className="border-t border-black">Vice-Rectoría Académica Firma, fecha y sello</p>
 				</div>
 
-				<p className="border-t border-black">Jefe(a) de carrera <br /> Firma y Nombre</p>
+				<p className="border-t border-black">Jefe(a) de carrera <br /> Firma y nombre</p>
 				<p className="border-t border-black">Responsable inmediato Firma, fecha y sello</p>
 				<p className="border-t border-black">Firma del Alumno <br /> &nbsp; </p>
 			</div>

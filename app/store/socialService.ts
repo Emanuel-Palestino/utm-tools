@@ -5,6 +5,7 @@ import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceS
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 import { createStorage } from "../utils/constants"
+import { PartialReport } from "@/src/models/PartialReport"
 
 
 interface SocialServiceStore {
@@ -23,14 +24,22 @@ interface SocialServiceStore {
 	isGovernmentAgencyDataComplete: boolean
 	governmentAgencyData: GovernmentAgency | undefined
 
+	reports: { [key: string]: PartialReport }
+
+	finalEvaluationDescription: string | undefined
+
 	setPersonalData: (personalData: Person) => void
 	setStudentData: (studentData: SocialServiceStudent) => void
 	setPeriodData: (periodData: SocialServicePeriod) => void
 	setActivitiesData: (activitiesData: Activity[]) => void
 	setGovernmentAgencyData: (governmentAgencyData: GovernmentAgency) => void
 
+	setReport: (key: string, report: PartialReport) => void
+
 	documentsDownloaded: { [key: string]: boolean }
 	setDocumentDownloaded: (key: string, value: boolean) => void
+
+	setFinalEvaluationDescription: (description: string) => void
 }
 
 export const useSocialServiceStore = create<SocialServiceStore>()(
@@ -51,6 +60,10 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 			isGovernmentAgencyDataComplete: false,
 			governmentAgencyData: undefined,
 
+			reports: {},
+
+			finalEvaluationDescription: undefined,
+
 			setPersonalData: (personalData: Person) => set(() => ({ personalData, isPersonalDataComplete: true })),
 
 			setStudentData: (studentData: SocialServiceStudent) => set(() => ({ studentData, isStudentDataComplete: true })),
@@ -61,10 +74,16 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 
 			setGovernmentAgencyData: (governmentAgencyData: GovernmentAgency) => set(() => ({ governmentAgencyData, isGovernmentAgencyDataComplete: true })),
 
+			setReport: (key, report) => {
+				set(() => ({ reports: { ...get().reports, [key]: report } }))
+			},
+
 			documentsDownloaded: {},
 			setDocumentDownloaded(key, value) {
 				set(() => ({ documentsDownloaded: { ...get().documentsDownloaded, [key]: value } }))
-			}
+			},
+
+			setFinalEvaluationDescription: (description: string) => set(() => ({ finalEvaluationDescription: description }))
 		}),
 		{
 			name: 'social-service-storage',

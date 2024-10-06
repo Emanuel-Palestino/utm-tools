@@ -3,10 +3,10 @@ import { Button } from "@nextui-org/button"
 import { Input, Textarea } from "@nextui-org/input"
 import { Slider } from "@nextui-org/slider"
 import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-form"
-import React, { FC, useEffect } from "react"
+import { FC } from "react"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
-import { addMonths } from "date-fns"
+import { addMonths, differenceInBusinessDays, differenceInMonths, formatISO, parseISO } from "date-fns"
 import { MinusIcon, PlusIcon } from "@/app/icons"
 
 
@@ -22,15 +22,19 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 		isComplete: state.isPeriodDataComplete
 	}))
 
+	const today = new Date()
+
 	const {
 		handleSubmit,
 		control,
+		register,
 		watch,
-		setValue
+		setValue,
+		getValues
 	} = useForm<SocialServicePeriod>({
 		defaultValues: {
-			startDate: new Date(),
-			endDate: new Date(),
+			startDate: today,
+			endDate: addMonths(today, 6),
 			// values is passed due to the field array takes always the default value
 			schedules: values?.schedules || [[9, 18]],
 			totalHours: 480,
@@ -44,22 +48,21 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 	const { fields, append, remove } = useFieldArray({ control, name: 'schedules' })
 
 	const onSubmit: SubmitHandler<SocialServicePeriod> = data => {
+		data.months = differenceInMonths(data.endDate, data.startDate)
 		data.totalHours = Number(data.totalHours)
-		data.months = Number(data.months)
-
-		data.startDate = new Date(`${data.startDate} UTC-6`)
-		data.endDate = new Date(`${data.endDate} UTC-6`)
-
 		save(data)
 		nextForm()
 	}
 
 	/* Update end date depending on start date */
 	let startDate = watch('startDate')
+	let endDate = watch('endDate')
 
-	useEffect(() => {
-		setValue('endDate', addMonths(new Date(`${startDate} GMT-6`), 6))
-	}, [setValue, startDate])
+	const onDatesChange = (start: Date, end: Date) => {
+		const schedules = getValues('schedules')
+		const totalHoursPerDay = schedules.reduce((acc, [start, end]) => acc + (end - start), 0)
+		setValue('totalHours', totalHoursPerDay * differenceInBusinessDays(end, start))
+	}
 
 	return (
 		<Card>
@@ -68,13 +71,21 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 					<Controller
 						name="startDate"
 						control={control}
+						rules={{
+							onChange: ({ target }) => {
+								const endDate = addMonths(target.value, 6)
+								setValue('endDate', endDate)
+								onDatesChange(target.value, endDate)
+							}
+						}}
 						render={({ field }) => (
 							<Input
 								type="date"
 								label="Fecha de Inicio"
 								isRequired
 								{...field}
-								value={field.value instanceof Date ? field.value.toISOString().split('T')[0] : field.value}
+								value={field.value instanceof Date ? formatISO(field.value, { representation: 'date' }) : field.value}
+								onChange={e => field.onChange(parseISO(e.target.value))}
 							/>
 						)}
 					/>
@@ -82,13 +93,18 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 					<Controller
 						name="endDate"
 						control={control}
+						rules={{
+							onChange: ({ target }) => onDatesChange(startDate, target.value)
+						}}
 						render={({ field }) => (
 							<Input
 								type="date"
 								label="Fecha de Término"
 								isRequired
+								min={formatISO(addMonths(startDate, 6), { representation: 'date' })}
 								{...field}
-								value={field.value instanceof Date ? field.value.toISOString().split('T')[0] : field.value}
+								value={field.value instanceof Date ? formatISO(field.value, { representation: 'date' }) : field.value}
+								onChange={e => field.onChange(parseISO(e.target.value))}
 							/>
 						)}
 					/>
@@ -113,6 +129,25 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 								key={field.id}
 								name={`schedules.${index}` as const}
 								control={control}
+								rules={{
+									onChange: ({ target }) => {
+										const currentHours = target.value[1] - target.value[0]
+
+										let otherHours = 0
+										if (fields.length > 1) {
+											if (index === 0) {
+												const secondSchedule = getValues(`schedules.${index + 1}`)
+												otherHours = secondSchedule[1] - secondSchedule[0]
+											} else {
+												const firstSchedule = getValues(`schedules.${index}`)
+												otherHours = firstSchedule[1] - firstSchedule[0]
+											}
+										}
+
+										const totalHoursPerDay = currentHours + otherHours
+										setValue('totalHours', totalHoursPerDay * differenceInBusinessDays(endDate, startDate))
+									}
+								}}
 								render={({ field }) => (
 									<Slider
 										label={`Horario ${index + 1}`}
@@ -140,60 +175,26 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 						))}
 					</section>
 
-					<Controller
-						name="totalHours"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="number"
-								label="Total de Horas"
-								min={280}
-								isRequired
-								{...field}
-								value={String(field.value)}
-							/>
-						)}
+					<Input
+						type="number"
+						label="Total de Horas"
+						min={480}
+						{...register('totalHours', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="months"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="number"
-								label="Número de Actividades"
-								min={6}
-								isRequired
-								{...field}
-								value={String(field.value)}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Nombre del Proyecto"
+						{...register('projectName', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="projectName"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Nombre del Proyecto"
-								isRequired
-								{...field}
-							/>
-						)}
-					/>
-
-					<Controller
-						name="projectObjective"
-						control={control}
-						render={({ field }) => (
-							<Textarea
-								type="text"
-								label="Objetivo del Proyecto"
-								isRequired
-								{...field}
-							/>
-						)}
+					<Textarea
+						type="text"
+						label="Objetivo del Proyecto"
+						{...register('projectObjective', { required: true })}
+						isRequired
 					/>
 
 					<div className="flex justify-center mt-2 md:col-span-2">
