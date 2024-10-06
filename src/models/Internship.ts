@@ -5,16 +5,11 @@ import { PartialReport } from "./PartialReport"
 import { Person } from "./Person"
 
 
-export interface Internship {
+export type Internship = {
 	applicationDate: Date			// Fecha de solicitud
-
 	person: Person
-
 	student: InternshipStudent
-
 	period: InternshipPeriod
-
 	company: Company
-
 	reports?: ({ [key: string]: PartialReport })
 }

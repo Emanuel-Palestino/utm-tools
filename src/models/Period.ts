@@ -1,4 +1,4 @@
-export interface Period {
+export type Period = {
 	startDate: Date
 	endDate: Date
 	schedules: number[][]

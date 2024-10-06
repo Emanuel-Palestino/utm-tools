@@ -1,7 +1,7 @@
 import { Student } from "../Student"
 
 
-export interface SocialServiceStudent extends Student {
+export type SocialServiceStudent = Student & {
 	address: string
 	percentageOfApprovedCredits: number
 }

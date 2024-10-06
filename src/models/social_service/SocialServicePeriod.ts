@@ -1,14 +1,14 @@
 import { Period } from "../Period"
 
 
-export interface SocialServicePeriod extends Period {
+export type SocialServicePeriod = Period & {
 	months: number
 	projectName: string
 	projectObjective: string
 	activities: Activity[]
 }
 
-export interface Activity {
+export type Activity = {
 	description: string
 	startDate: Date
 	endDate: Date

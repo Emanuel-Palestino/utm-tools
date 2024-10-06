@@ -1,4 +1,4 @@
-export interface MakeUpExam {
+export type MakeUpExam = {
 	name: string
 	paternalSurname: string
 	maternalSurname: string

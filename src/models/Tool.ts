@@ -1,4 +1,4 @@
-export interface Tool {
+export type Tool = {
 	id: string
 	type: string
 	name: string

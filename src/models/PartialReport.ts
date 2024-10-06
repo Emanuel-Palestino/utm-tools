@@ -1,4 +1,4 @@
-export interface PartialReport {
+export type PartialReport = {
 	formatNumber: number
 	startDate: Date
 	endDate: Date

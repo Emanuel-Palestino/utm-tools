@@ -1,4 +1,4 @@
-export interface GovernmentAgency {
+export type GovernmentAgency = {
 	name: string
 	supervisorName: string
 	supervisorEmail: string
