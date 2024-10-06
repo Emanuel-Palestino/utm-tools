@@ -6,7 +6,21 @@ import { Disclaimer } from "../ui/Disclaimer"
 
 export const metadata: Metadata = {
 	title: 'Estancias Profesionales',
-	description: 'Generación de documentación completa y seguimiento para estancias profesionales de la Universidad Tecnológica de la Mixteca.'
+	description: 'Documentación para solicitud y seguimiento de estancias profesionales en la Universidad Tecnológica de la Mixteca: procesos, requisitos, formatos, plantillas y documentos.',
+	keywords: [
+		'universidad tecnológica de la mixteca',
+		'utm estancias profesionales',
+		'universidad tecnológica de la mixteca estancias profesionales',
+		'utm estancias profesionales requisitos',
+		'utm estancias profesionales documentos',
+		'utm estancias profesionales formatos',
+		'utm estancias profesionales solicitud',
+		'utm estancias profesionales seguimiento',
+		'utm estancias profesionales proceso',
+		'utm estancias profesionales pasos',
+		'utm estancias profesionales plantillas',
+		'utm estancias profesionales guía'
+	]
 }
 
 const Internship = () => {

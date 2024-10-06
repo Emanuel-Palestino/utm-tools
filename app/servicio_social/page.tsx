@@ -6,7 +6,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
 	title: 'Servicio Social',
-	description: 'Generación de documentación completa para la solicitud y seguimiento de servicio social de la Universidad Tecnológica de la Mixteca. Proceso y requisitos para la realización de servicio social en la UTM. Formatos, plantillas y documentos de servicio social de la UTM.',
+	description: 'Documentación para solicitud y seguimiento de servicio social en la Universidad Tecnológica de la Mixteca: procesos, requisitos, formatos, plantillas y documentos.',
 	keywords: [
 		'universidad tecnológica de la mixteca',
 		'utm servicio social',
