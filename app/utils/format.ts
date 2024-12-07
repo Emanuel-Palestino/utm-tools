@@ -1,5 +1,5 @@
 import { format } from "date-fns"
-import es from "date-fns/locale/es"
+import { es } from "date-fns/locale/es"
 
 
 export const formatedDate = (dateTs: number) => {

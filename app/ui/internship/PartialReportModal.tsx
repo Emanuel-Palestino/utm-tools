@@ -4,7 +4,7 @@ import { Modal, ModalBody, ModalContent, ModalHeader, ModalFooter } from '@nextu
 import { Select, SelectItem } from '@nextui-org/select'
 import { Button } from '@nextui-org/button'
 import { Textarea } from '@nextui-org/input'
-import { differenceInCalendarWeeks } from 'date-fns'
+import { addDays, differenceInCalendarWeeks, eachWeekOfInterval } from 'date-fns'
 import { FC, useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { PartialReport } from '@/src/models/PartialReport'
@@ -73,10 +73,6 @@ const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange 
 									id="report_form"
 									className="flex flex-col gap-4"
 									onSubmit={handleSubmit(async data => {
-										// Import dynamically the date-fns functions
-										const eachWeekOfInterval = (await import('date-fns/eachWeekOfInterval')).default
-										const addDays = (await import('date-fns/addDays')).default
-
 										// Get all the weeks of the full internship period
 										const periodWeeks = eachWeekOfInterval({
 											start: internshipData.period.startDate,
