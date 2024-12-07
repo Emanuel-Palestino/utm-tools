@@ -5,16 +5,11 @@ import { PartialReport } from "./PartialReport"
 import { Person } from "./Person"
 
 
-export interface Internship {
-	applicationDate: Date			// Fecha de solicitud
-
+export type Internship = {
+	applicationDate: number			// Fecha de solicitud. Timestamp in milliseconds
 	person: Person
-
 	student: InternshipStudent
-
 	period: InternshipPeriod
-
 	company: Company
-
 	reports?: ({ [key: string]: PartialReport })
 }

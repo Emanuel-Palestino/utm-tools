@@ -1,7 +1,7 @@
 import { CompanySector } from "./CompanySector"
 
 
-export interface Company {
+export type Company = {
 	isInternacional: boolean		// ¿Es internacional?
 	sector: CompanySector			// Sector
 	industry: string				// Industria (Giro de la empresa)

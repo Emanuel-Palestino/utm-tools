@@ -4,12 +4,9 @@ import { SocialServicePeriod } from "./SocialServicePeriod"
 import { SocialServiceStudent } from "./SocialServiceStudent"
 
 
-export interface SocialService {
+export type SocialService = {
 	person: Person
-
 	student: SocialServiceStudent
-
 	period: SocialServicePeriod
-
 	agency: GovernmentAgency
 }

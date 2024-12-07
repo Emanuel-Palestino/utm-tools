@@ -16,7 +16,7 @@ const DocumentReception: FC<DocumentReceptionProps> = props => {
 	return (
 		<section className="w-full h-full text-[13px]">
 			<Section {...props} />
-			<span className="block h-20" />
+			<span className="block h-16" />
 			<Section {...props} />
 		</section>
 	)

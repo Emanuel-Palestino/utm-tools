@@ -2,12 +2,11 @@ import { format } from "date-fns"
 import es from "date-fns/locale/es"
 
 
-export const formatedDate = (date: Date) => {
-	const day = format(date, 'dd', { locale: es })
-	const month = format(date, 'MMMM', { locale: es })
-	const year = format(date, 'yyyy', { locale: es })
-
-	return `${day} de ${month.charAt(0).toUpperCase()}${month.slice(1)} de ${year}`
+export const formatedDate = (dateTs: number) => {
+	// ñ is added to capitalize the month later
+	const formattedDate = format(dateTs, "dd 'de' 'ñ'MMMM 'de' yyyy", { locale: es })
+	// Capitalize the month
+	return formattedDate.replace(/ñ(.)/, letter => letter[1].toUpperCase())
 }
 
 export const formatSchedule = (hours: number[]) => {
@@ -15,5 +14,5 @@ export const formatSchedule = (hours: number[]) => {
 	const formattedStart = String(start).padStart(2, '0')
 	const formattedEnd = String(end).padStart(2, '0')
 
-	return `${formattedStart}:00 hrs - ${formattedEnd}:00 hrs`
+	return `${formattedStart}:00hrs - ${formattedEnd}:00hrs`
 }

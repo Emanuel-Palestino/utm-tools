@@ -2,7 +2,7 @@ import { Student } from "./Student"
 import { StudentState } from "./StudentState"
 
 
-export interface InternshipStudent extends Student {
+export type InternshipStudent = Student & {
 	haveToRetakeSubjects: boolean	// ¿Tiene que recursar materias?
 	haveMakeUpExam: boolean			// Examen extraordinario?
 	haveFirstMakeUpExam: boolean	// Primer extraordinario?

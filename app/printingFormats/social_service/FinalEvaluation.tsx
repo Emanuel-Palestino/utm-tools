@@ -56,9 +56,9 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 						<p>{`${person.paternalSurname} ${person.maternalSurname} ${person.name}`}</p>
 					</div>
 
-					<div className="flex gap-8">
-						<div className="flex gap-2">
-							<p className="text-left w-[170px] font-semibold">CARRERA:</p>
+					<div className="flex gap-8 items-center">
+						<div className="flex gap-2 items-center">
+							<p className="text-left text-balance min-w-[170px] font-semibold">CARRERA:</p>
 							<p>{student.career}</p>
 						</div>
 
@@ -74,14 +74,18 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 					</div>
 
 					<div className="flex items-center gap-2">
-						<p className="text-left w-[170px] font-semibold">PERIODO EN QUE CUBRIÓ SERVICIO SOCIAL DEL:</p>
+						<p className="text-left w-[170px] font-semibold leading-4">PERIODO EN QUE CUBRIÓ SERVICIO SOCIAL DEL:</p>
 						<p>{formatedDate(period.startDate)} <span className="inline-block w-32 text-center font-semibold">AL</span> {formatedDate(period.endDate)}</p>
 					</div>
 
 					<div className="flex gap-6">
 						<div className="flex gap-2">
 							<p className="text-left w-[170px] font-semibold">HORARIO:</p>
-							<p>{formatSchedule(period.schedule)}</p>
+							<p>{
+								period.schedules.length === 1
+									? formatSchedule(period.schedules[0])
+									: `${formatSchedule(period.schedules[0])} y ${formatSchedule(period.schedules[1])}`
+							}</p>
 						</div>
 
 						<div className="flex gap-2">
@@ -131,7 +135,7 @@ export const FinalEvaluation: FC<FinalEvaluationProps> = ({ person, student, per
 					</div>
 
 					<div className="flex gap-2 items-center">
-						<p>
+						<p className="leading-4">
 							<span className="text-left font-semibold">DESCRIPCIÓN BREVE DE ACTIVIDADES ASIGNADAS AL ALUMNO: </span>
 							{description}
 						</p>

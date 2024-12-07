@@ -22,7 +22,7 @@ export const Documents = () => {
 	const { dataComplete, internshipData, documentsDownloaded, setDocumentDownloaded } = useInternshipStore(state => ({
 		dataComplete: state.isCompanyDataComplete && state.isPeriodDataComplete && state.isPersonalDataComplete && state.isStudentDataComplete,
 		internshipData: {
-			applicationDate: new Date(),
+			applicationDate: Date.now(),
 			person: state.personalData!,
 			student: state.studentData!,
 			period: state.periodData!,
@@ -93,37 +93,33 @@ export const Documents = () => {
 
 	return (
 		<>
-			<section>
-				<h2 className="text-xl sm:text-2xl text-center md:text-left mb-4">2 - Descarga tu documentación</h2>
+			<div className="flex flex-wrap gap-4 justify-center w-fit">
+				{documents.map(doc => (
+					<Card
+						isPressable={dataComplete}
+						isDisabled={!dataComplete}
+						onPress={() => {
+							doc.action()
+							if (doc.instantDownload) setDocumentDownloaded(doc.stateKey)
+						}}
+						key={doc.name}
+						className="w-32 h-36"
+					>
+						<CardBody className="pb-0">
+							<DocumentIcon />
+							{doc.stateKey !== 'none' && documentsDownloaded[doc.stateKey] && (
+								<span className="fill-green-600 font-bold absolute right-3" >
+									<DownloadIcon />
+								</span>
+							)}
+						</CardBody>
 
-				<div className="flex flex-wrap gap-4 justify-center w-fit">
-					{documents.map(doc => (
-						<Card
-							isPressable={dataComplete}
-							isDisabled={!dataComplete}
-							onPress={() => {
-								doc.action()
-								if (doc.instantDownload) setDocumentDownloaded(doc.stateKey)
-							}}
-							key={doc.name}
-							className="w-32 h-36"
-						>
-							<CardBody className="pb-0">
-								<DocumentIcon />
-								{doc.stateKey !== 'none' && documentsDownloaded[doc.stateKey] && (
-									<span className="fill-green-600 font-bold absolute right-3" >
-										<DownloadIcon />
-									</span>
-								)}
-							</CardBody>
-
-							<CardFooter className="flex-grow">
-								<p className="w-full text-center leading-4">{doc.name}</p>
-							</CardFooter>
-						</Card>
-					))}
-				</div>
-			</section>
+						<CardFooter className="flex-grow">
+							<p className="w-full text-center leading-4">{doc.name}</p>
+						</CardFooter>
+					</Card>
+				))}
+			</div>
 
 			{dataComplete && (
 				<>
@@ -139,7 +135,7 @@ export const Documents = () => {
 					</PDFWrapper>
 
 					<PDFWrapper target={commitmentLetterTarget}>
-						<CommitmentLetter data={internshipData} date={formatedDate(new Date())} />
+						<CommitmentLetter data={internshipData} date={formatedDate(Date.now())} />
 					</PDFWrapper>
 
 					{isFinalReportOpen && (

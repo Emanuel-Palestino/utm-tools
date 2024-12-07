@@ -14,7 +14,7 @@ interface ScheduleOfActivitiesProps {
 	governmentAgency: GovernmentAgency
 	period: SocialServicePeriod
 	activities: Activity[]
-	date: Date
+	date: number
 }
 
 export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
@@ -31,7 +31,7 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 			<div>
 				<Header title="CRONOGRAMA DE ACTIVIDADES DE SERVICIO SOCIAL" landscape />
 
-				<p className="text-right text-[16px] px-10 mt-8">FECHA: {formatedDate(date)}</p>
+				<p className="text-right text-[16px] px-10 mt-6">FECHA: {formatedDate(date)}</p>
 
 				<div className="flex flex-col gap-1 px-8 mt-4">
 					<div className="flex gap-4">
@@ -62,8 +62,8 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 					</div>
 
 					<div className="flex gap-4 items-center">
-						<p className="w-[230px] font-semibold text-right">NOMBRE DEL PROGRAMA O PROYECTO:</p>
-						<p>{period.projectName}</p>
+						<p className="min-w-[230px] font-semibold text-right leading-4">NOMBRE DEL PROGRAMA O PROYECTO:</p>
+						<p className="leading-4">{period.projectName}</p>
 					</div>
 
 					<div className="flex gap-4">
@@ -73,7 +73,7 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 
 					<div className="flex gap-4">
 						<p className="w-[230px] font-semibold flex-shrink-0 text-right">OBJETIVO:</p>
-						<p>{period.projectObjective}</p>
+						<p className="text-balance leading-4">{period.projectObjective}</p>
 					</div>
 				</div>
 
@@ -81,22 +81,22 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 					<table className="w-full table-auto border-collapse">
 						<thead className="border-t border-l border-black">
 							<tr>
-								<th rowSpan={2} className="border-b border-r border-black">NÚM.</th>
-								<th rowSpan={2} className="border-b border-r border-black w-96">ACTIVIDAD</th>
+								<th rowSpan={2} className="border-b border-r border-black px-1 text-[11px]">NÚM.</th>
+								<th rowSpan={2} className="border-b border-r border-black min-w-96">ACTIVIDAD</th>
 
 								<th colSpan={3} className="text-center border-b border-r border-black">DEL</th>
 								<th colSpan={3} className="text-center border-b border-r border-black">AL</th>
 
-								<th rowSpan={2} className="border-b border-r border-black w-36">NÚMERO DE HORAS POR ACTIVIDAD</th>
+								<th rowSpan={2} className="border-b border-r border-black px-1 text-[10px]">NÚMERO DE HORAS POR ACTIVIDAD</th>
 							</tr>
 							<tr className="text-[12px]">
-								<th className="border-b border-r border-black">Día</th>
-								<th className="border-b border-r border-black">Mes</th>
-								<th className="border-b border-r border-black">Año</th>
+								<th className="border-b border-r border-black px-2">Día</th>
+								<th className="border-b border-r border-black px-2">Mes</th>
+								<th className="border-b border-r border-black px-2">Año</th>
 
-								<th className="border-b border-r border-black">Día</th>
-								<th className="border-b border-r border-black">Mes</th>
-								<th className="border-b border-r border-black">Año</th>
+								<th className="border-b border-r border-black px-2">Día</th>
+								<th className="border-b border-r border-black px-2">Mes</th>
+								<th className="border-b border-r border-black px-2">Año</th>
 							</tr>
 						</thead>
 
@@ -104,7 +104,7 @@ export const ScheduleOfActivities: FC<ScheduleOfActivitiesProps> = ({
 							{activities.map((activity, index) => (
 								<tr key={`activity-${index}`} className="text-center">
 									<td className="border-b border-r border-black">{index + 1}</td>
-									<td className="border-b border-r border-black">{activity.description}</td>
+									<td className="border-b border-r border-black text-left pl-1">{activity.description}</td>
 									<td className="border-b border-r border-black">{String(getDate(activity.startDate)).padStart(2, '0')}</td>
 									<td className="border-b border-r border-black">{String(getMonth(activity.startDate) + 1).padStart(2, '0')}</td>
 									<td className="border-b border-r border-black">{getYear(activity.startDate)}</td>

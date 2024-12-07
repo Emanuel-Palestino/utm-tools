@@ -3,7 +3,7 @@ import { Select, SelectItem } from "@nextui-org/select"
 import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
 import { careers } from "@/src/models/Careers"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
@@ -13,7 +13,7 @@ interface StudentFormProps {
 	nextForm: () => void
 }
 
-export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
+const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 
 	const { save, values, isComplete } = useSocialServiceStore(state => ({
 		save: state.setStudentData,
@@ -23,7 +23,7 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 
 	const {
 		handleSubmit,
-		control
+		register
 	} = useForm<SocialServiceStudent>({
 		defaultValues: {
 			career: 'Ingeniería en Computación',
@@ -46,80 +46,47 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 		<Card>
 			<CardBody className="p-4">
 				<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-4">
-					<Controller
-						name="career"
-						control={control}
-						render={({ field }) => (
-							<Select
-								label="Carrera"
-								isRequired
-								{...field}
-								selectedKeys={field.value ? [String(field.value)] : []}
-							>
-								{careers.map(career => (
-									<SelectItem key={career} value={career}>
-										{career}
-									</SelectItem>
-								))}
-							</Select>
-						)}
+					<Select
+						label="Carrera"
+						{...register('career')}
+						isRequired
+					>
+						{careers.map(career => (
+							<SelectItem key={career} value={career}>
+								{career}
+							</SelectItem>
+						))}
+					</Select>
+
+					<Select
+						label="Semestre"
+						{...register('semester', { required: true })}
+						isRequired
+					>
+						<SelectItem key="8" value="8">Octavo</SelectItem>
+						<SelectItem key="9" value="9">Noveno</SelectItem>
+						<SelectItem key="10" value="10">Décimo</SelectItem>
+					</Select>
+
+					<Input
+						type="text"
+						label="Matrícula"
+						{...register('enrollment', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="semester"
-						control={control}
-						render={({ field }) => (
-							<Select
-								label="Semestre"
-								isRequired
-								{...field}
-								selectedKeys={field.value ? [String(field.value)] : []}
-							>
-								<SelectItem key="8" value="8">Octavo</SelectItem>
-								<SelectItem key="9" value="9">Noveno</SelectItem>
-								<SelectItem key="10" value="10">Décimo</SelectItem>
-							</Select>
-						)}
+					<Input
+						type="text"
+						label="Dirección"
+						{...register('address', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="enrollment"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Matrícula"
-								isRequired
-								{...field}
-							/>
-						)}
-					/>
-
-					<Controller
-						name="address"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Dirección"
-								isRequired
-								{...field}
-							/>
-						)}
-					/>
-
-					<Controller
-						name="percentageOfApprovedCredits"
-						control={control}
-						render={({ field }) => (
-							<Input
-								type="text"
-								label="Porcentaje de créditos aprobados"
-								isRequired
-								{...field}
-								value={field.value ? String(field.value) : ''}
-							/>
-						)}
+					<Input
+						type="text"
+						label="Porcentaje de créditos aprobados"
+						{...register('percentageOfApprovedCredits', { required: true })}
+						isRequired
 					/>
 
 					<div className="flex justify-center mt-2 md:col-span-2">
@@ -133,3 +100,5 @@ export const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 	)
 
 }
+
+export default StudentForm

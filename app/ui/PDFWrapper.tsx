@@ -11,7 +11,7 @@ export const PDFWrapper: FC<PDFWrapperProps> = ({ children, target, opacity = 0,
 
 	return (
 		<div
-			className="overflow-hidden fixed inset-0 pointer-events-none origin-top-left"
+			className="fixed inset-0 pointer-events-none origin-top-left"
 			style={{
 				opacity: opacity,
 				width: landscape ? '980px' : '740px',

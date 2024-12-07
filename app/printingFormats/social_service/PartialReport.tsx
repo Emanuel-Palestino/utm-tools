@@ -18,7 +18,7 @@ interface PartialReportProps {
 	description: string
 }
 
-export const PartialReport: FC<PartialReportProps> = ({
+const PartialReport: FC<PartialReportProps> = ({
 	person,
 	student,
 	governmentAgency,
@@ -29,7 +29,7 @@ export const PartialReport: FC<PartialReportProps> = ({
 }) => {
 
 	return (
-		<section className="w-full h-full text-[14px] flex flex-col justify-between">
+		<section className="w-full h-full text-[13px] flex flex-col justify-between">
 			<div className="px-4">
 				<div className="flex px-6 items-center">
 					<img width={120} height={120} src={logo.src} alt="logo" className="w-[120px] h-[120px]" />
@@ -43,7 +43,7 @@ export const PartialReport: FC<PartialReportProps> = ({
 
 				<div className="flex flex-col gap-2 mt-4">
 					<div className="flex gap-2 items-center">
-						<p className="text-left w-[180px] font-semibold">NOMBRE COMPLETO DEL ALUMNO:</p>
+						<p className="text-left w-[180px] font-semibold leading-4">NOMBRE COMPLETO DEL ALUMNO:</p>
 						<p>{`${person.paternalSurname} ${person.maternalSurname} ${person.name}`}</p>
 					</div>
 
@@ -104,7 +104,11 @@ export const PartialReport: FC<PartialReportProps> = ({
 					<div className="flex gap-10">
 						<div className="flex gap-2">
 							<p className="text-left w-[180px] font-semibold">HORARIO:</p>
-							<p>{formatSchedule(period.schedule)}</p>
+							<p>{
+								period.schedules.length === 1
+									? formatSchedule(period.schedules[0])
+									: `${formatSchedule(period.schedules[0])} y ${formatSchedule(period.schedules[1])}`
+							}</p>
 						</div>
 
 						<div className="flex gap-2">
@@ -130,17 +134,12 @@ export const PartialReport: FC<PartialReportProps> = ({
 
 						<tbody>
 							{
-								description.split('\n').map((paragraph, index) => {
-									if (!paragraph)
-										return null
-
-									return (
-										<tr key={`activity-description-${index}`}>
-											<td className="border-b border-r border-black p-2 text-center">{index + 1}.-</td>
-											<td className="border-b border-r border-black p-2">{paragraph}</td>
-										</tr>
-									)
-								})
+								description.split(/\s+/).map((paragraph, index) => (
+									<tr key={`activity-description-${index}`}>
+										<td className="border-b border-r border-black p-2 text-center">{index + 1}.-</td>
+										<td className="border-b border-r border-black p-2">{paragraph}</td>
+									</tr>
+								))
 							}
 						</tbody>
 					</table>
@@ -158,3 +157,5 @@ export const PartialReport: FC<PartialReportProps> = ({
 	)
 
 }
+
+export default PartialReport

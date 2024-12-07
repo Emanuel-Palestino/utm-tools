@@ -4,7 +4,6 @@ import { InternshipStudent } from '@/src/models/InternshipStudent'
 import { Person } from '@/src/models/Person'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { createStorage } from '@/app/utils/constants'
 import { PartialReport } from '@/src/models/PartialReport'
 
 
@@ -71,7 +70,17 @@ export const useInternshipStore = create<InternshipStore>()(
 		{
 			name: 'internship-storage',
 			skipHydration: true,
-			storage: createStorage<InternshipStore>()
+			version: 2,
+			migrate: (persistedState: any, version) => {
+				if (version === 0) {
+					if (persistedState.periodData) {
+						persistedState.periodData.schedules = [persistedState.periodData.schedule]
+						delete persistedState.periodData.schedule
+					}
+				}
+
+				return persistedState
+			}
 		}
 	)
 )

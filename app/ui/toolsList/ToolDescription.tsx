@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion'
 import { FC } from 'react'
 import { Tool } from '@/src/models/Tool'
-import { format } from 'date-fns'
-import es from 'date-fns/locale/es'
 import { useRouter } from 'next/navigation'
+import { formatedDate } from '@/app/utils/format'
 
 
 interface ToolDescriptionProps {
@@ -61,7 +60,7 @@ export const ToolDescription: FC<ToolDescriptionProps> = ({ tool, onClose }) => 
 					</div>
 
 					<p className="text-xs md:text-sm">
-						Última actualizacion: {format(new Date(`${tool.date} GMT-6`), "dd 'de' MMMM 'del' y", { locale: es })}
+						Última actualizacion: {formatedDate(new Date(`${tool.date} GMT-6`).getTime())}
 					</p>
 				</motion.div>
 

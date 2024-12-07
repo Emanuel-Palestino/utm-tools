@@ -1,11 +1,22 @@
-import { nextui } from '@nextui-org/react'
+import { nextui } from '@nextui-org/theme'
 import type { Config } from 'tailwindcss'
 
 
 const config: Config = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
+    './node_modules/@nextui-org/theme/dist/components/button.js',
+    './node_modules/@nextui-org/theme/dist/components/card.js',
+    './node_modules/@nextui-org/theme/dist/components/input.js',
+    './node_modules/@nextui-org/theme/dist/components/link.js',
+    './node_modules/@nextui-org/theme/dist/components/modal.js',
+    './node_modules/@nextui-org/theme/dist/components/navbar.js',
+    './node_modules/@nextui-org/theme/dist/components/radio.js',
+    './node_modules/@nextui-org/theme/dist/components/select.js',
+    './node_modules/@nextui-org/theme/dist/components/skeleton.js',
+    './node_modules/@nextui-org/theme/dist/components/slider.js',
+    './node_modules/@nextui-org/theme/dist/components/toggle.js',
+    './node_modules/@nextui-org/theme/dist/components/tabs.js',
   ],
   theme: {
     extend: {

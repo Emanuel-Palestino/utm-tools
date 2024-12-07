@@ -3,11 +3,13 @@ import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
 import { Slider } from "@nextui-org/slider"
 import { InternshipPeriod } from "@/src/models/InternshipPeriod"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-form"
 import { useInternshipStore } from "@/app/store/internship"
 import { Select, SelectItem } from "@nextui-org/select"
 import { INTERNSHIP_PERIODS } from "@/app/utils/constants"
 import { formatedDate } from "@/app/utils/format"
+import { MinusIcon, PlusIcon } from "@/app/icons"
+import { formatISO, parseISO } from "date-fns"
 
 
 const PeriodForm = () => {
@@ -26,9 +28,10 @@ const PeriodForm = () => {
 		defaultValues: {
 			projectName: '',
 			workArea: '',
-			startDate: new Date(),
-			endDate: new Date(),
-			schedule: [9, 18],
+			startDate: Date.now(),
+			endDate: Date.now(),
+			// values is passed due to the field array takes always the default value
+			schedules: values?.schedules || [[9, 18]],
 			totalHours: 280,
 			periodNumber: 1,
 			customPeriod: false,
@@ -37,15 +40,14 @@ const PeriodForm = () => {
 		values
 	})
 
+	const { fields, append, remove } = useFieldArray({ control, name: 'schedules' })
+
 	const onSubmit: SubmitHandler<InternshipPeriod> = data => {
 		data.totalHours = Number(data.totalHours)
 		data.reportFrecuency = Number(data.reportFrecuency)
 		data.periodNumber = Number(data.periodNumber)
 
-		if (data.periodNumber === -1) {
-			data.startDate = new Date(`${data.startDate} UTC-6`)
-			data.endDate = new Date(`${data.endDate} UTC-6`)
-		} else {
+		if (data.periodNumber !== -1) {
 			data.startDate = INTERNSHIP_PERIODS[data.periodNumber - 1].startDate
 			data.endDate = INTERNSHIP_PERIODS[data.periodNumber - 1].endDate
 		}
@@ -123,7 +125,8 @@ const PeriodForm = () => {
 										label="Fecha de Inicio"
 										isRequired
 										{...field}
-										value={field.value instanceof Date ? field.value.toISOString().split('T')[0] : field.value}
+										value={typeof field.value === 'number' ? formatISO(field.value, { representation: 'date' }) : field.value}
+										onChange={e => field.onChange(parseISO(e.target.value).getTime())}
 									/>
 								)}
 							/>
@@ -137,7 +140,8 @@ const PeriodForm = () => {
 										label="Fecha de Término"
 										isRequired
 										{...field}
-										value={field.value instanceof Date ? field.value.toISOString().split('T')[0] : field.value}
+										value={typeof field.value === 'number' ? formatISO(field.value, { representation: 'date' }) : field.value}
+										onChange={e => field.onChange(parseISO(e.target.value).getTime())}
 									/>
 								)}
 							/>
@@ -161,21 +165,52 @@ const PeriodForm = () => {
 						)}
 					/>
 
-					<Controller
-						name="schedule"
-						control={control}
-						render={({ field }) => (
-							<Slider
-								label="Horario"
-								step={1}
-								maxValue={22}
-								minValue={6}
-								getValue={value => Array.isArray(value) ? `${value[0]}:00 hrs. a ${value[1]}:00 hrs.` : ''}
-								showSteps
-								{...field}
+					<section>
+						<div className="flex gap-2 items-end">
+							<p className="font-medium text-lg">Horarios</p>
+							<Button
+								isIconOnly
+								color="primary"
+								size="sm"
+								onPress={() => append([[9, 18]])}
+								isDisabled={fields.length >= 2}
+								className="text-white min-w-6 w-6 h-6"
+							>
+								<PlusIcon />
+							</Button>
+						</div>
+
+						{fields.map((field, index) => (
+							<Controller
+								key={field.id}
+								name={`schedules.${index}` as const}
+								control={control}
+								render={({ field }) => (
+									<Slider
+										label={`Horario ${index + 1}`}
+										step={1}
+										maxValue={22}
+										minValue={6}
+										getValue={value => Array.isArray(value) ? `${value[0]}:00 hrs. a ${value[1]}:00 hrs.` : ''}
+										showSteps
+										{...field}
+										endContent={
+											fields.length > 1 &&
+											<Button
+												isIconOnly
+												color="danger"
+												size="sm"
+												onPress={() => remove(index)}
+												className="text-white min-w-6 w-6 h-6"
+											>
+												<MinusIcon />
+											</Button>
+										}
+									/>
+								)}
 							/>
-						)}
-					/>
+						))}
+					</section>
 
 					<Controller
 						name="totalHours"

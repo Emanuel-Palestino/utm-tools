@@ -2,7 +2,7 @@ import { Card, CardBody } from "@nextui-org/card"
 import { Input } from "@nextui-org/input"
 import { Button } from "@nextui-org/button"
 import { Person } from "@/src/models/Person"
-import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
 import { useSocialServiceStore } from "@/app/store/socialService"
 import { Switch } from "@nextui-org/switch"
@@ -12,7 +12,7 @@ interface PersonFormProps {
 	nextForm: () => void
 }
 
-export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
+const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 
 	const { save, values, isComplete } = useSocialServiceStore(state => ({
 		save: state.setPersonalData,
@@ -22,8 +22,8 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 
 	const {
 		handleSubmit,
-		control,
-		watch
+		watch,
+		register
 	} = useForm<Person>({
 		defaultValues: {
 			name: '',
@@ -48,91 +48,75 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 		<Card>
 			<CardBody className="p-4">
 				<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-4">
-					<Controller
-						name="name"
-						control={control}
-						render={({ field }) => (
-							<Input type="text" {...field} label="Nombre(s)" isRequired />
-						)}
+					<Input
+						type="text"
+						label="Nombre(s)"
+						{...register('name', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="paternalSurname"
-						control={control}
-						render={({ field }) => (
-							<Input type="text" {...field} label="Apellido Paterno" isRequired />
-						)}
+					<Input
+						type="text"
+						label="Apellido Paterno"
+						{...register('paternalSurname', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="maternalSurname"
-						control={control}
-						render={({ field }) => (
-							<Input type="text" {...field} label="Apellido Materno" isRequired />
-						)}
+
+					<Input
+						type="text"
+						label="Apellido Materno"
+						{...register('maternalSurname', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="phone"
-						control={control}
-						render={({ field }) => (
-							<Input type="text" inputMode="tel" label="Número Celular" {...field} isRequired />
-						)}
+
+					<Input
+						type="text"
+						inputMode="tel"
+						label="Número Celular"
+						{...register('phone', { required: true })}
+						isRequired
 					/>
 
-					<Controller
-						name="email"
-						control={control}
-						render={({ field }) => (
-							<Input type="email" inputMode="email" label="Correo Electrónico" {...field} />
-						)}
+
+					<Input
+						type="email"
+						inputMode="email"
+						label="Correo Electrónico"
+						{...register('email')}
 					/>
 
-					<Controller
-						name="isSpeakerOfIndigenousLanguage"
-						control={control}
-						render={({ field }) => (
-							<Switch {...field} value="" isSelected={field.value} >¿Hablas alguna lengua indígena?</Switch>
-						)}
-					/>
 
-					{watch('isSpeakerOfIndigenousLanguage') && (
-						<Controller
-							name="indigenousLanguage"
-							control={control}
-							render={({ field }) => (
-								<Input
-									type="text"
-									label="Lengua Indígena"
-									isRequired={watch('isSpeakerOfIndigenousLanguage')}
-									{...field}
-								/>
-							)}
+					<Switch
+						{...register('isSpeakerOfIndigenousLanguage')}
+					>
+						¿Hablas alguna lengua indígena?
+					</Switch>
+
+					{watch('isSpeakerOfIndigenousLanguage') &&
+						<Input
+							type="text"
+							label="Lengua Indígena"
+							{...register('indigenousLanguage', { required: watch('isSpeakerOfIndigenousLanguage') })}
+							isRequired={watch('isSpeakerOfIndigenousLanguage')}
 						/>
-					)}
+					}
 
-					<Controller
-						name="hasDisability"
-						control={control}
-						render={({ field }) => (
-							<Switch {...field} value="" isSelected={field.value} >¿Tienes alguna discapacidad?</Switch>
-						)}
-					/>
+					<Switch
+						{...register('hasDisability')}
+					>
+						¿Tienes alguna discapacidad?
+					</Switch>
 
-					{watch('hasDisability') && (
-						<Controller
-							name="disability"
-							control={control}
-							render={({ field }) => (
-								<Input
-									type="text"
-									label="Discapacidad"
-									isRequired={watch('hasDisability')}
-									{...field}
-								/>
-							)}
+					{watch('hasDisability') &&
+						<Input
+							type="text"
+							label="Discapacidad"
+							{...register('disability', { required: watch('hasDisability') })}
+							isRequired={watch('hasDisability')}
 						/>
-					)}
+					}
 
 					<div className="flex justify-center mt-2 md:col-span-2">
 						<Button className="w-32" color="primary" type="submit">
@@ -145,3 +129,5 @@ export const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 	)
 
 }
+
+export default PersonForm
