@@ -1,18 +1,37 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
+const AI_LIMIT = 5
 
-interface UtilitiesStore {
+type UtilitiesStore = {
 	disclaimerAccepted: boolean
-	acceptDisclaimer: () => void
+	aiUsageCount: number
+	aiUsageAllowed: boolean
 }
 
-export const useUtilitiesStore = create<UtilitiesStore>()(
+type UtilitiesActions = {
+	acceptDisclaimer: () => void
+	aiUsageIncrement: () => void
+}
+
+type UtilitiesStoreState = UtilitiesStore & UtilitiesActions
+
+export const useUtilitiesStore = create<UtilitiesStoreState>()(
 
 	persist(
-		(set) =>({
+		(set, get) => ({
 			disclaimerAccepted: false,
-			acceptDisclaimer: () => set({ disclaimerAccepted: true })
+			aiUsageCount: 0,
+			aiUsageAllowed: true,
+
+			acceptDisclaimer: () => set({ disclaimerAccepted: true }),
+			aiUsageIncrement: () => {
+				set({ aiUsageCount: get().aiUsageCount + 1 })
+
+				if (get().aiUsageCount >= AI_LIMIT) {
+					set({ aiUsageAllowed: false })
+				}
+			}
 		}),
 		{
 			name: 'utilities-storage',
