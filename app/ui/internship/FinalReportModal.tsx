@@ -6,8 +6,9 @@ import dynamic from "next/dynamic"
 import { FC } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Textarea } from "@nextui-org/input"
-import { createAIModel } from "@/app/actions/openai"
-import { GenerateIcon } from "@/app/icons/GenerateIcon"
+import { generateFinalReportText } from "@/app/actions/openai"
+import { GenerateWithAIIcon } from "@/app/icons"
+import { useUtilitiesStore } from "@/app/store/utilities"
 
 const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 const FinalReport = dynamic(() => import('@/app/printingFormats/internship/FinalReport'))
@@ -42,14 +43,20 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 		}
 	})
 
+	const { aiUsageIncrement, aiUsageAllowed } = useUtilitiesStore()
+
 	const generateFinalReport = async () => {
+		if (!aiUsageAllowed) {
+			console.error('Se ha alcanzado el límite de uso de la IA')
+			return
+		}
 
 		if (!reports['weekly-report-1'] || !reports['weekly-report-2'] || !reports['weekly-report-3']) {
 			console.error('No se han registrado todos los reportes parciales')
 			return
 		}
 
-		const { error, message } = await createAIModel([
+		const { error, message } = await generateFinalReportText([
 			reports['weekly-report-1'].description,
 			reports['weekly-report-2'].description,
 			reports['weekly-report-3'].description
@@ -60,6 +67,7 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 			return
 		}
 
+		aiUsageIncrement()
 		setValue('description', message || '')
 	}
 
@@ -94,9 +102,13 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 												endContent={
 													<Button
 														onPress={generateFinalReport}
-														className="min-w-1 p-3 absolute top-2 right-2"
+														className="absolute top-2 right-2"
+														color="primary"
+														isDisabled={!aiUsageAllowed}
+														disabled={!aiUsageAllowed}
+														isIconOnly
 													>
-														<GenerateIcon />
+														<GenerateWithAIIcon />
 													</Button>
 												}
 												classNames={{ innerWrapper: 'pr-6' }}

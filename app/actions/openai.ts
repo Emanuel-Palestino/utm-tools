@@ -2,7 +2,7 @@
 import OpenAI from "openai"
 
 
-export async function createAIModel(reports: string[]) {
+export async function generateFinalReportText(reports: string[]): Promise<{ message?: string, error?: string }> {
 	const openai = new OpenAI({
 		apiKey: process.env.OPENAI_API_KEY
 	})
@@ -30,7 +30,7 @@ export async function createAIModel(reports: string[]) {
 		})
 
 		return {
-			message: reportCompletion.choices[0].message.content
+			message: reportCompletion.choices[0].message.content || undefined
 		}
 	} catch (err) {
 		console.error(err)
