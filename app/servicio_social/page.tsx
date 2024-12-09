@@ -2,6 +2,7 @@ import { Disclaimer } from "../ui/Disclaimer"
 import { Documents } from "../ui/social_service/Documents"
 import { Form } from "../ui/social_service/Form"
 import { Metadata } from "next"
+import { Utilities } from "../ui/social_service/Utilities"
 
 
 export const metadata: Metadata = {
@@ -38,6 +39,11 @@ const SocialService = () => {
 				<section>
 					<h2 className="text-xl sm:text-2xl text-center md:text-left mb-4">2 - Descarga tu documentación</h2>
 					<Documents />
+				</section>
+
+				<section>
+					<h3 className="text-lg sm:text-xl mb-4">Utilidades</h3>
+					<Utilities />
 				</section>
 			</div>
 

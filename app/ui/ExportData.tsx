@@ -1,12 +1,12 @@
 'use client'
 import { Button } from "@nextui-org/button"
 
-export const ExportData = <T,>({ data }: { data: T }) => {
+export const ExportData = <T,>({ data, filename }: { data: T, filename: string }) => {
 
 	const exportData = () => {
 		const dataStr = JSON.stringify(data, null, 2)
 		const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr)
-		const exportFileDefaultName = 'utm-internship-data.json'
+		const exportFileDefaultName = filename
 
 		const linkElement = document.createElement('a')
 		linkElement.setAttribute('href', dataUri)
