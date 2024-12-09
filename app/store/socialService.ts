@@ -6,8 +6,7 @@ import { create } from "zustand"
 import { persist } from "zustand/middleware"
 import { PartialReport } from "@/src/models/PartialReport"
 
-
-interface SocialServiceStore {
+export type SocialServiceStore = {
 	isPersonalDataComplete: boolean
 	personalData: Person | undefined
 
@@ -26,7 +25,10 @@ interface SocialServiceStore {
 	reports: { [key: string]: PartialReport }
 
 	finalEvaluationDescription: string | undefined
+	documentsDownloaded: { [key: string]: boolean }
+}
 
+type SocialServiceActions = {
 	setPersonalData: (personalData: Person) => void
 	setStudentData: (studentData: SocialServiceStudent) => void
 	setPeriodData: (periodData: SocialServicePeriod) => void
@@ -35,13 +37,14 @@ interface SocialServiceStore {
 
 	setReport: (key: string, report: PartialReport) => void
 
-	documentsDownloaded: { [key: string]: boolean }
-	setDocumentDownloaded: (key: string, value: boolean) => void
-
 	setFinalEvaluationDescription: (description: string) => void
+	setDocumentDownloaded: (key: string, value: boolean) => void
+	setData: (data: SocialServiceStore) => void
 }
 
-export const useSocialServiceStore = create<SocialServiceStore>()(
+type SocialServiceState = SocialServiceStore & SocialServiceActions
+
+export const useSocialServiceStore = create<SocialServiceState>()(
 	persist(
 		(set, get) => ({
 			isPersonalDataComplete: false,
@@ -63,6 +66,8 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 
 			finalEvaluationDescription: undefined,
 
+			documentsDownloaded: {},
+
 			setPersonalData: (personalData: Person) => set(() => ({ personalData, isPersonalDataComplete: true })),
 
 			setStudentData: (studentData: SocialServiceStudent) => set(() => ({ studentData, isStudentDataComplete: true })),
@@ -77,12 +82,13 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 				set(() => ({ reports: { ...get().reports, [key]: report } }))
 			},
 
-			documentsDownloaded: {},
 			setDocumentDownloaded(key, value) {
 				set(() => ({ documentsDownloaded: { ...get().documentsDownloaded, [key]: value } }))
 			},
 
-			setFinalEvaluationDescription: (description: string) => set(() => ({ finalEvaluationDescription: description }))
+			setFinalEvaluationDescription: (description: string) => set(() => ({ finalEvaluationDescription: description })),
+
+			setData: (data: SocialServiceStore) => set(data)
 		}),
 		{
 			name: 'social-service-storage',
@@ -99,6 +105,5 @@ export const useSocialServiceStore = create<SocialServiceStore>()(
 				return persistedState
 			}
 		}
-
 	)
 )

@@ -6,8 +6,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { PartialReport } from '@/src/models/PartialReport'
 
-
-interface InternshipStore {
+export type InternshipStore = {
 	isPersonalDataComplete: boolean
 	personalData: Person | undefined
 
@@ -20,20 +19,23 @@ interface InternshipStore {
 	isCompanyDataComplete: boolean
 	companyData: Company | undefined
 
-	reports: ({ [key: string]: PartialReport })
+	reports: { [key: string]: PartialReport }
+	documentsDownloaded: { [key: string]: boolean }
+}
 
+type InternshipActions = {
 	setPersonalData: (personalData: Person) => void
 	setStudentData: (studentData: InternshipStudent) => void
 	setPeriodData: (periodData: InternshipPeriod) => void
 	setCompanyData: (companyData: Company) => void
-
 	addReport: (key: string, report: PartialReport) => void
-
-	documentsDownloaded: { [key: string]: boolean }
 	setDocumentDownloaded: (key: string, value: boolean) => void
+	setData: (data: InternshipStore) => void
 }
 
-export const useInternshipStore = create<InternshipStore>()(
+type InternshipStoreState = InternshipStore & InternshipActions
+
+export const useInternshipStore = create<InternshipStoreState>()(
 	persist(
 		(set, get) => ({
 			isPersonalDataComplete: false,
@@ -66,6 +68,8 @@ export const useInternshipStore = create<InternshipStore>()(
 			setDocumentDownloaded(key, value) {
 				set(() => ({ documentsDownloaded: { ...get().documentsDownloaded, [key]: value } }))
 			},
+
+			setData: (data) => set(() => data)
 		}),
 		{
 			name: 'internship-storage',
