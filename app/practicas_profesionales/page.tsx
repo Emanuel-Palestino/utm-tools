@@ -2,6 +2,7 @@ import { Form } from "@/app/ui/internship/Form"
 import { Documents } from "../ui/internship/Documents"
 import { Metadata } from "next"
 import { Disclaimer } from "../ui/Disclaimer"
+import { Utilities } from "../ui/internship/Utilities"
 
 
 export const metadata: Metadata = {
@@ -36,8 +37,13 @@ const Internship = () => {
 				</section>
 
 				<section>
-					<h2 className="text-xl sm:text-2xl text-center md:text-left mb-4">2 - Descarga tu documentación</h2>
+					<h2 className="text-lg sm:text-2xl text-center md:text-left mb-4">2 - Descarga tu documentación</h2>
 					<Documents />
+				</section>
+
+				<section>
+					<h3 className="text-lg sm:text-xl mb-4">Utilidades</h3>
+					<Utilities />
 				</section>
 			</div>
 
