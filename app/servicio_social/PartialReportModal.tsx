@@ -9,9 +9,9 @@ import dynamic from "next/dynamic"
 import { FC, useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { PartialReport } from "@app/_lib/types/Common"
-import { DownloadIcon } from "@app/icons/DownloadIcon"
+import { DownloadIcon } from "@app/_components/icons/DownloadIcon"
 
-const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
 const PartialReportPDF = dynamic(() => import('@app/printingFormats/social_service/PartialReport'))
 
 

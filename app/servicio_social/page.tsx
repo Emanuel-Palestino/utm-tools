@@ -1,4 +1,4 @@
-import { Disclaimer } from "@app/ui/Disclaimer"
+import { Disclaimer } from "@app/_components/Disclaimer"
 import { Documents } from "@app/servicio_social/Documents"
 import { Form } from "@app/servicio_social/Form"
 import { Metadata } from "next"

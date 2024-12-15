@@ -9,8 +9,8 @@ import { INTERNSHIP_PERIODS } from "@app/_lib/constants"
 import { formatedDate } from "@app/_lib/format"
 import { formatISO, parseISO } from "date-fns"
 import { InternshipPeriod } from "@app/_lib/types/Iternship"
-import { PlusIcon } from "@app/icons/PlusIcon"
-import { MinusIcon } from "@app/icons/MinusIcon"
+import { PlusIcon } from "@app/_components/icons/PlusIcon"
+import { MinusIcon } from "@app/_components/icons/MinusIcon"
 
 
 const PeriodForm = () => {

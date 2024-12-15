@@ -1,9 +1,9 @@
 'use client'
 
-import { ToolsItem } from '@app/ui/toolsList/ToolsItem'
+import { ToolsItem } from '@app/_components/tools/ToolsItem'
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import { ToolDescription } from '@app/ui/toolsList/ToolDescription'
+import { ToolDescription } from '@app/_components/tools/ToolDescription'
 import { Tool } from '@app/_lib/types/Tool'
 import tools from '@app/_lib/tools.json'
 

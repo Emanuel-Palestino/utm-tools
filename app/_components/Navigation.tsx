@@ -3,8 +3,8 @@ import { Link as UILink } from "@nextui-org/link"
 import logo from "@public/Logo.png"
 import Image from "next/image"
 import Link from "next/link"
-import { EmailIcon } from "@app/icons/EmailIcon"
-import { GitHubIcon } from "@app/icons/GitHubIcon"
+import { EmailIcon } from "@app/_components/icons/EmailIcon"
+import { GitHubIcon } from "@app/_components/icons/GitHubIcon"
 
 
 export const Navigation = () => {

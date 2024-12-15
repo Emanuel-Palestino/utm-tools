@@ -5,7 +5,7 @@ import { Controller, useFieldArray, useForm } from "react-hook-form"
 import { useSocialServiceStore } from "@app/_store/socialService"
 import { addDays, differenceInBusinessDays, formatISO, parseISO } from "date-fns"
 import { Activity } from "@app/_lib/types/SocialService"
-import { MinusIcon } from "@app/icons/MinusIcon"
+import { MinusIcon } from "@app/_components/icons/MinusIcon"
 
 const DEFAULT_PERIOD_DATA = {
 	schedules: [[9, 18]],

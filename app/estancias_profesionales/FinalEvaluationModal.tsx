@@ -7,7 +7,7 @@ import { FC } from "react"
 import { useForm } from "react-hook-form"
 import { Textarea } from "@nextui-org/input"
 
-const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
 const FinalEvaluation = dynamic(() => import('@app/printingFormats/internship/FinalEvaluation'))
 
 

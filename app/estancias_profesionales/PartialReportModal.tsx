@@ -9,10 +9,10 @@ import { Controller, useForm } from 'react-hook-form'
 import dynamic from 'next/dynamic'
 import { usePDF } from '@app/_lib/hooks/usePDF'
 import { PartialReport } from '@app/_lib/types/Common'
-import { DownloadIcon } from '@app/icons/DownloadIcon'
+import { DownloadIcon } from '@app/_components/icons/DownloadIcon'
 
 const WeeklyReport = dynamic(() => import('@app/printingFormats/internship/WeeklyReport'))
-const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
 
 
 interface PartialReportModalProps {

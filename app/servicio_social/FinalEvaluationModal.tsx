@@ -7,7 +7,7 @@ import dynamic from "next/dynamic"
 import { FC } from "react"
 import { useForm } from "react-hook-form"
 
-const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
 const FinalEvaluation = dynamic(() => import('@app/printingFormats/social_service/FinalEvaluation').then(mod => mod.FinalEvaluation))
 
 

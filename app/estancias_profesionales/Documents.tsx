@@ -6,12 +6,12 @@ import { Card, CardBody, CardFooter } from "@nextui-org/card"
 import { useDisclosure } from "@nextui-org/modal"
 import { formatedDate } from "@app/_lib/format"
 import dynamic from "next/dynamic"
-import { DocumentIcon } from "@app/icons/DocumentIcon"
-import { DownloadIcon } from "@app/icons/DownloadIcon"
+import { DocumentIcon } from "@app/_components/icons/DocumentIcon"
+import { DownloadIcon } from "@app/_components/icons/DownloadIcon"
 
 const PresentationLetter = dynamic(() => import('@app/printingFormats/internship/PresentationLetter'))
 const CommitmentLetter = dynamic(() => import('@app/printingFormats/CommitmentLetter'))
-const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
 const PartialReportModal = dynamic(() => import('@app/estancias_profesionales/PartialReportModal'))
 const FinalReportModal = dynamic(() => import('@app/estancias_profesionales/FinalReportModal'))
 const FinalEvaluationModal = dynamic(() => import('@app/estancias_profesionales/FinalEvaluationModal'))

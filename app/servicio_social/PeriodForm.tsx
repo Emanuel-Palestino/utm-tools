@@ -7,8 +7,8 @@ import { FC } from "react"
 import { useSocialServiceStore } from "@app/_store/socialService"
 import { addMonths, differenceInBusinessDays, differenceInMonths, formatISO, parseISO } from "date-fns"
 import { SocialServicePeriod } from "@app/_lib/types/SocialService"
-import { PlusIcon } from "@app/icons/PlusIcon"
-import { MinusIcon } from "@app/icons/MinusIcon"
+import { PlusIcon } from "@app/_components/icons/PlusIcon"
+import { MinusIcon } from "@app/_components/icons/MinusIcon"
 
 
 interface PeriodFormProps {

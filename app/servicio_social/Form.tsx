@@ -5,8 +5,8 @@ import { useEffect, useState } from "react"
 import { Key } from "@react-types/shared"
 import { useSocialServiceStore } from "@app/_store/socialService"
 import dynamic from "next/dynamic"
-import SkeletonForm from "@app/ui/SkeletonForm"
-import { CheckIcon } from "@app/icons/CheckIcon"
+import SkeletonForm from "@app/_components/SkeletonForm"
+import { CheckIcon } from "@app/_components/icons/CheckIcon"
 
 const PersonForm = dynamic(() => import('@app/servicio_social/PersonForm'), { loading: () => <SkeletonForm rows={5} /> })
 const StudentForm = dynamic(() => import('@app/servicio_social/StudentForm'), { loading: () => <SkeletonForm rows={4} /> })

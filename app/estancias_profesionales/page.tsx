@@ -1,7 +1,7 @@
 import { Form } from "@app/estancias_profesionales/Form"
 import { Documents } from "@app/estancias_profesionales/Documents"
 import { Metadata } from "next"
-import { Disclaimer } from "@app/ui/Disclaimer"
+import { Disclaimer } from "@app/_components/Disclaimer"
 import { Utilities } from "@app/estancias_profesionales/Utilities"
 
 

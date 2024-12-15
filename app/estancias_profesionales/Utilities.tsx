@@ -1,7 +1,7 @@
 'use client'
 import { useInternshipStore } from "@app/_store/internship"
-import { ExportData } from "@app/ui/ExportData"
-import { ImportData } from "@app/ui/ImportData"
+import { ExportData } from "@app/_components/ExportData"
+import { ImportData } from "@app/_components/ImportData"
 
 export const Utilities = () => {
 	const data = useInternshipStore()
