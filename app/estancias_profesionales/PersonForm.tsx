@@ -7,121 +7,137 @@ import { useInternshipStore } from "@app/_store/internship"
 import { Switch } from "@nextui-org/switch"
 import { Person } from "@app/_lib/types/Common"
 
-
 interface PersonFormProps {
-	nextForm: () => void
+  nextForm: () => void
 }
 
 const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
+  const { setPersonalData, personalData } = useInternshipStore()
 
-	const { setPersonalData, personalData } = useInternshipStore()
+  const { handleSubmit, control, watch } = useForm<Person>({
+    defaultValues: {
+      name: "",
+      phone: "",
+      email: "",
+      isSpeakerOfIndigenousLanguage: false,
+      indigenousLanguage: "",
+      hasDisability: false,
+      disability: "",
+    },
+    values: personalData,
+  })
 
-	const {
-		handleSubmit,
-		control,
-		watch
-	} = useForm<Person>({
-		defaultValues: {
-			name: '',
-			phone: '',
-			email: '',
-			isSpeakerOfIndigenousLanguage: false,
-			indigenousLanguage: '',
-			hasDisability: false,
-			disability: ''
-		},
-		values: personalData
-	})
+  const onSubmit: SubmitHandler<Person> = (data) => {
+    setPersonalData(data)
+    nextForm()
+  }
 
-	const onSubmit: SubmitHandler<Person> = data => {
-		setPersonalData(data)
-		nextForm()
-	}
+  return (
+    <Card>
+      <CardBody className="p-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-4"
+        >
+          <Controller
+            name="name"
+            control={control}
+            render={({ field }) => (
+              <Input
+                type="text"
+                {...field}
+                label="Nombre Completo"
+                isRequired
+              />
+            )}
+          />
 
-	return (
-		<Card>
-			<CardBody className="p-4">
-				<form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-4">
-					<Controller
-						name="name"
-						control={control}
-						render={({ field }) => (
-							<Input type="text" {...field} label="Nombre Completo" isRequired />
-						)}
-					/>
+          <Controller
+            name="phone"
+            control={control}
+            render={({ field }) => (
+              <Input
+                type="text"
+                inputMode="tel"
+                label="Número Celular"
+                {...field}
+                isRequired
+              />
+            )}
+          />
 
-					<Controller
-						name="phone"
-						control={control}
-						render={({ field }) => (
-							<Input type="text" inputMode="tel" label="Número Celular" {...field} isRequired />
-						)}
-					/>
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <Input
+                type="email"
+                inputMode="email"
+                label="Correo Electrónico"
+                {...field}
+              />
+            )}
+          />
 
-					<Controller
-						name="email"
-						control={control}
-						render={({ field }) => (
-							<Input type="email" inputMode="email" label="Correo Electrónico" {...field} />
-						)}
-					/>
+          <Controller
+            name="isSpeakerOfIndigenousLanguage"
+            control={control}
+            render={({ field }) => (
+              <Switch {...field} value="" isSelected={field.value}>
+                ¿Hablas alguna lengua indígena?
+              </Switch>
+            )}
+          />
 
-					<Controller
-						name="isSpeakerOfIndigenousLanguage"
-						control={control}
-						render={({ field }) => (
-							<Switch {...field} value="" isSelected={field.value} >¿Hablas alguna lengua indígena?</Switch>
-						)}
-					/>
+          {watch("isSpeakerOfIndigenousLanguage") && (
+            <Controller
+              name="indigenousLanguage"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  type="text"
+                  label="Lengua Indígena"
+                  isRequired={watch("isSpeakerOfIndigenousLanguage")}
+                  {...field}
+                />
+              )}
+            />
+          )}
 
-					{watch('isSpeakerOfIndigenousLanguage') && (
-						<Controller
-							name="indigenousLanguage"
-							control={control}
-							render={({ field }) => (
-								<Input
-									type="text"
-									label="Lengua Indígena"
-									isRequired={watch('isSpeakerOfIndigenousLanguage')}
-									{...field}
-								/>
-							)}
-						/>
-					)}
+          <Controller
+            name="hasDisability"
+            control={control}
+            render={({ field }) => (
+              <Switch {...field} value="" isSelected={field.value}>
+                ¿Tienes alguna discapacidad?{" "}
+              </Switch>
+            )}
+          />
 
-					<Controller
-						name="hasDisability"
-						control={control}
-						render={({ field }) => (
-							<Switch {...field} value="" isSelected={field.value} >¿Tienes alguna discapacidad? </Switch>
-						)}
-					/>
+          {watch("hasDisability") && (
+            <Controller
+              name="disability"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  type="text"
+                  label="Discapacidad"
+                  isRequired={watch("hasDisability")}
+                  {...field}
+                />
+              )}
+            />
+          )}
 
-					{watch('hasDisability') && (
-						<Controller
-							name="disability"
-							control={control}
-							render={({ field }) => (
-								<Input
-									type="text"
-									label="Discapacidad"
-									isRequired={watch('hasDisability')}
-									{...field}
-								/>
-							)}
-						/>
-					)}
-
-					<div className="flex justify-center mt-2 md:col-span-2">
-						<Button className="w-32" color="primary" type="submit">
-							{personalData ? 'Actualizar' : 'Guardar'}
-						</Button>
-					</div>
-				</form>
-			</CardBody>
-		</Card>
-	)
-
+          <div className="flex justify-center mt-2 md:col-span-2">
+            <Button className="w-32" color="primary" type="submit">
+              {personalData ? "Actualizar" : "Guardar"}
+            </Button>
+          </div>
+        </form>
+      </CardBody>
+    </Card>
+  )
 }
 
 export default PersonForm

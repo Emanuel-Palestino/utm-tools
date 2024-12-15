@@ -1,21 +1,18 @@
 import { Form } from "@app/extraordinario/Form"
 import { Metadata } from "next"
 
-
 export const metadata: Metadata = {
-	title: 'Extraordinario'
+  title: "Extraordinario",
 }
 
 const Extraordinario = () => {
+  return (
+    <div className="container mx-auto py-5 px-3">
+      <h1 className="text-center text-xl sm:text-2xl mb-4">Extraordinario</h1>
 
-	return (
-		<div className="container mx-auto py-5 px-3">
-			<h1 className="text-center text-xl sm:text-2xl mb-4">Extraordinario</h1>
-
-			<Form />
-		</div>
-	)
-
+      <Form />
+    </div>
+  )
 }
 
 export default Extraordinario

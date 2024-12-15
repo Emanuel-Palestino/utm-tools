@@ -1,9 +1,9 @@
 @tailwind base;
 
 @layer base {
-	img {
-		@apply inline-block;
-	}
+  img {
+    @apply inline-block;
+  }
 }
 
 @tailwind components;
