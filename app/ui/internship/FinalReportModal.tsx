@@ -7,8 +7,8 @@ import { FC } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Textarea } from "@nextui-org/input"
 import { generateFinalReportText } from "@app/actions/openai"
-import { GenerateWithAIIcon } from "@app/icons"
 import { useUtilitiesStore } from "@app/store/utilities"
+import { GenerateWithAIIcon } from "@app/icons/GenerateWithAIIcon"
 
 const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 const FinalReport = dynamic(() => import('@app/printingFormats/internship/FinalReport'))

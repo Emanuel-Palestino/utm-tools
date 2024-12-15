@@ -4,8 +4,9 @@ import { Card, CardBody, CardFooter } from "@nextui-org/card"
 import { useDisclosure } from "@nextui-org/modal"
 import { usePDF } from "@app/_lib/hooks/usePDF"
 import { useSocialServiceStore } from "@app/store/socialService"
-import { DownloadIcon, DocumentIcon } from "@app/icons"
 import dynamic from "next/dynamic"
+import { DocumentIcon } from "@app/icons/DocumentIcon"
+import { DownloadIcon } from "@app/icons/DownloadIcon"
 
 const Registration = dynamic(() => import('@app/printingFormats/social_service/Registration').then(mod => mod.Registration))
 const DocumentReception = dynamic(() => import('@app/printingFormats/social_service/DocumentReception').then(mod => mod.DocumentReception))

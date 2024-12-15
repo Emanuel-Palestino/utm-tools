@@ -7,9 +7,10 @@ import { useInternshipStore } from "@app/store/internship"
 import { Select, SelectItem } from "@nextui-org/select"
 import { INTERNSHIP_PERIODS } from "@app/utils/constants"
 import { formatedDate } from "@app/utils/format"
-import { MinusIcon, PlusIcon } from "@app/icons"
 import { formatISO, parseISO } from "date-fns"
 import { InternshipPeriod } from "@app/_lib/types/Iternship"
+import { PlusIcon } from "@app/icons/PlusIcon"
+import { MinusIcon } from "@app/icons/MinusIcon"
 
 
 const PeriodForm = () => {

@@ -5,8 +5,9 @@ import { useInternshipStore } from "@app/store/internship"
 import { Card, CardBody, CardFooter } from "@nextui-org/card"
 import { useDisclosure } from "@nextui-org/modal"
 import { formatedDate } from "@app/utils/format"
-import { DownloadIcon, DocumentIcon } from "@app/icons"
 import dynamic from "next/dynamic"
+import { DocumentIcon } from "@app/icons/DocumentIcon"
+import { DownloadIcon } from "@app/icons/DownloadIcon"
 
 const PresentationLetter = dynamic(() => import('@app/printingFormats/internship/PresentationLetter'))
 const CommitmentLetter = dynamic(() => import('@app/printingFormats/CommitmentLetter'))

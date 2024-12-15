@@ -1,4 +1,3 @@
-import { DownloadIcon } from '@app/icons'
 import { useInternshipStore } from '@app/store/internship'
 import { Modal, ModalBody, ModalContent, ModalHeader, ModalFooter } from '@nextui-org/modal'
 import { Select, SelectItem } from '@nextui-org/select'
@@ -10,6 +9,7 @@ import { Controller, useForm } from 'react-hook-form'
 import dynamic from 'next/dynamic'
 import { usePDF } from '@app/_lib/hooks/usePDF'
 import { PartialReport } from '@app/_lib/types/Common'
+import { DownloadIcon } from '@app/icons/DownloadIcon'
 
 const WeeklyReport = dynamic(() => import('@app/printingFormats/internship/WeeklyReport'))
 const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))

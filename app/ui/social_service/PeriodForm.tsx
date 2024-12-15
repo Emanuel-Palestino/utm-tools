@@ -6,8 +6,9 @@ import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-fo
 import { FC } from "react"
 import { useSocialServiceStore } from "@app/store/socialService"
 import { addMonths, differenceInBusinessDays, differenceInMonths, formatISO, parseISO } from "date-fns"
-import { MinusIcon, PlusIcon } from "@app/icons"
 import { SocialServicePeriod } from "@app/_lib/types/SocialService"
+import { PlusIcon } from "@app/icons/PlusIcon"
+import { MinusIcon } from "@app/icons/MinusIcon"
 
 
 interface PeriodFormProps {
