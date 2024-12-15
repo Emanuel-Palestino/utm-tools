@@ -1,9 +1,9 @@
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/navbar"
 import { Link as UILink } from "@nextui-org/link"
-import logo from "@/public/Logo.png"
+import logo from "@public/Logo.png"
 import Image from "next/image"
 import Link from "next/link"
-import { GitHubIcon, EmailIcon } from "@/app/icons"
+import { GitHubIcon, EmailIcon } from "@app/icons"
 
 
 export const Navigation = () => {

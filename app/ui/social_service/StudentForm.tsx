@@ -2,11 +2,11 @@ import { Card, CardBody } from "@nextui-org/card"
 import { Select, SelectItem } from "@nextui-org/select"
 import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
-import { careers } from "@/src/models/Careers"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
-import { useSocialServiceStore } from "@/app/store/socialService"
-import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
+import { useSocialServiceStore } from "@app/store/socialService"
+import { SocialServiceStudent } from "@app/_lib/types/SocialService"
+import { Careers } from "@app/_lib/types/Common"
 
 
 interface StudentFormProps {
@@ -50,7 +50,7 @@ const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 						{...register('career')}
 						isRequired
 					>
-						{careers.map(career => (
+						{Object.values(Careers).map(career => (
 							<SelectItem key={career} value={career}>
 								{career}
 							</SelectItem>

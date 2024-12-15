@@ -4,10 +4,10 @@ import { Input, Textarea } from "@nextui-org/input"
 import { Slider } from "@nextui-org/slider"
 import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-form"
 import { FC } from "react"
-import { useSocialServiceStore } from "@/app/store/socialService"
-import { SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
+import { useSocialServiceStore } from "@app/store/socialService"
 import { addMonths, differenceInBusinessDays, differenceInMonths, formatISO, parseISO } from "date-fns"
-import { MinusIcon, PlusIcon } from "@/app/icons"
+import { MinusIcon, PlusIcon } from "@app/icons"
+import { SocialServicePeriod } from "@app/_lib/types/SocialService"
 
 
 interface PeriodFormProps {

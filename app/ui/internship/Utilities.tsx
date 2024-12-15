@@ -1,5 +1,5 @@
 'use client'
-import { useInternshipStore } from "@/app/store/internship"
+import { useInternshipStore } from "@app/store/internship"
 import { ExportData } from "../ExportData"
 import { ImportData } from "../ImportData"
 

@@ -1,7 +1,6 @@
-import { DownloadIcon } from "@/app/icons"
-import { useSocialServiceStore } from "@/app/store/socialService"
-import { usePDF } from "@/src/hooks/usePDF"
-import { PartialReport } from "@/src/models/PartialReport"
+import { DownloadIcon } from "@app/icons"
+import { useSocialServiceStore } from "@app/store/socialService"
+import { usePDF } from "@app/_lib/hooks/usePDF"
 import { Button } from "@nextui-org/button"
 import { Textarea } from "@nextui-org/input"
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/modal"
@@ -10,9 +9,10 @@ import { addMonths, differenceInBusinessDays } from "date-fns"
 import dynamic from "next/dynamic"
 import { FC, useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
+import { PartialReport } from "@app/_lib/types/Common"
 
-const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
-const PartialReportPDF = dynamic(() => import('@/app/printingFormats/social_service/PartialReport'))
+const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const PartialReportPDF = dynamic(() => import('@app/printingFormats/social_service/PartialReport'))
 
 
 interface PartialReportModalProps {

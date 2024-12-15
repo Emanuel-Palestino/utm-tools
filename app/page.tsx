@@ -1,11 +1,11 @@
 'use client'
 
-import { ToolsItem } from '@/app/ui/toolsList/ToolsItem'
+import { ToolsItem } from '@app/ui/toolsList/ToolsItem'
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import { ToolDescription } from '@/app/ui/toolsList/ToolDescription'
-import { Tool } from '@/src/models/Tool'
-import tools from '@/public/tools.json'
+import { ToolDescription } from '@app/ui/toolsList/ToolDescription'
+import { Tool } from '@app/_lib/types/Tool'
+import tools from '@app/_lib/tools.json'
 
 
 const Index = () => {

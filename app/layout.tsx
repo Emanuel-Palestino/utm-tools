@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import '@/app/global.css'
+import '@app/global.css'
 import { Analytics } from '@vercel/analytics/react'
 import { Navigation } from './ui/Navigation'
 

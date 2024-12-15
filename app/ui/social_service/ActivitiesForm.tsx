@@ -1,11 +1,11 @@
-import { Activity } from "@/src/models/social_service/SocialServicePeriod"
 import { Card, CardBody, CardHeader } from "@nextui-org/card"
 import { Input, Textarea } from "@nextui-org/input"
 import { Button } from "@nextui-org/button"
 import { Controller, useFieldArray, useForm } from "react-hook-form"
-import { useSocialServiceStore } from "@/app/store/socialService"
-import { MinusIcon } from "@/app/icons"
+import { useSocialServiceStore } from "@app/store/socialService"
+import { MinusIcon } from "@app/icons"
 import { addDays, differenceInBusinessDays, formatISO, parseISO } from "date-fns"
+import { Activity } from "@app/_lib/types/SocialService"
 
 const DEFAULT_PERIOD_DATA = {
 	schedules: [[9, 18]],

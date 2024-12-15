@@ -1,5 +1,5 @@
-import { useSocialServiceStore } from "@/app/store/socialService"
-import { usePDF } from "@/src/hooks/usePDF"
+import { useSocialServiceStore } from "@app/store/socialService"
+import { usePDF } from "@app/_lib/hooks/usePDF"
 import { Button } from "@nextui-org/button"
 import { Textarea } from "@nextui-org/input"
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/modal"
@@ -7,8 +7,8 @@ import dynamic from "next/dynamic"
 import { FC } from "react"
 import { useForm } from "react-hook-form"
 
-const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
-const FinalEvaluation = dynamic(() => import('@/app/printingFormats/social_service/FinalEvaluation').then(mod => mod.FinalEvaluation))
+const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const FinalEvaluation = dynamic(() => import('@app/printingFormats/social_service/FinalEvaluation').then(mod => mod.FinalEvaluation))
 
 
 interface FinalEvaluationModalProps {

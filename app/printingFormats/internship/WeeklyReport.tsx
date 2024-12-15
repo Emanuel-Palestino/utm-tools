@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC } from 'react'
-import { Internship } from '@/src/models/Internship'
-import logo from '@/public/UTMEscudo.png'
-import { formatedDate, formatSchedule } from '@/app/utils/format'
-import { PartialReport } from '@/src/models/PartialReport'
+import logo from '@public/UTMEscudo.png'
+import { formatedDate, formatSchedule } from '@app/utils/format'
+import { Internship } from '@app/_lib/types/Iternship'
+import { PartialReport } from '@app/_lib/types/Common'
 
 
 interface WeeklyReportProps {

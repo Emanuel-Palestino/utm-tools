@@ -3,12 +3,11 @@ import { Select, SelectItem } from "@nextui-org/select"
 import { Button } from "@nextui-org/button"
 import { Switch } from "@nextui-org/switch"
 import { Input } from "@nextui-org/input"
-import { careers } from "@/src/models/Careers"
-import { StudentState } from "@/src/models/StudentState"
-import { InternshipStudent } from "@/src/models/InternshipStudent"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
-import { useInternshipStore } from "@/app/store/internship"
+import { useInternshipStore } from "@app/store/internship"
+import { InternshipStudent, StudentState } from "@app/_lib/types/Iternship"
+import { Careers } from "@app/_lib/types/Common"
 
 
 interface StudentFormProps {
@@ -77,7 +76,7 @@ const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 								{...field}
 								selectedKeys={field.value ? [field.value] : []}
 							>
-								{careers.map(career => (
+								{Object.values(Careers).map(career => (
 									<SelectItem key={career} value={career}>
 										{career}
 									</SelectItem>

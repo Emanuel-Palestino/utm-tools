@@ -2,9 +2,9 @@
 'use client'
 
 import { FC } from 'react'
-import { Internship } from '@/src/models/Internship'
-import logo from '@/public/UTMEscudo.png'
-import { formatSchedule, formatedDate } from '@/app/utils/format'
+import logo from '@public/UTMEscudo.png'
+import { formatSchedule, formatedDate } from '@app/utils/format'
+import { Internship } from '@app/_lib/types/Iternship'
 
 
 interface PresentationLetterProps {

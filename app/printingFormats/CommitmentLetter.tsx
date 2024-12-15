@@ -1,6 +1,6 @@
-import { Internship } from "@/src/models/Internship"
 import { FC } from "react"
 import { formatedDate } from "../utils/format"
+import { Internship } from "@app/_lib/types/Iternship"
 
 
 interface CommitmentLetterProps {

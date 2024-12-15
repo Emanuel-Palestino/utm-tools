@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import logo from '@/public/UTMEscudo.png'
+import logo from '@public/UTMEscudo.png'
 import { FC } from "react"
 
 

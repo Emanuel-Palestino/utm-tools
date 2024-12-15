@@ -1,5 +1,5 @@
-import { DownloadIcon } from '@/app/icons'
-import { useInternshipStore } from '@/app/store/internship'
+import { DownloadIcon } from '@app/icons'
+import { useInternshipStore } from '@app/store/internship'
 import { Modal, ModalBody, ModalContent, ModalHeader, ModalFooter } from '@nextui-org/modal'
 import { Select, SelectItem } from '@nextui-org/select'
 import { Button } from '@nextui-org/button'
@@ -7,12 +7,12 @@ import { Textarea } from '@nextui-org/input'
 import { addDays, differenceInCalendarWeeks, eachWeekOfInterval } from 'date-fns'
 import { FC, useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { PartialReport } from '@/src/models/PartialReport'
 import dynamic from 'next/dynamic'
-import { usePDF } from '@/src/hooks/usePDF'
+import { usePDF } from '@app/_lib/hooks/usePDF'
+import { PartialReport } from '@app/_lib/types/Common'
 
-const WeeklyReport = dynamic(() => import('@/app/printingFormats/internship/WeeklyReport'))
-const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const WeeklyReport = dynamic(() => import('@app/printingFormats/internship/WeeklyReport'))
+const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 
 
 interface PartialReportModalProps {

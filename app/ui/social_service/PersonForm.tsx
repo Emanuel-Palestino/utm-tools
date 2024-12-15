@@ -1,11 +1,11 @@
 import { Card, CardBody } from "@nextui-org/card"
 import { Input } from "@nextui-org/input"
 import { Button } from "@nextui-org/button"
-import { Person } from "@/src/models/Person"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
-import { useSocialServiceStore } from "@/app/store/socialService"
+import { useSocialServiceStore } from "@app/store/socialService"
 import { Switch } from "@nextui-org/switch"
+import { Person } from "@app/_lib/types/Common"
 
 
 interface PersonFormProps {

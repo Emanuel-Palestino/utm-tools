@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { formatedDate } from '@/app/utils/format'
-import logo from '@/public/UTMEscudo.png'
-import { MakeUpExam } from '@/src/models/MakeUpExam'
+import { MakeUpExam } from '@app/_lib/types/MakeUpExam'
+import { formatedDate } from '@app/utils/format'
+import logo from '@public/UTMEscudo.png'
 import { FC } from 'react'
 
 

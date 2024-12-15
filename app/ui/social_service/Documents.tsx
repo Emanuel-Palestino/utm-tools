@@ -2,18 +2,18 @@
 
 import { Card, CardBody, CardFooter } from "@nextui-org/card"
 import { useDisclosure } from "@nextui-org/modal"
-import { usePDF } from "@/src/hooks/usePDF"
-import { useSocialServiceStore } from "@/app/store/socialService"
-import { DownloadIcon, DocumentIcon } from "@/app/icons"
+import { usePDF } from "@app/_lib/hooks/usePDF"
+import { useSocialServiceStore } from "@app/store/socialService"
+import { DownloadIcon, DocumentIcon } from "@app/icons"
 import dynamic from "next/dynamic"
 
-const Registration = dynamic(() => import('@/app/printingFormats/social_service/Registration').then(mod => mod.Registration))
-const DocumentReception = dynamic(() => import('@/app/printingFormats/social_service/DocumentReception').then(mod => mod.DocumentReception))
-const ScheduleOfActivities = dynamic(() => import('@/app/printingFormats/social_service/ScheduleOfActivities').then(mod => mod.ScheduleOfActivities))
-const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const Registration = dynamic(() => import('@app/printingFormats/social_service/Registration').then(mod => mod.Registration))
+const DocumentReception = dynamic(() => import('@app/printingFormats/social_service/DocumentReception').then(mod => mod.DocumentReception))
+const ScheduleOfActivities = dynamic(() => import('@app/printingFormats/social_service/ScheduleOfActivities').then(mod => mod.ScheduleOfActivities))
+const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 
-const PartialReportModal = dynamic(() => import('@/app/ui/social_service/PartialReportModal'))
-const FinalEvaluationModal = dynamic(() => import('@/app/ui/social_service/FinalEvaluationModal'))
+const PartialReportModal = dynamic(() => import('@app/ui/social_service/PartialReportModal'))
+const FinalEvaluationModal = dynamic(() => import('@app/ui/social_service/FinalEvaluationModal'))
 
 
 export const Documents = () => {

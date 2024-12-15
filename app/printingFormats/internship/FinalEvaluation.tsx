@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { formatSchedule, formatedDate } from '@/app/utils/format'
-import logo from '@/public/UTMEscudo.png'
-import { Internship } from '@/src/models/Internship'
+import { formatSchedule, formatedDate } from '@app/utils/format'
+import logo from '@public/UTMEscudo.png'
 import { FC } from 'react'
+import { Internship } from '@app/_lib/types/Iternship'
 
 
 const evaluation: string[] = [

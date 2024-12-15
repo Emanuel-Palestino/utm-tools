@@ -1,10 +1,8 @@
-import { Person } from "@/src/models/Person"
 import { Header } from "./Header"
-import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
-import { GovernmentAgency } from "@/src/models/social_service/GovernmentAgency"
 import { FC } from "react"
-import { formatedDate } from "@/app/utils/format"
-import { SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
+import { formatedDate } from "@app/utils/format"
+import { Person } from "@app/_lib/types/Common"
+import { GovernmentAgency, SocialServicePeriod, SocialServiceStudent } from "@app/_lib/types/SocialService"
 
 
 interface RegistrationProps {

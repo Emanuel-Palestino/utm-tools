@@ -3,8 +3,8 @@
 import { Tabs, Tab } from "@nextui-org/tabs"
 import { useEffect, useState } from "react"
 import { Key } from "@react-types/shared"
-import { useSocialServiceStore } from "@/app/store/socialService"
-import { CheckIcon } from "@/app/icons"
+import { useSocialServiceStore } from "@app/store/socialService"
+import { CheckIcon } from "@app/icons"
 import dynamic from "next/dynamic"
 import SkeletonForm from "../SkeletonForm"
 
@@ -42,7 +42,7 @@ export const Form = () => {
 				title={
 					<div className="flex items-center gap-2">
 						<span>Información Personal</span>
-						{isPeriodDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
+						{isPersonalDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 					</div>
 				}
 			>

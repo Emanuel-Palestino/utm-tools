@@ -1,5 +1,5 @@
-import { useInternshipStore } from "@/app/store/internship"
-import { usePDF } from "@/src/hooks/usePDF"
+import { useInternshipStore } from "@app/store/internship"
+import { usePDF } from "@app/_lib/hooks/usePDF"
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/modal"
 import { Button } from "@nextui-org/button"
 import dynamic from "next/dynamic"
@@ -7,8 +7,8 @@ import { FC } from "react"
 import { useForm } from "react-hook-form"
 import { Textarea } from "@nextui-org/input"
 
-const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
-const FinalEvaluation = dynamic(() => import('@/app/printingFormats/internship/FinalEvaluation'))
+const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const FinalEvaluation = dynamic(() => import('@app/printingFormats/internship/FinalEvaluation'))
 
 
 interface FinalEvaluationProps {

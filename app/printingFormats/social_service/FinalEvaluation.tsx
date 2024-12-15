@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { formatSchedule, formatedDate } from '@/app/utils/format'
-import logo from '@/public/UTMEscudo.png'
-import { Person } from '@/src/models/Person'
-import { GovernmentAgency } from '@/src/models/social_service/GovernmentAgency'
-import { SocialServicePeriod } from '@/src/models/social_service/SocialServicePeriod'
-import { SocialServiceStudent } from '@/src/models/social_service/SocialServiceStudent'
+import { Person } from '@app/_lib/types/Common'
+import { GovernmentAgency, SocialServicePeriod, SocialServiceStudent } from '@app/_lib/types/SocialService'
+import { formatSchedule, formatedDate } from '@app/utils/format'
+import logo from '@public/UTMEscudo.png'
 import { FC } from 'react'
 
 

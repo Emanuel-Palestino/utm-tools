@@ -1,10 +1,7 @@
-import { Person } from "@/src/models/Person"
-import { GovernmentAgency } from "@/src/models/social_service/GovernmentAgency"
-import { Activity, SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
-import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
+import { PartialReport, Person } from "@app/_lib/types/Common"
+import { Activity, GovernmentAgency, SocialServicePeriod, SocialServiceStudent } from "@app/_lib/types/SocialService"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-import { PartialReport } from "@/src/models/PartialReport"
 
 type SocialServiceStore = {
 	isPersonalDataComplete: boolean

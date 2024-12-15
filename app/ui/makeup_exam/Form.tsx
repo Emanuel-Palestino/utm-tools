@@ -1,6 +1,5 @@
 'use client'
 
-import { MakeUpExam } from "@/src/models/MakeUpExam"
 import { Card, CardBody } from "@nextui-org/card"
 import { Input } from "@nextui-org/input"
 import { Radio, RadioGroup } from "@nextui-org/radio"
@@ -8,9 +7,10 @@ import { Button } from "@nextui-org/button"
 import { Select, SelectItem } from "@nextui-org/select"
 import { Controller, useForm } from "react-hook-form"
 import { PDFWrapper } from "../PDFWrapper"
-import { Format } from "@/app/printingFormats/makeup_exam/Format"
-import { usePDF } from "@/src/hooks/usePDF"
+import { Format } from "@app/printingFormats/makeup_exam/Format"
+import { usePDF } from "@app/_lib/hooks/usePDF"
 import { useState } from "react"
+import { MakeUpExam } from "@app/_lib/types/MakeUpExam"
 
 
 export const Form = () => {

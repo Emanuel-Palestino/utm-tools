@@ -1,10 +1,7 @@
-import { Company } from '@/src/models/Company'
-import { InternshipPeriod } from '@/src/models/InternshipPeriod'
-import { InternshipStudent } from '@/src/models/InternshipStudent'
-import { Person } from '@/src/models/Person'
+import { PartialReport, Person } from '@app/_lib/types/Common'
+import { Company, InternshipPeriod, InternshipStudent } from '@app/_lib/types/Iternship'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { PartialReport } from '@/src/models/PartialReport'
 
 type InternshipStore = {
 	isPersonalDataComplete: boolean

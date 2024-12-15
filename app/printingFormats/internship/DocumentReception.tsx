@@ -1,7 +1,6 @@
-import { formatedDate } from "@/app/utils/format"
-import { InternshipPeriod } from "@/src/models/InternshipPeriod"
-import { InternshipStudent } from "@/src/models/InternshipStudent"
-import { Person } from "@/src/models/Person"
+import { Person } from "@app/_lib/types/Common"
+import { InternshipPeriod, InternshipStudent } from "@app/_lib/types/Iternship"
+import { formatedDate } from "@app/utils/format"
 import { FC } from "react"
 
 

@@ -1,7 +1,6 @@
-import { formatedDate } from "@/app/utils/format"
-import { Person } from "@/src/models/Person"
-import { SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
-import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
+import { Person } from "@app/_lib/types/Common"
+import { SocialServicePeriod, SocialServiceStudent } from "@app/_lib/types/SocialService"
+import { formatedDate } from "@app/utils/format"
 import { FC } from "react"
 
 

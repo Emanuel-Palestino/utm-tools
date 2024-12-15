@@ -2,9 +2,9 @@ import { Card, CardBody } from "@nextui-org/card"
 import { Input } from "@nextui-org/input"
 import { Button } from "@nextui-org/button"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { useSocialServiceStore } from "@/app/store/socialService"
-import { GovernmentAgency } from "@/src/models/social_service/GovernmentAgency"
+import { useSocialServiceStore } from "@app/store/socialService"
 import { FC } from "react"
+import { GovernmentAgency } from "@app/_lib/types/SocialService"
 
 
 interface GovernmentAgencyFormProps {

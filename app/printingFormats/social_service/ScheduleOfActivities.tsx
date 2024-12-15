@@ -1,11 +1,9 @@
-import { Activity, SocialServicePeriod } from "@/src/models/social_service/SocialServicePeriod"
 import { Header } from "./Header"
-import { Person } from "@/src/models/Person"
-import { SocialServiceStudent } from "@/src/models/social_service/SocialServiceStudent"
-import { GovernmentAgency } from "@/src/models/social_service/GovernmentAgency"
 import { FC } from "react"
-import { formatedDate } from "@/app/utils/format"
+import { formatedDate } from "@app/utils/format"
 import { getDate, getMonth, getYear } from "date-fns"
+import { Person } from "@app/_lib/types/Common"
+import { Activity, GovernmentAgency, SocialServicePeriod, SocialServiceStudent } from "@app/_lib/types/SocialService"
 
 
 interface ScheduleOfActivitiesProps {

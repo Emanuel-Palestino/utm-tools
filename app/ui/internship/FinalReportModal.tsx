@@ -1,17 +1,17 @@
-import { useInternshipStore } from "@/app/store/internship"
-import { usePDF } from "@/src/hooks/usePDF"
+import { useInternshipStore } from "@app/store/internship"
+import { usePDF } from "@app/_lib/hooks/usePDF"
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/modal"
 import { Button } from "@nextui-org/button"
 import dynamic from "next/dynamic"
 import { FC } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { Textarea } from "@nextui-org/input"
-import { generateFinalReportText } from "@/app/actions/openai"
-import { GenerateWithAIIcon } from "@/app/icons"
-import { useUtilitiesStore } from "@/app/store/utilities"
+import { generateFinalReportText } from "@app/actions/openai"
+import { GenerateWithAIIcon } from "@app/icons"
+import { useUtilitiesStore } from "@app/store/utilities"
 
-const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
-const FinalReport = dynamic(() => import('@/app/printingFormats/internship/FinalReport'))
+const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const FinalReport = dynamic(() => import('@app/printingFormats/internship/FinalReport'))
 
 
 interface FinalReportModalProps {

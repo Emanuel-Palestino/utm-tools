@@ -1,20 +1,20 @@
 'use client'
 
-import { usePDF } from "@/src/hooks/usePDF"
-import { useInternshipStore } from "@/app/store/internship"
+import { usePDF } from "@app/_lib/hooks/usePDF"
+import { useInternshipStore } from "@app/store/internship"
 import { Card, CardBody, CardFooter } from "@nextui-org/card"
 import { useDisclosure } from "@nextui-org/modal"
-import { formatedDate } from "@/app/utils/format"
-import { DownloadIcon, DocumentIcon } from "@/app/icons"
+import { formatedDate } from "@app/utils/format"
+import { DownloadIcon, DocumentIcon } from "@app/icons"
 import dynamic from "next/dynamic"
 
-const PresentationLetter = dynamic(() => import('@/app/printingFormats/internship/PresentationLetter'))
-const CommitmentLetter = dynamic(() => import('@/app/printingFormats/CommitmentLetter'))
-const PDFWrapper = dynamic(() => import('@/app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
+const PresentationLetter = dynamic(() => import('@app/printingFormats/internship/PresentationLetter'))
+const CommitmentLetter = dynamic(() => import('@app/printingFormats/CommitmentLetter'))
+const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 const PartialReportModal = dynamic(() => import('./PartialReportModal'))
 const FinalReportModal = dynamic(() => import('./FinalReportModal'))
 const FinalEvaluationModal = dynamic(() => import('./FinalEvaluationModal'))
-const DocumentReception = dynamic(() => import('@/app/printingFormats/internship/DocumentReception'))
+const DocumentReception = dynamic(() => import('@app/printingFormats/internship/DocumentReception'))
 
 
 export const Documents = () => {
