@@ -24,6 +24,7 @@ type InternshipStore = {
   documentsDownloaded: { [key: string]: boolean }
 
   finalReportDescription: string | undefined
+  finalEvaluationDescription: string | undefined
 }
 
 type InternshipActions = {
@@ -34,6 +35,7 @@ type InternshipActions = {
   addReport: (key: string, report: PartialReport) => void
   setDocumentDownloaded: (key: string, value: boolean) => void
   setFinalReportDescription: (description: string) => void
+  setFinalEvaluationDescription: (description: string) => void
   setData: (data: InternshipStore) => void
 }
 
@@ -57,6 +59,7 @@ export const useInternshipStore = create<InternshipStoreState>()(
       reports: {},
 
       finalReportDescription: undefined,
+      finalEvaluationDescription: undefined,
 
       setPersonalData: (personalData: Person) =>
         set(() => ({ personalData, isPersonalDataComplete: true })),
@@ -82,6 +85,9 @@ export const useInternshipStore = create<InternshipStoreState>()(
 
       setFinalReportDescription: (description: string) =>
         set(() => ({ finalReportDescription: description })),
+
+      setFinalEvaluationDescription: (description: string) =>
+        set(() => ({ finalEvaluationDescription: description })),
 
       setData: (data) => set(() => data),
     }),
