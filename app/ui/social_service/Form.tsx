@@ -6,13 +6,13 @@ import { Key } from "@react-types/shared"
 import { useSocialServiceStore } from "@app/store/socialService"
 import { CheckIcon } from "@app/icons"
 import dynamic from "next/dynamic"
-import SkeletonForm from "../SkeletonForm"
+import SkeletonForm from "@app/ui/SkeletonForm"
 
-const PersonForm = dynamic(() => import('./PersonForm'), { loading: () => <SkeletonForm rows={5} /> })
-const StudentForm = dynamic(() => import('./StudentForm'), { loading: () => <SkeletonForm rows={4} /> })
-const GovernmentAgencyForm = dynamic(() => import('./GovernmentAgencyForm'), { loading: () => <SkeletonForm rows={6} /> })
-const PeriodForm = dynamic(() => import('./PeriodForm'), { loading: () => <SkeletonForm rows={5} /> })
-const ActivitiesForm = dynamic(() => import('./ActivitiesForm'), { loading: () => <SkeletonForm rows={5} /> })
+const PersonForm = dynamic(() => import('@app/ui/social_service/PersonForm'), { loading: () => <SkeletonForm rows={5} /> })
+const StudentForm = dynamic(() => import('@app/ui/social_service/StudentForm'), { loading: () => <SkeletonForm rows={4} /> })
+const GovernmentAgencyForm = dynamic(() => import('@app/ui/social_service/GovernmentAgencyForm'), { loading: () => <SkeletonForm rows={6} /> })
+const PeriodForm = dynamic(() => import('@app/ui/social_service/PeriodForm'), { loading: () => <SkeletonForm rows={5} /> })
+const ActivitiesForm = dynamic(() => import('@app/ui/social_service/ActivitiesForm'), { loading: () => <SkeletonForm rows={5} /> })
 
 
 export const Form = () => {

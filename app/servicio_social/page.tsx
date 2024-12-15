@@ -1,8 +1,8 @@
-import { Disclaimer } from "../ui/Disclaimer"
-import { Documents } from "../ui/social_service/Documents"
-import { Form } from "../ui/social_service/Form"
+import { Disclaimer } from "@app/ui/Disclaimer"
+import { Documents } from "@app/ui/social_service/Documents"
+import { Form } from "@app/ui/social_service/Form"
 import { Metadata } from "next"
-import { Utilities } from "../ui/social_service/Utilities"
+import { Utilities } from "@app/ui/social_service/Utilities"
 
 
 export const metadata: Metadata = {

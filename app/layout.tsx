@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import '@app/global.css'
 import { Analytics } from '@vercel/analytics/react'
-import { Navigation } from './ui/Navigation'
+import { Navigation } from '@app/ui/Navigation'
 
 
 export const metadata: Metadata = {

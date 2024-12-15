@@ -1,6 +1,6 @@
 'use client'
-import { ExportData } from "../ExportData"
-import { ImportData } from "../ImportData"
+import { ExportData } from "@app/ui/ExportData"
+import { ImportData } from "@app/ui/ImportData"
 import { useSocialServiceStore } from "@app/store/socialService"
 
 export const Utilities = () => {

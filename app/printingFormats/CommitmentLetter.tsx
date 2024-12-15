@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { formatedDate } from "../utils/format"
+import { formatedDate } from "@app/utils/format"
 import { Internship } from "@app/_lib/types/Iternship"
 
 

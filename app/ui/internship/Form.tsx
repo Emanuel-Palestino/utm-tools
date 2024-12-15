@@ -6,12 +6,12 @@ import { Key } from "@react-types/shared"
 import { useInternshipStore } from "@app/store/internship"
 import { CheckIcon } from "@app/icons"
 import dynamic from "next/dynamic"
-import SkeletonForm from "../SkeletonForm"
+import SkeletonForm from "@app/ui/SkeletonForm"
 
-const PersonForm = dynamic(() => import('./PersonForm'), { loading: () => <SkeletonForm rows={3} /> })
-const StudentForm = dynamic(() => import('./StudentForm'), { loading: () => <SkeletonForm rows={4} /> })
-const CompanyForm = dynamic(() => import('./CompanyForm'), { loading: () => <SkeletonForm rows={7} /> })
-const PeriodForm = dynamic(() => import('./PeriodForm'), { loading: () => <SkeletonForm rows={3} /> })
+const PersonForm = dynamic(() => import('@app/ui/internship/PersonForm'), { loading: () => <SkeletonForm rows={3} /> })
+const StudentForm = dynamic(() => import('@app/ui/internship/StudentForm'), { loading: () => <SkeletonForm rows={4} /> })
+const CompanyForm = dynamic(() => import('@app/ui/internship/CompanyForm'), { loading: () => <SkeletonForm rows={7} /> })
+const PeriodForm = dynamic(() => import('@app/ui/internship/PeriodForm'), { loading: () => <SkeletonForm rows={3} /> })
 
 
 export const Form = () => {

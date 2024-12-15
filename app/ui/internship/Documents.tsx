@@ -11,9 +11,9 @@ import dynamic from "next/dynamic"
 const PresentationLetter = dynamic(() => import('@app/printingFormats/internship/PresentationLetter'))
 const CommitmentLetter = dynamic(() => import('@app/printingFormats/CommitmentLetter'))
 const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
-const PartialReportModal = dynamic(() => import('./PartialReportModal'))
-const FinalReportModal = dynamic(() => import('./FinalReportModal'))
-const FinalEvaluationModal = dynamic(() => import('./FinalEvaluationModal'))
+const PartialReportModal = dynamic(() => import('@app/ui/internship/PartialReportModal'))
+const FinalReportModal = dynamic(() => import('@app/ui/internship/FinalReportModal'))
+const FinalEvaluationModal = dynamic(() => import('@app/ui/internship/FinalEvaluationModal'))
 const DocumentReception = dynamic(() => import('@app/printingFormats/internship/DocumentReception'))
 
 

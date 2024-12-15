@@ -1,4 +1,4 @@
-import { Header } from "./Header"
+import { Header } from "@app/printingFormats/social_service/Header"
 import { FC } from "react"
 import { formatedDate } from "@app/utils/format"
 import { Person } from "@app/_lib/types/Common"

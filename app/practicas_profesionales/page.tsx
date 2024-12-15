@@ -1,8 +1,8 @@
 import { Form } from "@app/ui/internship/Form"
-import { Documents } from "../ui/internship/Documents"
+import { Documents } from "@app/ui/internship/Documents"
 import { Metadata } from "next"
-import { Disclaimer } from "../ui/Disclaimer"
-import { Utilities } from "../ui/internship/Utilities"
+import { Disclaimer } from "@app/ui/Disclaimer"
+import { Utilities } from "@app/ui/internship/Utilities"
 
 
 export const metadata: Metadata = {
