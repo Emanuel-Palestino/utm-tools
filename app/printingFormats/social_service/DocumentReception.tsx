@@ -1,6 +1,6 @@
 import { Person } from "@app/_lib/types/Common"
 import { SocialServicePeriod, SocialServiceStudent } from "@app/_lib/types/SocialService"
-import { formatedDate } from "@app/utils/format"
+import { formatedDate } from "@app/_lib/format"
 import { FC } from "react"
 
 

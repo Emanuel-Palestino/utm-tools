@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { FC } from 'react'
 import { useRouter } from 'next/navigation'
-import { formatedDate } from '@app/utils/format'
+import { formatedDate } from '@app/_lib/format'
 import { Tool } from '@app/_lib/types/Tool'
 
 

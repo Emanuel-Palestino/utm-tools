@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { formatSchedule, formatedDate } from '@app/utils/format'
+import { formatSchedule, formatedDate } from '@app/_lib/format'
 import logo from '@public/UTMEscudo.png'
 import { FC } from 'react'
 import { Internship } from '@app/_lib/types/Iternship'

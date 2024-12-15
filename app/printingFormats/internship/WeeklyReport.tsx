@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC } from 'react'
 import logo from '@public/UTMEscudo.png'
-import { formatedDate, formatSchedule } from '@app/utils/format'
+import { formatedDate, formatSchedule } from '@app/_lib/format'
 import { Internship } from '@app/_lib/types/Iternship'
 import { PartialReport } from '@app/_lib/types/Common'
 

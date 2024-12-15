@@ -1,6 +1,6 @@
 import { Person } from "@app/_lib/types/Common"
 import { InternshipPeriod, InternshipStudent } from "@app/_lib/types/Iternship"
-import { formatedDate } from "@app/utils/format"
+import { formatedDate } from "@app/_lib/format"
 import { FC } from "react"
 
 

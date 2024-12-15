@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import logo from '@public/UTMEscudo.png'
 import { FC } from "react"
-import { formatSchedule, formatedDate } from "@app/utils/format"
+import { formatSchedule, formatedDate } from "@app/_lib/format"
 import { Person } from '@app/_lib/types/Common'
 import { Activity, GovernmentAgency, SocialServicePeriod, SocialServiceStudent } from '@app/_lib/types/SocialService'
 

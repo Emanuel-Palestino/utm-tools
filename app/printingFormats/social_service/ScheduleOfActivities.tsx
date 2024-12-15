@@ -1,6 +1,6 @@
 import { Header } from "@app/printingFormats/social_service/Header"
 import { FC } from "react"
-import { formatedDate } from "@app/utils/format"
+import { formatedDate } from "@app/_lib/format"
 import { getDate, getMonth, getYear } from "date-fns"
 import { Person } from "@app/_lib/types/Common"
 import { Activity, GovernmentAgency, SocialServicePeriod, SocialServiceStudent } from "@app/_lib/types/SocialService"

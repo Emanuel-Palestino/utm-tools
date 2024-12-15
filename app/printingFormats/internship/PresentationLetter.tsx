@@ -3,7 +3,7 @@
 
 import { FC } from 'react'
 import logo from '@public/UTMEscudo.png'
-import { formatSchedule, formatedDate } from '@app/utils/format'
+import { formatSchedule, formatedDate } from '@app/_lib/format'
 import { Internship } from '@app/_lib/types/Iternship'
 
 

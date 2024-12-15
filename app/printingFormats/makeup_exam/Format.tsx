@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { MakeUpExam } from '@app/_lib/types/MakeUpExam'
-import { formatedDate } from '@app/utils/format'
+import { formatedDate } from '@app/_lib/format'
 import logo from '@public/UTMEscudo.png'
 import { FC } from 'react'
 
