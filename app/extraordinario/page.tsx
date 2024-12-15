@@ -1,4 +1,4 @@
-import { Form } from "@app/ui/makeup_exam/Form"
+import { Form } from "@app/extraordinario/Form"
 import { Metadata } from "next"
 
 
