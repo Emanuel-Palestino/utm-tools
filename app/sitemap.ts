@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 			lastModified: new Date()
 		},
 		{
-			url: 'https://herramientasutm.com/practicas_profesionales',
+			url: 'https://herramientasutm.com/estancias_profesionales',
 			lastModified: new Date()
 		},
 		{
