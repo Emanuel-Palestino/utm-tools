@@ -8,10 +8,10 @@ import dynamic from "next/dynamic"
 import SkeletonForm from "@app/ui/SkeletonForm"
 import { CheckIcon } from "@app/icons/CheckIcon"
 
-const PersonForm = dynamic(() => import('@app/ui/internship/PersonForm'), { loading: () => <SkeletonForm rows={3} /> })
-const StudentForm = dynamic(() => import('@app/ui/internship/StudentForm'), { loading: () => <SkeletonForm rows={4} /> })
-const CompanyForm = dynamic(() => import('@app/ui/internship/CompanyForm'), { loading: () => <SkeletonForm rows={7} /> })
-const PeriodForm = dynamic(() => import('@app/ui/internship/PeriodForm'), { loading: () => <SkeletonForm rows={3} /> })
+const PersonForm = dynamic(() => import('@app/estancias_profesionales/PersonForm'), { loading: () => <SkeletonForm rows={3} /> })
+const StudentForm = dynamic(() => import('@app/estancias_profesionales/StudentForm'), { loading: () => <SkeletonForm rows={4} /> })
+const CompanyForm = dynamic(() => import('@app/estancias_profesionales/CompanyForm'), { loading: () => <SkeletonForm rows={7} /> })
+const PeriodForm = dynamic(() => import('@app/estancias_profesionales/PeriodForm'), { loading: () => <SkeletonForm rows={3} /> })
 
 
 export const Form = () => {
