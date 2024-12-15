@@ -9,13 +9,13 @@ import dynamic from "next/dynamic"
 import { DocumentIcon } from "@app/_components/icons/DocumentIcon"
 import { DownloadIcon } from "@app/_components/icons/DownloadIcon"
 
-const PresentationLetter = dynamic(() => import('@app/printingFormats/internship/PresentationLetter'))
-const CommitmentLetter = dynamic(() => import('@app/printingFormats/CommitmentLetter'))
+const PresentationLetter = dynamic(() => import('@app/_docs/internship/PresentationLetter'))
+const CommitmentLetter = dynamic(() => import('@app/_docs/CommitmentLetter'))
 const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
 const PartialReportModal = dynamic(() => import('@app/estancias_profesionales/PartialReportModal'))
 const FinalReportModal = dynamic(() => import('@app/estancias_profesionales/FinalReportModal'))
 const FinalEvaluationModal = dynamic(() => import('@app/estancias_profesionales/FinalEvaluationModal'))
-const DocumentReception = dynamic(() => import('@app/printingFormats/internship/DocumentReception'))
+const DocumentReception = dynamic(() => import('@app/_docs/internship/DocumentReception'))
 
 
 export const Documents = () => {

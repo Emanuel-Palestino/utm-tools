@@ -8,9 +8,9 @@ import dynamic from "next/dynamic"
 import { DocumentIcon } from "@app/_components/icons/DocumentIcon"
 import { DownloadIcon } from "@app/_components/icons/DownloadIcon"
 
-const Registration = dynamic(() => import('@app/printingFormats/social_service/Registration').then(mod => mod.Registration))
-const DocumentReception = dynamic(() => import('@app/printingFormats/social_service/DocumentReception').then(mod => mod.DocumentReception))
-const ScheduleOfActivities = dynamic(() => import('@app/printingFormats/social_service/ScheduleOfActivities').then(mod => mod.ScheduleOfActivities))
+const Registration = dynamic(() => import('@app/_docs/social_service/Registration').then(mod => mod.Registration))
+const DocumentReception = dynamic(() => import('@app/_docs/social_service/DocumentReception').then(mod => mod.DocumentReception))
+const ScheduleOfActivities = dynamic(() => import('@app/_docs/social_service/ScheduleOfActivities').then(mod => mod.ScheduleOfActivities))
 const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
 
 const PartialReportModal = dynamic(() => import('@app/servicio_social/PartialReportModal'))

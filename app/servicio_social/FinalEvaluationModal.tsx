@@ -8,7 +8,7 @@ import { FC } from "react"
 import { useForm } from "react-hook-form"
 
 const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
-const FinalEvaluation = dynamic(() => import('@app/printingFormats/social_service/FinalEvaluation').then(mod => mod.FinalEvaluation))
+const FinalEvaluation = dynamic(() => import('@app/_docs/social_service/FinalEvaluation').then(mod => mod.FinalEvaluation))
 
 
 interface FinalEvaluationModalProps {

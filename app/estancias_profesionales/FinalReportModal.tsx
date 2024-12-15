@@ -11,7 +11,7 @@ import { useUtilitiesStore } from "@app/_store/utilities"
 import { GenerateWithAIIcon } from "@app/_components/icons/GenerateWithAIIcon"
 
 const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
-const FinalReport = dynamic(() => import('@app/printingFormats/internship/FinalReport'))
+const FinalReport = dynamic(() => import('@app/_docs/internship/FinalReport'))
 
 
 interface FinalReportModalProps {

@@ -1,4 +1,4 @@
-import { Header } from "@app/printingFormats/social_service/Header"
+import { Header } from "@app/_docs/social_service/Header"
 import { FC } from "react"
 import { formatedDate } from "@app/_lib/format"
 import { getDate, getMonth, getYear } from "date-fns"

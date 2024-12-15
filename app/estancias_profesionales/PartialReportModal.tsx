@@ -11,7 +11,7 @@ import { usePDF } from '@app/_lib/hooks/usePDF'
 import { PartialReport } from '@app/_lib/types/Common'
 import { DownloadIcon } from '@app/_components/icons/DownloadIcon'
 
-const WeeklyReport = dynamic(() => import('@app/printingFormats/internship/WeeklyReport'))
+const WeeklyReport = dynamic(() => import('@app/_docs/internship/WeeklyReport'))
 const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
 
 

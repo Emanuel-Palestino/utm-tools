@@ -12,7 +12,7 @@ import { PartialReport } from "@app/_lib/types/Common"
 import { DownloadIcon } from "@app/_components/icons/DownloadIcon"
 
 const PDFWrapper = dynamic(() => import('@app/_components/PDFWrapper').then(mod => mod.PDFWrapper))
-const PartialReportPDF = dynamic(() => import('@app/printingFormats/social_service/PartialReport'))
+const PartialReportPDF = dynamic(() => import('@app/_docs/social_service/PartialReport'))
 
 
 interface PartialReportModalProps {
