@@ -4,7 +4,7 @@ import { Switch } from "@nextui-org/switch"
 import { Select, SelectItem } from "@nextui-org/select"
 import { Button } from "@nextui-org/button"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
-import { useInternshipStore } from "@app/store/internship"
+import { useInternshipStore } from "@app/_store/internship"
 import { FC } from "react"
 import { Company, CompanySector } from "@app/_lib/types/Iternship"
 

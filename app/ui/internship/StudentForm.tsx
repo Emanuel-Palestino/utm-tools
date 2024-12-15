@@ -5,7 +5,7 @@ import { Switch } from "@nextui-org/switch"
 import { Input } from "@nextui-org/input"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
-import { useInternshipStore } from "@app/store/internship"
+import { useInternshipStore } from "@app/_store/internship"
 import { InternshipStudent, StudentState } from "@app/_lib/types/Iternship"
 import { Careers } from "@app/_lib/types/Common"
 

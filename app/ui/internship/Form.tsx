@@ -3,7 +3,7 @@
 import { Tabs, Tab } from "@nextui-org/tabs"
 import { useEffect, useState } from "react"
 import { Key } from "@react-types/shared"
-import { useInternshipStore } from "@app/store/internship"
+import { useInternshipStore } from "@app/_store/internship"
 import dynamic from "next/dynamic"
 import SkeletonForm from "@app/ui/SkeletonForm"
 import { CheckIcon } from "@app/icons/CheckIcon"

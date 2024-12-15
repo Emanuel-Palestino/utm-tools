@@ -3,7 +3,7 @@
 import { Card, CardBody, CardFooter } from "@nextui-org/card"
 import { useDisclosure } from "@nextui-org/modal"
 import { usePDF } from "@app/_lib/hooks/usePDF"
-import { useSocialServiceStore } from "@app/store/socialService"
+import { useSocialServiceStore } from "@app/_store/socialService"
 import dynamic from "next/dynamic"
 import { DocumentIcon } from "@app/icons/DocumentIcon"
 import { DownloadIcon } from "@app/icons/DownloadIcon"

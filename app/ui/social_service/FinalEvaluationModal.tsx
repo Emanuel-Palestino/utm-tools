@@ -1,4 +1,4 @@
-import { useSocialServiceStore } from "@app/store/socialService"
+import { useSocialServiceStore } from "@app/_store/socialService"
 import { usePDF } from "@app/_lib/hooks/usePDF"
 import { Button } from "@nextui-org/button"
 import { Textarea } from "@nextui-org/input"

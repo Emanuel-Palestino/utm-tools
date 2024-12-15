@@ -1,4 +1,4 @@
-import { useInternshipStore } from "@app/store/internship"
+import { useInternshipStore } from "@app/_store/internship"
 import { usePDF } from "@app/_lib/hooks/usePDF"
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/modal"
 import { Button } from "@nextui-org/button"

@@ -1,4 +1,4 @@
-import { useInternshipStore } from '@app/store/internship'
+import { useInternshipStore } from '@app/_store/internship'
 import { Modal, ModalBody, ModalContent, ModalHeader, ModalFooter } from '@nextui-org/modal'
 import { Select, SelectItem } from '@nextui-org/select'
 import { Button } from '@nextui-org/button'

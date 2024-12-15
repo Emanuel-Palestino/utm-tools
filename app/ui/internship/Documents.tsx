@@ -1,7 +1,7 @@
 'use client'
 
 import { usePDF } from "@app/_lib/hooks/usePDF"
-import { useInternshipStore } from "@app/store/internship"
+import { useInternshipStore } from "@app/_store/internship"
 import { Card, CardBody, CardFooter } from "@nextui-org/card"
 import { useDisclosure } from "@nextui-org/modal"
 import { formatedDate } from "@app/_lib/format"

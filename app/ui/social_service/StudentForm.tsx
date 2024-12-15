@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { FC } from "react"
-import { useSocialServiceStore } from "@app/store/socialService"
+import { useSocialServiceStore } from "@app/_store/socialService"
 import { SocialServiceStudent } from "@app/_lib/types/SocialService"
 import { Careers } from "@app/_lib/types/Common"
 
