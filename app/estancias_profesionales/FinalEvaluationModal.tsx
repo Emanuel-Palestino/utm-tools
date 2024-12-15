@@ -34,6 +34,8 @@ const FinalEvaluationModal: FC<FinalEvaluationProps> = ({
     companyData,
     personalData,
     studentData,
+    finalEvaluationDescription,
+    setFinalEvaluationDescription,
     setDocumentDownloaded,
   } = useInternshipStore()
 
@@ -46,7 +48,7 @@ const FinalEvaluationModal: FC<FinalEvaluationProps> = ({
 
   const { handleSubmit, register, watch } = useForm<{ description: string }>({
     defaultValues: {
-      description: "",
+      description: finalEvaluationDescription || "",
     },
   })
 
@@ -63,9 +65,10 @@ const FinalEvaluationModal: FC<FinalEvaluationProps> = ({
               <ModalBody>
                 <form
                   id="final_evaluation_form"
-                  onSubmit={handleSubmit(async () => {
-                    await createPDF()
+                  onSubmit={handleSubmit(async (data) => {
+                    setFinalEvaluationDescription(data.description)
                     setDocumentDownloaded("final-evaluation", true)
+                    await createPDF()
                     onClose()
                   })}
                 >

@@ -36,6 +36,8 @@ const FinalReportModal: FC<FinalReportModalProps> = ({
     personalData,
     studentData,
     reports,
+    finalReportDescription,
+    setFinalReportDescription,
     setDocumentDownloaded,
   } = useInternshipStore()
 
@@ -50,7 +52,7 @@ const FinalReportModal: FC<FinalReportModalProps> = ({
     description: string
   }>({
     defaultValues: {
-      description: "",
+      description: finalReportDescription || "",
     },
   })
 
@@ -100,9 +102,10 @@ const FinalReportModal: FC<FinalReportModalProps> = ({
               <ModalBody>
                 <form
                   id="final_report_form"
-                  onSubmit={handleSubmit(async () => {
-                    await createFinalReport()
+                  onSubmit={handleSubmit(async (data) => {
+                    setFinalReportDescription(data.description)
                     setDocumentDownloaded("final-report", true)
+                    await createFinalReport()
                     onClose()
                   })}
                 >
