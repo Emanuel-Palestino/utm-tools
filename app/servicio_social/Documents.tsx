@@ -13,8 +13,8 @@ const DocumentReception = dynamic(() => import('@app/printingFormats/social_serv
 const ScheduleOfActivities = dynamic(() => import('@app/printingFormats/social_service/ScheduleOfActivities').then(mod => mod.ScheduleOfActivities))
 const PDFWrapper = dynamic(() => import('@app/ui/PDFWrapper').then(mod => mod.PDFWrapper))
 
-const PartialReportModal = dynamic(() => import('@app/ui/social_service/PartialReportModal'))
-const FinalEvaluationModal = dynamic(() => import('@app/ui/social_service/FinalEvaluationModal'))
+const PartialReportModal = dynamic(() => import('@app/servicio_social/PartialReportModal'))
+const FinalEvaluationModal = dynamic(() => import('@app/servicio_social/FinalEvaluationModal'))
 
 
 export const Documents = () => {

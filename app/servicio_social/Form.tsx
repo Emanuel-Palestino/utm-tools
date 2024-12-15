@@ -8,11 +8,11 @@ import dynamic from "next/dynamic"
 import SkeletonForm from "@app/ui/SkeletonForm"
 import { CheckIcon } from "@app/icons/CheckIcon"
 
-const PersonForm = dynamic(() => import('@app/ui/social_service/PersonForm'), { loading: () => <SkeletonForm rows={5} /> })
-const StudentForm = dynamic(() => import('@app/ui/social_service/StudentForm'), { loading: () => <SkeletonForm rows={4} /> })
-const GovernmentAgencyForm = dynamic(() => import('@app/ui/social_service/GovernmentAgencyForm'), { loading: () => <SkeletonForm rows={6} /> })
-const PeriodForm = dynamic(() => import('@app/ui/social_service/PeriodForm'), { loading: () => <SkeletonForm rows={5} /> })
-const ActivitiesForm = dynamic(() => import('@app/ui/social_service/ActivitiesForm'), { loading: () => <SkeletonForm rows={5} /> })
+const PersonForm = dynamic(() => import('@app/servicio_social/PersonForm'), { loading: () => <SkeletonForm rows={5} /> })
+const StudentForm = dynamic(() => import('@app/servicio_social/StudentForm'), { loading: () => <SkeletonForm rows={4} /> })
+const GovernmentAgencyForm = dynamic(() => import('@app/servicio_social/GovernmentAgencyForm'), { loading: () => <SkeletonForm rows={6} /> })
+const PeriodForm = dynamic(() => import('@app/servicio_social/PeriodForm'), { loading: () => <SkeletonForm rows={5} /> })
+const ActivitiesForm = dynamic(() => import('@app/servicio_social/ActivitiesForm'), { loading: () => <SkeletonForm rows={5} /> })
 
 
 export const Form = () => {
