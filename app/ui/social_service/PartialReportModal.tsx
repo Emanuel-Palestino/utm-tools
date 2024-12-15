@@ -22,19 +22,26 @@ interface PartialReportModalProps {
 
 const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange }) => {
 
-	/* Social Service data in local storage */
-	const { socialServiceData, reports, addReport, documentsDownloaded, setReportDownloaded } = useSocialServiceStore(state => ({
-		socialServiceData: {
-			person: state.personalData!,
-			student: state.studentData!,
-			period: state.periodData!,
-			governmentAgency: state.governmentAgencyData!,
-		},
-		reports: state.reports,
-		addReport: (number: number, data: PartialReport) => state.setReport(`partial-report-${number}`, data),
-		documentsDownloaded: state.documentsDownloaded,
-		setReportDownloaded: (number: number) => state.setDocumentDownloaded(`partial-report-${number}`, true)
-	}))
+	const {
+		reports,
+		setReport,
+		documentsDownloaded,
+		setDocumentDownloaded,
+		personalData,
+		studentData,
+		periodData,
+		governmentAgencyData,
+	} = useSocialServiceStore()
+
+	const socialServiceData = {
+		person: personalData!,
+		student: studentData!,
+		period: periodData!,
+		governmentAgency: governmentAgencyData!,
+	}
+
+	const addReport = (number: number, data: PartialReport) => setReport(`partial-report-${number}`, data)
+	const setReportDownloaded = (number: number) => setDocumentDownloaded(`partial-report-${number}`, true)
 
 	const {
 		handleSubmit,
@@ -52,7 +59,7 @@ const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange 
 		},
 	})
 
-	let formatNumber = watch('formatNumber')
+	const formatNumber = watch('formatNumber')
 
 	useEffect(() => {
 		setValue('description', reports[`partial-report-${formatNumber}`]?.description || '', { shouldDirty: false, shouldTouch: false, shouldValidate: false })

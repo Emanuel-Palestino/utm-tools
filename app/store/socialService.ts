@@ -6,7 +6,7 @@ import { create } from "zustand"
 import { persist } from "zustand/middleware"
 import { PartialReport } from "@/src/models/PartialReport"
 
-export type SocialServiceStore = {
+type SocialServiceStore = {
 	isPersonalDataComplete: boolean
 	personalData: Person | undefined
 

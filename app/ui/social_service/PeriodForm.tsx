@@ -16,11 +16,10 @@ interface PeriodFormProps {
 
 const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 
-	const { save, values, isComplete } = useSocialServiceStore(state => ({
-		save: state.setPeriodData,
-		values: state.periodData,
-		isComplete: state.isPeriodDataComplete
-	}))
+	const {
+		periodData,
+		setPeriodData,
+	} = useSocialServiceStore()
 
 	const today = Date.now()
 
@@ -36,13 +35,13 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 			startDate: today,
 			endDate: addMonths(today, 6).getTime(),
 			// values is passed due to the field array takes always the default value
-			schedules: values?.schedules || [[9, 18]],
+			schedules: periodData?.schedules || [[9, 18]],
 			totalHours: 480,
 			months: 6,
 			projectName: '',
-			projectObjective: ''
+			projectObjective: '',
 		},
-		values
+		values: periodData
 	})
 
 	const { fields, append, remove } = useFieldArray({ control, name: 'schedules' })
@@ -50,7 +49,7 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 	const onSubmit: SubmitHandler<SocialServicePeriod> = data => {
 		data.months = differenceInMonths(data.endDate, data.startDate)
 		data.totalHours = Number(data.totalHours)
-		save(data)
+		setPeriodData(data)
 		nextForm()
 	}
 
@@ -206,7 +205,7 @@ const PeriodForm: FC<PeriodFormProps> = ({ nextForm }) => {
 
 					<div className="flex justify-center mt-2 md:col-span-2">
 						<Button className="w-32" color="primary" type="submit">
-							{isComplete ? 'Actualizar' : 'Guardar'}
+							{periodData ? 'Actualizar' : 'Guardar'}
 						</Button>
 					</div>
 				</form>

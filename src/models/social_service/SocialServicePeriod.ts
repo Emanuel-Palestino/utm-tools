@@ -5,7 +5,6 @@ export type SocialServicePeriod = Period & {
 	months: number
 	projectName: string
 	projectObjective: string
-	activities: Activity[]
 }
 
 export type Activity = {

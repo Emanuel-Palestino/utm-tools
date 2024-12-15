@@ -18,19 +18,29 @@ const FinalEvaluationModal = dynamic(() => import('@/app/ui/social_service/Final
 
 export const Documents = () => {
 
-	/* Social Service data in local storage */
-	const { dataComplete, socialServiceData, documentsDownloaded, setDocumentDownloaded } = useSocialServiceStore(state => ({
-		dataComplete: state.isGovernmentAgencyDataComplete && state.isActivitiesDataComplete && state.isPeriodDataComplete && state.isPersonalDataComplete && state.isStudentDataComplete,
-		socialServiceData: {
-			person: state.personalData!,
-			student: state.studentData!,
-			period: state.periodData!,
-			activities: state.activitiesData!,
-			governmentAgency: state.governmentAgencyData!
-		},
-		documentsDownloaded: state.documentsDownloaded,
-		setDocumentDownloaded: (key: string) => state.setDocumentDownloaded(key, true)
-	}))
+	const {
+		isGovernmentAgencyDataComplete,
+		isActivitiesDataComplete,
+		isPeriodDataComplete,
+		isPersonalDataComplete,
+		isStudentDataComplete,
+		personalData,
+		studentData,
+		periodData,
+		activitiesData,
+		governmentAgencyData,
+		documentsDownloaded,
+		setDocumentDownloaded,
+	} = useSocialServiceStore()
+
+	const isDataComplete = isGovernmentAgencyDataComplete && isActivitiesDataComplete && isPeriodDataComplete && isPersonalDataComplete && isStudentDataComplete
+	const socialServiceData = {
+		person: personalData!,
+		student: studentData!,
+		period: periodData!,
+		activities: activitiesData!,
+		governmentAgency: governmentAgencyData!
+	}
 
 	/* PDF documents */
 	const { target: registration, createPDF: createRegistration } = usePDF('Registro de Servicio Social')
@@ -90,11 +100,11 @@ export const Documents = () => {
 			<div className="flex flex-wrap gap-4 justify-center w-fit">
 				{documents.map(doc => (
 					<Card
-						isPressable={dataComplete}
-						isDisabled={!dataComplete}
+						isPressable={isDataComplete}
+						isDisabled={!isDataComplete}
 						onPress={() => {
 							doc.action()
-							if (doc.instantDownload) setDocumentDownloaded(doc.stateKey)
+							if (doc.instantDownload) setDocumentDownloaded(doc.stateKey, true)
 						}}
 						key={doc.name}
 						className="w-32 h-36"
@@ -115,7 +125,7 @@ export const Documents = () => {
 				))}
 			</div>
 
-			{dataComplete && (
+			{isDataComplete && (
 				<>
 					{isReportModalOpen && (
 						<PartialReportModal

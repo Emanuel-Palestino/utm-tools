@@ -7,33 +7,49 @@ import { useSocialServiceStore } from "@/app/store/socialService"
 import { MinusIcon } from "@/app/icons"
 import { addDays, differenceInBusinessDays, formatISO, parseISO } from "date-fns"
 
+const DEFAULT_PERIOD_DATA = {
+	schedules: [[9, 18]],
+	startDate: Date.now(),
+	endDate: Date.now()
+}
 
 const ActivitiesForm = () => {
 
-	const { activities, save, isComplete, isPeriodComplete, periodData } = useSocialServiceStore(state => ({
-		save: state.setActivitiesData,
-		activities: state.activitiesData,
-		isComplete: state.isActivitiesDataComplete,
-		isPeriodComplete: state.isPeriodDataComplete,
+	const {
+		activitiesData,
+		setActivitiesData,
+		isPeriodDataComplete,
 		periodData: {
-			schedules: state.periodData?.schedules || [[9, 18]],
-			startDate: state.periodData?.startDate || Date.now(),
-			endDate: state.periodData?.endDate || Date.now()
-		}
-	}))
+			schedules,
+			startDate,
+			endDate,
+		} = DEFAULT_PERIOD_DATA,
+	} = useSocialServiceStore()
+
+	const periodData = {
+		schedules: schedules,
+		startDate: startDate,
+		endDate: endDate,
+	}
 
 	const totalHoursPerDay = periodData.schedules.reduce((acc, [start, end]) => acc + (end - start), 0)
 
-	const { handleSubmit, control, register, getValues, setValue } = useForm<{ activities: Activity[] }>({
+	const {
+		handleSubmit,
+		control,
+		register,
+		getValues,
+		setValue,
+	} = useForm<{ activities: Activity[] }>({
 		defaultValues: {
-			activities: activities || [{
+			activities: activitiesData || [{
 				description: '',
 				startDate: periodData.startDate,
 				endDate: periodData.endDate,
 				hours: totalHoursPerDay * differenceInBusinessDays(periodData.endDate, periodData.startDate)
 			}]
 		},
-		values: activities ? { activities } : undefined
+		values: activitiesData ? { activities: activitiesData } : undefined
 	})
 
 	const { fields, append, remove } = useFieldArray({ control, name: 'activities' })
@@ -58,7 +74,7 @@ const ActivitiesForm = () => {
 		setValue(`activities.${index + 1}.hours`, nextHours)
 	}
 
-	const onSubmit = handleSubmit(data => save(data.activities))
+	const onSubmit = handleSubmit(data => setActivitiesData(data.activities))
 
 	return (
 		<Card>
@@ -70,7 +86,7 @@ const ActivitiesForm = () => {
 				</ul>
 			</CardHeader>
 
-			{isPeriodComplete ?
+			{isPeriodDataComplete ?
 				<CardBody>
 					<section className="p-2 mb-1 w-full flex justify-end md:justify-normal">
 						<Button
@@ -161,7 +177,7 @@ const ActivitiesForm = () => {
 
 						<div className="flex w-full justify-center md:col-span-2">
 							<Button className="w-32" color="primary" type="submit">
-								{isComplete ? 'Actualizar' : 'Guardar'}
+								{activitiesData ? 'Actualizar' : 'Guardar'}
 							</Button>
 						</div>
 					</form>

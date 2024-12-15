@@ -13,11 +13,10 @@ interface GovernmentAgencyFormProps {
 
 const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }) => {
 
-	const { save, values } = useSocialServiceStore(state => ({
-		save: state.setGovernmentAgencyData,
-		values: state.governmentAgencyData,
-		isComplete: state.isGovernmentAgencyDataComplete
-	}))
+	const {
+		governmentAgencyData,
+		setGovernmentAgencyData,
+	} = useSocialServiceStore()
 
 	const {
 		register,
@@ -35,11 +34,11 @@ const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }) => {
 			supervisorEmail: '',
 			supervisorWorkArea: ''
 		},
-		values
+		values: governmentAgencyData,
 	})
 
 	const onSubmit: SubmitHandler<GovernmentAgency> = data => {
-		save(data)
+		setGovernmentAgencyData(data)
 		nextForm()
 	}
 
@@ -120,7 +119,7 @@ const GovernmentAgencyForm: FC<GovernmentAgencyFormProps> = ({ nextForm }) => {
 
 					<div className="flex justify-center mt-2 md:col-span-2">
 						<Button className="w-32" color="primary" type="submit">
-							{values ? 'Actualizar' : 'Guardar'}
+							{governmentAgencyData ? 'Actualizar' : 'Guardar'}
 						</Button>
 					</div>
 				</form>

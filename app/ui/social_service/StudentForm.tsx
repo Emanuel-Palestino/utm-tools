@@ -15,11 +15,10 @@ interface StudentFormProps {
 
 const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 
-	const { save, values, isComplete } = useSocialServiceStore(state => ({
-		save: state.setStudentData,
-		values: state.studentData,
-		isComplete: state.isStudentDataComplete
-	}))
+	const {
+		studentData,
+		setStudentData,
+	} = useSocialServiceStore()
 
 	const {
 		handleSubmit,
@@ -32,13 +31,13 @@ const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 			address: '',
 			percentageOfApprovedCredits: 0
 		},
-		values
+		values: studentData
 	})
 
 	const onSubmit: SubmitHandler<SocialServiceStudent> = data => {
 		data.semester = Number(data.semester)
 		data.percentageOfApprovedCredits = Number(data.percentageOfApprovedCredits)
-		save(data)
+		setStudentData(data)
 		nextForm()
 	}
 
@@ -91,7 +90,7 @@ const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 
 					<div className="flex justify-center mt-2 md:col-span-2">
 						<Button className="w-32" color="primary" type="submit">
-							{isComplete ? 'Actualizar' : 'Guardar'}
+							{studentData ? 'Actualizar' : 'Guardar'}
 						</Button>
 					</div>
 				</form>

@@ -18,13 +18,13 @@ const ActivitiesForm = dynamic(() => import('./ActivitiesForm'), { loading: () =
 export const Form = () => {
 
 	const [selectedTab, setSelectecTab] = useState<Key>('personal')
-	const completed = useSocialServiceStore(state => ({
-		personaData: state.isPersonalDataComplete,
-		studentData: state.isStudentDataComplete,
-		periodData: state.isPeriodDataComplete,
-		activitiesData: state.isActivitiesDataComplete,
-		governmentAgencyData: state.isGovernmentAgencyDataComplete
-	}))
+	const {
+		isPersonalDataComplete,
+		isStudentDataComplete,
+		isPeriodDataComplete,
+		isActivitiesDataComplete,
+		isGovernmentAgencyDataComplete,
+	} = useSocialServiceStore()
 
 	useEffect(() => {
 		useSocialServiceStore.persist.rehydrate()
@@ -42,7 +42,7 @@ export const Form = () => {
 				title={
 					<div className="flex items-center gap-2">
 						<span>Información Personal</span>
-						{completed.personaData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
+						{isPeriodDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 					</div>
 				}
 			>
@@ -54,7 +54,7 @@ export const Form = () => {
 				title={
 					<div className="flex items-center gap-2">
 						<span>Información Escolar</span>
-						{completed.studentData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
+						{isStudentDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 					</div>
 				}
 			>
@@ -66,7 +66,7 @@ export const Form = () => {
 				title={
 					<div className="flex items-center gap-2">
 						<span>Institución o Dependencia</span>
-						{completed.governmentAgencyData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
+						{isGovernmentAgencyDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 					</div>
 				}
 			>
@@ -78,7 +78,7 @@ export const Form = () => {
 				title={
 					<div className="flex items-center gap-2">
 						<span>Periodo y Proyecto</span>
-						{completed.periodData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
+						{isPeriodDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 					</div>
 				}
 			>
@@ -90,7 +90,7 @@ export const Form = () => {
 				title={
 					<div className="flex items-center gap-2">
 						<span>Actividades</span>
-						{completed.activitiesData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
+						{isActivitiesDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 					</div>
 				}
 			>

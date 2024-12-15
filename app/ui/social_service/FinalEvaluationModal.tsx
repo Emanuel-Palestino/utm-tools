@@ -18,18 +18,22 @@ interface FinalEvaluationModalProps {
 
 const FinalEvaluationModal: FC<FinalEvaluationModalProps> = ({ isOpen, onOpenChange }) => {
 
-	/* Social Service data in local storage */
-	const { socialServiceData, setEvaluationDownloaded, description, setDescription } = useSocialServiceStore(state => ({
-		socialServiceData: {
-			person: state.personalData!,
-			student: state.studentData!,
-			period: state.periodData!,
-			governmentAgency: state.governmentAgencyData!,
-		},
-		setEvaluationDownloaded: () => state.setDocumentDownloaded('final-evaluation', true),
-		description: state.finalEvaluationDescription,
-		setDescription: state.setFinalEvaluationDescription
-	}))
+	const {
+		personalData,
+		studentData,
+		periodData,
+		governmentAgencyData,
+		setDocumentDownloaded,
+		finalEvaluationDescription,
+		setFinalEvaluationDescription,
+	} = useSocialServiceStore()
+
+	const socialServiceData = {
+		person: personalData!,
+		student: studentData!,
+		period: periodData!,
+		governmentAgency: governmentAgencyData!,
+	}
 
 	const {
 		handleSubmit,
@@ -37,7 +41,7 @@ const FinalEvaluationModal: FC<FinalEvaluationModalProps> = ({ isOpen, onOpenCha
 		watch
 	} = useForm<{ description: string }>({
 		defaultValues: { description: '' },
-		values: { description: description || '' }
+		values: { description: finalEvaluationDescription || '' }
 	})
 
 	const { target, createPDF } = usePDF('Reporte Final')
@@ -55,8 +59,8 @@ const FinalEvaluationModal: FC<FinalEvaluationModalProps> = ({ isOpen, onOpenCha
 									id="report_form"
 									className="flex flex-col gap-4"
 									onSubmit={handleSubmit(async data => {
-										setDescription(data.description)
-										setEvaluationDownloaded()
+										setFinalEvaluationDescription(data.description)
+										setDocumentDownloaded('final-evaluation', true)
 										await createPDF()
 										onClose()
 									})}
