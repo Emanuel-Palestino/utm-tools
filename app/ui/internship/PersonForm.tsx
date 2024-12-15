@@ -14,11 +14,7 @@ interface PersonFormProps {
 
 const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 
-	const { save, values, isComplete } = useInternshipStore(state => ({
-		save: state.setPersonalData,
-		values: state.personalData,
-		isComplete: state.isPersonalDataComplete
-	}))
+	const { setPersonalData, personalData } = useInternshipStore()
 
 	const {
 		handleSubmit,
@@ -34,11 +30,11 @@ const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 			hasDisability: false,
 			disability: ''
 		},
-		values: values
+		values: personalData
 	})
 
 	const onSubmit: SubmitHandler<Person> = data => {
-		save(data)
+		setPersonalData(data)
 		nextForm()
 	}
 
@@ -118,7 +114,7 @@ const PersonForm: FC<PersonFormProps> = ({ nextForm }) => {
 
 					<div className="flex justify-center mt-2 md:col-span-2">
 						<Button className="w-32" color="primary" type="submit">
-							{isComplete ? 'Actualizar' : 'Guardar'}
+							{personalData ? 'Actualizar' : 'Guardar'}
 						</Button>
 					</div>
 				</form>

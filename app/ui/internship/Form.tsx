@@ -17,12 +17,12 @@ const PeriodForm = dynamic(() => import('./PeriodForm'), { loading: () => <Skele
 export const Form = () => {
 
 	const [selectedTab, setSelectecTab] = useState<Key>('personal')
-	const completed = useInternshipStore(state => ({
-		personaData: state.isPersonalDataComplete,
-		studentData: state.isStudentDataComplete,
-		periodData: state.isPeriodDataComplete,
-		companyData: state.isCompanyDataComplete
-	}))
+	const {
+		isPersonalDataComplete,
+		isStudentDataComplete,
+		isPeriodDataComplete,
+		isCompanyDataComplete,
+	} = useInternshipStore()
 
 	useEffect(() => {
 		useInternshipStore.persist.rehydrate()
@@ -40,7 +40,7 @@ export const Form = () => {
 				title={
 					<div className="flex items-center gap-2">
 						<span>Información Personal</span>
-						{completed.personaData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
+						{isPersonalDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 					</div>
 				}
 			>
@@ -52,7 +52,7 @@ export const Form = () => {
 				title={
 					<div className="flex items-center gap-2">
 						<span>Información Escolar</span>
-						{completed.studentData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
+						{isStudentDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 					</div>
 				}
 			>
@@ -64,7 +64,7 @@ export const Form = () => {
 				title={
 					<div className="flex items-center gap-2">
 						<span>Información de la Empresa</span>
-						{completed.companyData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
+						{isCompanyDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 					</div>
 				}
 			>
@@ -76,7 +76,7 @@ export const Form = () => {
 				title={
 					<div className="flex items-center gap-2">
 						<span>Periodo y Estancias</span>
-						{completed.periodData && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
+						{isPeriodDataComplete && <span className="fill-green-600 font-bold"><CheckIcon /></span>}
 					</div>
 				}
 			>

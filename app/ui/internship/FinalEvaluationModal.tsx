@@ -18,15 +18,21 @@ interface FinalEvaluationProps {
 
 const FinalEvaluationModal: FC<FinalEvaluationProps> = ({ isOpen, onOpenChange }) => {
 
-	const { internshipData, setDocumentDownloaded } = useInternshipStore(state => ({
-		internshipData: {
-			period: state.periodData!,
-			company: state.companyData!,
-			person: state.personalData!,
-			student: state.studentData!
-		},
-		setDocumentDownloaded: () => state.setDocumentDownloaded('final-evaluation', true)
-	}))
+	const {
+		periodData,
+		companyData,
+		personalData,
+		studentData,
+		setDocumentDownloaded
+	} = useInternshipStore()
+
+	const internshipData = {
+		period: periodData!,
+		company: companyData!,
+		person: personalData!,
+		student: studentData!
+	}
+
 	const {
 		handleSubmit,
 		register,
@@ -52,7 +58,7 @@ const FinalEvaluationModal: FC<FinalEvaluationProps> = ({ isOpen, onOpenChange }
 									id="final_evaluation_form"
 									onSubmit={handleSubmit(async () => {
 										await createPDF()
-										setDocumentDownloaded()
+										setDocumentDownloaded('final-evaluation', true)
 										onClose()
 									})}
 								>

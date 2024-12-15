@@ -14,11 +14,7 @@ import { formatISO, parseISO } from "date-fns"
 
 const PeriodForm = () => {
 
-	const { save, values, isComplete } = useInternshipStore(state => ({
-		save: state.setPeriodData,
-		values: state.periodData,
-		isComplete: state.isPeriodDataComplete
-	}))
+	const { setPeriodData, periodData } = useInternshipStore()
 
 	const {
 		handleSubmit,
@@ -31,13 +27,13 @@ const PeriodForm = () => {
 			startDate: Date.now(),
 			endDate: Date.now(),
 			// values is passed due to the field array takes always the default value
-			schedules: values?.schedules || [[9, 18]],
+			schedules: periodData?.schedules || [[9, 18]],
 			totalHours: 280,
 			periodNumber: 1,
 			customPeriod: false,
 			reportFrecuency: 3
 		},
-		values
+		values: periodData
 	})
 
 	const { fields, append, remove } = useFieldArray({ control, name: 'schedules' })
@@ -52,7 +48,7 @@ const PeriodForm = () => {
 			data.endDate = INTERNSHIP_PERIODS[data.periodNumber - 1].endDate
 		}
 
-		save(data)
+		setPeriodData(data)
 	}
 
 	return (
@@ -229,7 +225,7 @@ const PeriodForm = () => {
 
 					<div className="flex justify-center mt-2 md:col-span-2">
 						<Button className="w-32" color="primary" type="submit">
-							{isComplete ? 'Actualizar' : 'Guardar'}
+							{periodData ? 'Actualizar' : 'Guardar'}
 						</Button>
 					</div>
 				</form>

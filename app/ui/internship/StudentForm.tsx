@@ -17,11 +17,7 @@ interface StudentFormProps {
 
 const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 
-	const { save, values, isComplete } = useInternshipStore(state => ({
-		save: state.setStudentData,
-		values: state.studentData,
-		isComplete: state.isStudentDataComplete
-	}))
+	const { setStudentData, studentData } = useInternshipStore()
 
 	const {
 		handleSubmit,
@@ -41,12 +37,12 @@ const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 			haveFirstMakeUpExam: false,
 			haveSecondMakeUpExam: false
 		},
-		values
+		values: studentData
 	})
 
 	const onSubmit: SubmitHandler<InternshipStudent> = data => {
 		data.semester = Number(data.semester)
-		save(data)
+		setStudentData(data)
 		nextForm()
 	}
 
@@ -186,7 +182,7 @@ const StudentForm: FC<StudentFormProps> = ({ nextForm }) => {
 
 					<div className="flex justify-center mt-2 md:col-span-2">
 						<Button className="w-32" color="primary" type="submit">
-							{isComplete ? 'Actualizar' : 'Guardar'}
+							{studentData ? 'Actualizar' : 'Guardar'}
 						</Button>
 					</div>
 				</form>

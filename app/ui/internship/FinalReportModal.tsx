@@ -21,16 +21,21 @@ interface FinalReportModalProps {
 
 const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) => {
 
-	const { internshipData, reports, setDocumentDownloaded } = useInternshipStore(state => ({
-		internshipData: {
-			period: state.periodData!,
-			company: state.companyData!,
-			person: state.personalData!,
-			student: state.studentData!
-		},
-		reports: state.reports,
-		setDocumentDownloaded: () => state.setDocumentDownloaded('final-report', true)
-	}))
+	const {
+		periodData,
+		companyData,
+		personalData,
+		studentData,
+		reports,
+		setDocumentDownloaded
+	} = useInternshipStore()
+
+	const internshipData = {
+		period: periodData!,
+		company: companyData!,
+		person: personalData!,
+		student: studentData!
+	}
 
 	const {
 		handleSubmit,
@@ -86,7 +91,7 @@ const FinalReportModal: FC<FinalReportModalProps> = ({ isOpen, onOpenChange }) =
 									id="final_report_form"
 									onSubmit={handleSubmit(async () => {
 										await createFinalReport()
-										setDocumentDownloaded()
+										setDocumentDownloaded('final-report', true)
 										onClose()
 									})}
 								>

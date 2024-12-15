@@ -22,18 +22,23 @@ interface PartialReportModalProps {
 
 const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange }) => {
 
-	const { internshipData, reports, addReport, documentsDownloaded, setDocumentDownloaded } = useInternshipStore(state => ({
-		internshipData: {
-			period: state.periodData!,
-			company: state.companyData!,
-			person: state.personalData!,
-			student: state.studentData!
-		},
-		reports: state.reports,
-		addReport: state.addReport,
-		documentsDownloaded: state.documentsDownloaded,
-		setDocumentDownloaded: (key: string) => state.setDocumentDownloaded(key, true)
-	}))
+	const {
+		periodData,
+		companyData,
+		personalData,
+		studentData,
+		reports,
+		addReport,
+		documentsDownloaded,
+		setDocumentDownloaded,
+	} = useInternshipStore()
+
+	 const internshipData = {
+		period: periodData!,
+		company: companyData!,
+		person: personalData!,
+		student: studentData!
+	}
 
 	const {
 		handleSubmit,
@@ -94,7 +99,7 @@ const PartialReportModal: FC<PartialReportModalProps> = ({ isOpen, onOpenChange 
 
 										// Save report info
 										addReport(`weekly-report-${data.formatNumber}`, data)
-										setDocumentDownloaded(`weekly-report-${data.formatNumber}`)
+										setDocumentDownloaded(`weekly-report-${data.formatNumber}`, true)
 
 										// Create report
 										await createWeeklyReport()

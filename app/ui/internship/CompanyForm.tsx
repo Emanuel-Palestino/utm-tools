@@ -16,11 +16,7 @@ interface CompanyFormProps {
 
 const CompanyForm: FC<CompanyFormProps> = ({ nextForm }) => {
 
-	const { save, values } = useInternshipStore(state => ({
-		save: state.setCompanyData,
-		values: state.companyData,
-		isComplete: state.isCompanyDataComplete
-	}))
+	const { setCompanyData, companyData } = useInternshipStore()
 
 	const {
 		control,
@@ -41,11 +37,11 @@ const CompanyForm: FC<CompanyFormProps> = ({ nextForm }) => {
 			recipientPosition: '',
 			inAtentionOf: ''
 		},
-		values
+		values: companyData
 	})
 
 	const onSubmit: SubmitHandler<Company> = data => {
-		save(data)
+		setCompanyData(data)
 		nextForm()
 	}
 
@@ -227,7 +223,7 @@ const CompanyForm: FC<CompanyFormProps> = ({ nextForm }) => {
 
 					<div className="flex justify-center mt-2 md:col-span-2">
 						<Button className="w-32" color="primary" type="submit">
-							{values ? 'Actualizar' : 'Guardar'}
+							{companyData ? 'Actualizar' : 'Guardar'}
 						</Button>
 					</div>
 				</form>

@@ -19,19 +19,27 @@ const DocumentReception = dynamic(() => import('@/app/printingFormats/internship
 
 export const Documents = () => {
 
-	const { dataComplete, internshipData, documentsDownloaded, setDocumentDownloaded } = useInternshipStore(state => ({
-		dataComplete: state.isCompanyDataComplete && state.isPeriodDataComplete && state.isPersonalDataComplete && state.isStudentDataComplete,
-		internshipData: {
-			applicationDate: Date.now(),
-			person: state.personalData!,
-			student: state.studentData!,
-			period: state.periodData!,
-			company: state.companyData!
-		},
-		documentsDownloaded: state.documentsDownloaded,
-		setDocumentDownloaded: (key: string) => state.setDocumentDownloaded(key, true)
-	}))
+	const {
+		isCompanyDataComplete,
+		isPeriodDataComplete,
+		isPersonalDataComplete,
+		isStudentDataComplete,
+		personalData,
+		studentData,
+		periodData,
+		companyData,
+		documentsDownloaded,
+		setDocumentDownloaded
+	} = useInternshipStore()
 
+	const isDataComplete = isCompanyDataComplete && isPeriodDataComplete && isPersonalDataComplete && isStudentDataComplete
+	const internshipData = {
+		applicationDate: Date.now(),
+		person: personalData!,
+		student: studentData!,
+		period: periodData!,
+		company: companyData!
+	}
 
 	const { target: intershipTarget, createPDF: createIntership } = usePDF('Solicitud de Estancias Profesionales')
 	const { target: commitmentLetterTarget, createPDF: createCommitmentLetter } = usePDF('Carta Compromiso')
@@ -96,11 +104,11 @@ export const Documents = () => {
 			<div className="flex flex-wrap gap-4 justify-center w-fit">
 				{documents.map(doc => (
 					<Card
-						isPressable={dataComplete}
-						isDisabled={!dataComplete}
+						isPressable={isDataComplete}
+						isDisabled={!isDataComplete}
 						onPress={() => {
 							doc.action()
-							if (doc.instantDownload) setDocumentDownloaded(doc.stateKey)
+							if (doc.instantDownload) setDocumentDownloaded(doc.stateKey, true)
 						}}
 						key={doc.name}
 						className="w-32 h-36"
@@ -121,7 +129,7 @@ export const Documents = () => {
 				))}
 			</div>
 
-			{dataComplete && (
+			{isDataComplete && (
 				<>
 					{isOpen && (
 						<PartialReportModal
